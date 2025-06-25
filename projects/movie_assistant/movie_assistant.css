@@ -1,0 +1,232 @@
+body {
+    background-color: rgba(18, 18, 18, 0.575);
+    background-blend-mode: darken;
+    color: #00f5ff;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 0;
+    background-image: url(images/main/t1.webp);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Header styling */
+header {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to bottom, rgb(0, 0, 0), #000000b6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgb(180, 180, 180);
+}
+
+.container {
+    flex: 1;
+    background-image: url(images/main/da.jpg);
+    background-color: rgba(18, 18, 18, 0.758);
+    background-blend-mode: darken;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    text-align: center;
+    padding: 15px;
+    width: 92%;
+    max-width: 850px;
+    margin: 50px auto;
+}
+
+h2 {
+    color: #c5c5c5;
+    text-shadow: 0 0 10px #00aab0c4;
+}
+
+p {
+    color: #c5c5c5;
+    font-size: 16px;
+}
+
+.output {
+    background: #0a0a0a;
+    color: #ebebeb;
+    max-width: 100%;
+    padding: 25px;
+    margin-bottom: 10px;
+    border: 3px solid rgba(194, 194, 194, 0.675);
+    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.675);
+    border-radius: 8px;
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+}
+
+.message {
+    margin: 10px 0;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.movie-item {
+    background: #121212;
+    border: 5px solid #252525;
+    box-shadow: 0 4px 3px rgba(255, 255, 255, 0.675);
+    border-radius: 8px;
+    padding: 8px;
+    color: #e4e4e4;
+    font-size: 1rem;
+    text-align: left;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 60px;
+}
+
+.movie-item .number {
+    display: inline-block;
+    font-weight: bold;
+    color: rgba(255, 201, 40, 0.5);
+    white-space: nowrap;
+}
+
+.movie-item .title {
+    display: inline;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Input and Button Grouping */
+#mainControls,
+#deleteContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Stack inputs vertically */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Arrange buttons horizontally */
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.button-group2 {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 14px;
+    border: none;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #000;
+}
+
+/* Consistent button styling */
+.button-group button,
+#backButton,
+#cancelDeleteButton,
+#confirmDeleteButton,
+#findDeleteCategory {
+    padding: 8px 14px;
+    border: none;
+    font-size: 1em;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
+    cursor: pointer;
+    color: #000;
+}
+
+.button-group button:hover,
+#backButton:hover,
+#cancelDeleteButton:hover,
+#confirmDeleteButton:hover,
+#findDeleteCategory:hover {
+    background-color: #00c4cc;
+}
+
+/* Input styling */
+.input-box {
+    padding: 8px;
+    margin-top: 10px;
+    border: 2px solid #b0b0b0;
+    box-shadow: 0 2px 4px 2px rgba(174, 174, 174, 0.589);
+    border-radius: 5px;
+    background: #222;
+    color: #c5c5c5;
+    width: calc(100% - 20px);
+}
+
+/* Exit Button */
+.exit-button {
+    font-size: 25px;
+    position: relative;
+}
+
+.exit-button a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #bfbfbf;
+    background-color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.273);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exit-button a:hover {
+    background-color: #000;
+    color: #ba1a1a;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(255, 201, 40, 0.5);
+}
+
+/* Footer styling */
+footer {
+    width: 100%;
+    background-color: #121212;
+    padding: 15px 20px;
+    text-align: center;
+    border-top: 3px solid #363636;
+    margin-top: auto;
+    position: relative;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #787878;
+}
+
+footer a {
+    color: #00a2c6b1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #ffffff;
+}

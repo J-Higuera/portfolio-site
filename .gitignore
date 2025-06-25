@@ -1,0 +1,22 @@
+# VS Code settings
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment config (if used later)
+.env
+
+# Python compiled files (if you expand your movie assistant)
+__pycache__/
+*.pyc
+
+# SQLite database
+*.db
+
+# Node modules (if you use npm later)
+node_modules/
