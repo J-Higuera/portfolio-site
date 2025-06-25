@@ -1,9 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const BASE_URL = "https://web-production-f647.up.railway.app";
-    s
+    const BASE_URL = "https://web-production-1c29.up.railway.app";
     const categoryInput = document.getElementById("categoryInput");
     const output = document.getElementById("output");
-
     const deleteContainer = document.getElementById("deleteContainer");
     const deleteCategoryInput = document.getElementById("deleteCategoryInput");
     const deleteTitleInput = document.getElementById("deleteTitleInput");
