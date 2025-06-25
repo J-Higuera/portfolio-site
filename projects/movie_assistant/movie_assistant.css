@@ -203,6 +203,7 @@ p {
     border: 2px solid #b0b0b0;
     box-shadow: 0 2px 4px 2px rgba(174, 174, 174, 0.589);
     border-radius: 5px;
+    font-size: 16px;
     background: #222;
     color: #c5c5c5;
     width: calc(100% - 20px);
