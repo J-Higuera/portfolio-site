@@ -72,7 +72,7 @@ p {
 .movie-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
+    gap: 6px 10px;
     padding: 10px;
     box-sizing: border-box;
     max-width: 100%;
@@ -84,16 +84,16 @@ p {
     border: 5px solid #252525;
     box-shadow: 0 4px 3px rgba(255, 255, 255, 0.675);
     border-radius: 8px;
-    padding: 8px;
+    padding: 6px;
     color: #e4e4e4;
     font-size: 1rem;
-    text-align: left;
-    line-height: 1.4;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    text-align: center;
     box-sizing: border-box;
     width: 100%;
-    min-height: 60px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .movie-item .number {
@@ -107,6 +107,35 @@ p {
     display: inline;
     word-wrap: break-word;
     overflow-wrap: break-word;
+}
+
+.movie-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    margin-bottom: 8px;
+}
+
+.movie-caption {
+    color: #e4e4e4;
+    font-size: 0.85rem;
+    line-height: 1.2;
+    text-align: center;
+    margin-top: 2px;
+    height: 2.6em;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    text-overflow: ellipsis;
+}
+
+.movie-caption .number {
+    color: rgba(255, 201, 40, 0.75);
+    font-weight: bold;
+    margin-right: 4px;
 }
 
 /* Input and Button Grouping */
@@ -229,4 +258,21 @@ footer a {
 
 footer a:hover {
     color: #ffffff;
+}
+
+@media (max-width: 700px) {
+    .movie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 8px;
+    }
+
+    .movie-item {
+        font-size: 0.85rem;
+        padding: 6px;
+    }
+
+    .movie-item img {
+        max-height: 180px;
+        object-fit: cover;
+    }
 }

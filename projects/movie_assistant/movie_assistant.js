@@ -56,11 +56,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     : fallbackImage;
 
                 movieItem.innerHTML = `
-                    <span class="number">${index + 1}.</span> 
-                    <span class="title">${movie.title}</span><br>
                     <img src="${imageSrc}" 
-                         style="width:100%;margin-top:5px;border-radius:6px;" 
+                         style="width:100%;border-radius:6px;margin-bottom:6px;" 
                          onerror="this.src='${fallbackImage}'">
+                    <div class="movie-caption">
+                        <span class="number">${index + 1}.</span>
+                        <span class="title">${movie.title}</span>
+                    </div>
                 `;
 
                 gridContainer.appendChild(movieItem);
@@ -172,11 +174,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     : fallbackImage;
 
                 movieItem.innerHTML = `
-                    <span class="number">${index + 1}.</span> 
-                    <span class="title">${movie.title}</span><br>
                     <img src="${imageSrc}" 
-                         style="width:100%;margin-top:5px;border-radius:6px;" 
+                         style="width:100%;border-radius:6px;margin-bottom:6px;" 
                          onerror="this.src='${fallbackImage}'">
+                    <div class="movie-caption">
+                        <span class="number">${index + 1}.</span>
+                        <span class="title">${movie.title}</span>
+                    </div>
                 `;
 
                 gridContainer.appendChild(movieItem);
