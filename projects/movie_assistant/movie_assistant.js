@@ -60,8 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
                          style="width:100%;border-radius:6px;margin-bottom:6px;" 
                          onerror="this.src='${fallbackImage}'">
                     <div class="movie-caption">
-                        <span class="number">${index + 1}.</span>
-                        <span class="title">${movie.title}</span>
+                        <span class="number">${index + 1}.</span><span class="title">${movie.title}</span>
                     </div>
                 `;
 
@@ -178,8 +177,7 @@ document.addEventListener("DOMContentLoaded", () => {
                          style="width:100%;border-radius:6px;margin-bottom:6px;" 
                          onerror="this.src='${fallbackImage}'">
                     <div class="movie-caption">
-                        <span class="number">${index + 1}.</span>
-                        <span class="title">${movie.title}</span>
+                        <span class="number">${index + 1}.</span><span class="title">${movie.title}</span>
                     </div>
                 `;
 

@@ -21,20 +21,22 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow:
+        0 0 0.20em rgba(255, 255, 255, 0.368),
+        0 0 10.5em #b2e4ff81,
+        inset 0 0 1em rgba(255, 255, 255, 0.1);
     text-align: center;
     color: rgb(180, 180, 180);
 }
 
 .container {
     flex: 1;
-    background-image: url(images/main/da.jpg);
-    background-color: rgba(18, 18, 18, 0.758);
     background-blend-mode: darken;
     background-size: cover;
     background-position: center;
     border-radius: 30px;
     text-align: center;
-    padding: 15px;
+    padding: 25px;
     width: 92%;
     max-width: 850px;
     margin: 50px auto;
@@ -42,7 +44,7 @@ header {
 
 h2 {
     color: #c5c5c5;
-    text-shadow: 0 0 10px #00aab0c4;
+    text-shadow: 0 0 10px #b2e4ff81;
 }
 
 p {
@@ -51,18 +53,23 @@ p {
 }
 
 .output {
-    background: #0a0a0a;
-    color: #ebebeb;
+    background: #0d0d0d;
+    color: #f0f0f0;
     max-width: 100%;
-    padding: 10px;
+    padding: 20px;
     margin-bottom: 10px;
-    border: 3px solid rgba(194, 194, 194, 0.675);
-    box-shadow: 0 0 10px 10px rgba(255, 255, 255, 0.675);
-    border-radius: 8px;
+    border: 2px solid rgba(255, 255, 255, 0.435);
+    border-radius: 10px;
+    box-shadow:
+        0 0 0.20em rgba(255, 255, 255, 0.368),
+        0 0 1.5em #b2e4ff,
+        inset 0 0 1em rgba(255, 255, 255, 0.1);
     height: 50vh;
     overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
+    backdrop-filter: blur(2px);
+    transition: box-shadow 0.3s ease;
 }
 
 .message {
@@ -106,15 +113,16 @@ p {
 .movie-item .title {
     display: inline;
     word-wrap: break-word;
+    background-color: #9a9a9a00;
     overflow-wrap: break-word;
 }
 
 .movie-item img {
     width: 100%;
     height: auto;
-    border-radius: 6px;
+    border-radius: 2px;
     object-fit: cover;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
 .movie-caption {
@@ -134,7 +142,7 @@ p {
 .movie-caption .number {
     color: rgba(255, 201, 40, 0.75);
     font-weight: bold;
-    margin-right: 4px;
+    margin-right: 1px;
 }
 
 /* Input and Button Grouping */
@@ -150,6 +158,7 @@ p {
     display: flex;
     flex-direction: column;
     gap: 10px;
+
 }
 
 /* Arrange buttons horizontally */
@@ -157,55 +166,93 @@ p {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 18px;
 }
 
 .button-group2 {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    padding: 10px 14px;
-    border: none;
-    font-size: 1em;
-    border-radius: 5px;
+    gap: 18px;
+    padding: 11px;
     cursor: pointer;
-    color: #000;
 }
 
-/* Consistent button styling */
 .button-group button,
-#backButton,
-#cancelDeleteButton,
-#confirmDeleteButton,
-#findDeleteCategory {
-    padding: 8px 14px;
-    border: none;
-    font-size: 1em;
-    border-radius: 5px;
-    box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
+.button-group2 button {
+    --btn-color: #14191f;
+    --glow-color: #b2e4ffdb;
+    --glow-spread-color: rgba(178, 228, 255, 0.19);
+    border: 2px solid var(--glow-color);
+    padding: 0.75em 2em;
+    color: var(--glow-color);
+    font-size: 15px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 10px;
     cursor: pointer;
-    color: #000;
+    outline: none;
+    box-shadow:
+        0 0 0.2em 0.10em var(--glow-color),
+        0 0 1.2em 0.3em var(--glow-spread-color),
+        inset 0 0 0.3em 0.1em var(--glow-color);
+    position: relative;
+    transition: all 0.3s ease-in-out;
 }
 
 .button-group button:hover,
-#backButton:hover,
-#cancelDeleteButton:hover,
-#confirmDeleteButton:hover,
-#findDeleteCategory:hover {
-    background-color: #00c4cc;
+.button-group2 button:hover {
+    box-shadow:
+        0 0 0.7em 0.2em var(--glow-color),
+        0 0 2.5em 0.5em var(--glow-spread-color),
+        inset 0 0 0.6em 0.2em var(--glow-color);
+    text-shadow: none;
 }
+
+
+.button-group button::after,
+.button-group2 button::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(1em);
+    opacity: 0.25;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+
 
 /* Input styling */
 .input-box {
     padding: 8px;
-    margin-top: 10px;
-    border: 2px solid #b0b0b0;
-    box-shadow: 0 2px 4px 2px rgba(174, 174, 174, 0.589);
-    border-radius: 5px;
-    background: #222;
-    color: #c5c5c5;
-    width: calc(100% - 20px);
+    margin-top: 9px;
+    border: 1.8px solid #b0b0b0;
+    box-shadow:
+        0 0 0.10em rgba(255, 255, 255, 0.368),
+        0 0 0.50em #b2e4ff,
+        inset 0 0 0.10em rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: #222222e6;
+    color: #e5e5e5;
+    width: 100%;
+    text-align: center;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #1e1e1e inset !important;
+    /* dim background */
+    -webkit-text-fill-color: #ccc !important;
+    /* soft text color */
+    caret-color: #fff;
+    transition: background-color 5000s ease-in-out 0s;
+    /* prevent flash */
 }
 
 /* Exit Button */
@@ -221,7 +268,10 @@ p {
     background-color: #000;
     padding: 10px 20px;
     border-radius: 5px;
-    box-shadow: 0 0 2px 2px rgba(255, 255, 255, 0.273);
+    box-shadow:
+        0 0 0.10em rgba(255, 255, 255, 0.368),
+        0 0 0.5em #b2e4ff,
+        inset 0 0 0.10em rgba(255, 255, 255, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -260,6 +310,14 @@ footer a:hover {
 }
 
 @media (max-width: 700px) {
+
+    .container {
+        padding: 15px;
+        width: 99%;
+        max-width: 1000px;
+        margin: 50px auto;
+    }
+
     .movie-grid {
         grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
         gap: 5px 5px;
@@ -271,7 +329,7 @@ footer a:hover {
     }
 
     .movie-item img {
-        max-height: 300px;
+        max-height: 205px;
         object-fit: cover;
     }
 }
