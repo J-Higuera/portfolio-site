@@ -58,7 +58,7 @@ p {
     max-width: 100%;
     padding: 20px;
     margin-bottom: 10px;
-    border: 2px solid rgba(255, 255, 255, 0.435);
+    border: 2px solid #efff75;
     border-radius: 10px;
     box-shadow:
         0 0 0.20em rgba(255, 255, 255, 0.368),
@@ -231,7 +231,7 @@ p {
 .input-box {
     padding: 8px;
     margin-top: 9px;
-    border: 1.8px solid #b0b0b0;
+    border: 1.8px solid #c6e7f9;
     box-shadow:
         0 0 0.10em rgba(255, 255, 255, 0.368),
         0 0 0.50em #b2e4ff,
