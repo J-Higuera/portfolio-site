@@ -6,6 +6,10 @@ body {
     margin: 0;
     padding: 0;
     background-image: url(images/main/t1.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -297,13 +301,11 @@ footer a:hover {
 
     body {
         background-color: rgba(18, 18, 18, 0.409);
-        font-family: 'Courier New', monospace;
-        margin: 0;
-        padding: 0;
-        background-image: url(images/main/t1.webp);
+        background-image: url(images/main/t1.webp) no-repeat center center fixed;
         background-size: cover;
         background-attachment: fixed;
-        display: flex;
+        align-items: center;
+        width: 100%;
         flex-direction: column;
         height: 100%;
         overflow-x: hidden;
