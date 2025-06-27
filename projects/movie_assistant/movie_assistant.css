@@ -295,10 +295,24 @@ footer a:hover {
 
 @media (max-width: 700px) {
 
+    body {
+        background-color: rgba(18, 18, 18, 0.409);
+        font-family: 'Courier New', monospace;
+        margin: 0;
+        padding: 0;
+        background-image: url(images/main/t1.webp);
+        background-size: cover;
+        background-attachment: fixed;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow-x: hidden;
+    }
+
     .container {
         padding: 15px;
-        width: 99%;
-        max-width: 1000px;
+        width: 100%;
+        max-width: 100%;
         margin: 50px auto;
     }
 
