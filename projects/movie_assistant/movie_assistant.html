@@ -38,13 +38,14 @@
         </div>
 
         <!-- Delete Controls -->
-        <div id="deleteContainer" style="display: none; margin-top: 1rem;">
+        <div id="deleteContainer" style="display: none;">
             <div class="input-group">
                 <input id="deleteCategoryInput" class="input-box" placeholder="Category to delete from">
-                <input id="deleteTitleInput" class="input-box" placeholder="Title (optional)">
+                <textarea id="deleteTitleInput" class="input-box" rows="3"
+                    placeholder="input format: Title Year, Title Year,... (make sure to check spelling and include any special characters from the title)"></textarea>
             </div>
 
-            <div class="button-group2">
+            <div class="button-group">
                 <button id="findDeleteCategory">Find</button>
                 <button id="confirmDeleteButton">Confirm Delete</button>
                 <button id="backButton" style="display: none;">Back</button>
