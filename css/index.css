@@ -757,6 +757,17 @@ body.light-mode .social-links3 {
         background-color: #7e7e7ef2;
     }
 
+    body {
+        margin: 0;
+        padding: 0;
+        background: none;
+        background-size: cover;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
     body::before {
         content: "";
         position: fixed;
