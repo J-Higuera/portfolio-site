@@ -759,9 +759,9 @@ body.light-mode .social-links3 {
 
     body {
         background: url(../images/home.JPG)no-repeat center center fixed;
-        background-size: auto;
-        height: auto;
-        width: auto;
+        background-size: 100% 100%;
+        min-width: 100%;
+        min-height: 100%;
     }
 
 
