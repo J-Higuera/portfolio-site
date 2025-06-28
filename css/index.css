@@ -780,9 +780,20 @@ body.light-mode .social-links3 {
         z-index: -1;
     }
 
-
     body.light-mode {
-        background: url(../images/light1.jpg);
+        background: none;
+    }
+
+    body.light-mode::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../images/light1.jpg') no-repeat center center;
+        background-size: cover;
+        z-index: -1;
     }
 
     body.light-mode .achievements {
