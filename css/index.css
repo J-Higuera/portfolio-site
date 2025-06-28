@@ -759,7 +759,7 @@ body.light-mode .social-links3 {
 
     body {
         background-color: #000000;
-        background-size: cover;
+        background-size: contain;
         background-image: url('../images/home.JPG');
         background-attachment: fixed;
         height: 100%;
