@@ -759,12 +759,11 @@ body.light-mode .social-links3 {
 
     body {
         background-color: #000000;
-        background-size: calc(100% + 700px);
+        background-size: calc(100% + 1300px);
         background-image: url('../images/Phone.jpg');
         background-attachment: fixed;
         height: 100%;
         min-height: 100vh;
-        width: auto;
         top: 0;
         left: 0;
         right: 0;
