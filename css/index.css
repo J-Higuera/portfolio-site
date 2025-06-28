@@ -757,11 +757,16 @@ body.light-mode .social-links3 {
         background-color: #7e7e7ef2;
     }
 
-    body {
-        background: url(../images/home.JPG)no-repeat center center fixed;
-        background-size: 100% 100%;
-        min-width: 100%;
-        min-height: 100%;
+    body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../images/home.JPG') no-repeat center center;
+        background-size: cover;
+        z-index: -1;
     }
 
 
