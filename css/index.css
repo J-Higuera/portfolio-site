@@ -758,16 +758,19 @@ body.light-mode .social-links3 {
     }
 
     body {
-        background-color: #000000;
-        background-size: contain;
+        background-color: #000;
+        /* fallback */
         background-image: url('../images/home.JPG');
-        background-attachment: fixed;
-        height: 100%;
+        background-repeat: no-repeat;
+        background-size: cover;
+        /* ✅ fill viewport, no gaps */
+        background-position: center center;
+        /* ✅ center focal point */
+        background-attachment: scroll;
+        /* ✅ don’t use fixed for mobile */
         min-height: 100vh;
-        top: 0;
-        left: 0;
-        right: 0;
     }
+
 
     body.light-mode {
         background: url(../images/light1.jpg);
