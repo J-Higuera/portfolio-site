@@ -758,20 +758,14 @@ body.light-mode .social-links3 {
     }
 
     body {
-        margin: 0;
-        padding: 0;
         background: none;
-        background-size: cover;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
     }
 
     body::before {
         content: "";
         position: fixed;
         top: 0;
+        background-color: #ffffff;
         left: 0;
         right: 0;
         bottom: 0;
@@ -790,6 +784,7 @@ body.light-mode .social-links3 {
         top: 0;
         left: 0;
         right: 0;
+        background-color: #ffffff;
         bottom: 0;
         background: url('../images/light2.jpg') no-repeat center center;
         background-size: cover;
