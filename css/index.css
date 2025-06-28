@@ -778,15 +778,15 @@ body.light-mode .social-links3 {
     }
 
     body.light-mode .achievements {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
-        background-color: #ffffffeb;
+        box-shadow: none;
+        background-color: #ffffff;
         color: #bfbfbf;
         border-radius: 15px;
     }
 
     body.light-mode .skills {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
-        background-color: #ffffffeb;
+        box-shadow: none;
+        background-color: #ffffff;
         color: #bfbfbf;
     }
 
