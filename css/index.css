@@ -774,6 +774,19 @@ body.light-mode .social-links3 {
         background-size: 100% calc(100% + 4000px);
     }
 
+    body.light-mode .achievements {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
+        background-color: #ffffffeb;
+        color: #bfbfbf;
+        border-radius: 15px;
+    }
+
+    body.light-mode .skills {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
+        background-color: #ffffffeb;
+        color: #bfbfbf;
+    }
+
 
     .content {
         width: 100vw;

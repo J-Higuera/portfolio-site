@@ -265,9 +265,20 @@ body.light-mode .work-card {
 
 }
 
-@media (max-width: 870px) {
+@media (max-width: 620px) {
 
     .about-grid {
         grid-template-columns: 1fr !important;
+    }
+
+    body.light-mode .name {
+        background-color: #ffffffeb;
+        color: #bfbfbf;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
+    }
+
+    body.light-mode .about-section {
+        background-color: #ffffffeb;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
     }
 }
