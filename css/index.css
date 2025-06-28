@@ -758,9 +758,8 @@ body.light-mode .social-links3 {
     }
 
     body {
-        background-color: #000;
         background: url(../images/home.JPG)no-repeat center center fixed;
-        background-size: contain;
+        background-size: cover;
         height: auto;
         width: auto;
     }
