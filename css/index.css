@@ -762,9 +762,9 @@ body.light-mode .social-links3 {
         background-image: url('../images/home.JPG');
         background-repeat: no-repeat;
         background-size: cover;
-        background-position: center center;
         background-attachment: fixed;
         height: auto;
+        display: block;
         width: auto;
     }
 
