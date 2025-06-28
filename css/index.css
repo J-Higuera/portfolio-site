@@ -791,7 +791,7 @@ body.light-mode .social-links3 {
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/light1.jpg') no-repeat center center;
+        background: url('../images/light2.jpg') no-repeat center center;
         background-size: cover;
         z-index: -1;
     }
@@ -799,6 +799,7 @@ body.light-mode .social-links3 {
     body.light-mode .achievements {
         box-shadow: none;
         background-color: #ffffff;
+        background: #000000;
         color: #bfbfbf;
         border-radius: 15px;
     }
@@ -806,6 +807,7 @@ body.light-mode .social-links3 {
     body.light-mode .skills {
         box-shadow: none;
         background-color: #ffffff;
+        background: #000000;
         color: #bfbfbf;
     }
 
