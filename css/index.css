@@ -640,16 +640,51 @@ body.light-mode .sticky-nav {
     padding-bottom: 14px;
 }
 
+@media (prefers-color-scheme: dark) {
+
+    .skills {
+        text-align: center;
+        background-color: #0d0d0ddf;
+        color: #bfbfbf;
+        border-radius: 15px;
+        margin-top: 0;
+    }
+
+    .achievements {
+        box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
+        background-color: #0d0d0ddf;
+        color: #afafaf;
+        border-radius: 15px;
+
+    }
+
+}
+
+@media (prefers-color-scheme: light) {
+
+    .achievements {
+        background-color: #dcdcdc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
+        color: #bfbfbf;
+    }
+
+    .skills {
+        background-color: #dcdcdc;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
+        color: #bfbfbf;
+    }
+}
+
 body.light-mode .achievements {
-    background-color: #dcdcdc !important;
+    background-color: #dcdcdc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
-    color: #bfbfbf !important;
+    color: #bfbfbf;
 }
 
 body.light-mode .skills {
-    background-color: #dcdcdc !important;
+    background-color: #dcdcdc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
-    color: #bfbfbf !important;
+    color: #bfbfbf;
 }
 
 body.light-mode .skills h2,
