@@ -765,7 +765,6 @@ body.light-mode .social-links3 {
         content: "";
         position: fixed;
         top: 0;
-        background-color: #ffffff;
         left: 0;
         right: 0;
         bottom: 0;
@@ -791,10 +790,22 @@ body.light-mode .social-links3 {
         z-index: -1;
     }
 
+    .achievements {
+        box-shadow: none;
+        background-color: #ffffffae;
+        color: #bfbfbf;
+        border-radius: 15px;
+    }
+
+    .skills {
+        box-shadow: none;
+        background-color: #ffffffae;
+        color: #bfbfbf;
+    }
+
     body.light-mode .achievements {
         box-shadow: none;
         background-color: #ffffff;
-        background: #000000;
         color: #bfbfbf;
         border-radius: 15px;
     }
@@ -802,7 +813,6 @@ body.light-mode .social-links3 {
     body.light-mode .skills {
         box-shadow: none;
         background-color: #ffffff;
-        background: #000000;
         color: #bfbfbf;
     }
 
