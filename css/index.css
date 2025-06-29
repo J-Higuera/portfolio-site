@@ -896,7 +896,6 @@ body.light-mode .social-links3 {
         transform: translateY(-100%);
     }
 
-    /* MENU TOGGLE BUTTON */
     .mobile-toggle {
         opacity: 1;
         display: block;
@@ -921,7 +920,6 @@ body.light-mode .social-links3 {
         transform: translateY(-100%);
     }
 
-    /* NAME LABEL */
     .mobile-name {
         font-size: 1.2rem;
         padding-left: 10px;
@@ -943,7 +941,6 @@ body.light-mode .social-links3 {
         color: #ffffffaf;
     }
 
-    /* COMMON STATES */
     .visible-toggle {
         opacity: 1;
         pointer-events: auto;
