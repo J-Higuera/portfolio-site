@@ -228,10 +228,6 @@ body {
     min-height: 100vh;
 }
 
-body.light-mode {
-    background: url(../images/hua.png);
-}
-
 body.loading,
 html.loading {
     overflow: hidden;
@@ -401,16 +397,18 @@ header h2 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-.theme-toggle-container {
-    position: absolute;
+.desktop-theme-toggle {
+    display: block;
+    position: fixed;
     top: 0;
-    padding-right: 15px;
-    align-items: center;
-    right: 0;
+    right: 14px;
     padding-top: 20px;
-    z-index: 1001;
+    z-index: 570;
 }
 
+.mobile-theme-toggle {
+    display: none;
+}
 
 .theme-switch {
     width: 45px;
@@ -427,7 +425,7 @@ header h2 {
     width: 20px;
     height: 20px;
     background-color: #cfcfcfc9;
-    transition: transform 0.3s ease;
+    transition: transform 0.5s ease;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -436,6 +434,10 @@ header h2 {
     border-radius: 5px;
     font-weight: bold;
     color: rgb(0, 0, 0);
+}
+
+body.light-mode .theme-switch .switch-thumb {
+    transform: translateX(30px);
 }
 
 .achievements {
@@ -566,6 +568,10 @@ footer a:hover {
     transform: scale(1.2);
 }
 
+body.light-mode {
+    background: url(../images/hua.png);
+}
+
 body.light-mode header {
     background-color: #00000018;
 }
@@ -655,10 +661,6 @@ body.light-mode .achievements h2 {
 
 body.light-mode .theme-switch {
     background-color: #6a6a6aa5;
-}
-
-body.light-mode .theme-switch .switch-thumb {
-    transform: translateX(30px);
 }
 
 body.light-mode .social-links ul li a img,
@@ -801,42 +803,6 @@ body.light-mode .social-links3 {
         max-width: fit-content;
     }
 
-    .theme-toggle-container {
-        position: absolute;
-        top: 0px;
-        align-items: center;
-        right: 50px;
-        padding-top: 20px;
-        z-index: 1001;
-    }
-
-
-    .theme-switch {
-        width: 45px;
-        height: 10px;
-        border-radius: 10px;
-        background-color: #414141b6;
-        cursor: pointer;
-        align-items: center;
-        transition: background-color 0.3s ease;
-        display: flex;
-    }
-
-    .switch-thumb {
-        width: 20px;
-        height: 20px;
-        background-color: #cfcfcfc9;
-        transition: transform 0.3s ease;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 9px;
-        border-radius: 5px;
-        font-weight: bold;
-        color: rgb(0, 0, 0);
-    }
-
     .hero {
         position: relative;
         width: 100%;
@@ -862,6 +828,57 @@ body.light-mode .social-links3 {
     }
 
 
+    .desktop-theme-toggle {
+        display: none;
+    }
+
+    .mobile-theme-toggle {
+        display: block;
+        opacity: 1;
+        pointer-events: auto;
+        position: fixed;
+        top: 1.3rem;
+        right: 4rem;
+        z-index: 570;
+        transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .theme-switch {
+        width: 45px;
+        height: 10px;
+        border-radius: 10px;
+        cursor: pointer;
+        align-items: center;
+        display: flex;
+    }
+
+    .switch-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 9px;
+        font-weight: bold;
+    }
+
+    /* SHIFT + TOGGLE STATES */
+    .mobile-theme-toggle.visible-toggle {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .mobile-theme-toggle.hidden-toggle {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .mobile-theme-toggle.shifted-up {
+        transform: translateY(-100%);
+    }
+
+    /* TOP BAR */
     .mobile-top-bar {
         display: flex;
         justify-content: space-between;
@@ -871,31 +888,40 @@ body.light-mode .social-links3 {
         left: 0;
         right: 0;
         background: transparent;
-        z-index: 1000;
+        z-index: 540;
+        transition: transform 0.4s ease;
     }
 
-    /* Toggle styles */
+    .mobile-top-bar.shifted-up {
+        transform: translateY(-100%);
+    }
+
+    /* MENU TOGGLE BUTTON */
     .mobile-toggle {
         opacity: 1;
         display: block;
         pointer-events: auto;
-        transition: opacity 0.4s ease;
         position: fixed;
-        background-image: url("../images/menu.svg");
-        background-color: #272727;
-        background-size: cover;
-        background-repeat: no-repeat;
-        border: rgb(52, 52, 52) 3px solid;
-        border-radius: 6px;
-        width: 2.4rem;
-        aspect-ratio: 1;
         top: 0.5rem;
         right: 0.5rem;
-        z-index: 999;
+        z-index: 510;
+        width: 2.4rem;
+        aspect-ratio: 1;
+        background-image: url("../images/menu.svg");
+        background-color: #2727277d;
+        background-size: cover;
+        background-repeat: no-repeat;
+        border: 2px solid rgb(35, 35, 35);
+        border-radius: 6px;
         cursor: pointer;
+        transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
-    /* Name label */
+    .mobile-toggle.shifted-up {
+        transform: translateY(-100%);
+    }
+
+    /* NAME LABEL */
     .mobile-name {
         font-size: 1.2rem;
         padding-left: 10px;
@@ -906,14 +932,18 @@ body.light-mode .social-links3 {
         width: 100%;
         display: block;
         color: #ffffff8a;
-        transition: opacity 0.4s ease;
+        transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .mobile-name.shifted-up {
+        transform: translateY(-100%);
     }
 
     body.light-mode .mobile-name {
         color: #ffffffaf;
     }
 
-    /* Shared classes for both */
+    /* COMMON STATES */
     .visible-toggle {
         opacity: 1;
         pointer-events: auto;
@@ -924,20 +954,18 @@ body.light-mode .social-links3 {
         pointer-events: none;
     }
 
-    /* Adds delay on reappearing (for both toggle + name) */
     .visible-delay {
-        transition: opacity 0.2s ease 0.2s;
+        transition: opacity 0.25s ease 0.25s;
     }
 
     .shifted-up {
         transform: translateY(-100%);
-        transition: transform 0.3s ease;
     }
 
     #mobileMenu.shifted-up {
         padding-top: 0;
         margin-top: 0;
-        transition: padding-top 0.3s ease, margin-top 0.3s ease;
+        transition: padding-top 0.45s ease, margin-top 0.45s ease;
     }
 
     #mobileMenu {
@@ -945,7 +973,7 @@ body.light-mode .social-links3 {
         top: 0;
         left: 0;
         right: 0;
-        z-index: 999;
+        z-index: 500;
         display: block;
         background-color: rgba(99, 99, 99, 0.041);
         backdrop-filter: blur(10px);
@@ -1061,10 +1089,5 @@ body.light-mode .social-links3 {
     .social-links3 ul li a img {
         border-radius: 10px;
         transition: transform 0.3s ease;
-    }
-
-    .skill-card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
     }
 }

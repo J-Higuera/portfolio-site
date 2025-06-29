@@ -4,7 +4,6 @@
 <head>
     <title>My Portfolio</title>
     <meta charset="utf-8">
-    <meta name="color-scheme" content="light dark">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"> -->
@@ -27,6 +26,11 @@
             <li><a href="#about" class="scroll-link"><strong>About</strong></a></li>
             <li><a href="#contact" class="scroll-link"><strong>Contact</strong></a></li>
         </ul>
+        <div class="desktop-theme-toggle">
+            <div class="theme-switch" id="themeToggleDesktop">
+                <div class="switch-thumb">OFF</div>
+            </div>
+        </div>
     </nav>
     <div id="preloader">
         <div class="glitch" data-text="Loading Portfolio...">Loading Portfolio...</div>
@@ -35,11 +39,6 @@
                 <div class="progress-fill"></div>
             </div>
             <div id="progress-percent">0%</div>
-        </div>
-    </div>
-    <div class="theme-toggle-container">
-        <div class="theme-switch" id="themeToggle">
-            <div class="switch-thumb">OFF</div>
         </div>
     </div>
     <header class="hero">
@@ -53,8 +52,12 @@
             <h2>Juan Higuera</h2>
         </div>
         <button class="mobile-toggle" aria-expanded="false" aria-label="Menu Toggle"></button>
+        <div class="mobile-theme-toggle">
+            <div class="theme-switch" id="themeToggleMobile">
+                <div class="switch-thumb">OFF</div>
+            </div>
+        </div>
     </div>
-
     <nav id="mobileMenu" class="mobile-menu" data-active="false">
         <ul>
             <li><a href="#">Home</a></li>

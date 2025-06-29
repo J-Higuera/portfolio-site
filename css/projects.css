@@ -98,15 +98,6 @@
     }
 }
 
-:root {
-    color-scheme: light only;
-}
-
-body.light-mode .project-card {
-    box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
-    background-color: #0d0d0dca;
-}
-
 @media (max-width: 670px) {
     .left-panel {
         display: none;
