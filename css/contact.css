@@ -66,10 +66,6 @@
     color: #ffffff;
 }
 
-:root {
-    color-scheme: light only;
-}
-
 body.light-mode .contact-section {
     padding: 20px;
     text-align: center;
@@ -93,18 +89,4 @@ body.light-mode .contact-card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
-@media (max-width: 620px) {
-
-    body.light-mode .contact-section {
-        padding: 20px;
-        text-align: center;
-        background-color: #ffffffeb;
-        color: #2b2b2b;
-        margin-right: 25px;
-        margin-left: 25px;
-        margin-bottom: 520px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.833);
-    }
-
-}
+@media (max-width: 620px) {}

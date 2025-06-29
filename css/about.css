@@ -160,10 +160,6 @@
     color: #bfbfbf;
 }
 
-:root {
-    color-scheme: light only;
-}
-
 body.light-mode .about-section {
     background-color: #c7c7c7d8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
@@ -271,16 +267,5 @@ body.light-mode .work-card {
 
     .about-grid {
         grid-template-columns: 1fr !important;
-    }
-
-    body.light-mode .name {
-        background-color: #ffffffeb;
-        color: #bfbfbf;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
-    }
-
-    body.light-mode .about-section {
-        background-color: #ffffffeb;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
     }
 }
