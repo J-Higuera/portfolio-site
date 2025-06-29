@@ -66,31 +66,31 @@
     color: #ffffff;
 }
 
-@media (prefers-color-scheme: dark) {
+:root {
+    color-scheme: light only;
+}
 
-    body.light-mode .contact-section {
-        padding: 20px;
-        text-align: center;
-        background-color: #c7c7c7d8;
-        color: #2b2b2b;
-        margin-right: 25px;
-        margin-left: 25px;
-        margin-bottom: 520px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.833);
-    }
+body.light-mode .contact-section {
+    padding: 20px;
+    text-align: center;
+    background-color: #c7c7c7d8;
+    color: #2b2b2b;
+    margin-right: 25px;
+    margin-left: 25px;
+    margin-bottom: 520px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.833);
+}
 
-    body.light-mode .contact-section h2 {
-        color: #354259;
-        font-size: 2rem;
-        margin-bottom: 20px;
-        animation: fadeIn 3s ease-in-out;
-    }
+body.light-mode .contact-section h2 {
+    color: #354259;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    animation: fadeIn 3s ease-in-out;
+}
 
-    body.light-mode .contact-card {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
-    }
-
+body.light-mode .contact-card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
 @media (max-width: 620px) {

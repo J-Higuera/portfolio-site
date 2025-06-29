@@ -566,117 +566,118 @@ footer a:hover {
     transform: scale(1.2);
 }
 
-@media (prefers-color-scheme: dark) {
+:root {
+    color-scheme: light only;
+}
 
-    body.light-mode header {
-        background-color: #00000018;
-    }
+body.light-mode header {
+    background-color: #00000018;
+}
 
-    body.light-mode .hero h1 {
-        color: #ffffff;
-    }
+body.light-mode .hero h1 {
+    color: #ffffff;
+}
 
-    body.light-mode .hero p {
-        color: #ffffff;
-    }
+body.light-mode .hero p {
+    color: #ffffff;
+}
 
-    body.light-mode .main-container {
-        background-color: #00000018;
-    }
+body.light-mode .main-container {
+    background-color: #00000018;
+}
 
-    body.light-mode .first-banner {
-        width: 100%;
-        text-align: center;
-        box-shadow: none;
-    }
+body.light-mode .first-banner {
+    width: 100%;
+    text-align: center;
+    box-shadow: none;
+}
 
-    body.light-mode .first-banner h2 {
-        color: rgb(177, 177, 177);
-        background-color: #161616df;
-        box-shadow: none;
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-    }
+body.light-mode .first-banner h2 {
+    color: rgb(177, 177, 177);
+    background-color: #161616df;
+    box-shadow: none;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+}
 
-    body.light-mode .heading-banner {
-        width: 100%;
-        text-align: center;
-        border-radius: 10px;
-        box-shadow: none;
-    }
+body.light-mode .heading-banner {
+    width: 100%;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: none;
+}
 
-    body.light-mode .heading-banner h2 {
-        color: rgb(177, 177, 177);
-        background-color: #161616df;
-        box-shadow: none;
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-    }
+body.light-mode .heading-banner h2 {
+    color: rgb(177, 177, 177);
+    background-color: #161616df;
+    box-shadow: none;
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+}
 
-    body.light-mode .sticky-nav a:hover {
-        color: #c0c0c0;
-    }
+body.light-mode .sticky-nav a:hover {
+    color: #c0c0c0;
+}
 
-    body.light-mode .sticky-nav a {
-        color: #fbfbfb6e;
-        text-decoration: none;
-        font-weight: bold;
-    }
+body.light-mode .sticky-nav a {
+    color: #fbfbfb6e;
+    text-decoration: none;
+    font-weight: bold;
+}
 
-    body.light-mode .sticky-nav ul {
-        display: flex;
-        list-style: none;
-        margin: 0;
-        padding: 3px;
-        padding-right: 25px;
-    }
+body.light-mode .sticky-nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 3px;
+    padding-right: 25px;
+}
 
-    body.light-mode .sticky-nav {
-        background: linear-gradient(to bottom, #000000b6, #000000a3, #0000007b, #00000040, #00000000 100%);
-        padding-bottom: 14px;
-    }
+body.light-mode .sticky-nav {
+    background: linear-gradient(to bottom, #000000b6, #000000a3, #0000007b, #00000040, #00000000 100%);
+    padding-bottom: 14px;
+}
 
-    body.light-mode .achievements {
-        background-color: #dcdcdc !important;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
-        color: #bfbfbf !important;
-    }
+body.light-mode .achievements {
+    background-color: #dcdcdc !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
+    color: #bfbfbf !important;
+}
 
-    body.light-mode .skills {
-        background-color: #dcdcdc !important;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
-        color: #bfbfbf !important;
-    }
+body.light-mode .skills {
+    background-color: #dcdcdc !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
+    color: #bfbfbf !important;
+}
 
-    body.light-mode .skills h2,
-    body.light-mode .achievements h2 {
-        color: #354259;
-    }
+body.light-mode .skills h2,
+body.light-mode .achievements h2 {
+    color: #354259;
+}
 
-    body.light-mode .theme-switch {
-        background-color: #6a6a6aa5;
-    }
+body.light-mode .theme-switch {
+    background-color: #6a6a6aa5;
+}
 
-    body.light-mode .theme-switch .switch-thumb {
-        transform: translateX(30px);
-    }
+body.light-mode .theme-switch .switch-thumb {
+    transform: translateX(30px);
+}
 
-    body.light-mode .social-links ul li a img,
-    body.light-mode .social-links2 ul li a img,
-    body.light-mode .social-links3 ul li a img {
-        background-color: rgba(4, 4, 4, 0.685);
-        display: inline-block;
-    }
+body.light-mode .social-links ul li a img,
+body.light-mode .social-links2 ul li a img,
+body.light-mode .social-links3 ul li a img {
+    background-color: rgba(4, 4, 4, 0.685);
+    display: inline-block;
+}
 
-    body.light-mode .social-links {
-        background-color: #00000000;
-    }
+body.light-mode .social-links {
+    background-color: #00000000;
+}
 
-    body.light-mode .social-links3 {
-        background-color: #00000052;
-    }
+body.light-mode .social-links3 {
+    background-color: #00000052;
 }
 
 @media (max-width: 1100px) {
