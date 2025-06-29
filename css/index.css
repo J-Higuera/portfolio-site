@@ -660,21 +660,6 @@ body.light-mode .sticky-nav {
 
 }
 
-@media (prefers-color-scheme: light) {
-
-    .achievements {
-        background-color: #dcdcdc;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
-        color: #bfbfbf;
-    }
-
-    .skills {
-        background-color: #dcdcdc;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
-        color: #bfbfbf;
-    }
-}
-
 body.light-mode .achievements {
     background-color: #dcdcdc;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
