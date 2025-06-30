@@ -569,7 +569,14 @@ footer a:hover {
 }
 
 body.light-mode {
-    background: url(../images/hua.png);
+    margin: 0;
+    padding: 0;
+    background: url(../images/hua.png)no-repeat center center fixed;
+    background-size: cover;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 body.light-mode header {
@@ -769,7 +776,7 @@ body.light-mode .social-links3 {
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/home.JPG') no-repeat center center;
+        background: url('../images/gg.jpeg') no-repeat center center;
         background-size: cover;
         z-index: -1;
     }
@@ -786,7 +793,7 @@ body.light-mode .social-links3 {
         right: 0;
         background-color: #ffffff;
         bottom: 0;
-        background: url('../images/light2.jpg') no-repeat center center;
+        background: url('../images/hua.png') no-repeat center center;
         background-size: cover;
         z-index: -1;
     }
