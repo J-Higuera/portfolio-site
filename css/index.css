@@ -220,18 +220,12 @@ html {
 body {
     margin: 0;
     padding: 0;
+    background-color: #1d2b3c;
+    background-size: 100% 100%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-.background {
-    background: url(../images/body/gg.jpeg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
 }
 
 body.loading,
@@ -589,6 +583,8 @@ footer a:hover {
 .light-mode {
     margin: 0;
     padding: 0;
+    background-color: #80a7ab;
+    background-size: cover;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -715,14 +711,6 @@ footer a:hover {
 
     html {
         background-color: #7e7e7ef2;
-    }
-
-    .background {
-        background: url(../images/body/d2.PNG);
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-        background-attachment: fixed;
     }
 
     .content {
