@@ -714,6 +714,7 @@ footer a:hover {
     }
 
     #big-picture {
+        content: "";
         top: 0;
         left: 0;
         right: 0;
@@ -723,6 +724,7 @@ footer a:hover {
     }
 
     .light-mode #big-picture {
+        content: "";
         top: 0;
         left: 0;
         right: 0;
