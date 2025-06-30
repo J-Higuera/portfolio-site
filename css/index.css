@@ -451,6 +451,7 @@ body.light-mode .theme-switch .switch-thumb {
     background-color: #0d0d0ddf;
     color: #afafaf;
     border-radius: 15px;
+    z-index: 100;
 
 }
 
@@ -464,6 +465,7 @@ body.light-mode .theme-switch .switch-thumb {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.79);
     transition: transform 0.3s, box-shadow 0.3s;
+    z-index: 100;
 }
 
 .achievements-card p {
@@ -488,6 +490,7 @@ body.light-mode .theme-switch .switch-thumb {
     color: #bfbfbf;
     border-radius: 15px;
     margin-top: 0;
+    z-index: 100;
 }
 
 .skills h2,
@@ -508,6 +511,7 @@ body.light-mode .theme-switch .switch-thumb {
     width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.79);
     transition: transform 0.3s, box-shadow 0.3s;
+    z-index: 100;
 }
 
 .skill-card:hover {
@@ -520,6 +524,7 @@ footer {
     background: linear-gradient(to top, #000000a7, #00000091, #00000081 100%);
     backdrop-filter: blur(10px);
     padding: 10px 20px;
+    z-index: 100;
 }
 
 footer p {
@@ -703,34 +708,28 @@ body.light-mode .social-links3 {
         background-color: #7e7e7ef2;
     }
 
+
+
     body {
-        position: relative;
         content: "";
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center fixed;
+        background: url('../images/body/d3.PNG') no-repeat center center;
         background-size: cover;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
+        background-attachment: fixed !important;
     }
 
     body.light-mode {
-        position: relative;
         content: "";
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center fixed;
+        background: url('../images/body/l2.PNG') no-repeat center center;
         background-size: cover;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
+        background-attachment: fixed !important;
     }
 
 
