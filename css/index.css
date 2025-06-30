@@ -227,10 +227,11 @@ body {
 }
 
 .background {
-    background: url(../images/body/gg.jpeg) fixed;
+    background: url(../images/body/gg.jpeg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+    background-attachment: fixed;
 }
 
 body.loading,
