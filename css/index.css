@@ -714,8 +714,9 @@ footer a:hover {
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center fixed;
+        background: url('../images/body/d3.PNG') no-repeat center center;
         background-size: 100% 100%;
+        background-attachment: fixed !important;
     }
 
     .light-mode #big-picture {
@@ -723,8 +724,10 @@ footer a:hover {
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center fixed;
+        background: url('../images/body/l2.PNG') no-repeat center center;
         background-size: 100% 100%;
+        background-attachment: fixed !important;
+
     }
 
     .content {
