@@ -714,25 +714,21 @@ footer a:hover {
     }
 
     #big-picture {
-        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center;
+        background: url('../images/body/d3.PNG') no-repeat center center fixed;
         background-size: 100% 100%;
-        overflow: auto;
     }
 
     .light-mode #big-picture {
-        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center;
+        background: url('../images/body/l2.PNG') no-repeat center center fixed;
         background-size: 100% 100%;
-        overflow: auto;
     }
 
     .content {
@@ -1003,7 +999,7 @@ footer a:hover {
     }
 
     .light-mode .social-links3 {
-        background-color: #00000018;
+        background-color: #00000000;
     }
 
     .social-links3 ul {
