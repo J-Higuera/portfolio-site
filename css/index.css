@@ -710,7 +710,8 @@ body.light-mode .social-links3 {
 
 
 
-    body {
+    body::after {
+        position: fixed;
         content: "";
         top: 0;
         left: 0;
@@ -718,10 +719,10 @@ body.light-mode .social-links3 {
         bottom: 0;
         background: url('../images/body/d3.PNG') no-repeat center center;
         background-size: cover;
-        background-attachment: fixed !important;
     }
 
-    body.light-mode {
+    body.light-mode::after {
+        position: fixed;
         content: "";
         top: 0;
         left: 0;
@@ -729,7 +730,6 @@ body.light-mode .social-links3 {
         bottom: 0;
         background: url('../images/body/l2.PNG') no-repeat center center;
         background-size: cover;
-        background-attachment: fixed !important;
     }
 
 
