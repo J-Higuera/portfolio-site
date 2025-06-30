@@ -713,23 +713,29 @@ footer a:hover {
         background-color: #7e7e7ef2;
     }
 
-    #big-picture {
+    body {
+        background: none;
+    }
+
+    body::before {
+        position: fixed;
         content: "";
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center fixed;
+        background: url('../images/body/d3.PNG') no-repeat center center;
         background-size: 100% 100%;
     }
 
-    .light-mode #big-picture {
+    .light-mode::before {
+        position: fixed;
         content: "";
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center fixed;
+        background: url('../images/body/l2.PNG') no-repeat center center;
         background-size: 100% 100%;
     }
 
@@ -1002,6 +1008,7 @@ footer a:hover {
 
     .light-mode .social-links3 {
         background-color: #00000000;
+        z-index: 100;
     }
 
     .social-links3 ul {
@@ -1009,12 +1016,15 @@ footer a:hover {
         flex: 1;
         justify-content: center;
         list-style: none;
+        z-index: 100;
+
     }
 
     .social-links3 ul li {
         margin-bottom: 0;
         margin-top: 0;
         padding-top: 0;
+        z-index: 100;
     }
 
     .social-links3 ul li a {
@@ -1024,10 +1034,12 @@ footer a:hover {
         padding: 18px;
         transition: all 0.3s ease-in-out;
         transform: scale(1);
+        z-index: 100;
     }
 
     .social-links3 ul li a img {
         border-radius: 10px;
         transition: transform 0.3s ease;
+        z-index: 100;
     }
 }
