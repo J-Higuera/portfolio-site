@@ -710,10 +710,11 @@ footer a:hover {
     }
 
     body {
-        background-image: none;
+        background: none;
     }
 
-    #big-picture {
+    #big-picture::after {
+        position: fixed;
         content: "";
         top: 0;
         left: 0;
@@ -727,10 +728,11 @@ footer a:hover {
     }
 
     .light-mode {
-        background-image: none;
+        background: none;
     }
 
-    .light-mode #big-picture {
+    .light-mode #big-picture::after {
+        position: fixed;
         content: "";
         top: 0;
         left: 0;
