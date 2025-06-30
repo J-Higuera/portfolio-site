@@ -713,8 +713,7 @@ footer a:hover {
         background-color: #7e7e7ef2;
     }
 
-    body::after {
-        content: "";
+    #big-picture body {
         position: fixed;
         top: 0;
         left: 0;
@@ -724,8 +723,7 @@ footer a:hover {
         background-size: 100% 100%;
     }
 
-    .light-mode::after {
-        content: "";
+    .light-mode #big-picture body {
         position: fixed;
         top: 0;
         left: 0;
