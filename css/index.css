@@ -713,9 +713,6 @@ footer a:hover {
         background-color: #7e7e7ef2;
     }
 
-    body {
-        background: none;
-    }
 
     body::before {
         position: fixed;
@@ -725,7 +722,7 @@ footer a:hover {
         right: 0;
         bottom: 0;
         background: url('../images/body/d3.PNG') no-repeat center center;
-        background-size: 100% 100%;
+        background-size: cover;
     }
 
     .light-mode::before {
@@ -736,7 +733,7 @@ footer a:hover {
         right: 0;
         bottom: 0;
         background: url('../images/body/l2.PNG') no-repeat center center;
-        background-size: 100% 100%;
+        background-size: cover;
     }
 
     .content {
