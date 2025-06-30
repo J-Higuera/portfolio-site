@@ -709,40 +709,22 @@ footer a:hover {
         background-color: #7e7e7ef2;
     }
 
-    body {
-        background: none;
-    }
-
-    #big-picture::after {
-        position: fixed;
-        content: "";
+    #big-picture {
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background: url('../images/body/d3.PNG') no-repeat center center fixed;
-        background-size: cover;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
+        background-size: 100% 100%;
     }
 
-    .light-mode {
-        background: none;
-    }
-
-    .light-mode #big-picture::after {
-        position: fixed;
-        content: "";
+    .light-mode #big-picture {
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background: url('../images/body/l2.PNG') no-repeat center center fixed;
-        background-size: cover;
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
+        background-size: 100% 100%;
     }
 
     .content {
