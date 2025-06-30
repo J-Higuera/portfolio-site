@@ -161,16 +161,16 @@
     color: #bfbfbf;
 }
 
-body.light-mode .about-section {
+.light-mode .about-section {
     background-color: #c7c7c7d8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
-body.light-mode .about-section h2 {
+.light-mode .about-section h2 {
     color: #354259;
 }
 
-body.light-mode .arrow {
+.light-mode .arrow {
     position: absolute;
     right: 10px;
     top: 50%;
@@ -179,22 +179,22 @@ body.light-mode .arrow {
     color: rgb(29, 29, 29);
 }
 
-body.light-mode .name {
+.light-mode .name {
     background-color: #c7c7c7d8;
     color: #bfbfbf;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
-body.light-mode .name h2 {
+.light-mode .name h2 {
     color: #354259;
 }
 
-body.light-mode .work-container {
+.light-mode .work-container {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: #2a2a2a;
 }
 
-body.light-mode .work-card {
+.light-mode .work-card {
     background-color: #1f1f1f;
     padding: 15px;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.23);

@@ -67,7 +67,7 @@
     color: #ffffff;
 }
 
-body.light-mode .contact-section {
+.light-mode .contact-section {
     padding: 20px;
     text-align: center;
     background-color: #c7c7c7d8;
@@ -79,14 +79,14 @@ body.light-mode .contact-section {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.833);
 }
 
-body.light-mode .contact-section h2 {
+.light-mode .contact-section h2 {
     color: #354259;
     font-size: 2rem;
     margin-bottom: 20px;
     animation: fadeIn 3s ease-in-out;
 }
 
-body.light-mode .contact-card {
+.light-mode .contact-card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 

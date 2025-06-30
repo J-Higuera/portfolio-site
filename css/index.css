@@ -442,7 +442,7 @@ header h2 {
     color: rgb(0, 0, 0);
 }
 
-body.light-mode .theme-switch .switch-thumb {
+.light-mode .theme-switch .switch-thumb {
     transform: translateX(30px);
 }
 
@@ -579,7 +579,7 @@ footer a:hover {
     transform: scale(1.2);
 }
 
-body.light-mode {
+.light-mode {
     margin: 0;
     padding: 0;
     background: url(../images/body/abst.jpg)no-repeat center center fixed;
@@ -590,29 +590,29 @@ body.light-mode {
     min-height: 100vh;
 }
 
-body.light-mode header {
+.light-mode header {
     background-color: #00000018;
 }
 
-body.light-mode .hero h1 {
+.light-mode .hero h1 {
     color: #ffffff;
 }
 
-body.light-mode .hero p {
+.light-mode .hero p {
     color: #ffffff;
 }
 
-body.light-mode .main-container {
+.light-mode .main-container {
     background-color: #00000018;
 }
 
-body.light-mode .first-banner {
+.light-mode .first-banner {
     width: 100%;
     text-align: center;
     box-shadow: none;
 }
 
-body.light-mode .first-banner h2 {
+.light-mode .first-banner h2 {
     color: rgb(177, 177, 177);
     background-color: #161616df;
     box-shadow: none;
@@ -621,14 +621,14 @@ body.light-mode .first-banner h2 {
     padding: 12px;
 }
 
-body.light-mode .heading-banner {
+.light-mode .heading-banner {
     width: 100%;
     text-align: center;
     border-radius: 10px;
     box-shadow: none;
 }
 
-body.light-mode .heading-banner h2 {
+.light-mode .heading-banner h2 {
     color: rgb(177, 177, 177);
     background-color: #161616df;
     box-shadow: none;
@@ -637,17 +637,17 @@ body.light-mode .heading-banner h2 {
     padding: 12px;
 }
 
-body.light-mode .sticky-nav a:hover {
+.light-mode .sticky-nav a:hover {
     color: #c0c0c0;
 }
 
-body.light-mode .sticky-nav a {
+.light-mode .sticky-nav a {
     color: #fbfbfb6e;
     text-decoration: none;
     font-weight: bold;
 }
 
-body.light-mode .sticky-nav ul {
+.light-mode .sticky-nav ul {
     display: flex;
     list-style: none;
     margin: 0;
@@ -655,44 +655,44 @@ body.light-mode .sticky-nav ul {
     padding-right: 25px;
 }
 
-body.light-mode .sticky-nav {
+.light-mode .sticky-nav {
     background: linear-gradient(to bottom, #000000b6, #000000a3, #0000007b, #00000040, #00000000 100%);
     padding-bottom: 14px;
 }
 
-body.light-mode .achievements {
+.light-mode .achievements {
     background-color: #c7c7c7d8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
     color: #bfbfbf;
 }
 
-body.light-mode .skills {
+.light-mode .skills {
     background-color: #c7c7c7d8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
     color: #bfbfbf;
 }
 
-body.light-mode .skills h2,
-body.light-mode .achievements h2 {
+.light-mode .skills h2,
+.light-mode .achievements h2 {
     color: #354259;
 }
 
-body.light-mode .theme-switch {
+.light-mode .theme-switch {
     background-color: #6a6a6aa5;
 }
 
-body.light-mode .social-links ul li a img,
-body.light-mode .social-links2 ul li a img,
-body.light-mode .social-links3 ul li a img {
+.light-mode .social-links ul li a img,
+.light-mode .social-links2 ul li a img,
+.light-mode .social-links3 ul li a img {
     background-color: rgba(4, 4, 4, 0.685);
     display: inline-block;
 }
 
-body.light-mode .social-links {
+.light-mode .social-links {
     background-color: #00000000;
 }
 
-body.light-mode .social-links3 {
+.light-mode .social-links3 {
     background-color: #00000052;
 }
 
@@ -708,30 +708,23 @@ body.light-mode .social-links3 {
         background-color: #7e7e7ef2;
     }
 
-
-
-    body::after {
-        position: fixed;
-        content: "";
+    #big-picture {
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center;
+        background: url('../images/body/d3.PNG') no-repeat center center fixed;
         background-size: cover;
     }
 
-    body.light-mode::after {
-        position: fixed;
-        content: "";
+    .light-mode #big-picture {
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center;
+        background: url('../images/body/l2.PNG') no-repeat center center fixed;
         background-size: cover;
     }
-
 
     .content {
         width: 100vw;

@@ -20,10 +20,6 @@
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.project-card h2 {
-    color: aqua;
-}
-
 .project-card img {
     width: 100%;
     height: 200px;
@@ -80,6 +76,25 @@
 
 .project-card a:focus {
     animation: button-pulse 1s infinite;
+}
+
+.light-mode .project-card {
+    background-color: #c7c7c7d8;
+}
+
+.light-mode .project-card h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #1a1a1a;
+    text-align: center;
+}
+
+.light-mode .project-card p {
+    margin-bottom: 12px;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #1a1a1a;
+    text-align: center;
 }
 
 @keyframes button-pulse {
