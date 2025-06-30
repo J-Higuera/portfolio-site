@@ -8,6 +8,7 @@
     margin-bottom: 45px;
     margin-right: 55px;
     margin-left: 55px;
+    z-index: 999;
 }
 
 .project-card {

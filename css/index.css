@@ -220,7 +220,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: url(../images/body/12596.jpg)no-repeat center center fixed;
+    background: url(../images/body/glitch.jpg)no-repeat center center fixed;
     background-size: 100% 100%;
     overflow-x: hidden;
     display: flex;
@@ -261,6 +261,7 @@ header h2 {
     align-items: center;
     justify-content: center;
     text-align: center;
+    z-index: 100;
 }
 
 .hero h1 {
@@ -292,8 +293,8 @@ header h2 {
 .content {
     flex: 1;
     height: auto;
-    /* keep this way so main-container controls the background */
     overflow-y: auto;
+    z-index: 100;
 }
 
 .main-container {
@@ -303,11 +304,13 @@ header h2 {
     flex-direction: row;
     background-color: #00000069;
     overflow: hidden;
+    z-index: 100;
 }
 
 .first-banner {
     width: 100%;
     text-align: center;
+    z-index: 100;
 }
 
 .first-banner h2 {
@@ -321,6 +324,7 @@ header h2 {
 .heading-banner {
     width: 100%;
     text-align: center;
+    z-index: 100;
 }
 
 .heading-banner h2 {
@@ -346,6 +350,7 @@ header h2 {
     display: flex;
     justify-content: flex-end;
     transition: opacity 0.8s ease, transform 0.8s ease;
+    z-index: 100;
 }
 
 .sticky-nav ul {
@@ -389,12 +394,14 @@ header h2 {
     gap: 20px;
     padding: 20px;
     padding-top: 55px;
+    z-index: 100;
 }
 
 .grid-wrapper section {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 100;
 }
 
 .desktop-theme-toggle {
@@ -445,6 +452,7 @@ body.light-mode .theme-switch .switch-thumb {
     background-color: #0d0d0ddf;
     color: #afafaf;
     border-radius: 15px;
+    z-index: 100;
 
 }
 
@@ -458,6 +466,7 @@ body.light-mode .theme-switch .switch-thumb {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.79);
     transition: transform 0.3s, box-shadow 0.3s;
+    z-index: 100;
 }
 
 .achievements-card p {
@@ -482,6 +491,7 @@ body.light-mode .theme-switch .switch-thumb {
     color: #bfbfbf;
     border-radius: 15px;
     margin-top: 0;
+    z-index: 100;
 }
 
 .skills h2,
@@ -502,6 +512,7 @@ body.light-mode .theme-switch .switch-thumb {
     width: 200px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.79);
     transition: transform 0.3s, box-shadow 0.3s;
+    z-index: 100;
 }
 
 .skill-card:hover {
@@ -514,6 +525,7 @@ footer {
     background: linear-gradient(to top, #000000a7, #00000091, #00000081 100%);
     backdrop-filter: blur(10px);
     padding: 10px 20px;
+    z-index: 100;
 }
 
 footer p {
@@ -547,6 +559,7 @@ footer a:hover {
     right: 0;
     overflow: hidden;
     display: block;
+    z-index: 100;
 }
 
 .social-links ul {
@@ -571,8 +584,8 @@ footer a:hover {
 body.light-mode {
     margin: 0;
     padding: 0;
-    background: url(../images/body/hua.png)no-repeat center center fixed;
-    background-size: cover;
+    background: url(../images/body/abst.jpg)no-repeat center center fixed;
+    background-size: 100% 100%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -776,8 +789,8 @@ body.light-mode .social-links3 {
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/d2.PNG') no-repeat center center;
-        background-size: cover;
+        background: url('../images/body/d3.PNG') no-repeat center center;
+        background-size: 100% 100%;
         z-index: -1;
     }
 
@@ -793,7 +806,7 @@ body.light-mode .social-links3 {
         right: 0;
         bottom: 0;
         background: url('../images/body/l2.PNG') no-repeat center center;
-        background-size: cover;
+        background-size: 100% 100%;
         z-index: -1;
     }
 

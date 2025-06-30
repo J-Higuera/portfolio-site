@@ -9,6 +9,7 @@
     margin-top: 58px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
+    z-index: 999;
 }
 
 .contact-section p {
