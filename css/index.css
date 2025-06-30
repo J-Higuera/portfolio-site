@@ -220,8 +220,8 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: url(../images/body/gg.jpeg)no-repeat center center fixed;
-    background-size: cover;
+    background: url(../images/body/12596.jpg)no-repeat center center fixed;
+    background-size: 100% 100%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -765,7 +765,9 @@ body.light-mode .social-links3 {
         background-color: #7e7e7ef2;
     }
 
-
+    body {
+        background: none;
+    }
 
     body::before {
         content: "";
@@ -774,19 +776,18 @@ body.light-mode .social-links3 {
         left: 0;
         right: 0;
         bottom: 0;
+        background: url('../images/body/12596.jpg') no-repeat center center / cover;
+        background-size: cover;
         z-index: -1;
     }
 
-
+    body.light-mode {
+        background: none;
+    }
 
     body.light-mode::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: -1;
+        background: url('../images/body/hua.png') no-repeat center center;
+        background-size: cover;
     }
 
     .content {
