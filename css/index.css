@@ -221,7 +221,7 @@ body {
     margin: 0;
     padding: 0;
     background: url(../images/body/glitch.jpg)no-repeat center center fixed;
-    background-size: cover;
+    background-size: 100% 100%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -713,27 +713,26 @@ footer a:hover {
         background-color: #7e7e7ef2;
     }
 
-
-    body::before {
-        position: fixed;
-        content: "";
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center;
-        background-size: cover;
+    body {
+        margin: 0;
+        padding: 0;
+        background: url(../images/body/glitch.jpg)no-repeat center center fixed;
+        background-size: 100% 100%;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
 
-    .light-mode::before {
-        position: fixed;
-        content: "";
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center;
-        background-size: cover;
+    .light-mode {
+        margin: 0;
+        padding: 0;
+        background: url(../images/body/abst.jpg)no-repeat center center fixed;
+        background-size: 100% 100%;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
     }
 
     .content {
