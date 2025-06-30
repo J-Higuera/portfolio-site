@@ -220,12 +220,17 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: url(../images/body/glitch.jpg)no-repeat center center fixed;
-    background-size: cover;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.background {
+    background: url(../images/body/gg.jpeg) fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 body.loading,
@@ -241,8 +246,6 @@ body.loading nav.sticky-nav {
 header {
     height: 100px;
     display: flex;
-    background: url(../images/body/gg.jpeg);
-    background-size: cover;
     align-items: center;
     justify-content: center;
     color: rgb(180, 180, 180);
@@ -585,8 +588,6 @@ footer a:hover {
 .light-mode {
     margin: 0;
     padding: 0;
-    background: url(../images/body/abst.jpg)no-repeat center center fixed;
-    background-size: cover;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -715,33 +716,7 @@ footer a:hover {
         background-color: #7e7e7ef2;
     }
 
-    body {
-        background-position: center;
-        background-attachment: fixed;
-        margin: 0;
-        padding: 0;
-        background: url(../images/body/d3.PNG) no-repeat fixed center;
-        background-size: calc(100%);
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        min-width: 100vw;
-        min-height: 100vh;
-    }
 
-    .light-mode {
-        background-position: center;
-        background-attachment: fixed;
-        margin: 0;
-        padding: 0;
-        background: url(../images/body/l2.PNG) no-repeat fixed center;
-        background-size: calc(100%);
-        overflow-x: hidden;
-        display: flex;
-        flex-direction: column;
-        min-width: 100vw;
-        min-height: 100vh;
-    }
 
     .content {
         width: 100vw;
