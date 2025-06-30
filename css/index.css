@@ -704,8 +704,7 @@ body.light-mode .social-links3 {
     }
 
     body {
-        margin: 0;
-        padding: 0;
+        position: relative;
         content: "";
         top: 0;
         left: 0;
@@ -720,8 +719,7 @@ body.light-mode .social-links3 {
     }
 
     body.light-mode {
-        margin: 0;
-        padding: 0;
+        position: relative;
         content: "";
         top: 0;
         left: 0;
