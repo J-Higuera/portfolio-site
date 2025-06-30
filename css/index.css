@@ -703,38 +703,6 @@ body.light-mode .social-links3 {
         background-color: #7e7e7ef2;
     }
 
-    body {
-        background: none;
-    }
-
-    body::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center;
-        background-size: 100% 100%;
-        z-index: -1;
-    }
-
-    body.light-mode {
-        background: none;
-    }
-
-    body.light-mode::before {
-        content: "";
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center;
-        background-size: cover;
-        z-index: -1;
-    }
-
     .content {
         width: 100vw;
     }
