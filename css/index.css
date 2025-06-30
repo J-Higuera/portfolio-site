@@ -705,29 +705,34 @@ footer a:hover {
         background-color: #00000000;
     }
 
+    .light-mode header {
+        background-color: #00000000;
+    }
+
     html {
         background-color: #7e7e7ef2;
     }
 
-    #big-picture {
+    body::after {
+        content: "";
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background: url('../images/body/d3.PNG') no-repeat center center;
         background-size: 100% 100%;
-        background-attachment: fixed !important;
     }
 
-    .light-mode #big-picture {
+    .light-mode::after {
+        content: "";
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
         background: url('../images/body/l2.PNG') no-repeat center center;
         background-size: 100% 100%;
-        background-attachment: fixed !important;
-
     }
 
     .content {
