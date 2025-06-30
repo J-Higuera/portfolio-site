@@ -776,7 +776,7 @@ body.light-mode .social-links3 {
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/12596.jpg') no-repeat center center / cover;
+        background: url('../images/body/d2.PNG') no-repeat center center;
         background-size: cover;
         z-index: -1;
     }
@@ -786,8 +786,15 @@ body.light-mode .social-links3 {
     }
 
     body.light-mode::before {
-        background: url('../images/body/hua.png') no-repeat center center;
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../images/body/l2.PNG') no-repeat center center;
         background-size: cover;
+        z-index: -1;
     }
 
     .content {
