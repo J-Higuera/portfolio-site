@@ -713,40 +713,34 @@ footer a:hover {
         background-image: none;
     }
 
-    #big-picture::before {
+    #big-picture {
         content: "";
-        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center;
+        background: url('../images/body/d3.PNG') no-repeat center center fixed;
         background-size: cover;
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
-        z-index: -1;
     }
 
     .light-mode {
         background-image: none;
     }
 
-    .light-mode #big-picture::before {
+    .light-mode #big-picture {
         content: "";
-        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center;
+        background: url('../images/body/l2.PNG') no-repeat center center fixed;
         background-size: cover;
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
-        min-height: 100vh;
-        z-index: -1;
     }
 
     .content {
