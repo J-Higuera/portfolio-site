@@ -714,24 +714,30 @@ footer a:hover {
     }
 
     body {
+        background-position: center;
+        background-attachment: fixed;
         margin: 0;
         padding: 0;
-        background: url(../images/body/d3.PNG)no-repeat center center fixed;
-        background-size: 100% 100%;
+        background: url(../images/body/d3.PNG) no-repeat fixed center;
+        background-size: calc(100%);
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
+        min-width: 100vw;
         min-height: 100vh;
     }
 
     .light-mode {
+        background-position: center;
+        background-attachment: fixed;
         margin: 0;
         padding: 0;
-        background: url(../images/body/l2.PNG)no-repeat center center fixed;
-        background-size: 100% 100%;
+        background: url(../images/body/l2.PNG) no-repeat fixed center;
+        background-size: calc(100%);
         overflow-x: hidden;
         display: flex;
         flex-direction: column;
+        min-width: 100vw;
         min-height: 100vh;
     }
 
