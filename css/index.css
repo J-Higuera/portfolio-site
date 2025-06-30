@@ -717,7 +717,13 @@ footer a:hover {
         background-color: #7e7e7ef2;
     }
 
-
+    .background {
+        background: url(../images/body/d2.PNG);
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+    }
 
     .content {
         width: 100vw;
