@@ -220,7 +220,7 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background: url(../images/body/12596.jpg)no-repeat center center fixed;
+    background: url(../images/body/gg.jpeg)no-repeat center center fixed;
     background-size: cover;
     overflow-x: hidden;
     display: flex;
@@ -762,10 +762,24 @@ body.light-mode .social-links3 {
     }
 
     html {
-        background-color: #2e2e2ef2;
+        background-color: #7e7e7ef2;
     }
 
+
+
     body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+    }
+
+
+
+    body.light-mode::before {
         content: "";
         position: fixed;
         top: 0;
