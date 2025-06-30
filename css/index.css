@@ -558,6 +558,7 @@ footer a:hover {
     right: 0;
     overflow: hidden;
     display: block;
+    z-index: 100;
 }
 
 .social-links ul {
@@ -708,22 +709,44 @@ footer a:hover {
         background-color: #7e7e7ef2;
     }
 
-    #big-picture {
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: url('../images/body/d3.PNG') no-repeat center center fixed;
-        background-size: cover;
+    body {
+        background-image: none;
     }
 
-    .light-mode #big-picture {
+    #big-picture::before {
+        content: "";
+        position: fixed;
         top: 0;
         left: 0;
         right: 0;
         bottom: 0;
-        background: url('../images/body/l2.PNG') no-repeat center center fixed;
+        background: url('../images/body/d3.PNG') no-repeat center center;
         background-size: cover;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        z-index: -1;
+    }
+
+    .light-mode {
+        background-image: none;
+    }
+
+    .light-mode #big-picture::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('../images/body/l2.PNG') no-repeat center center;
+        background-size: cover;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        z-index: -1;
     }
 
     .content {
@@ -872,7 +895,7 @@ footer a:hover {
         transform: translateY(-100%);
     }
 
-    body.light-mode .mobile-name {
+    .light-mode .mobile-name {
         color: #ffffffaf;
     }
 
@@ -993,7 +1016,7 @@ footer a:hover {
         z-index: 100;
     }
 
-    body.light-mode .social-links3 {
+    .light-mode .social-links3 {
         background-color: #00000018;
     }
 
