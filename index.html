@@ -16,6 +16,7 @@
 </head>
 
 <body>
+    <!-- Sticky Desktop Nav -->
     <nav class="sticky-nav">
         <ul>
             <li><a href="#"><strong>Home</strong></a></li>
@@ -30,6 +31,7 @@
             </div>
         </div>
     </nav>
+    <!-- Preloader -->
     <div id="preloader">
         <div class="glitch" data-text="Loading Portfolio...">Loading Portfolio...</div>
         <div class="progress-wrapper">
@@ -39,12 +41,14 @@
             <div id="progress-percent">0%</div>
         </div>
     </div>
+    <!-- Hero Header -->
     <header class="hero">
         <div id="index.html">
             <h1>Welcome to My Portfolio</h1>
             <p>Explore my skills, projects, and achievements.</p>
         </div>
     </header>
+    <!-- mobile nav -->
     <div class="mobile-top-bar">
         <div class="mobile-name">
             <h2>Juan Higuera</h2>
@@ -65,7 +69,8 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <div class="social-links2">
+    <!-- Social Links desktop -->
+    <div class="social-links-desktop">
         <ul>
             <li><a href="https://github.com/J-Higuera" target="_blank">
                     <img src="images/social/github.png" alt="Github Logo" style="width: 40px; height: 40px;">
@@ -81,7 +86,8 @@
                 </a></li>
         </ul>
     </div>
-    <div class="social-links3">
+    <!-- Social Links mobile -->
+    <div class="social-links-mobile">
         <ul>
             <li></li>
             <li><a href="https://github.com/J-Higuera" target="_blank">
@@ -100,28 +106,11 @@
     </div>
     <div class="main-container">
         <main class="content">
-            <div class="social-links">
-                <ul>
-                    <li><a href="https://github.com/J-Higuera" target="_blank">
-                            <img src="images/social/github.png" alt="Github Logo" style="width: 40px; height: 40px;">
-                        </a></li>
-                    <li><a href="https://www.linkedin.com/in/juan-higuera-104318337/" target="_blank">
-                            <img src="images/social/linkedin.svg" alt="LinkedIN Logo"
-                                style="width: 40px; height: 40px;">
-                        </a></li>
-                    <li><a href="https://www.instagram.com/the_homie_og/" target="_blank">
-                            <img src="images/social/instagram.svg" alt="Instagram Logo"
-                                style="width: 40px; height: 40px;">
-                        </a></li>
-                    <li><a href="https://www.youtube.com/@theaverage10" target="_blank">
-                            <img src="images/social/tube2.png" alt="YouTube Logo" style="width: 40px; height: 40px;">
-                        </a></li>
-                </ul>
-            </div>
             <div class="first-banner">
                 <h2 id="skills">Achievements</h2>
             </div>
             <div class="grid-wrapper">
+                <!-- Achievements section -->
                 <section class="achievements">
                     <h2>Qualifications</h2>
                     <div class="achievements-card">
@@ -134,6 +123,7 @@
                         <p>Completed certifications in web development and programming.</p>
                     </div>
                 </section>
+                <!-- skills section -->
                 <section class="skills">
                     <h2>Skills</h2>
                     <div class="skill-card">
@@ -153,6 +143,7 @@
             <div class="heading-banner">
                 <h2 id="work">Explore My Projects</h2>
             </div>
+            <!-- Projects section -->
             <div class="projects-grid">
                 <div class="project-card">
                     <img src="images/projects/fd.jpg" alt="Project 1 Screenshot">
@@ -184,6 +175,7 @@
             <div class="heading-banner">
                 <h2 id="about"> About Me</h2>
             </div>
+            <!-- about section -->
             <div class="about-grid">
                 <section class="left-side">
                     <section class="name">
@@ -198,16 +190,15 @@
                     </section>
                     <section class="name">
                         <h2>Current Achievements:</h2>
-                        <div class="achievements-card">
-                            <ul>
-                                <li>Developed a portfolio website showcasing multiple projects.</li>
-                                <li>Completed certifications in web development and programming.</li>
-                                <li>Obtained my Associate's Degree in Computer information Systems</li>
-                            </ul>
+                        <div class="about-card">
+                            <p>Developed a portfolio website showcasing multiple projects.</p>
+                            <p>Completed certifications in web development and programming.</p>
+                            <p>Obtained my Associate's Degree in Computer information Systems</p>
                         </div>
                     </section>
                 </section>
                 <div class="middle-column">
+                    <!-- Work History, Education, Hobbies toggle section -->
                     <section class="about-section previous-work-history">
                         <h2 class="toggle-title" onclick="toggleContent(this)">
                             Work History
@@ -357,22 +348,21 @@
                         </div>
                     </section>
                 </div>
-                <section class="right-side-big">
-                    <section class="name">
-                        <h2>small screen</h2>
-                        <div class="achievements-card">
-                            <p>This is additional content about me, including articles, hobbies, or anything you'd
-                                like
-                                to
-                                showcase.
-                            </p>
-                        </div>
-                    </section>
+                <section class="name">
+                    <h2>small screen</h2>
+                    <div class="about-card">
+                        <p>This is additional content about me, including articles, hobbies, or anything you'd
+                            like
+                            to
+                            showcase.
+                        </p>
+                    </div>
                 </section>
             </div>
             <div class="heading-banner">
                 <h2 id="contact">Contact</h2>
             </div>
+            <!-- contact section -->
             <section class="contact-section">
                 <h2>Let's Connect</h2>
                 <p>You can reach out to me through the following methods:</p>

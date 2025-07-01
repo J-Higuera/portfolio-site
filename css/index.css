@@ -215,6 +215,7 @@ body.dark-mode ::-webkit-scrollbar-thumb {
 
 html {
     scroll-behavior: smooth;
+    background-color: #181818;
 }
 
 body {
@@ -308,28 +309,28 @@ header h2 {
 }
 
 .first-banner {
-    width: 100%;
+    background: linear-gradient(135deg, #969589 0%, #333300 100%);
+    padding: 2px 0;
     text-align: center;
-    z-index: 100;
 }
 
 .first-banner h2 {
-    color: rgb(133, 133, 133);
-    background-color: #0d0d0ddf;
+    color: #aeaeaedc;
+    background: linear-gradient(135deg, #899096 0%, #001a33 100%);
     width: 100%;
     text-align: center;
     padding: 12px;
 }
 
 .heading-banner {
-    width: 100%;
+    background: linear-gradient(135deg, #969589 0%, #333300 100%);
+    padding: 2px 0;
     text-align: center;
-    z-index: 100;
 }
 
 .heading-banner h2 {
-    color: rgb(133, 133, 133);
-    background-color: #0d0d0ddf;
+    color: #aeaeaedc;
+    background: linear-gradient(135deg, #899096 0%, #001a33 100%);
     width: 100%;
     text-align: center;
     padding: 12px;
@@ -399,8 +400,6 @@ header h2 {
 
 .grid-wrapper section {
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .desktop-theme-toggle {
@@ -447,29 +446,26 @@ header h2 {
 }
 
 .achievements {
-    box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
-    background-color: #0d0d0ddf;
+    background: linear-gradient(to right, #294560, #697b8e);
     color: #afafaf;
     border-radius: 15px;
-    z-index: 100;
-
 }
 
 .achievements-card {
     padding: 15px;
-    background-color: #1f1f1f;
+    background-color: #202020;
+    border: 2px solid #000000;
     margin: 20px;
     border-radius: 8px;
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.79);
+    box-shadow: 0 15px 8px rgb(0, 0, 0);
     transition: transform 0.3s, box-shadow 0.3s;
     z-index: 100;
 }
 
 .achievements-card p {
-    background-color: #1f1f1f;
     padding: 15px;
     margin: 0;
     border-radius: 8px;
@@ -481,21 +477,24 @@ header h2 {
 }
 
 .achievements-card:hover {
-    transform: scale(1.1);
+    transform: scale(1.08);
+    box-shadow: 0 15px 8px rgba(0, 0, 0, 0.705);
 }
 
 .skills {
     text-align: center;
-    background-color: #0d0d0ddf;
+    background: linear-gradient(to right, #294560, #697b8e);
     color: #bfbfbf;
     border-radius: 15px;
     margin-top: 0;
     z-index: 100;
 }
 
+
+
 .skills h2,
 .achievements h2 {
-    color: #00a2c6;
+    color: #aeaeaedc;
     margin-bottom: 20px;
     font-size: 2rem;
     text-align: center;
@@ -503,20 +502,21 @@ header h2 {
 }
 
 .skill-card {
-    background-color: #1f1f1f;
+    background-color: #202020;
+    border: 2px solid #000000;
     padding: 15px;
     margin: 20px;
     border-radius: 8px;
     display: inline-block;
     width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.79);
+    box-shadow: 0 10px 8px rgb(0, 0, 0);
     transition: transform 0.3s, box-shadow 0.3s;
     z-index: 100;
 }
 
 .skill-card:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 15px 8px rgba(0, 0, 0, 0.705);
 }
 
 footer {
@@ -544,24 +544,21 @@ footer a:hover {
     color: #ffffff;
 }
 
-.social-links2 {
+.social-links-mobile {
     display: none;
 }
 
-.social-links3 {
-    display: none;
-}
-
-.social-links {
+.social-links-desktop {
     width: auto;
     left: 0;
     right: 0;
+    background-color: #00000069;
     overflow: hidden;
     display: block;
     z-index: 100;
 }
 
-.social-links ul {
+.social-links-desktop ul {
     list-style: none;
     gap: 45px;
     padding: 5px 35px 5px;
@@ -571,12 +568,12 @@ footer a:hover {
     justify-content: flex-end;
 }
 
-.social-links ul li a img {
+.social-links-desktop ul li a img {
     border-radius: 10px;
     transition: transform 0.3s ease;
 }
 
-.social-links ul li a img:hover {
+.social-links-desktop ul li a img:hover {
     transform: scale(1.2);
 }
 
@@ -591,8 +588,8 @@ footer a:hover {
     min-height: 100vh;
 }
 
-.light-mode header {
-    background-color: #00000018;
+.light-mode .hero {
+    background-color: #00000000;
 }
 
 .light-mode .hero h1 {
@@ -682,18 +679,17 @@ footer a:hover {
     background-color: #6a6a6aa5;
 }
 
-.light-mode .social-links ul li a img,
-.light-mode .social-links2 ul li a img,
-.light-mode .social-links3 ul li a img {
+.light-mode .social-links-desktop ul li a img,
+.light-mode .social-links-mobile ul li a img {
     background-color: rgba(4, 4, 4, 0.685);
     display: inline-block;
 }
 
-.light-mode .social-links {
+.light-mode .social-links-desktop {
     background-color: #00000000;
 }
 
-.light-mode .social-links3 {
+.light-mode .social-links-mobile {
     background-color: #00000052;
 }
 
@@ -701,28 +697,20 @@ footer a:hover {
 
 @media (max-width: 620px) {
 
+    .sticky-nav {
+        display: none;
+    }
+
+    .desktop-theme-toggle {
+        display: none;
+    }
+
     .main-container {
         background-color: #00000000;
     }
 
-    .light-mode header {
+    .light-mode .hero {
         background-color: #00000000;
-    }
-
-    html {
-        background-color: #7e7e7ef2;
-    }
-
-    .content {
-        width: 100vw;
-    }
-
-    .grid-wrapper {
-        max-width: fit-content;
-    }
-
-    .grid-wrapper section {
-        max-width: fit-content;
     }
 
     .hero {
@@ -738,20 +726,6 @@ footer a:hover {
         justify-content: center;
         text-align: center;
         color: white;
-    }
-
-    .achievements {
-        max-width: fit-content;
-
-    }
-
-    .sticky-nav {
-        display: none;
-    }
-
-
-    .desktop-theme-toggle {
-        display: none;
     }
 
     .mobile-theme-toggle {
@@ -960,15 +934,11 @@ footer a:hover {
         color: #333;
     }
 
-    .social-links {
+    .social-links-desktop {
         display: none;
     }
 
-    .social-links2 {
-        display: none;
-    }
-
-    .social-links3 {
+    .social-links-mobile {
         width: 100%;
         padding: 10px 0;
         margin: 0;
@@ -980,12 +950,12 @@ footer a:hover {
         z-index: 100;
     }
 
-    .light-mode .social-links3 {
+    .light-mode .social-links-mobile {
         background-color: #00000000;
         z-index: 100;
     }
 
-    .social-links3 ul {
+    .social-links-mobile ul {
         display: flex;
         flex: 1;
         justify-content: center;
@@ -994,14 +964,14 @@ footer a:hover {
 
     }
 
-    .social-links3 ul li {
+    .social-links-mobile ul li {
         margin-bottom: 0;
         margin-top: 0;
         padding-top: 0;
         z-index: 100;
     }
 
-    .social-links3 ul li a {
+    .social-links-mobile ul li a {
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         text-decoration: none;
         font-size: 18px;
@@ -1011,7 +981,7 @@ footer a:hover {
         z-index: 100;
     }
 
-    .social-links3 ul li a img {
+    .social-links-mobile ul li a img {
         border-radius: 10px;
         transition: transform 0.3s ease;
         z-index: 100;
