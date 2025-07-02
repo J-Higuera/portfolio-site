@@ -215,7 +215,7 @@ body.dark-mode ::-webkit-scrollbar-thumb {
 
 html {
     scroll-behavior: smooth;
-    background-color: #b7b7b7;
+    background-color: #2a2a2a;
 }
 
 body {
@@ -389,19 +389,6 @@ header h2 {
     pointer-events: none;
 }
 
-.grid-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
-    padding: 20px;
-    padding-top: 55px;
-    z-index: 100;
-}
-
-.grid-wrapper section {
-    padding: 20px;
-}
-
 .desktop-theme-toggle {
     display: block;
     position: fixed;
@@ -445,10 +432,27 @@ header h2 {
     transform: translateX(30px);
 }
 
+.grid-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+    background: url(../images/body/2121.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+    padding-top: 55px;
+    z-index: 100;
+}
+
+.grid-wrapper section {
+    padding: 20px;
+}
+
 .achievements {
-    background-color: #0d0d0ddf;
     color: #afafaf;
     border-radius: 15px;
+    background: #0d0d0ddf;
 }
 
 .achievements-card {
@@ -524,10 +528,10 @@ header h2 {
 }
 
 .skills:hover {
-    box-shadow: 0 0 10px #ffffffc8,
-        0 0 20px #ffffffc7,
-        0 0 30px #ffffffd3;
-    border: 2px solid #ffffffcb;
+    box-shadow: 0 0 10px #ffffff5a,
+        0 0 20px #ffffff63,
+        0 0 30px #ffffff61;
+    border: 2px solid #ffffff42;
     transition: box-shadow 0.5s ease, border 0.5s ease;
 }
 

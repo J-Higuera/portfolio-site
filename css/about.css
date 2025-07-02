@@ -27,11 +27,13 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 3px;
-    margin: 3px auto;
-    max-width: 12000px;
+    background: url(../images/body/2121.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 0 20px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    padding-top: 40px;
+    padding-bottom: 40px;
     align-items: start;
     z-index: 999;
 }
