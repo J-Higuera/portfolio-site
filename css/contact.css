@@ -1,5 +1,5 @@
 .contect-grid {
-    background-image: url(../images/body/abst.jpg);
+    background: linear-gradient(to bottom, #17004a 0%, #c3c3c3 100%);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

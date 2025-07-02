@@ -8,7 +8,7 @@
 }
 
 .projects-hero {
-    background-image: url(../images/body/glitch.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.313), rgba(0, 0, 0, 0.148)), url(../images/body/1433.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -16,11 +16,11 @@
 }
 
 .project-card {
-    background-color: #0d0d0ddf;
+    background-color: #151515;
     border-radius: 8px;
     padding: 10px;
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.612);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -35,7 +35,7 @@
 
 .project-card:hover {
     transform: scale(1.05);
-    box-shadow: 0 6px 12px rgba(0, 200, 255, 0.2);
+    box-shadow: 0 15px 8px rgba(0, 0, 0, 0.612);
 }
 
 .project-card h3 {
@@ -121,5 +121,13 @@
 @media (max-width: 670px) {
     .left-panel {
         display: none;
+    }
+
+    .projects-hero {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.313), rgba(0, 0, 0, 0.148)), url(../images/body/d3.PNG);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 50px;
     }
 }
