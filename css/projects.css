@@ -4,11 +4,15 @@
     gap: 30px;
     background-color: none;
     border-radius: 8px;
-    margin-top: 55px;
-    margin-bottom: 45px;
-    margin-right: 55px;
-    margin-left: 55px;
     z-index: 999;
+}
+
+.projects-hero {
+    background-image: url(../images/body/glitch.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 50px;
 }
 
 .project-card {

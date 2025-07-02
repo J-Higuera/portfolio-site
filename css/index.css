@@ -253,10 +253,10 @@ header h2 {
     width: 100%;
     height: 200px;
     padding-top: 200px;
-    background-image: url(../images/body/abst.jpg);
-    background-position: center;
+    background-image: url(../images/body/gg.jpeg);
+    background-position: center center;
+    background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
     background-color: #00000069;
     padding-bottom: 200px;
     display: flex;
@@ -305,9 +305,6 @@ header h2 {
     flex: 1;
     height: auto;
     flex-direction: row;
-    background-image: url(../images/body/glitch.jpg);
-    background-size: cover;
-    background-attachment: fixed;
     background-color: #00000069;
     overflow: hidden;
     z-index: 100;
@@ -398,6 +395,11 @@ header h2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+    background-image: url(../images/body/abst.jpg);
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 20px;
     padding-top: 55px;
     z-index: 100;
@@ -555,14 +557,13 @@ footer a:hover {
     right: 0;
     top: 135px;
     position: relative;
-    overflow: hidden;
-    display: block;
     z-index: 100;
 }
 
 .social-links ul {
     list-style: none;
-    gap: 45px;
+    gap: 60px;
+    align-items: center;
     padding: 5px 35px 5px;
     margin: 0;
     display: flex;

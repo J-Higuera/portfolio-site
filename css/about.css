@@ -27,7 +27,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 3px;
-    margin: 3px auto;
+    background-image: url(../images/body/geo.jpg);
+    background-size: 100% 100%;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: auto;
     max-width: 12000px;
     padding: 0 20px;
     align-items: start;
