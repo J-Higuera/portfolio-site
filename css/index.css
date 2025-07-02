@@ -215,14 +215,11 @@ body.dark-mode ::-webkit-scrollbar-thumb {
 
 html {
     scroll-behavior: smooth;
-    background-color: #181818;
 }
 
 body {
     margin: 0;
     padding: 0;
-    background-color: #1d2b3c;
-    background-size: 100% 100%;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -256,6 +253,10 @@ header h2 {
     width: 100%;
     height: 200px;
     padding-top: 200px;
+    background-image: url(../images/body/abst.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
     background-color: #00000069;
     padding-bottom: 200px;
     display: flex;
@@ -296,6 +297,7 @@ header h2 {
     height: auto;
     overflow-y: auto;
     z-index: 100;
+
 }
 
 .main-container {
@@ -303,34 +305,37 @@ header h2 {
     flex: 1;
     height: auto;
     flex-direction: row;
+    background-image: url(../images/body/glitch.jpg);
+    background-size: cover;
+    background-attachment: fixed;
     background-color: #00000069;
     overflow: hidden;
     z-index: 100;
 }
 
 .first-banner {
-    background: linear-gradient(135deg, #969589 0%, #333300 100%);
+    background: linear-gradient(135deg, #007da3 0%, #5e5e00 100%);
     padding: 2px 0;
     text-align: center;
 }
 
 .first-banner h2 {
     color: #aeaeaedc;
-    background: linear-gradient(135deg, #899096 0%, #001a33 100%);
+    background-color: #0d0d0ddf;
     width: 100%;
     text-align: center;
     padding: 12px;
 }
 
 .heading-banner {
-    background: linear-gradient(135deg, #969589 0%, #333300 100%);
+    background: linear-gradient(135deg, #007da3 0%, #5e5e00 100%);
     padding: 2px 0;
     text-align: center;
 }
 
 .heading-banner h2 {
     color: #aeaeaedc;
-    background: linear-gradient(135deg, #899096 0%, #001a33 100%);
+    background-color: #0d0d0ddf;
     width: 100%;
     text-align: center;
     padding: 12px;
@@ -446,7 +451,7 @@ header h2 {
 }
 
 .achievements {
-    background: linear-gradient(to right, #294560, #697b8e);
+    background-color: #0d0d0ddf;
     color: #afafaf;
     border-radius: 15px;
 }
@@ -483,7 +488,7 @@ header h2 {
 
 .skills {
     text-align: center;
-    background: linear-gradient(to right, #294560, #697b8e);
+    background-color: #0d0d0ddf;
     color: #bfbfbf;
     border-radius: 15px;
     margin-top: 0;
@@ -544,43 +549,40 @@ footer a:hover {
     color: #ffffff;
 }
 
-.social-links-mobile {
-    display: none;
-}
-
-.social-links-desktop {
+.social-links {
     width: auto;
     left: 0;
     right: 0;
-    background-color: #00000069;
+    top: 135px;
+    position: relative;
     overflow: hidden;
     display: block;
     z-index: 100;
 }
 
-.social-links-desktop ul {
+.social-links ul {
     list-style: none;
     gap: 45px;
     padding: 5px 35px 5px;
     margin: 0;
     display: flex;
     flex: 1;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
-.social-links-desktop ul li a img {
+.social-links ul li a img {
+    background-color: #212121;
     border-radius: 10px;
     transition: transform 0.3s ease;
 }
 
-.social-links-desktop ul li a img:hover {
+.social-links ul li a img:hover {
     transform: scale(1.2);
 }
 
 .light-mode {
     margin: 0;
     padding: 0;
-    background-color: #80a7ab;
     background-size: cover;
     overflow-x: hidden;
     display: flex;
@@ -699,6 +701,17 @@ footer a:hover {
 
     .sticky-nav {
         display: none;
+    }
+
+    .social-links {
+        width: auto;
+        left: 0;
+        right: 0;
+        top: 85px;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        z-index: 100;
     }
 
     .desktop-theme-toggle {
@@ -923,67 +936,14 @@ footer a:hover {
         transform: scale(1.05);
     }
 
-    body.light-mode #mobileMenu a {
+    .light-mode #mobileMenu a {
         color: #000000;
         background-color: #e0e0e0b3;
         border: rgb(202, 202, 202) 5px solid;
     }
 
-    body.light-mode #mobileMenu a:hover {
+    .light-mode #mobileMenu a:hover {
         background-color: #b5b5b5b1;
         color: #333;
-    }
-
-    .social-links-desktop {
-        display: none;
-    }
-
-    .social-links-mobile {
-        width: 100%;
-        padding: 10px 0;
-        margin: 0;
-        background-color: #00000000;
-        overflow: hidden;
-        justify-content: center;
-        align-items: center;
-        display: block;
-        z-index: 100;
-    }
-
-    .light-mode .social-links-mobile {
-        background-color: #00000000;
-        z-index: 100;
-    }
-
-    .social-links-mobile ul {
-        display: flex;
-        flex: 1;
-        justify-content: center;
-        list-style: none;
-        z-index: 100;
-
-    }
-
-    .social-links-mobile ul li {
-        margin-bottom: 0;
-        margin-top: 0;
-        padding-top: 0;
-        z-index: 100;
-    }
-
-    .social-links-mobile ul li a {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        text-decoration: none;
-        font-size: 18px;
-        padding: 18px;
-        transition: all 0.3s ease-in-out;
-        transform: scale(1);
-        z-index: 100;
-    }
-
-    .social-links-mobile ul li a img {
-        border-radius: 10px;
-        transition: transform 0.3s ease;
-        z-index: 100;
     }
 }
