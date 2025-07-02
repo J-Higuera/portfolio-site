@@ -27,13 +27,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 3px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.266), rgba(0, 0, 0, 0.186)), url(../images/body/hua.png);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    margin: auto;
+    margin: 3px auto;
     max-width: 12000px;
     padding: 0 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
     align-items: start;
     z-index: 999;
 }
@@ -274,17 +272,6 @@
 @media (max-width: 620px) {
 
     .about-grid {
-        display: grid;
         grid-template-columns: 1fr !important;
-        gap: 3px;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.266), rgba(0, 0, 0, 0.186)), url(../images/body/d2.PNG);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        margin: auto;
-        max-width: 12000px;
-        padding: 0 20px;
-        align-items: start;
-        z-index: 999;
     }
 }

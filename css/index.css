@@ -215,10 +215,10 @@ body.dark-mode ::-webkit-scrollbar-thumb {
 
 html {
     scroll-behavior: smooth;
+    background-color: #b7b7b7;
 }
 
 body {
-    background-color: #525252;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -254,6 +254,9 @@ header h2 {
     width: 100%;
     height: 200px;
     padding-top: 200px;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../images/body/abst.jpg);
+    background-position: center;
+    background-size: cover;
     background-color: #00000069;
     padding-bottom: 200px;
     display: flex;
@@ -301,8 +304,6 @@ header h2 {
     display: flex;
     flex: 1;
     height: auto;
-    flex-direction: row;
-    background-color: #00000069;
     overflow: hidden;
     z-index: 100;
 }
@@ -388,20 +389,11 @@ header h2 {
     pointer-events: none;
 }
 
-.start-image {
-    background-image: url(../images/body/black.jpg);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-
 .grid-wrapper {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    background-color: #00000069;
-    gap: 20px;
+    gap: 40px;
     padding: 20px;
-    padding-bottom: 180px;
     padding-top: 55px;
     z-index: 100;
 }
@@ -454,7 +446,7 @@ header h2 {
 }
 
 .achievements {
-    background-color: #0d0d0dea;
+    background-color: #0d0d0ddf;
     color: #afafaf;
     border-radius: 15px;
 }
@@ -490,15 +482,19 @@ header h2 {
 }
 
 .skills {
+    background: #0d0d0ddf;
+    border-radius: 20px;
+    padding: 40px 20px;
     text-align: center;
-    background-color: #0d0d0ddf;
-    color: #bfbfbf;
-    border-radius: 15px;
-    margin-top: 0;
-    z-index: 100;
 }
 
-
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, auto);
+    gap: 30px;
+    justify-items: center;
+}
 
 .skills h2,
 .achievements h2 {
@@ -509,22 +505,30 @@ header h2 {
     animation: fadeIn 2s ease-in-out;
 }
 
-.skill-card {
-    background-color: #202020;
-    border: 2px solid #000000;
-    padding: 15px;
-    margin: 20px;
-    border-radius: 8px;
-    display: inline-block;
-    width: 200px;
-    box-shadow: 0 10px 8px rgb(0, 0, 0);
-    transition: transform 0.3s, box-shadow 0.3s;
-    z-index: 100;
+.skills-grid img {
+    width: 60px;
+    height: auto;
+    transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.skill-card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 15px 8px rgba(0, 0, 0, 0.705);
+.skills-grid img:hover {
+    transform: scale(1.2) rotate(5deg);
+    filter: drop-shadow(0 0 3px #ffffffad) drop-shadow(0 0 7px #ffffffa7);
+}
+
+.skills:hover h2 {
+    text-shadow: 0 0 5px #00a2c6, 0 0 15px #00a2c6;
+    transition: text-shadow 0.6s ease-in-out;
+    color: #c3c3c3;
+    transition: color 1.3s;
+}
+
+.skills:hover {
+    box-shadow: 0 0 10px #ffffffc8,
+        0 0 20px #ffffffc7,
+        0 0 30px #ffffffd3;
+    border: 2px solid #ffffffcb;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
 }
 
 footer {
@@ -558,17 +562,14 @@ footer a:hover {
     right: 0;
     top: 135px;
     position: relative;
+    overflow: hidden;
+    display: block;
     z-index: 100;
-    background-color: #00000000;
-    border-bottom: 3.2px solid #505050;
-    box-shadow: 0 20px 2px #0000003c;
-    border-radius: 10px;
 }
 
 .social-links ul {
     list-style: none;
-    gap: 60px;
-    align-items: center;
+    gap: 45px;
     padding: 5px 35px 5px;
     margin: 0;
     display: flex;
@@ -709,22 +710,8 @@ footer a:hover {
         display: none;
     }
 
-    .start-image {
-        background-image: url(../images/body/l2.PNG);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
-    }
-
-    .grid-wrapper {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        background-color: #00000000;
-        gap: 20px;
-        padding: 20px;
-        padding-bottom: 180px;
-        padding-top: 55px;
-        z-index: 100;
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .social-links {
@@ -733,11 +720,9 @@ footer a:hover {
         right: 0;
         top: 85px;
         position: relative;
+        overflow: hidden;
+        display: block;
         z-index: 100;
-        background-color: #00000000;
-        border-bottom: 2px solid #353535;
-        box-shadow: 0 20px 2px #0000003c;
-        border-radius: 10px;
     }
 
     .desktop-theme-toggle {

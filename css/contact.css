@@ -1,13 +1,13 @@
 .contect-grid {
-    background: linear-gradient(to bottom, #17004a 0%, #c3c3c3 100%);
-    background-position: center center;
-    background-repeat: no-repeat;
-    background-size: cover;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 30px;
-    background-color: none;
-    border-radius: 8px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 3px;
+    margin: 3px auto;
+    max-width: 12000px;
+    padding: 0 20px;
+    padding-bottom: 70px;
+    padding-top: 70px;
+    align-items: start;
     z-index: 999;
 }
 
@@ -16,11 +16,11 @@
     text-align: center;
     background-color: #0d0d0ddf;
     color: #bfbfbf;
-    border-radius: 8px;
-    margin-right: 55px;
-    margin-left: 55px;
+    margin-right: 25px;
+    margin-left: 25px;
     margin-bottom: 520px;
     margin-top: 58px;
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
     z-index: 999;
 }
