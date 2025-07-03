@@ -525,8 +525,8 @@ header h2 {
 }
 
 .skills-grid img:hover {
-    transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 0 2px #ffffffa6) drop-shadow(0 0 5px #ffffffa7);
+    transform: scale(1.3) rotate(5deg);
+    filter: drop-shadow(0 0 0.6px #ffffffa6) drop-shadow(0 0 2px #ffffffa7);
 }
 
 .skills:hover h2 {
@@ -765,7 +765,7 @@ footer a:hover {
     }
 
     .achievements-card.animate {
-        animation: cardPop 1.2s ease forwards;
+        animation: cardPop 1s ease forwards;
     }
 
     @keyframes cardPop {
@@ -783,7 +783,7 @@ footer a:hover {
     }
 
     .skills-grid img.animate {
-        animation: iconGlow 1.2s ease forwards;
+        animation: iconGlow 1s ease forwards;
     }
 
     @keyframes iconGlow {
