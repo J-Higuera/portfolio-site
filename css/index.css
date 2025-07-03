@@ -485,11 +485,20 @@ header h2 {
     box-shadow: 0 15px 8px rgba(0, 0, 0, 0.705);
 }
 
+.achievements h2 {
+    color: #aeaeaedc;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
 .skills {
     background: #0d0d0ddf;
     border-radius: 20px;
     padding: 40px 20px;
     text-align: center;
+    transition: box-shadow 0.6s ease, border 0.6s ease;
 }
 
 .skills-grid {
@@ -500,38 +509,37 @@ header h2 {
     justify-items: center;
 }
 
-.skills h2,
-.achievements h2 {
-    color: #aeaeaedc;
+.skills h2 {
+    color: rgba(174, 174, 174, 0.71);
     margin-bottom: 20px;
     font-size: 2rem;
     text-align: center;
     animation: fadeIn 2s ease-in-out;
+    transition: text-shadow 0.6s ease-in-out, color 0.6s ease-in-out;
 }
 
 .skills-grid img {
     width: 60px;
     height: auto;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.4s ease;
 }
 
 .skills-grid img:hover {
-    transform: scale(1.2) rotate(5deg);
-    filter: drop-shadow(0 0 3px #ffffffad) drop-shadow(0 0 7px #ffffffa7);
+    transform: scale(1.1) rotate(5deg);
+    filter: drop-shadow(0 0 2px #ffffffa6) drop-shadow(0 0 5px #ffffffa7);
 }
 
 .skills:hover h2 {
-    text-shadow: 0 0 5px #00a2c6, 0 0 15px #00a2c6;
+    text-shadow: 0 0 5px #ffffff5a, 0 0 15px #ffffff63;
     transition: text-shadow 0.6s ease-in-out;
     color: #c3c3c3;
     transition: color 1.3s;
 }
 
 .skills:hover {
-    box-shadow: 0 0 10px #ffffff5a,
-        0 0 20px #ffffff63,
-        0 0 30px #ffffff61;
-    border: 2px solid #ffffff42;
+    box-shadow: 0 0 5px #ffffff5a,
+        0 0 12px #ffffff63,
+        0 0 15px #ffffff61;
     transition: box-shadow 0.5s ease, border 0.5s ease;
 }
 
@@ -754,6 +762,54 @@ footer a:hover {
         justify-content: center;
         text-align: center;
         color: white;
+    }
+
+    .achievements-card.animate {
+        animation: cardPop 1.2s ease forwards;
+    }
+
+    @keyframes cardPop {
+        0% {
+            transform: scale(1);
+        }
+
+        50% {
+            transform: scale(1.1);
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    .skills-grid img.animate {
+        animation: iconGlow 1.2s ease forwards;
+    }
+
+    @keyframes iconGlow {
+        0% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 0 transparent);
+        }
+
+        50% {
+            transform: scale(1.2) rotate(5deg);
+            filter: drop-shadow(0 0 5px #ffffffad) drop-shadow(0 0 10px #ffffffa7);
+        }
+
+        100% {
+            transform: scale(1);
+            filter: drop-shadow(0 0 0 transparent);
+        }
+    }
+
+    .skills.animate {
+        box-shadow: 0 0 10px #ffffff5a, 0 0 20px #ffffff63, 0 0 30px #ffffff61;
+        border: 2px solid #ffffff42;
+    }
+
+    .skills.animate h2 {
+        text-shadow: 0 0 5px #00a2c6, 0 0 15px #00a2c6;
     }
 
     .mobile-theme-toggle {
