@@ -77,11 +77,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // === Achievements sequence ===
     async function runAchievementsSequence() {
         // Add a pause BEFORE starting the first card
-        await delay(1200); // adjust to taste: 500–1500ms feels nice
+        await delay(800); // adjust to taste: 500–1500ms feels nice
 
         for (let card of achievementCards) {
             card.classList.add("animate");
-            await delay(1200); // your normal stagger
+            await delay(1000); // your normal stagger
         }
     }
 
@@ -89,18 +89,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // === Skills sequence ===
     async function runSkillsSequence() {
         while (skillsRunning) {
-            skillsContainer.classList.add("animate"); // glow + border
-            for (let icon of skillsIcons) {
-                if (!skillsRunning) break; // stop mid-loop if user scrolls away
-                icon.classList.add("animate");
-                await delay(1000);
-                icon.classList.remove("animate");
-            }
+            skillsContainer.classList.add("animate");
+            skillsIcons.forEach(icon => icon.classList.add("pulse"));
+            await delay(5000); // how long you want it to run per cycle
+            if (!skillsRunning) break;
+            skillsIcons.forEach(icon => icon.classList.remove("pulse"));
             skillsContainer.classList.remove("animate");
-            await delay(1700);
+            await delay(1000); // pause before repeating
         }
     }
-
     // === Delay helper ===
     function delay(ms) {
         return new Promise((resolve) => setTimeout(resolve, ms));
@@ -109,6 +106,68 @@ document.addEventListener("DOMContentLoaded", () => {
     // === Run Achievements once on page load too ===
     runAchievementsSequence();
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+    const skillsSection = document.querySelector(".skills");
+    const skillsGrid = document.querySelector(".skills-grid");
+    const skillsIcons = document.querySelectorAll(".skills-grid img");
+
+    let skillsRunning = false;
+
+    const skillsObserver = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !skillsRunning) {
+                    skillsRunning = true;
+                    runSkillsSequence();
+                } else if (!entry.isIntersecting) {
+                    skillsRunning = false;
+                    // Reset for next scroll
+                    skillsGrid.classList.remove("expand");
+                    skillsIcons.forEach(icon => {
+                        icon.classList.remove("show");
+                        icon.classList.remove("pulse");
+                    });
+                }
+            });
+        },
+        { threshold: 0.3 }
+    );
+
+    skillsObserver.observe(skillsSection);
+
+    async function runSkillsSequence() {
+        // Reset
+        skillsGrid.classList.remove("expand");
+        skillsIcons.forEach(icon => {
+            icon.classList.remove("show");
+            icon.classList.remove("pulse");
+        });
+
+        // Show one by one in the center
+        for (let icon of skillsIcons) {
+            icon.classList.add("show");
+            await delay(300);  // fade in
+            icon.classList.remove("show");
+            await delay(300);  // fade out gap
+        }
+
+        // Expand outward
+        skillsGrid.classList.add("expand");
+
+        // Wait for expand to finish
+        await delay(1300);
+
+        // Then start pulse
+        skillsIcons.forEach(icon => icon.classList.add("pulse"));
+    }
+
+    function delay(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
+});
+
+
 
 
 
