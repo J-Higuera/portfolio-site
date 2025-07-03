@@ -466,7 +466,25 @@ header h2 {
     text-align: center;
     box-shadow: 0 15px 8px rgb(0, 0, 0);
     transition: transform 0.3s, box-shadow 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
     z-index: 100;
+}
+
+.achievements-card.animate {
+    animation: fadeInUp 1.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .achievements-card p {
@@ -764,26 +782,12 @@ footer a:hover {
         color: white;
     }
 
-    .achievements-card.animate {
-        animation: cardPop 1s ease forwards;
-    }
-
-    @keyframes cardPop {
-        0% {
-            transform: scale(1);
-        }
-
-        50% {
-            transform: scale(1.1);
-        }
-
-        100% {
-            transform: scale(1);
-        }
-    }
-
     .skills-grid img.animate {
         animation: iconGlow 1s ease forwards;
+    }
+
+    .skills {
+        pointer-events: none;
     }
 
     @keyframes iconGlow {
