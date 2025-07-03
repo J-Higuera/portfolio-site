@@ -29,12 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     let achievementsRunning = false;
     let skillsRunning = false;
 
-    // Observer for achievements
+    // === Observer for achievements ===
     const achievementsObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !achievementsRunning) {
                 achievementsRunning = true;
-                skillsRunning = false; // 👈 force stop skills loop
                 runAchievementsSequence();
             } else if (!entry.isIntersecting) {
                 achievementsRunning = false;
@@ -42,12 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.3 });
 
-    // Observer for skills
+    achievementsObserver.observe(achievementsSection);
+
+    // === Observer for skills ===
     const skillsObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !skillsRunning) {
                 skillsRunning = true;
-                achievementsRunning = false; // 👈 force stop achievements loop
                 runSkillsSequence();
             } else if (!entry.isIntersecting) {
                 skillsRunning = false;
