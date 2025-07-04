@@ -451,7 +451,6 @@ header h2 {
 
 .achievements {
     color: #afafaf;
-    max-width: 650px;
     border-radius: 15px;
     background: #0d0d0ddf !important;
 }
@@ -540,7 +539,6 @@ header h2 {
     background: #0d0d0ddf !important;
     border-radius: 20px;
     padding: 40px 20px;
-    max-width: 650px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -561,7 +559,7 @@ header h2 {
 .skills:hover h2 {
     text-shadow: 0 0 5px #ffffff5a, 0 0 15px #ffffff63;
     transition: text-shadow 0.6s ease-in-out;
-    color: #ffffff;
+    color: #c3c3c3;
     transition: color 1.3s;
 }
 
@@ -751,6 +749,10 @@ footer a:hover {
         display: none;
     }
 
+    html {
+        forced-color-adjust: none;
+    }
+
     .skills-grid {
         grid-template-columns: repeat(3, 1fr);
     }
@@ -811,7 +813,8 @@ footer a:hover {
     }
 
     .skills.animate {
-        box-shadow: 0 0 10px #fffed8, 0 0 20px #fffed8, 0 0 40px #fffed8 !important;
+        box-shadow: 0 0 10px #c3c3c3, 0 0 20px #dddddd, 0 0 40px #a9a9a9 !important;
+        border: 2px solid #ffffff42;
     }
 
     .skills.animate h2 {
