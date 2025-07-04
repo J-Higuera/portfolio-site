@@ -809,7 +809,7 @@ footer a:hover {
     }
 
     .skills.animate {
-        box-shadow: 0 0 10px #00a2c6, 0 0 20px #00a2c6, 0 0 40px #00a2c6 !important;
+        box-shadow: 0 0 10px #c8c8c8, 0 0 20px #c2c2c2, 0 0 40px #cacaca !important;
         border: 2px solid #ffffff42;
     }
 
