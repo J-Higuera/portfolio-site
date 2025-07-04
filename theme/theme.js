@@ -1,20 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
     const body = document.body;
-    const toggleSwitch = document.getElementById("themeToggle");
-    const switchThumb = toggleSwitch.querySelector(".switch-thumb");
+    const desktopToggle = document.getElementById("themeToggleDesktop");
+    const mobileToggle = document.getElementById("themeToggleMobile");
 
-    // Apply saved preference and update thumb text
     const savedTheme = localStorage.getItem("theme");
     if (savedTheme === "light") {
         body.classList.add("light-mode");
-        switchThumb.textContent = "ON";
+        desktopToggle.querySelector(".switch-thumb").textContent = "ON";
+        mobileToggle.querySelector(".switch-thumb").textContent = "ON";
     } else {
-        switchThumb.textContent = "OFF";
+        desktopToggle.querySelector(".switch-thumb").textContent = "OFF";
+        mobileToggle.querySelector(".switch-thumb").textContent = "OFF";
     }
 
-    toggleSwitch.addEventListener("click", () => {
+    function toggleTheme() {
         const isLight = body.classList.toggle("light-mode");
         localStorage.setItem("theme", isLight ? "light" : "dark");
-        switchThumb.textContent = isLight ? "ON" : "OFF";
-    });
+        desktopToggle.querySelector(".switch-thumb").textContent = isLight ? "ON" : "OFF";
+        mobileToggle.querySelector(".switch-thumb").textContent = isLight ? "ON" : "OFF";
+    }
+
+    desktopToggle.addEventListener("click", toggleTheme);
+    mobileToggle.addEventListener("click", toggleTheme);
 });
