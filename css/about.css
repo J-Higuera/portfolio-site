@@ -60,7 +60,7 @@
     position: relative;
     width: 100%;
     font-size: 1.2em;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 10.3s, box-shadow 0.3s;
 }
 
 .about-card:hover {
@@ -103,7 +103,7 @@
     max-height: 0;
     overflow: hidden;
     padding: 0 15px;
-    transition: max-height 1s ease-in-out;
+    transition: max-height 2s ease-in-out;
 }
 
 .toggle-content.open {
