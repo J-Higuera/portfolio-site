@@ -18,6 +18,3 @@ document.addEventListener("DOMContentLoaded", () => {
         switchThumb.textContent = isLight ? "ON" : "OFF";
     });
 });
-
-
-
