@@ -452,7 +452,7 @@ header h2 {
 .achievements {
     color: #afafaf;
     border-radius: 15px;
-    background: #0d0d0ddf;
+    background: #0d0d0ddf !important;
 }
 
 .achievements-card {
@@ -536,17 +536,17 @@ header h2 {
 }
 
 .skills {
-    background: #0d0d0ddf;
+    background: #0d0d0ddf !important;
     border-radius: 20px;
     padding: 40px 20px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    transition: box-shadow 0.6s ease, border 0.6s ease;
+    transition: box-shadow 0.6s ease, border 0.6s ease !important;
 }
 
 .skills h2 {
-    color: rgba(174, 174, 174, 0.71);
+    color: rgba(174, 174, 174, 0.71) !important;
     margin-bottom: 20px;
     font-size: 2rem;
     position: relative;
@@ -818,7 +818,7 @@ footer a:hover {
     }
 
     .skills.animate {
-        box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 40px #ffffff;
+        box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 40px #ffffff !important;
         border: 2px solid #ffffff42;
     }
 
@@ -826,8 +826,8 @@ footer a:hover {
         text-shadow:
             0 0 5px #00a2c6,
             0 0 15px #00a2c6,
-            0 0 25px #00a2c6;
-        color: #d4d4d4;
+            0 0 25px #00a2c6 !important;
+        color: #d4d4d4 !important;
     }
 
 
