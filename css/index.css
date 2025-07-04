@@ -451,6 +451,7 @@ header h2 {
 
 .achievements {
     color: #afafaf;
+    max-width: 650px;
     border-radius: 15px;
     background: #0d0d0ddf !important;
 }
@@ -539,6 +540,7 @@ header h2 {
     background: #0d0d0ddf !important;
     border-radius: 20px;
     padding: 40px 20px;
+    max-width: 650px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -809,8 +811,7 @@ footer a:hover {
     }
 
     .skills.animate {
-        box-shadow: 0 0 10px #c8c8c8, 0 0 20px #c2c2c2, 0 0 40px #cacaca !important;
-        border: 2px solid #ffffff42;
+        box-shadow: 0 0 10px #fffed8, 0 0 20px #fffed8, 0 0 40px #fffed8 !important;
     }
 
     .skills.animate h2 {
