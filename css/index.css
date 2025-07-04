@@ -818,12 +818,16 @@ footer a:hover {
     }
 
     .skills.animate {
-        box-shadow: 0 0 10px #ffffff5a, 0 0 20px #ffffff63, 0 0 30px #ffffff61;
+        box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 40px #ffffff;
         border: 2px solid #ffffff42;
     }
 
     .skills.animate h2 {
-        text-shadow: 0 0 5px #00a2c6, 0 0 15px #00a2c6;
+        text-shadow:
+            0 0 5px #00a2c6,
+            0 0 15px #00a2c6,
+            0 0 25px #00a2c6;
+        color: #d4d4d4;
     }
 
 
