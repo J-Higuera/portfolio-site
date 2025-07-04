@@ -2,10 +2,8 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 30px;
-    background-color: none;
-    background: url(../images/body/2121.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #000000, #434343, #4b6cb7);
+    background-attachment: fixed;
     background-size: cover;
     padding: 35px;
     z-index: 999;

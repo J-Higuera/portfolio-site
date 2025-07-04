@@ -436,9 +436,8 @@ header h2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
-    background: url(../images/body/2121.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(135deg, #141E30, #243B55, #00c3ff);
+    background-attachment: fixed;
     background-size: cover;
     padding: 20px;
     padding-top: 55px;
@@ -452,6 +451,7 @@ header h2 {
 .achievements {
     color: #afafaf;
     border-radius: 15px;
+    max-width: 650px;
     background: #0d0d0ddf !important;
 }
 
@@ -539,6 +539,7 @@ header h2 {
     background: #0d0d0ddf !important;
     border-radius: 20px;
     padding: 40px 20px;
+    max-width: 650px;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -814,7 +815,6 @@ footer a:hover {
 
     .skills.animate {
         box-shadow: 0 0 10px #c3c3c3, 0 0 20px #dddddd, 0 0 40px #a9a9a9 !important;
-        border: 2px solid #ffffff42;
     }
 
     .skills.animate h2 {

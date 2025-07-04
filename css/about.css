@@ -27,9 +27,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 3px;
-    background: url(../images/body/2121.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
+    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364, #485563);
+    background-attachment: fixed;
     background-size: cover;
     padding: 0 20px;
     padding-top: 40px;
