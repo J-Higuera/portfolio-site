@@ -215,7 +215,6 @@ html {
     overscroll-behavior: none;
     scroll-behavior: smooth;
     background-color: #000000;
-    height: 100%;
 }
 
 body {
@@ -248,10 +247,6 @@ header {
 
 header h2 {
     font-size: 2.2rem;
-}
-
-main {
-    flex: 1;
 }
 
 .hero {
@@ -584,7 +579,6 @@ footer {
     backdrop-filter: blur(10px);
     padding: 10px 20px;
     z-index: 100;
-    flex-shrink: 0;
 }
 
 footer p {
