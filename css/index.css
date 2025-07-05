@@ -439,6 +439,12 @@ header h2 {
 }
 
 .grid-wrapper {
+
+    background: url(../images/body/d2.PNG);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
@@ -630,15 +636,14 @@ footer a:hover {
     transform: scale(1.2);
 }
 
-.light-mode {
-    margin: 0;
-    padding: 0;
-    background-size: cover;
-    overflow-x: hidden;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+.light-mode .grid-wrapper {
+    background: url(../images/body/l2.PNG);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
 }
+
 
 .light-mode .hero {
     background-color: #00000000;

@@ -1,6 +1,11 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    background: url(../images/body/d3.PNG);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
     gap: 30px;
     padding: 35px;
     z-index: 999;
@@ -73,7 +78,13 @@
     animation: button-pulse 1s infinite;
 }
 
-
+.light-mode .projects-grid {
+    background: url(../images/body/l2.PNG);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
 
 .light-mode .project-card {
     background-color: #c7c7c7d8;

@@ -26,6 +26,11 @@
  .about-grid {
      display: grid;
      grid-template-columns: 1fr 1fr 1fr;
+     background: url(../images/body/d2.PNG);
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+     background-attachment: fixed;
      gap: 3px;
      padding: 0 20px;
      padding-top: 40px;
@@ -176,6 +181,14 @@
      box-shadow: 0 4px 8px rgba(255, 255, 255, 0.23);
      text-align: center;
      color: #bfbfbf;
+ }
+
+ .light-mode .about-grid {
+     background: url(../images/body/l2.PNG);
+     background-position: center;
+     background-repeat: no-repeat;
+     background-size: 100% 100%;
+     background-attachment: fixed;
  }
 
 
