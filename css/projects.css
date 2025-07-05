@@ -127,4 +127,12 @@
     .left-panel {
         display: none;
     }
+
+    .projects-grid {
+        background: none;
+    }
+
+    .light-mode .projects-grid {
+        background: none;
+    }
 }

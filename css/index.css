@@ -743,6 +743,28 @@ footer a:hover {
 
 @media (max-width: 620px) {
 
+    .grid-wrapper {
+        background: none;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url('../images/body/d2.PNG') center/cover no-repeat;
+        background-size: cover;
+        z-index: -1;
+    }
+
+    .light-mode .grid-wrapper {
+        background: none;
+    }
+
+    body.light-mode::before {
+        background: url('../images/body/l2.PNG') center/cover no-repeat;
+        background-size: cover;
+    }
+
     .sticky-nav {
         display: none;
     }

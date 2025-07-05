@@ -288,4 +288,11 @@
          grid-template-columns: 1fr !important;
      }
 
+     .about-grid {
+         background: none;
+     }
+
+     .light-mode .about-grid {
+         background: none;
+     }
  }

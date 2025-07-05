@@ -108,4 +108,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
-@media (max-width: 620px) {}
+@media (max-width: 620px) {
+
+    .contact-grid {
+        background: none;
+    }
+
+    .light-mode .contact-grid {
+        background: none;
+    }
+}
