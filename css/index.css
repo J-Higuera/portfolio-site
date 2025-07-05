@@ -212,6 +212,7 @@ body.dark-mode ::-webkit-scrollbar-thumb {
 }
 
 html {
+    overscroll-behavior: none;
     scroll-behavior: smooth;
     background-color: #000000;
 }
@@ -221,8 +222,10 @@ body {
     padding: 0;
     overflow-x: hidden;
     display: flex;
+    position: relative;
     flex-direction: column;
     min-height: 100vh;
+    height: 100%;
 }
 
 body.loading,
@@ -577,6 +580,7 @@ footer {
     backdrop-filter: blur(10px);
     padding: 10px 20px;
     z-index: 100;
+    flex-shrink: 0;
 }
 
 footer p {
@@ -768,7 +772,7 @@ footer a:hover {
         background: none;
     }
 
-    body.light-mode::before {
+    .light-mode::before {
         background: url('../images/body/l2.PNG') center/cover no-repeat;
         background-size: cover;
     }
