@@ -1,13 +1,14 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    background: url(../images/body/d3.PNG);
+    background: url(../images/body/1470.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
     gap: 30px;
     padding: 35px;
+    position: relative;
     z-index: 999;
 }
 
@@ -79,7 +80,7 @@
 }
 
 .light-mode .projects-grid {
-    background: url(../images/body/l2.PNG);
+    background: url(../images/body/glitch.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -126,4 +127,29 @@
     .left-panel {
         display: none;
     }
+
+    .projects-grid::before {
+        background: url(../images/body/d3.PNG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    .light-mode .projects-grid::before {
+        background: url(../images/body/l2.PNG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
 }

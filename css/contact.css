@@ -2,12 +2,13 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3px;
-    background: url(../images/body/d3.PNG);
+    background: url(../images/body/2121.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
     padding: 0 20px;
+    position: relative;
     padding-bottom: 70px;
     align-items: start;
     z-index: 999;
@@ -83,7 +84,7 @@
 }
 
 .light-mode .contact-grid {
-    background: url(../images/body/l2.PNG);
+    background: url(../images/body/1470.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -107,4 +108,29 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
-@media (max-width: 620px) {}
+@media (max-width: 620px) {
+
+    .contact-grid::before {
+        background: url(../images/body/d3.PNG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    .light-mode .contact-grid::before {
+        background: url(../images/body/l2.PNG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+}

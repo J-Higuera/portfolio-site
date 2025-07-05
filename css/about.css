@@ -26,11 +26,12 @@
  .about-grid {
      display: grid;
      grid-template-columns: 1fr 1fr 1fr;
-     background: url(../images/body/d2.PNG);
+     background: url(../images/body/2112.jpg);
      background-position: center;
      background-repeat: no-repeat;
      background-size: 100% 100%;
      background-attachment: fixed;
+     position: relative;
      gap: 3px;
      padding: 0 20px;
      padding-top: 40px;
@@ -184,7 +185,7 @@
  }
 
  .light-mode .about-grid {
-     background: url(../images/body/l2.PNG);
+     background: url(../images/body/1433.jpg);
      background-position: center;
      background-repeat: no-repeat;
      background-size: 100% 100%;
@@ -285,5 +286,29 @@
 
      .about-grid {
          grid-template-columns: 1fr !important;
+     }
+
+     .about-grid::before {
+         background: url(../images/body/d3.PNG);
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: 100% 100%;
+         background-attachment: fixed;
+         content: "";
+         position: absolute;
+         inset: 0;
+         z-index: -1;
+     }
+
+     .light-mode .about-grid::before {
+         background: url(../images/body/l2.PNG);
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: 100% 100%;
+         background-attachment: fixed;
+         content: "";
+         position: absolute;
+         inset: 0;
+         z-index: -1;
      }
  }

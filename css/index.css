@@ -221,12 +221,6 @@ html {
 body {
     margin: 0;
     padding: 0;
-    background:
-        linear-gradient(120deg, #141e30 0%, #243b55 50%),
-        linear-gradient(240deg, #485563 0%, #29323c 50%);
-    background-blend-mode: screen;
-    background-attachment: fixed;
-    background-size: cover;
     overflow-x: hidden;
     display: flex;
     flex-direction: column;
@@ -439,13 +433,13 @@ header h2 {
 }
 
 .grid-wrapper {
-
-    background: url(../images/body/d2.PNG);
+    background: url(../images/body/black.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     background-attachment: fixed;
     display: grid;
+    position: relative;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
     padding: 20px;
@@ -637,7 +631,7 @@ footer a:hover {
 }
 
 .light-mode .grid-wrapper {
-    background: url(../images/body/l2.PNG);
+    background: url(../images/body/1433.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
@@ -754,6 +748,30 @@ footer a:hover {
 
     .sticky-nav {
         display: none;
+    }
+
+    .grid-wrapper::before {
+        background: url(../images/body/d3.PNG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+    }
+
+    .light-mode .grid-wrapper::before {
+        background: url(../images/body/l2.PNG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
     }
 
     .skills-grid {
