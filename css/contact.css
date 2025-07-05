@@ -108,29 +108,4 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
-@media (max-width: 620px) {
-
-    .contact-grid::before {
-        background: url(../images/body/d3.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-    }
-
-    .light-mode .contact-grid::before {
-        background: url(../images/body/l2.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-    }
-}
+@media (max-width: 620px) {}

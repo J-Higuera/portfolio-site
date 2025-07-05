@@ -42,8 +42,6 @@
     animation: flicker 0.15s infinite;
 }
 
-
-
 #progress-percent {
     font-family: monospace;
     font-size: 25px;
@@ -439,7 +437,6 @@ header h2 {
     background-size: 100% 100%;
     background-attachment: fixed;
     display: grid;
-    position: relative;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
     padding: 20px;
@@ -748,30 +745,6 @@ footer a:hover {
 
     .sticky-nav {
         display: none;
-    }
-
-    .grid-wrapper::before {
-        background: url(../images/body/d3.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-    }
-
-    .light-mode .grid-wrapper::before {
-        background: url(../images/body/l2.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
     }
 
     .skills-grid {

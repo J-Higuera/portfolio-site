@@ -127,29 +127,4 @@
     .left-panel {
         display: none;
     }
-
-    .projects-grid::before {
-        background: url(../images/body/d3.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-    }
-
-    .light-mode .projects-grid::before {
-        background: url(../images/body/l2.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-    }
-
 }
