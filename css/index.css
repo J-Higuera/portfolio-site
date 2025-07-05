@@ -437,6 +437,7 @@ header h2 {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 40px;
@@ -633,6 +634,7 @@ footer a:hover {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 
@@ -742,6 +744,36 @@ footer a:hover {
 }
 
 @media (max-width: 620px) {
+
+    .grid-wrapper {
+        background: none;
+    }
+
+    body {
+        background: none;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url('../images/body/d2.PNG') center/cover no-repeat;
+        background-size: cover;
+        z-index: -1;
+    }
+
+    .light-mode .grid-wrapper {
+        background: none;
+    }
+
+    .light-mode::before {
+        background: none;
+    }
+
+    .light-mode::before {
+        background: url('../images/body/l2.PNG') center/cover no-repeat;
+        background-size: cover;
+    }
 
     .sticky-nav {
         display: none;

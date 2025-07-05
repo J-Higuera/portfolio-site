@@ -5,6 +5,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     gap: 30px;
     padding: 35px;
     z-index: 999;
@@ -82,6 +83,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .light-mode .project-card {
@@ -120,8 +122,16 @@
     }
 }
 
-@media (max-width: 670px) {
+@media (max-width: 620px) {
     .left-panel {
         display: none;
+    }
+
+    .projects-grid {
+        background: none;
+    }
+
+    .light-mode .projects-grid {
+        background: none;
     }
 }

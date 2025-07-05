@@ -6,6 +6,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     padding: 0 20px;
     padding-bottom: 70px;
     align-items: start;
@@ -86,6 +87,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
 }
 
 .light-mode .contact-section {
@@ -105,4 +107,13 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
-@media (max-width: 620px) {}
+@media (max-width: 620px) {
+
+    .contact-grid {
+        background: none;
+    }
+
+    .light-mode .contact-grid {
+        background: none;
+    }
+}
