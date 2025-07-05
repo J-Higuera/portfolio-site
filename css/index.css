@@ -747,6 +747,10 @@ footer a:hover {
         background: none;
     }
 
+    body {
+        background: none;
+    }
+
     body::before {
         content: "";
         position: fixed;
@@ -757,6 +761,10 @@ footer a:hover {
     }
 
     .light-mode .grid-wrapper {
+        background: none;
+    }
+
+    .light-mode::before {
         background: none;
     }
 
