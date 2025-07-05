@@ -5,10 +5,8 @@
     background: url(../images/body/2121.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
+    background-size: cover;
     padding: 0 20px;
-    position: relative;
     padding-bottom: 70px;
     align-items: start;
     z-index: 999;
@@ -87,8 +85,7 @@
     background: url(../images/body/1470.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
+    background-size: cover;
 }
 
 .light-mode .contact-section {
@@ -108,13 +105,4 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
-@media (max-width: 620px) {
-
-    .contact-grid {
-        background: none;
-    }
-
-    .light-mode .contact-grid {
-        background: none;
-    }
-}
+@media (max-width: 620px) {}

@@ -4,11 +4,9 @@
     background: url(../images/body/1470.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
+    background-size: cover;
     gap: 30px;
     padding: 35px;
-    position: relative;
     z-index: 999;
 }
 
@@ -83,8 +81,7 @@
     background: url(../images/body/glitch.jpg);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
+    background-size: cover;
 }
 
 .light-mode .project-card {
@@ -126,13 +123,5 @@
 @media (max-width: 670px) {
     .left-panel {
         display: none;
-    }
-
-    .projects-grid {
-        background: none;
-    }
-
-    .light-mode .projects-grid {
-        background: none;
     }
 }

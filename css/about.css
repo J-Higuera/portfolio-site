@@ -29,9 +29,7 @@
      background: url(../images/body/2112.jpg);
      background-position: center;
      background-repeat: no-repeat;
-     background-size: 100% 100%;
-     background-attachment: fixed;
-     position: relative;
+     background-size: cover;
      gap: 3px;
      padding: 0 20px;
      padding-top: 40px;
@@ -188,8 +186,7 @@
      background: url(../images/body/1433.jpg);
      background-position: center;
      background-repeat: no-repeat;
-     background-size: 100% 100%;
-     background-attachment: fixed;
+     background-size: cover;
  }
 
 
@@ -286,13 +283,5 @@
 
      .about-grid {
          grid-template-columns: 1fr !important;
-     }
-
-     .about-grid {
-         background: none;
-     }
-
-     .light-mode .about-grid {
-         background: none;
      }
  }
