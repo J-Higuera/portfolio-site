@@ -225,6 +225,7 @@ body {
     position: relative;
     flex-direction: column;
     min-height: 100vh;
+    height: 100%;
 }
 
 body.loading,
@@ -579,6 +580,7 @@ footer {
     backdrop-filter: blur(10px);
     padding: 10px 20px;
     z-index: 100;
+    flex-shrink: 0;
 }
 
 footer p {
@@ -763,10 +765,6 @@ footer a:hover {
     }
 
     .light-mode .grid-wrapper {
-        background: none;
-    }
-
-    .light-mode::before {
         background: none;
     }
 
