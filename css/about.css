@@ -4,7 +4,7 @@
     --primary: #00fff7;
     --primary-dark: #007c91;
     --accent: #ff00c8;
-    --bg-gradient: radial-gradient(circle at top left, #2a2a2a 0%, #1d213f 30%, #0f2027 50%, #5f7279 75%, #e4e4e4 100%);
+    --bg-gradient: radial-gradient(circle at top left, #979797 0%, #383f79 30%, #224e61 50%, #819da7 75%, #999999 100%);
     --card-gradient: linear-gradient(145deg, rgba(18, 32, 47, 0.85), rgba(23, 42, 58, 0.9));
     --text-light: #fafdff;
     --text-bright: #c7faff;

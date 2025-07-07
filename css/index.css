@@ -199,16 +199,33 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: #979797;
+    background-color: #dbdbdb;
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background-color: #00a2c6;
+    background-color: #006d8686;
 }
 
-body.dark-mode ::-webkit-scrollbar-thumb {
-    background-color: rgba(0, 162, 198, 0.7);
+html ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+:root {
+    --primary: #00fff7;
+    --primary-dark: #007c91;
+    --accent: #ff00c8;
+    --bg-gradient: radial-gradient(circle at top left, #2a2a2a 0%, #1d213f 30%, #0f2027 50%, #5f7279 75%, #e4e4e4 100%);
+    --card-gradient: linear-gradient(145deg, rgba(18, 32, 47, 0.85), rgba(23, 42, 58, 0.9));
+    --text-light: #fafdff;
+    --text-bright: #c7faff;
+    --text-muted: #8cb9c7;
+    --shadow: 0 8px 24px rgba(0, 255, 247, 0.06), 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 12px 32px rgba(0, 255, 247, 0.2), 0 2px 6px rgba(0, 0, 0, 0.3);
+    --radius: 1.5rem;
+    --border: 1.5px solid rgba(0, 255, 247, 0.25);
+    --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'Fira Mono', 'Consolas', monospace;
 }
 
 html {
@@ -440,8 +457,9 @@ header h2 {
     background-size: 100% 100%;
     background-attachment: fixed;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(2, 1fr);
+    position: relative;
+    gap: 30px;
     padding: 20px;
     padding-top: 55px;
     z-index: 100;
@@ -449,12 +467,15 @@ header h2 {
 
 .grid-wrapper section {
     padding: 20px;
+    justify-self: center;
 }
 
 .achievements {
     color: #afafaf;
     border-radius: 15px;
-    max-width: 650px;
+    max-width: 1000px;
+    width: 100%;
+    justify-self: center;
     background: #0d0d0ddf;
 }
 
@@ -514,12 +535,12 @@ header h2 {
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
     gap: 30px;
     position: relative;
-    min-height: 250px;
+    min-height: 80px;
     justify-items: center;
 }
 
 .skills-grid img {
-    width: 60px;
+    width: 65px;
     height: auto;
     opacity: 0;
     transform: scale(0.8);
@@ -542,9 +563,12 @@ header h2 {
     background: #0d0d0ddf;
     border-radius: 20px;
     padding: 40px 20px;
-    max-width: 650px;
+    max-width: 100%;
+    width: 100%;
+    grid-column: 1 / -1;
     text-align: center;
     position: relative;
+    justify-self: center;
     overflow: hidden;
     transition: box-shadow 0.6s ease, border 0.6s ease;
 }
@@ -745,11 +769,33 @@ footer a:hover {
     background-color: #00000052;
 }
 
+@media (max-width: 1100px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .skills {
+        grid-column: 1 / -1;
+        padding: 0;
+        min-height: none;
+    }
+
+    .skills-grid {
+        gap: 20px;
+        position: relative;
+        min-height: 100px;
+        justify-items: center;
+    }
+
+}
+
 @media (max-width: 620px) {
 
     .grid-wrapper {
         background: none;
+        grid-template-columns: repeat(1, 1fr);
     }
+
 
     body {
         background: none;
