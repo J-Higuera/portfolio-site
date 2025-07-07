@@ -7,8 +7,10 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-    padding: 0 20px;
-    padding-bottom: 70px;
+    padding-right: 150px;
+    padding-left: 150px;
+    padding-top: 47px;
+    padding-bottom: 47px;
     align-items: start;
     z-index: 999;
 }
@@ -18,10 +20,7 @@
     text-align: center;
     background-color: #0d0d0ddf;
     color: #bfbfbf;
-    margin-right: 25px;
-    margin-left: 25px;
-    margin-bottom: 52px;
-    margin-top: 50px;
+    margin-bottom: 330px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
     z-index: 999;
@@ -107,10 +106,23 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
 }
 
+@media (max-width: 1220px) {
+    .contact-grid {
+        padding-right: 107px;
+        padding-left: 107px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+}
+
 @media (max-width: 620px) {
 
     .contact-grid {
         background: none;
+        padding-right: 17px;
+        padding-left: 17px;
+        padding-top: 47px;
+        padding-bottom: 7px;
     }
 
     .light-mode .contact-grid {

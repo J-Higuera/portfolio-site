@@ -451,17 +451,14 @@ header h2 {
 }
 
 .grid-wrapper {
-    background: url(../images/body/black.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-attachment: fixed;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     position: relative;
+    padding-right: 130px;
+    padding-left: 130px;
+    padding-top: 47px;
+    padding-bottom: 40px;
     gap: 30px;
-    padding: 20px;
-    padding-top: 55px;
     z-index: 100;
 }
 
@@ -473,7 +470,7 @@ header h2 {
 .achievements {
     color: #afafaf;
     border-radius: 15px;
-    max-width: 1000px;
+    max-width: auto;
     width: 100%;
     justify-self: center;
     background: #0d0d0ddf;
@@ -551,13 +548,14 @@ header h2 {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
     gap: 10px;
+    padding-top: 10px;
     position: relative;
-    min-height: 80px;
     justify-items: center;
 }
 
 .skills-grid img {
     width: 60px;
+    margin-bottom: 12px;
     height: auto;
     opacity: 0;
     transform: scale(0.8);
@@ -576,10 +574,19 @@ header h2 {
     filter: drop-shadow(0 0 0.6px #ffffffa6) drop-shadow(0 0 2px #ffffffa7);
 }
 
+.home-image {
+    background: url(../images/body/black.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+}
+
 .skills {
-    background: #0d0d0ddf;
-    border-radius: 20px;
-    padding: 40px 20px;
+    background-color: #181818c8;
+    padding: 12px 8px;
+    padding-right: 18px;
+    padding-left: 18px;
     max-width: 100%;
     width: 100%;
     grid-column: 1 / -1;
@@ -592,8 +599,8 @@ header h2 {
 
 .skills h2 {
     color: rgba(174, 174, 174, 0.71);
-    margin-bottom: 20px;
-    font-size: 2rem;
+    margin-bottom: 12px;
+    font-size: 2.2rem;
     position: relative;
     text-align: center;
     z-index: 2;
@@ -604,7 +611,7 @@ header h2 {
 .skills:hover h2 {
     text-shadow: 0 0 5px #ffffff5a, 0 0 15px #ffffff63;
     transition: text-shadow 0.6s ease-in-out;
-    color: #c3c3c3;
+    color: #d7d7d7;
     transition: color 1.3s;
 }
 
@@ -783,21 +790,53 @@ footer a:hover {
     background-color: #00000000;
 }
 
-@media (max-width: 920px) {
+@media (max-width: 1220px) {
     .grid-wrapper {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 40px;
     }
 
     .skills {
         grid-column: 1 / -1;
-        padding: 0;
+        width: 100%;
         min-height: none;
+    }
+
+    .skills h2 {
+        color: rgba(174, 174, 174, 0.71);
+        font-size: 2.2rem;
+        position: relative;
+        text-align: center;
+        z-index: 2;
+        animation: fadeIn 2s ease-in-out;
+        transition: text-shadow 0.6s ease-in-out, color 0.6s ease-in-out;
     }
 
     .skills-grid {
         gap: 20px;
         position: relative;
-        min-height: 100px;
+        justify-items: center;
+    }
+}
+
+@media (max-width: 900px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 40px;
+    }
+
+    .skills {
+        grid-column: 1 / -1;
+    }
+
+    .skills-grid {
+        position: relative;
         justify-items: center;
     }
 
@@ -812,6 +851,14 @@ footer a:hover {
     .grid-wrapper {
         background: none;
         grid-template-columns: repeat(1, 1fr);
+        padding-right: 17px;
+        padding-left: 17px;
+        padding-top: 47px;
+        padding-bottom: 40px;
+    }
+
+    .home-image {
+        background: none;
     }
 
     body {
@@ -838,31 +885,6 @@ footer a:hover {
 
     .sticky-nav {
         display: none;
-    }
-
-    .skills-grid {
-        grid-template-columns: repeat(auto-fit, 1fr);
-        gap: 15px;
-    }
-
-    .social-links {
-        width: auto;
-        left: 0;
-        right: 0;
-        top: 85px;
-        position: relative;
-        overflow: hidden;
-        display: block;
-        z-index: 100;
-    }
-
-    .social-links ul li a img {
-        filter: brightness(100%) contrast(100%);
-    }
-
-    .social-links ul li a img:hover {
-        transform: none;
-        filter: none;
     }
 
     .desktop-theme-toggle {
@@ -892,6 +914,30 @@ footer a:hover {
         color: white;
     }
 
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, 1fr);
+    }
+
+    .social-links {
+        width: auto;
+        left: 0;
+        right: 0;
+        top: 85px;
+        position: relative;
+        overflow: hidden;
+        display: block;
+        z-index: 100;
+    }
+
+    .social-links ul li a img {
+        filter: brightness(100%) contrast(100%);
+    }
+
+    .social-links ul li a img:hover {
+        transform: none;
+        filter: none;
+    }
+
     .skills-grid.loading img {
         pointer-events: none;
     }
@@ -910,7 +956,7 @@ footer a:hover {
     }
 
     .skills.animate {
-        box-shadow: 0 0 10px #c3c3c3, 0 0 20px #dddddd, 0 0 40px #a9a9a9 !important;
+        box-shadow: 0 0 8px #c3c3c3, 0 0 18px #dddddd, 0 0 25px #a9a9a9;
         border: none;
     }
 
@@ -918,8 +964,8 @@ footer a:hover {
         text-shadow:
             0 0 5px #00a2c6,
             0 0 15px #00a2c6,
-            0 0 25px #00a2c6 !important;
-        color: #d4d4d4 !important;
+            0 0 25px #00a2c6;
+        color: #d4d4d4;
     }
 
 

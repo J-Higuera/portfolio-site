@@ -1,11 +1,11 @@
 .about-section {
     background: var(--bg-gradient);
-    border-radius: var(--radius);
     box-shadow: var(--shadow);
-    padding: clamp(1.5rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem);
-    margin: clamp(1rem, 4vw, 3rem) auto;
-    max-width: 1200px;
     position: relative;
+    padding-right: 150px;
+    padding-left: 150px;
+    padding-top: 47px;
+    padding-bottom: 47px;
     overflow: hidden;
 }
 
@@ -146,6 +146,16 @@
     letter-spacing: 0.01em;
 }
 
+@media (max-width: 1220px) {
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 7px;
+    }
+}
+
 @media (max-width: 900px) {
     .about-flex {
         flex-direction: column;
@@ -159,14 +169,21 @@
     }
 
     .about-section {
-        padding: 1.5rem 0.5rem;
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 47px;
     }
 }
 
 @media (max-width: 600px) {
     .about-section {
-        padding: 1rem 0.2rem;
-        margin: 1rem 0.2rem;
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 7px;
     }
 
     .about-card {

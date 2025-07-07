@@ -7,7 +7,10 @@
     background-size: cover;
     background-attachment: fixed;
     gap: 30px;
-    padding: 35px;
+    padding-right: 150px;
+    padding-left: 150px;
+    padding-top: 35px;
+    padding-bottom: 35px;
     z-index: 999;
 }
 
@@ -122,13 +125,26 @@
     }
 }
 
-@media (max-width: 670px) {
+@media (max-width: 1220px) {
+    .projects-grid {
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+}
+
+@media (max-width: 620px) {
     .left-panel {
         display: none;
     }
 
     .projects-grid {
         background: none;
+        padding-right: 17px;
+        padding-left: 17px;
+        padding-top: 47px;
+        padding-bottom: 7px;
     }
 
     .light-mode .projects-grid {
