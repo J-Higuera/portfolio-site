@@ -272,7 +272,7 @@ header h2 {
     width: 100%;
     height: 200px;
     padding-top: 200px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.469), rgba(0, 0, 0, 0.475)), url(../images/body/abst.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.469), rgba(0, 0, 0, 0.475)), url(../images/body/gg.jpeg);
     background-position: center;
     background-size: cover;
     background-color: #00000069;
@@ -530,17 +530,34 @@ header h2 {
     animation: fadeIn 2s ease-in-out;
 }
 
+.profile-photo {
+    color: #afafaf;
+    border-radius: 15px;
+    max-width: 1000px;
+    width: 100%;
+    justify-self: center;
+    background: #0d0d0ddf;
+}
+
+.profile-photo h2 {
+    color: #aeaeaedc;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+    animation: fadeIn 2s ease-in-out;
+}
+
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    gap: 30px;
+    gap: 10px;
     position: relative;
     min-height: 80px;
     justify-items: center;
 }
 
 .skills-grid img {
-    width: 65px;
+    width: 60px;
     height: auto;
     opacity: 0;
     transform: scale(0.8);
@@ -628,7 +645,7 @@ footer a:hover {
     width: auto;
     left: 0;
     right: 0;
-    top: 135px;
+    top: 130px;
     position: relative;
     overflow: hidden;
     display: block;
@@ -646,13 +663,15 @@ footer a:hover {
 }
 
 .social-links ul li a img {
-    background-color: #212121;
+    background-color: #111111;
     border-radius: 10px;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: brightness(88%) contrast(90%);
 }
 
 .social-links ul li a img:hover {
     transform: scale(1.2);
+    filter: brightness(100%) contrast(100%);
 }
 
 .light-mode .grid-wrapper {
@@ -755,21 +774,16 @@ footer a:hover {
     background-color: #6a6a6aa5;
 }
 
-.light-mode .social-links-desktop ul li a img,
-.light-mode .social-links-mobile ul li a img {
+.light-mode .social-links ul li a img {
     background-color: rgba(4, 4, 4, 0.685);
     display: inline-block;
 }
 
-.light-mode .social-links-desktop {
+.light-mode .social-links {
     background-color: #00000000;
 }
 
-.light-mode .social-links-mobile {
-    background-color: #00000052;
-}
-
-@media (max-width: 1100px) {
+@media (max-width: 920px) {
     .grid-wrapper {
         grid-template-columns: repeat(1, 1fr);
     }
@@ -787,6 +801,10 @@ footer a:hover {
         justify-items: center;
     }
 
+    .profile-photo {
+        display: none;
+    }
+
 }
 
 @media (max-width: 620px) {
@@ -795,7 +813,6 @@ footer a:hover {
         background: none;
         grid-template-columns: repeat(1, 1fr);
     }
-
 
     body {
         background: none;
@@ -824,7 +841,8 @@ footer a:hover {
     }
 
     .skills-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, 1fr);
+        gap: 15px;
     }
 
     .social-links {
@@ -836,6 +854,15 @@ footer a:hover {
         overflow: hidden;
         display: block;
         z-index: 100;
+    }
+
+    .social-links ul li a img {
+        filter: brightness(100%) contrast(100%);
+    }
+
+    .social-links ul li a img:hover {
+        transform: none;
+        filter: none;
     }
 
     .desktop-theme-toggle {
