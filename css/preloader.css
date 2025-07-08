@@ -249,4 +249,13 @@ html.loading {
         animation: glitch 2s infinite;
         text-shadow: 0 0 2px #00f7ffc0, 0 0 10px #00f7ffc1;
     }
+
+    .progress-bar {
+        width: 240px;
+        height: 10px;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 5px;
+        box-shadow: 0 0 10px 1px #00f7ff9e;
+        overflow: hidden;
+    }
 }
