@@ -875,7 +875,6 @@ footer a:hover {
 
     .home-image {
         background: none;
-        padding: 0;
     }
 
     body {
@@ -941,10 +940,9 @@ footer a:hover {
     .skills {
         grid-column: 1 / -1;
         border-radius: 12px;
-        width: 100%;
-        margin-bottom: 40px;
+        width: 92%;
+        margin: 0 auto;
         text-align: center;
-        justify-self: center;
         max-width: 92%;
     }
 
@@ -966,7 +964,7 @@ footer a:hover {
     }
 
     .skills.animate {
-        box-shadow: 0 0 8px #a2ff00, 0 0 15px #006eff, 0 0 32px #ffffff;
+        box-shadow: 0 0 8px #ffffff, 0 0 15px #ffffff, 0 0 32px #ffffff;
         border: none;
     }
 
