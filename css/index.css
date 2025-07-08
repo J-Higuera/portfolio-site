@@ -871,6 +871,10 @@ footer a:hover {
 
     .grid-wrapper {
         background: none;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 47px;
+        padding-bottom: 40px;
     }
 
     .home-image {
@@ -932,8 +936,8 @@ footer a:hover {
 
     .skills-grid {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2px;
+        grid-template-columns: repeat(auto-fit, 1fr);
+        gap: 15px;
         justify-items: center;
     }
 
@@ -964,9 +968,15 @@ footer a:hover {
     }
 
     .skills.animate {
+        box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
+        border: none;
+    }
+
+    .light-mode .skills.animate {
         box-shadow: 0 0 8px #ffffff, 0 0 15px #ffffff, 0 0 32px #ffffff;
         border: none;
     }
+
 
     .skills.animate h2 {
         text-shadow:
