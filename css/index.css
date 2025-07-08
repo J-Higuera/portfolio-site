@@ -242,7 +242,6 @@ body {
     position: relative;
     flex-direction: column;
     min-height: 100vh;
-    height: 100%;
 }
 
 body.loading,
@@ -549,7 +548,8 @@ header h2 {
     grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
     gap: 12px;
     padding-top: 10px;
-
+    position: relative;
+    justify-items: center;
 }
 
 .skills-grid img {
@@ -588,6 +588,9 @@ header h2 {
     max-width: 100%;
     width: 100%;
     grid-column: 1 / -1;
+    text-align: center;
+    position: relative;
+    justify-self: center;
     overflow: hidden;
     transition: box-shadow 0.6s ease, border 0.6s ease;
 }
@@ -821,14 +824,18 @@ footer a:hover {
         gap: 15px;
         padding-top: 10px;
         padding-bottom: 10px;
+        position: relative;
+        justify-items: center;
     }
 
     .skills {
         grid-column: 1 / -1;
-        width: 92%;
         border-radius: 8px;
         min-height: none;
         background-color: #181818dd;
+        text-align: center;
+        width: 92%;
+        position: relative;
         justify-self: center;
         overflow: hidden;
         transition: box-shadow 0.6s ease, border 0.6s ease;
@@ -936,12 +943,16 @@ footer a:hover {
         grid-template-columns: repeat(auto-fit, 1fr);
         gap: 15px;
         position: relative;
+        justify-items: center;
     }
 
     .skills {
         grid-column: 1 / -1;
         border-radius: 8px;
+        width: 92%;
         margin-bottom: 40px;
+        position: relative;
+        text-align: center;
         justify-self: center;
         min-height: none;
     }
