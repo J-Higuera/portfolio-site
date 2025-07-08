@@ -230,4 +230,23 @@ html.loading {
         z-index: 9999;
         transition: opacity 0.5s ease;
     }
+
+    #progress-percent {
+        font-family: monospace;
+        font-size: 22px;
+        color: #ababab;
+        text-shadow: 0 0 2px #ffffffac, 0 0 10px #00f7ffb3;
+        min-width: 50px;
+        text-align: center;
+    }
+
+    .glitch {
+        color: #007e9a;
+        font-size: 25px;
+        position: relative;
+        text-align: center;
+        font-family: 'Share Tech Mono', monospace;
+        animation: glitch 2s infinite;
+        text-shadow: 0 0 2px #00f7ffc0, 0 0 10px #00f7ffc1;
+    }
 }
