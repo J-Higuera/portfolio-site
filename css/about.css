@@ -149,10 +149,10 @@
 @media (max-width: 1220px) {
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 27px;
-        padding-left: 27px;
+        padding-right: 22px;
+        padding-left: 22px;
         padding-top: 47px;
-        padding-bottom: 7px;
+        padding-bottom: 47px;
     }
 }
 
@@ -170,8 +170,8 @@
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 27px;
-        padding-left: 27px;
+        padding-right: 22px;
+        padding-left: 22px;
         padding-top: 47px;
         padding-bottom: 47px;
     }
@@ -180,8 +180,8 @@
 @media (max-width: 600px) {
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 27px;
-        padding-left: 27px;
+        padding-right: 22px;
+        padding-left: 22px;
         padding-top: 47px;
         padding-bottom: 7px;
     }

@@ -9,8 +9,8 @@
     gap: 30px;
     padding-right: 150px;
     padding-left: 150px;
-    padding-top: 35px;
-    padding-bottom: 35px;
+    padding-top: 47px;
+    padding-bottom: 47px;
     z-index: 999;
 }
 
@@ -145,6 +145,11 @@
         padding-left: 17px;
         padding-top: 47px;
         padding-bottom: 7px;
+    }
+
+    .project-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 12px rgba(0, 200, 255, 0.2);
     }
 
     .light-mode .projects-grid {
