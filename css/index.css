@@ -942,19 +942,18 @@ footer a:hover {
         display: grid;
         grid-template-columns: repeat(auto-fit, 1fr);
         gap: 15px;
-        position: relative;
         justify-items: center;
     }
 
     .skills {
         grid-column: 1 / -1;
         border-radius: 8px;
-        width: 92%;
+        width: 100%;
         margin-bottom: 40px;
-        position: relative;
         text-align: center;
         justify-self: center;
         min-height: none;
+        max-width: 92%;
     }
 
     .skills-grid.loading img {
