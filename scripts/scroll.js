@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         document.body.classList.add("content-loaded");
                     });
                 }, 500);
-            }, 300);
+            }, 400);
         } else {
             requestAnimationFrame(updateProgress);
         }

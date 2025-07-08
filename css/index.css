@@ -4,211 +4,32 @@
     box-sizing: border-box;
 }
 
-#preloader {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #0d0d0d;
+html {
+    overscroll-behavior: none;
+    scroll-behavior: smooth;
+    background-color: #151515;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 9999;
-    transition: opacity 0.5s ease;
-}
-
-#preloader.fade-out {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease;
-}
-
-#preloader::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: repeating-linear-gradient(to bottom,
-            rgba(255, 255, 255, 0.03),
-            rgba(255, 255, 255, 0.03) 2px,
-            transparent 2px,
-            transparent 4px);
-    z-index: 99999;
-    pointer-events: none;
-    animation: flicker 0.15s infinite;
-}
-
-#progress-percent {
-    font-family: monospace;
-    font-size: 25px;
-    color: #a1a1a1;
-    min-width: 50px;
-    text-align: center;
-}
-
-.loader-text {
-    color: #007e9a;
-    font-family: 'Share Tech Mono', monospace;
-    font-size: 16px;
-    text-align: center;
-}
-
-.glitch {
-    color: #007e9a;
-    font-size: 32px;
     position: relative;
-    text-align: center;
-    font-family: 'Share Tech Mono', monospace;
-    animation: glitch 2s infinite;
-    text-shadow: 0 0 2px #00f7ff, 0 0 10px #00f7ff;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-.glitch::before,
-.glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    width: 100%;
-    opacity: 0.8;
-}
-
-.glitch::before {
-    color: #ffffff;
-    z-index: -1;
-    animation: glitchTop 1s infinite linear alternate-reverse;
-}
-
-.glitch::after {
-    color: rgb(0, 0, 0);
-    z-index: -2;
-    animation: glitchBot 1s infinite linear alternate-reverse;
-}
-
-.progress-wrapper {
+header {
+    height: 100px;
     display: flex;
-    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 15px;
-    margin-top: 30px;
+    color: rgb(180, 180, 180);
 }
 
-.progress-bar {
-    width: 280px;
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-.progress-fill {
-    width: 0%;
-    height: 100%;
-    background-color: #005265;
-    transition: width 0.3s ease;
-}
-
-@keyframes flicker {
-
-    0%,
-    100% {
-        opacity: 0.10;
-    }
-
-    33% {
-        opacity: 0.5;
-    }
-
-    66% {
-        opacity: 0.50;
-    }
-}
-
-
-
-@keyframes glitch {
-    0% {
-        transform: none;
-    }
-
-    20% {
-        transform: translate(-1px, 1px);
-    }
-
-    40% {
-        transform: translate(-2px, -2px);
-    }
-
-    60% {
-        transform: translate(1px, 2px);
-    }
-
-    80% {
-        transform: translate(1px, -1px);
-    }
-
-    100% {
-        transform: none;
-    }
-}
-
-@keyframes glitchTop {
-    0% {
-        clip-path: inset(0 0 90% 0);
-        transform: translate(-2px, -2px);
-    }
-
-    100% {
-        clip-path: inset(0 0 10% 0);
-        transform: translate(2px, 2px);
-    }
-}
-
-@keyframes glitchBot {
-    0% {
-        clip-path: inset(90% 0 0 0);
-        transform: translate(2px, 2px);
-    }
-
-    100% {
-        clip-path: inset(10% 0 0 0);
-        transform: translate(-2px, -2px);
-    }
-}
-
-@keyframes fillUp {
-    0% {
-        width: 0%;
-    }
-
-    100% {
-        width: 100%;
-    }
-}
-
-::-webkit-scrollbar {
-    width: 7px;
-}
-
-::-webkit-scrollbar-track {
-    background: #1a1a1a;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: #dbdbdb;
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background-color: #006d8686;
-}
-
-html ::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.7);
+header h2 {
+    font-size: 2.2rem;
 }
 
 :root {
@@ -228,44 +49,6 @@ html ::-webkit-scrollbar-thumb {
     --font-mono: 'Fira Mono', 'Consolas', monospace;
 }
 
-html {
-    overscroll-behavior: none;
-    scroll-behavior: smooth;
-    background-color: #000000;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-body.loading,
-html.loading {
-    overflow: hidden;
-    height: 100%;
-}
-
-body.loading nav.sticky-nav {
-    display: none;
-}
-
-header {
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgb(180, 180, 180);
-}
-
-header h2 {
-    font-size: 2.2rem;
-}
-
 .hero {
     position: relative;
     width: 100%;
@@ -275,7 +58,7 @@ header h2 {
     background-position: center;
     background-size: cover;
     background-color: #00000069;
-    padding-bottom: 200px;
+    padding-bottom: 205px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -284,17 +67,17 @@ header h2 {
 }
 
 .hero h1 {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
     margin: 0;
     color: #bfbfbf;
-    animation: fadeIn 2s ease-in-out;
+    animation: fadeIn 4s ease-in-out;
 }
 
 .hero p {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     color: #bfbfbf;
     margin-top: 15px;
-    animation: fadeIn 3s ease-in-out;
+    animation: fadeIn 5s ease-in-out;
 }
 
 @keyframes fadeIn {
@@ -668,7 +451,7 @@ footer a:hover {
 .social-links ul li a img {
     background-color: #111111;
     border-radius: 10px;
-    transition: transform 0.3s ease, filter 0.3s ease;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
     filter: brightness(88%) contrast(90%);
 }
 
