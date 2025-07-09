@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     runAchievementsSequence();
 });
 
-// === Skills ===
+// === Skills-mobile ===
 document.addEventListener("DOMContentLoaded", () => {
     const skillsSection = document.querySelector(".skills");
     const skillsIcons = document.querySelectorAll(".skills-grid img");

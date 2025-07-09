@@ -8,6 +8,7 @@ html {
     overscroll-behavior: none;
     scroll-behavior: smooth;
     background-color: #151515;
+    scrollbar-gutter: stable;
 }
 
 body {
@@ -18,6 +19,7 @@ body {
     position: relative;
     flex-direction: column;
     min-height: 100vh;
+    overflow-y: overlay;
 }
 
 header {
