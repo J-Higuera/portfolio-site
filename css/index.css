@@ -56,7 +56,7 @@ header h2 {
     width: 100%;
     height: 200px;
     padding-top: 200px;
-    background-image: linear-gradient(rgba(0, 0, 0, 0.469), rgba(0, 0, 0, 0.475)), url(../images/body/gg.jpeg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.469), rgba(0, 0, 0, 0.475)), url(/images/body/gg.jpeg);
     background-position: center;
     background-size: cover;
     background-color: #00000069;
@@ -360,7 +360,7 @@ header h2 {
 }
 
 .home-image {
-    background: url(../images/body/black.jpg);
+    background: url(/images/body/black.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -700,7 +700,7 @@ footer a:hover {
     }
 
     .home-image {
-        background: url(../images/body/black.jpg);
+        background: url(/images/body/black.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -795,7 +795,7 @@ footer a:hover {
         content: "";
         position: fixed;
         inset: 0;
-        background: url('../images/body/d2.PNG') center/cover no-repeat;
+        background: url('/images/body/d2.PNG') center/cover no-repeat;
         background-size: cover;
         z-index: -1;
     }
@@ -805,7 +805,7 @@ footer a:hover {
     }
 
     .light-mode::before {
-        background: url('../images/body/l2.PNG') center/cover no-repeat;
+        background: url('/images/body/l2.PNG') center/cover no-repeat;
         background-size: cover;
     }
 
@@ -968,7 +968,7 @@ footer a:hover {
         z-index: 510;
         width: 2.4rem;
         aspect-ratio: 1;
-        background-image: url("../images/menu.svg");
+        background-image: url("/images/menu.svg");
         background-color: #2727277d;
         background-size: cover;
         background-repeat: no-repeat;
