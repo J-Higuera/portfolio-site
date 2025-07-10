@@ -449,6 +449,16 @@ footer a:hover {
     filter: brightness(100%) contrast(100%);
 }
 
+#scene-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    /* puts it behind */
+}
+
 .light-mode .hero {
     background-color: #00000000;
 }

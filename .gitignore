@@ -1,22 +1,24 @@
-# VS Code settings
-.vscode/
-
-# OS files
-.DS_Store
-Thumbs.db
-
 # Logs
+logs
 *.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# Environment config (if used later)
-.env
+node_modules
+dist
+dist-ssr
+*.local
 
-# Python compiled files (if you expand your movie assistant)
-__pycache__/
-*.pyc
-
-# SQLite database
-*.db
-
-# Node modules (if you use npm later)
-node_modules/
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
