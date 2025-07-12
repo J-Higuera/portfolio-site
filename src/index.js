@@ -125,8 +125,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let scale = 1;
             if (distance < maxDistance) {
-                scale = 1 + (1 - distance / maxDistance) * 0.4;
-                icon.style.filter = "drop-shadow(0 0 1.3px rgba(97, 97, 97, 0.65)) drop-shadow(0 0 0.7px rgba(141, 141, 141, 0.65))";
+                scale = 1 + (1 - distance / maxDistance) * 0.5;
+                icon.style.filter = "drop-shadow(0 0 1.3px rgba(255, 255, 0, 0.41)) drop-shadow(0 0 0.7px rgba(204, 255, 0, 0.39))";
             } else {
                 icon.style.filter = "drop-shadow(0 0 0.6px rgba(255, 255, 255, 0)) drop-shadow(0 0 1px rgba(255, 255, 255, 0))";
             }
