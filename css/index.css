@@ -932,6 +932,7 @@ footer a:hover {
         position: fixed;
         top: 0;
         left: 0;
+        right: 0;
         background: transparent;
         z-index: 540;
         transition: transform 0.4s ease;
@@ -970,9 +971,10 @@ footer a:hover {
         padding-left: 10px;
         padding-top: 8px;
         padding-bottom: 18px;
+        background: linear-gradient(to bottom, #000000b5, #00000075, #00000000 100%);
         font-weight: bold;
-        background: linear-gradient(to bottom, #00000080, #0000005f, #00000000 100%);
         width: 100%;
+        text-align: left;
         display: block;
         color: #ffffff8a;
         transition: opacity 0.4s ease, transform 0.4s ease;
