@@ -769,13 +769,6 @@ footer a:hover {
     }
 
     body {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-        display: flex;
-        position: relative;
-        flex-direction: column;
-        min-height: 100vh;
         align-items: center;
         justify-content: center;
         text-align: center;
