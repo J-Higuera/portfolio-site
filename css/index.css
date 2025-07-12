@@ -758,7 +758,7 @@ footer a:hover {
         padding-right: 15px;
         padding-left: 15px;
         padding-top: 47px;
-        padding-bottom: 4px;
+        padding-bottom: 47px;
     }
 
     .home-image {
@@ -766,6 +766,18 @@ footer a:hover {
     }
 
     body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        min-height: 100vh;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+        overflow-y: overlay;
         background: none;
     }
 
@@ -830,7 +842,6 @@ footer a:hover {
         border-radius: 12px;
         width: 92%;
         margin: 0 auto;
-        text-align: center;
         max-width: 92%;
     }
 
