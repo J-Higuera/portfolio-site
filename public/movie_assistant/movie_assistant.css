@@ -4,9 +4,6 @@ html {
     overflow-x: hidden;
     margin: 0;
     padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 body {
@@ -23,11 +20,11 @@ body {
     background-size: cover;
     display: flex;
     flex-direction: column;
+    align-items: center;
     height: 100%;
     width: 100%;
     max-width: 100vw;
     overflow-x: hidden;
-    align-items: center;
 }
 
 /* Header styling */
@@ -314,7 +311,8 @@ footer a:hover {
 
 @media (max-width: 700px) {
 
-    html {
+    html,
+    body {
         padding: 0;
         margin: 0;
         width: 100%;
@@ -324,22 +322,15 @@ footer a:hover {
 
     body {
         background-color: rgba(18, 18, 18, 0.409) !important;
-        background-image: url(images/main/t1.webp) no-repeat center center fixed;
+        background: url(images/main/t1.webp) no-repeat center center fixed;
         background-size: cover;
         background-attachment: fixed;
-        flex-direction: column;
-        height: 100%;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        max-width: 100vw;
-        overflow-x: hidden;
     }
 
     .container {
-        padding: 15px;
-        max-width: 100%;
         width: 94%;
+        max-width: 100%;
+        padding: 15px;
         margin: 30px auto;
         box-sizing: border-box;
     }
@@ -356,7 +347,7 @@ footer a:hover {
 
     .movie-item {
         font-size: 0.85rem;
-        padding: 1px;
+        padding: 10px;
     }
 
     .movie-item img {
