@@ -42,9 +42,9 @@ header {
     border-radius: 30px;
     text-align: center;
     padding: 25px;
-    width: 92%;
-    max-width: 850px;
-    margin: 50px auto;
+    width: 100%;
+    max-width: 1080px;
+    margin: 30px auto;
 }
 
 h2 {
@@ -61,7 +61,9 @@ p {
     background: #0d0d0d;
     color: #f0f0f0;
     max-width: 100%;
-    padding: 20px;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin-bottom: 10px;
     border: 2px solid #e5e5e5;
     border-radius: 10px;
@@ -85,7 +87,10 @@ p {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px 10px;
-    padding: 10px;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 20px;
     box-sizing: border-box;
     max-width: 100%;
     overflow: hidden;
@@ -118,7 +123,6 @@ p {
 .movie-item .title {
     display: inline;
     word-wrap: break-word;
-    background-color: #9a9a9a00;
     overflow-wrap: break-word;
 }
 
@@ -131,12 +135,13 @@ p {
 }
 
 .movie-caption {
-    color: #e4e4e4;
+    color: #c9c9c9;
     font-size: 0.85rem;
+    font-weight: bold;
     line-height: 1.2;
     text-align: center;
-    margin-top: 2px;
-    height: 2.6em;
+    margin-top: 3px;
+    height: auto;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -161,6 +166,33 @@ p {
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 87%;
+    align-self: center;
+}
+
+#deleteContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#deleteContainer .input-group {
+    width: 87%;
+    max-width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 auto;
+    /* this forces centering */
+}
+
+
+#deleteContainer .input-box {
+    width: 100%;
+    max-width: 100%;
+    align-self: center;
 }
 
 /* Arrange buttons horizontally */
@@ -168,7 +200,7 @@ p {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 10px;
+    margin-top: 14px;
     gap: 20px;
 }
 
@@ -301,19 +333,36 @@ footer a:hover {
 @media (max-width: 700px) {
 
     .container {
-        padding: 15px;
+        padding: 10px;
         width: 100%;
         max-width: 100%;
-        margin: 50px auto;
+        margin: 15px auto;
+    }
+
+    #deleteContainer .input-group {
+        width: 95%;
+        max-width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 0 auto;
+        /* this forces centering */
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 95%;
+        align-self: center;
     }
 
     .movie-grid {
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-        gap: 5px 5px;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px 10px;
     }
 
     .movie-item {
-        font-size: 0.85rem;
         padding: 1px;
     }
 
