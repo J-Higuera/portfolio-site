@@ -179,6 +179,7 @@
 
 @media (max-width: 600px) {
     .about-section {
+        background: none;
         grid-template-columns: repeat(1, 1fr);
         padding-right: 22px;
         padding-left: 22px;
