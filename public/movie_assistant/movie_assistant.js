@@ -24,6 +24,39 @@ document.addEventListener("DOMContentLoaded", () => {
         deleteTitleInput.value = "";
     });
 
+    async function displayMovies(category, movies) {
+        output.innerHTML = "";
+
+        const heading = document.createElement("strong");
+        heading.textContent = `Movies in '${category}':`;
+        heading.style.display = "block";
+        output.appendChild(heading);
+
+        const gridContainer = document.createElement("div");
+        gridContainer.className = "movie-grid";
+
+        movies.forEach((movie, index) => {
+            const movieItem = document.createElement("div");
+            movieItem.className = "movie-item";
+
+            const fallbackImage = "images/main/fallback.png";
+            const imageSrc = movie.image_url || fallbackImage;
+
+            movieItem.innerHTML = `
+                <img src="${imageSrc}" 
+                     style="width:100%;border-radius:6px;margin-bottom:6px;" 
+                     onerror="this.src='${fallbackImage}'">
+                <div class="movie-caption">
+                    <span class="number">${index + 1}.</span><span class="title">${movie.title}</span>
+                </div>
+            `;
+
+            gridContainer.appendChild(movieItem);
+        });
+
+        output.appendChild(gridContainer);
+    }
+
     document.getElementById("findDeleteCategory").addEventListener("click", async () => {
         const category = deleteCategoryInput.value.trim().toLowerCase();
 
@@ -36,38 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         if (data.movies && data.movies.length > 0) {
-            output.innerHTML = "";
-
-            const heading = document.createElement("strong");
-            heading.textContent = `Movies in '${category}':`;
-            heading.style.display = "block";
-            output.appendChild(heading);
-
-            const gridContainer = document.createElement("div");
-            gridContainer.className = "movie-grid";
-
-            data.movies.forEach((movie, index) => {
-                const movieItem = document.createElement("div");
-                movieItem.className = "movie-item";
-
-                const fallbackImage = "images/main/fallback.png";
-                const imageSrc = movie.image_url
-                    ? `${BASE_URL}${movie.image_url.replace(/\\/g, "/")}`
-                    : fallbackImage;
-
-                movieItem.innerHTML = `
-                    <img src="${imageSrc}" 
-                         style="width:100%;border-radius:6px;margin-bottom:6px;" 
-                         onerror="this.src='${fallbackImage}'">
-                    <div class="movie-caption">
-                        <span class="number">${index + 1}.</span><span class="title">${movie.title}</span>
-                    </div>
-                `;
-
-                gridContainer.appendChild(movieItem);
-            });
-
-            output.appendChild(gridContainer);
+            displayMovies(category, data.movies);
         } else {
             output.innerHTML = "No movies found in this category.<br><br>Please check for spelling errors.";
         }
@@ -153,38 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const data = await response.json();
 
         if (data.movies && data.movies.length > 0) {
-            output.innerHTML = "";
-
-            const heading = document.createElement("strong");
-            heading.textContent = `Movies in '${category}':`;
-            heading.style.display = "block";
-            output.appendChild(heading);
-
-            const gridContainer = document.createElement("div");
-            gridContainer.className = "movie-grid";
-
-            data.movies.forEach((movie, index) => {
-                const movieItem = document.createElement("div");
-                movieItem.className = "movie-item";
-
-                const fallbackImage = "images/main/fallback.png";
-                const imageSrc = movie.image_url
-                    ? `${BASE_URL}${movie.image_url.replace(/\\/g, "/")}`
-                    : fallbackImage;
-
-                movieItem.innerHTML = `
-                    <img src="${imageSrc}" 
-                         style="width:100%;border-radius:6px;margin-bottom:6px;" 
-                         onerror="this.src='${fallbackImage}'">
-                    <div class="movie-caption">
-                        <span class="number">${index + 1}.</span><span class="title">${movie.title}</span>
-                    </div>
-                `;
-
-                gridContainer.appendChild(movieItem);
-            });
-
-            output.appendChild(gridContainer);
+            displayMovies(category, data.movies);
         } else {
             output.innerHTML = "No movies found in this category.<br><br>Please check for spelling errors.";
         }
