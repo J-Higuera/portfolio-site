@@ -51,8 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 movieItem.className = "movie-item";
 
                 const fallbackImage = "images/main/fallback.png";
-                const imageSrc = movie.image_url || fallbackImage;
-
+                const imageSrc = movie.image_url
+                    ? `${BASE_URL}${movie.image_url.replace(/\\/g, "/")}`
+                    : fallbackImage;
 
                 movieItem.innerHTML = `
                     <img src="${imageSrc}" 
@@ -167,8 +168,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 movieItem.className = "movie-item";
 
                 const fallbackImage = "images/main/fallback.png";
-                const imageSrc = movie.image_url || fallbackImage;
-
+                const imageSrc = movie.image_url
+                    ? `${BASE_URL}${movie.image_url.replace(/\\/g, "/")}`
+                    : fallbackImage;
 
                 movieItem.innerHTML = `
                     <img src="${imageSrc}" 
