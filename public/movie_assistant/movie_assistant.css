@@ -1,11 +1,3 @@
-html {
-    width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     background-color: rgba(18, 18, 18, 0.575);
     background-blend-mode: darken;
@@ -21,9 +13,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     height: 100%;
-    width: 100%;
-    max-width: 100vw;
     overflow-x: hidden;
 }
 
@@ -51,11 +42,13 @@ header {
     background-position: center;
     border-radius: 30px;
     text-align: center;
-    width: 100%;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    padding: 25px;
+    width: 92%;
     max-width: 850px;
-    margin: 40px auto;
-    padding: 15px;
-    box-sizing: border-box;
+    margin: 50px auto;
 }
 
 h2 {
@@ -311,33 +304,23 @@ footer a:hover {
 
 @media (max-width: 700px) {
 
-    html,
     body {
-        padding: 0;
-        margin: 0;
+        background-color: rgba(18, 18, 18, 0.409) !important;
+        background-image: url(images/main/t1.webp) no-repeat center center fixed;
+        background-size: cover;
+        background-attachment: fixed;
+        align-items: center;
         width: 100%;
-        max-width: 100vw;
+        flex-direction: column;
+        height: 100%;
         overflow-x: hidden;
     }
 
-    body {
-        background-color: rgba(18, 18, 18, 0.409) !important;
-        background: url(images/main/t1.webp) no-repeat center center fixed;
-        background-size: cover;
-        background-attachment: fixed;
-    }
-
     .container {
-        width: 94%;
-        max-width: 100%;
         padding: 15px;
-        margin: 30px auto;
-        box-sizing: border-box;
-    }
-
-    .output {
         width: 100%;
         max-width: 100%;
+        margin: 50px auto;
     }
 
     .movie-grid {
@@ -347,7 +330,7 @@ footer a:hover {
 
     .movie-item {
         font-size: 0.85rem;
-        padding: 10px;
+        padding: 1px;
     }
 
     .movie-item img {
