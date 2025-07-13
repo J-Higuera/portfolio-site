@@ -88,8 +88,6 @@ p {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 10px 10px;
     padding-top: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
     padding-bottom: 20px;
     box-sizing: border-box;
     max-width: 100%;
@@ -367,7 +365,8 @@ footer a:hover {
     }
 
     .movie-item img {
-        max-height: 205px;
+        height: 100%;
+        max-height: auto;
         object-fit: cover;
     }
 }
