@@ -3,20 +3,17 @@
 }
 
 body {
-    background-color: rgba(18, 18, 18, 0.575);
     background-blend-mode: darken;
     color: #00f5ff;
     font-family: 'Courier New', monospace;
     margin: 0;
     padding: 0;
-    background-image: url(images/main/t1.webp);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background: url(images/main/t2.jpg) rgba(18, 18, 18, 0.575) no-repeat center center;
     background-size: cover;
     display: flex;
     flex-direction: column;
     height: 100%;
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
@@ -302,18 +299,6 @@ footer a:hover {
 }
 
 @media (max-width: 700px) {
-
-    body {
-        background-color: rgba(18, 18, 18, 0.409) !important;
-        background-image: url(images/main/t1.webp) no-repeat center center fixed;
-        background-size: cover;
-        background-attachment: fixed;
-        align-items: center;
-        width: 100%;
-        flex-direction: column;
-        height: 100%;
-        overflow-x: hidden;
-    }
 
     .container {
         padding: 15px;
