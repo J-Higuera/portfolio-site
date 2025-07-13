@@ -12,12 +12,13 @@ body {
     background-size: cover;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    justify-content: center;
+    justify-self: center;
+    justify-items: center;
+    align-self: center;
     align-items: center;
-    justify-content: flex-start;
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
+    align-content: center;
+    height: 100%;
     overflow-x: hidden;
 }
 
@@ -46,10 +47,9 @@ header {
     border-radius: 30px;
     text-align: center;
     padding: 25px;
-    width: 100%;
+    width: 92%;
     max-width: 850px;
     margin: 50px auto;
-    box-sizing: border-box;
 }
 
 h2 {
@@ -310,14 +310,9 @@ footer a:hover {
         background-image: url(images/main/t1.webp) no-repeat center center fixed;
         background-size: cover;
         background-attachment: fixed;
-        align-items: center;
         width: 100%;
-        max-width: 100vw;
-        padding: 0;
-        margin: 0;
         flex-direction: column;
         height: 100%;
-        overflow-x: hidden;
     }
 
     .container {
@@ -325,11 +320,6 @@ footer a:hover {
         width: 100%;
         max-width: 100%;
         margin: 50px auto;
-    }
-
-    .output {
-        max-width: 100%;
-        width: 100%;
     }
 
     .movie-grid {
