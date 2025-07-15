@@ -140,20 +140,28 @@
         display: none;
     }
 
+    .project-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 12px rgba(0, 200, 255, 0.2);
+    }
+
     .projects-grid {
-        background: none;
+        /*background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.475)), url(/images/body/ab5.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed; */
         padding-right: 17px;
         padding-left: 17px;
         padding-top: 47px;
         padding-bottom: 47px;
     }
 
-    .project-card:hover {
-        transform: scale(1.02);
-        box-shadow: 0 6px 12px rgba(0, 200, 255, 0.2);
-    }
-
-    .light-mode .projects-grid {
-        background: none;
-    }
+    /*.light-mode .projects-grid {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    } */
 }

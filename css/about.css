@@ -1,5 +1,4 @@
 .about-section {
-    background: var(--bg-gradient);
     box-shadow: var(--shadow);
     position: relative;
     padding-right: 150px;
@@ -178,8 +177,13 @@
 }
 
 @media (max-width: 600px) {
-    .about-section {
-        background: none;
+
+    /*.about-section {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
         grid-template-columns: repeat(1, 1fr);
         padding-right: 22px;
         padding-left: 22px;
@@ -187,6 +191,14 @@
         padding-bottom: 47px;
     }
 
+    .light-mode .about-section {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+*/
     .about-card {
         padding: 1.2rem 0.7rem;
     }
