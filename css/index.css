@@ -22,6 +22,20 @@ body {
     overflow-y: overlay;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/hd1.jpg);
+    background-size: cover;
+    z-index: -1;
+}
+
+.light-mode::before {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/w1.jpg);
+    background-size: cover;
+}
+
 header {
     height: 100px;
     display: flex;
@@ -60,7 +74,6 @@ header h2 {
     padding-top: 200px;
     background-position: center;
     background-size: cover;
-    background-color: #00000069;
     padding-bottom: 205px;
     display: flex;
     align-items: center;
@@ -462,11 +475,11 @@ footer a:hover {
 }
 
 .light-mode .hero h1 {
-    color: #313131;
+    color: #00091bd8;
 }
 
 .light-mode .hero p {
-    color: #070707;
+    color: #00091bd8;
 }
 
 .light-mode .main-container {
@@ -543,9 +556,13 @@ footer a:hover {
 }
 
 .light-mode .profile-photo {
-    background-color: #c7c7c7d8;
+    background-color: #00091bd8;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
     color: #191919;
+}
+
+.light-mode .profile-photo p {
+    color: #afafaf;
 }
 
 .light-mode .skills {

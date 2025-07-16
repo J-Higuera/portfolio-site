@@ -127,14 +127,14 @@
 }
 
 .light-mode .contact-info a {
-    color: #035656;
+    color: #282d7ed8;
     text-decoration: none;
     transition: color 0.3s;
     font-size: large;
 }
 
 .light-mode .contact-info a:hover {
-    color: #ffffff;
+    color: #bdf700;
 }
 
 @media (max-width: 1220px) {
