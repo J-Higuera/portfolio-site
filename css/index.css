@@ -783,11 +783,11 @@ footer a:hover {
 @media (max-width: 620px) {
 
     .light-mode .hero h1 {
-        color: #434343;
+        color: #272727;
     }
 
     .light-mode .hero p {
-        color: #434343;
+        color: #252525;
     }
 
     .grid-wrapper {
@@ -854,10 +854,6 @@ footer a:hover {
     }
 
     .main-container {
-        background-color: #00000000;
-    }
-
-    .light-mode .hero {
         background-color: #00000000;
     }
 
