@@ -783,14 +783,17 @@ footer a:hover {
 @media (max-width: 620px) {
 
     .light-mode .hero h1 {
-        color: #272727;
-        text-decoration: #000000;
+        color: #2f2f2f;
     }
 
     .light-mode .hero p {
-        color: #252525;
+        color: #1d1d1d;
         text-decoration: #000000;
         text-shadow: 5px 10px 10px #00000096;
+    }
+
+    .light-mode .hero {
+        background-color: #00000000;
     }
 
     .grid-wrapper {
@@ -873,7 +876,6 @@ footer a:hover {
         align-items: center;
         justify-content: center;
         text-align: center;
-        color: white;
     }
 
     .skills-grid.skills-mobile {
