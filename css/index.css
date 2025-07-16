@@ -782,6 +782,14 @@ footer a:hover {
 /* Mobile screens */
 @media (max-width: 620px) {
 
+    .light-mode .hero h1 {
+        color: #000000;
+    }
+
+    .light-mode .hero p {
+        color: #000000;
+    }
+
     .grid-wrapper {
         background: none;
         padding-right: 15px;
