@@ -784,10 +784,13 @@ footer a:hover {
 
     .light-mode .hero h1 {
         color: #272727;
+        text-decoration: #000000;
     }
 
     .light-mode .hero p {
         color: #252525;
+        text-decoration: #000000;
+        text-shadow: 5px 10px 10px #00000096;
     }
 
     .grid-wrapper {
@@ -833,6 +836,7 @@ footer a:hover {
         inset: 0;
         background-image: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/d7.jpg);
         background-size: cover;
+        backdrop-filter: blur(4px);
         z-index: -1;
     }
 
