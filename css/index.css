@@ -31,6 +31,8 @@ body::before {
     inset: 0;
     background-image: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/hd1.jpg);
     background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
     z-index: -1;
 }
 
@@ -686,13 +688,19 @@ footer a:hover {
         content: "";
         position: fixed;
         inset: 0;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/hd1.jpg);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/d7.jpg);
         background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
         z-index: -1;
     }
 
+    .light-mode .grid-wrapper {
+        background: none;
+    }
+
     .light-mode::before {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/gg.avif);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/w1.jpg);
         background-size: cover;
     }
 
@@ -851,7 +859,8 @@ footer a:hover {
         inset: 0;
         background-image: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/d7.jpg);
         background-size: cover;
-        backdrop-filter: blur(4px);
+        background-position: center center;
+        background-repeat: no-repeat;
         z-index: -1;
     }
 
