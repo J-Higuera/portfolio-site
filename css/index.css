@@ -780,11 +780,11 @@ footer a:hover {
 @media (max-width: 620px) {
 
     .light-mode .hero h1 {
-        color: #bbbbbb;
+        color: #292929;
     }
 
     .light-mode .hero p {
-        color: #b4b4b4;
+        color: #2a2a2a;
         text-decoration: #000000;
         text-shadow: 5px 10px 10px #00000096;
     }
