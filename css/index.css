@@ -918,7 +918,7 @@ footer a:hover {
     }
 
     .light-mode .skills.animate {
-        box-shadow: 8px 10px 15px 0 #012bff, 0 0 17px 8px#7df200;
+        box-shadow: 5px 5px 5px 3px#000000;
         border: none;
     }
 
