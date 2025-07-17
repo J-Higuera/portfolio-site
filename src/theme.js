@@ -22,4 +22,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     desktopToggle.addEventListener("click", toggleTheme);
     mobileToggle.addEventListener("click", toggleTheme);
-});
+}); ``
