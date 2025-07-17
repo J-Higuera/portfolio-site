@@ -682,6 +682,20 @@ footer a:hover {
 /* Laptop/Tablets */
 @media (max-width: 900px) {
 
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/hd1.jpg);
+        background-size: cover;
+        z-index: -1;
+    }
+
+    .light-mode::before {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/gg.avif);
+        background-size: cover;
+    }
+
     .skills-wrapper {
         display: none;
     }
@@ -741,6 +755,7 @@ footer a:hover {
         flex-direction: column;
         margin-right: 27px;
         margin-left: 27px;
+        margin-bottom: 47px;
         padding: 5px 10px;
         border-radius: 12px;
         width: auto;
@@ -748,6 +763,10 @@ footer a:hover {
         background-color: #181818dd;
         width: auto;
         transition: box-shadow 0.6s ease, border 0.6s ease;
+    }
+
+    .achievements {
+        box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
     }
 
     .skills h2 {
@@ -888,6 +907,7 @@ footer a:hover {
         margin-right: 15px;
         margin-left: 15px;
         padding: 5px 10px;
+        margin-bottom: 47px;
         border-radius: 12px;
         background-color: #181818dd;
         width: auto;
