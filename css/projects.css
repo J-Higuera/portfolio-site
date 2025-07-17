@@ -1,11 +1,11 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    background: url(../images/body/1470.jpg);
+    /*background: url(../images/body/1470.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed;*/
     gap: 30px;
     padding-right: 150px;
     padding-left: 150px;
