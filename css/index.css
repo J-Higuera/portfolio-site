@@ -37,7 +37,7 @@ body::before {
 }
 
 .light-mode::before {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/gg.avif);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/bw2.jpg);
     background-size: cover;
 }
 
@@ -49,18 +49,18 @@ header {
 }
 
 :root {
-    --primary: #00fff7;
+    --primary: #d4d4d4;
     --primary-dark: #007c91;
-    --accent: #ff00c8;
+    --accent: #d000ff;
     --bg-gradient: radial-gradient(circle at top left, #2a2a2a 0%, #1d213f 30%, #0f2027 50%, #5f7279 75%, #e4e4e4 100%);
-    --card-gradient: linear-gradient(145deg, rgba(18, 32, 47, 0.85), rgba(23, 42, 58, 0.9));
+    --card-gradient: linear-gradient(145deg, rgba(52, 52, 52, 0.85), rgba(0, 34, 62, 0.9));
     --text-light: #fafdff;
     --text-bright: #c7faff;
     --text-muted: #8cb9c7;
     --shadow: 0 8px 24px rgba(0, 255, 247, 0.06), 0 1px 3px rgba(0, 0, 0, 0.3);
-    --shadow-hover: 0 12px 32px rgba(0, 255, 247, 0.2), 0 2px 6px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.3);
     --radius: 1.5rem;
-    --border: 1.5px solid rgba(0, 255, 247, 0.25);
+    --border: 1.5px solid rgba(0, 255, 247, 0.571);
     --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
     --font-mono: 'Fira Mono', 'Consolas', monospace;
 }
@@ -307,24 +307,26 @@ header {
 }
 
 .achievements {
-    color: #afafaf;
+    color: #cacaca;
     border-radius: 15px;
     max-width: auto;
     width: 100%;
     justify-self: center;
-    background: #0d0d0df1;
+    background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+    border: 2.5px solid rgba(201, 201, 201, 0.561);
 }
 
 .achievements-card {
     padding: 15px;
-    background-color: #202020;
-    border: 2px solid #606060;
+    background: var(--card-gradient);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: var(--border);
     margin: 20px;
     border-radius: 8px;
     align-items: center;
     justify-content: center;
     text-align: center;
-    box-shadow: 0 15px 8px rgb(0, 0, 0);
     transition: transform 0.3s, box-shadow 0.3s;
     opacity: 0;
     transform: translateY(20px);
@@ -372,7 +374,7 @@ header {
     max-width: 1000px;
     width: 100%;
     justify-self: center;
-    background: #0d0d0df1;
+    background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
 }
 
 .profile-photo h2 {
@@ -402,7 +404,7 @@ header {
 }
 
 .skills {
-    background-color: #181818c8;
+    background: radial-gradient(circle at top left, #000000 0%, #1d1d1d 30%, #202020 50%, #0d0d0d 75%, #000000 100%);
     max-width: 100%;
     width: 100%;
     text-align: center;
@@ -551,7 +553,7 @@ footer a:hover {
 }
 
 .light-mode .achievements-card p {
-    color: #1d1d1d;
+    color: #c4c4c4;
 }
 
 .light-mode .profile-photo {
@@ -565,7 +567,7 @@ footer a:hover {
 }
 
 .light-mode .skills {
-    background-color: #1b1b1bd8;
+    background-color: #1b1b1bf1;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.808);
     color: #bfbfbf;
 }
@@ -684,26 +686,6 @@ footer a:hover {
 /* Laptop/Tablets */
 @media (max-width: 900px) {
 
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/d7.jpg);
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        z-index: -1;
-    }
-
-    .light-mode .grid-wrapper {
-        background: none;
-    }
-
-    .light-mode::before {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/w1.jpg);
-        background-size: cover;
-    }
-
     .skills-wrapper {
         display: none;
     }
@@ -768,7 +750,8 @@ footer a:hover {
         border-radius: 12px;
         width: auto;
         min-height: none;
-        background-color: #181818dd;
+        background: #181818dd;
+        border: 2.5px solid rgba(201, 201, 201, 0.561);
         width: auto;
         transition: box-shadow 0.6s ease, border 0.6s ease;
     }
@@ -869,12 +852,12 @@ footer a:hover {
     }
 
     .light-mode::before {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/w1.jpg);
+        background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/w1.jpg);
         background-size: cover;
     }
 
     .light-mode .hero {
-        background-color: #00000047;
+        background-color: #00000000;
     }
 
     .sticky-nav {
@@ -918,7 +901,8 @@ footer a:hover {
         padding: 5px 10px;
         margin-bottom: 47px;
         border-radius: 12px;
-        background-color: #181818dd;
+        background: #181818f1;
+        border: 2.5px solid rgba(201, 201, 201, 0.561);
         width: auto;
         overflow: hidden;
         transition: box-shadow 0.6s ease, border 0.6s ease;
@@ -943,15 +927,8 @@ footer a:hover {
 
     .skills.animate {
         box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
-        border: none;
         z-index: 1;
     }
-
-    .light-mode .skills.animate {
-        box-shadow: 5px 5px 5px 5px#000000;
-        border: none;
-    }
-
 
     .skills.animate h2 {
         text-shadow:
@@ -1059,8 +1036,12 @@ footer a:hover {
         width: 100%;
         text-align: left;
         display: block;
-        color: #ffffff8a;
         transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .mobile-name a {
+        text-decoration: none;
+        color: #ffffff8a;
     }
 
     .mobile-name.shifted-up {

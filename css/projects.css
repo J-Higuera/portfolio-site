@@ -15,8 +15,9 @@
 }
 
 .project-card {
-    background-color: #0d0d0ddf;
-    border-radius: 8px;
+    background: radial-gradient(circle at top left, rgb(63, 63, 63) 0%, #131313 30%, #252525 50%, #040404 75%, #1d1d1d 100%);
+    border: 2.5px solid rgba(44, 44, 44, 0.561);
+    border-radius: 18px;
     padding: 10px;
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
