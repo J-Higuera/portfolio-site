@@ -819,6 +819,11 @@ footer a:hover {
         transition: box-shadow 0.5s ease, border 0.5s ease;
     }
 
+    .light-mode .skills.animate {
+        box-shadow: 0 0 20px #ffffff;
+        z-index: 1;
+    }
+
 }
 
 /* Mobile screens */
@@ -975,6 +980,11 @@ footer a:hover {
 
     .skills.animate {
         box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
+        z-index: 1;
+    }
+
+    .light-mode .skills.animate {
+        box-shadow: 0 0 20px #ffffff;
         z-index: 1;
     }
 
