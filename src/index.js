@@ -41,10 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
     achievementsObserver.observe(achievementsSection);
 
     async function runAchievementsSequence() {
-        await delay(800);
+        await delay(700);
         for (let card of achievementCards) {
             card.classList.add("animate");
-            await delay(1000);
+            await delay(600);
         }
     }
 
@@ -126,11 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
             let scale = 1;
             if (distance < maxDistance) {
                 scale = 1 + (1 - distance / maxDistance) * 0.5;
-                icon.style.filter = "drop-shadow(0 0 0.3px rgba(255, 255, 255, 0.41)) drop-shadow(0 0 0.5px rgba(255, 255, 255, 1))";
-            } else {
-                icon.style.filter = "drop-shadow(0 0 0.6px rgba(255, 255, 255, 0)) drop-shadow(0 0 1px rgba(255, 255, 255, 0))";
             }
-
             icon.style.transform = `scale(${scale})`;
         });
 

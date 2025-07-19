@@ -20,6 +20,7 @@
     text-align: center;
     background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
     color: #bfbfbf;
+    border: 2.5px solid rgba(201, 201, 201, 0.561);
     margin-bottom: 330px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 200, 255, 0.2);
