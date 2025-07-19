@@ -1067,7 +1067,7 @@ footer a:hover {
         z-index: 510;
         width: 2.4rem;
         aspect-ratio: 1;
-        background-image: url("/public/images/menu.svg");
+        background-image: url("/images/menu.svg");
         background-color: #2727277d;
         background-size: cover;
         background-repeat: no-repeat;
