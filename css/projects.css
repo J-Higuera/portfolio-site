@@ -72,14 +72,15 @@
 }
 
 .project-card a:hover {
-    background-color: #00a2c6;
+    background-color: #5aafc2;
     color: #bfbfbf;
+    border: 2px solid rgba(255, 255, 255, 0.358);
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(0, 162, 198, 0.5);
+    box-shadow: 0 2px 6px rgba(0, 208, 255, 0.776);
 }
 
 .project-card a:focus {
-    animation: button-pulse 1s infinite;
+    animation: button-pulse 2s infinite;
 }
 
 .light-mode .projects-grid {
@@ -112,17 +113,18 @@
 
 @keyframes button-pulse {
     0% {
-        background-color: #00a2c6;
-        box-shadow: 0 0 10px rgba(0, 162, 198, 0.5);
+        background-color: #0096b7b1;
+        box-shadow: 0 0 10px rgba(0, 94, 114, 0.5);
     }
 
     50% {
-        background-color: #007a8a;
-        box-shadow: 0 0 20px rgba(0, 162, 198, 0.7);
+        background-color: #313131;
+        box-shadow: 0 0 20px rgba(22, 22, 22, 0.7);
+        border: 2px solid rgba(45, 45, 45, 0.358);
     }
 
     100% {
-        background-color: #00a2c6;
+        background-color: #00a2c6c0;
         box-shadow: 0 0 10px rgba(0, 162, 198, 0.5);
     }
 }
