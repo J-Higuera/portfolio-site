@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let lastScroll = window.scrollY;
 
-    const hamburgerIcon = "url('/public/images/menu-toggle/menu.svg')";
-    const closeIcon = "url('/public/images/menu-toggle/close.svg')";
+    const hamburgerIcon = "url('/images/menu-toggle/menu.svg')";
+    const closeIcon = "url('/images/menu-toggle/close.svg')";
 
     toggle.style.backgroundImage = hamburgerIcon;
     toggle.classList.add("visible-toggle");
