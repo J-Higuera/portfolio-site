@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const preloader = document.getElementById("preloader");
 
     let progress = 0;
-    let simulatedTotal = 70;
+    let simulatedTotal = 10;
 
     const updateProgress = () => {
         if (progress < simulatedTotal) {
