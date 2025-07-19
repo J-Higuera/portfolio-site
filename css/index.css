@@ -36,7 +36,7 @@ body::before {
 }
 
 .light-mode::before {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/bw2.jpg);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/bw3.png);
     background-size: cover;
 }
 
