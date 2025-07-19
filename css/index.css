@@ -971,11 +971,7 @@ footer a:hover {
         pointer-events: none;
     }
 
-    .skills-grid img:hover {
-        transform: none !important;
-        filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.778));
-        scale: none !important;
-    }
+
 
     .skills.animate {
         box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
