@@ -136,8 +136,12 @@
 }
 
 .about-bio p {
+    flex: 1 1 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
     color: var(--text-bright);
     font-size: 1.2rem;
+    text-align: center;
     margin: 0 0 1rem 0;
     font-family: var(--font-main);
     text-shadow: 0 1px 8px rgba(0, 255, 247, 0.1);
@@ -221,5 +225,11 @@
 
     .about-bio p {
         font-size: 1.07rem;
+    }
+
+    .about-bio {
+        flex: 1 1 100%;
+        max-width: 100%;
+        overflow-wrap: break-word;
     }
 }
