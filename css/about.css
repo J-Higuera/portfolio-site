@@ -135,6 +135,47 @@
     color: var(--accent);
 }
 
+.profile-photo-column2 {
+    display: none;
+}
+
+.profile-photo-column1 {
+    display: flex;
+    background-color: rgb(22, 22, 22);
+    flex-direction: column;
+    align-items: stretch;
+    flex-wrap: wrap;
+    background: var(--card-gradient);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: var(--border);
+    gap: 1.2rem;
+    font-family: var(--font-main);
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    color: var(--text-bright);
+    border-radius: 15px;
+    text-align: center;
+    padding: 1.5rem 1.2rem;
+    margin: 0.5rem 0;
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.photo-card img {
+    width: 260px;
+    height: auto;
+    border-radius: 50px;
+    padding: 10px;
+}
+
 .about-bio p {
     flex: 1 1 100%;
     max-width: 100%;
@@ -148,6 +189,8 @@
     line-height: 1.7;
     letter-spacing: 0.01em;
 }
+
+
 
 @media (max-width: 1220px) {
     .about-section {
@@ -163,6 +206,31 @@
     .about-flex {
         flex-direction: column;
         gap: 1.5rem;
+    }
+
+    .profile-photo-column1 {
+        display: none;
+    }
+
+    .profile-photo-column2 {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--card-gradient);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: var(--border);
+        flex-wrap: wrap;
+        font-family: var(--font-main);
+        color: var(--text-bright);
+        gap: 1.2rem;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
     }
 
     .about-card {

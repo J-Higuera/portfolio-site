@@ -289,26 +289,24 @@ header {
 }*/
 
 .grid-wrapper {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    position: relative;
-    padding-right: 130px;
-    padding-left: 130px;
-    padding-top: 47px;
-    padding-bottom: 40px;
-    gap: 30px;
-    z-index: 100;
-}
-
-.grid-wrapper section {
-    padding: 20px;
-    justify-self: center;
+    padding-right: 27px;
+    padding-left: 27px;
+    padding-top: 17px;
+    gap: 20px;
+    padding-bottom: 37px;
 }
 
 .achievements {
     color: #cacaca;
     border-radius: 15px;
-    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    padding: 18px;
+    align-items: start;
+    max-width: 1000px;
+    flex-wrap: wrap;
+    align-items: center;
     width: 100%;
     justify-self: center;
     background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
@@ -349,7 +347,7 @@ header {
 }
 
 .achievements-card p {
-    padding: 5px;
+    padding: 8px;
     margin: 0;
     border-radius: 8px;
     display: inline-block;
@@ -359,49 +357,17 @@ header {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.achievements h2 {
+.achievements-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.section-title {
     color: #aeaeaedc;
     margin-bottom: 20px;
     font-size: 2rem;
     text-align: center;
     animation: fadeIn 2s ease-in-out;
-}
-
-.profile-photo {
-    color: #afafaf;
-    border-radius: 15px;
-    max-width: 1000px;
-    border: 2px solid #ffffff61;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
-    background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
-}
-
-.photo-card img {
-    width: 260px;
-    height: auto;
-}
-
-.photo-card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-    align-items: center;
-    justify-content: center;
-    justify-self: center;
-}
-
-.profile-photo h2 {
-    color: #aeaeaedc;
-    margin-bottom: 20px;
-    font-size: 2rem;
-    text-align: center;
-    animation: fadeIn 2s ease-in-out;
-}
-
-.profile-photo p {
-    text-align: center;
 }
 
 .skills-grid {
@@ -697,6 +663,7 @@ footer a:hover {
         padding-right: 27px;
         padding-left: 27px;
         padding-top: 47px;
+        gap: 25px;
         padding-bottom: 40px;
     }
 
@@ -710,7 +677,6 @@ footer a:hover {
     }
 
     .grid-wrapper {
-        grid-template-columns: repeat(1, 1fr);
         padding-right: 27px;
         padding-left: 27px;
         padding-top: 47px;
@@ -847,6 +813,7 @@ footer a:hover {
 
     .achievements {
         box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
+        grid-template-columns: 1fr;
     }
 
     /* .home-image {
