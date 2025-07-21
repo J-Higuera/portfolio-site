@@ -289,8 +289,8 @@ header {
 }*/
 
 .grid-wrapper {
-    padding-right: 27px;
-    padding-left: 27px;
+    padding-right: 130px;
+    padding-left: 130px;
     padding-top: 17px;
     gap: 20px;
     padding-bottom: 37px;
@@ -304,7 +304,7 @@ header {
     gap: 20px;
     padding: 18px;
     align-items: start;
-    max-width: 1000px;
+    max-width: 100%;
     flex-wrap: wrap;
     align-items: center;
     width: 100%;
@@ -590,6 +590,15 @@ footer a:hover {
 /* smallets large screen size */
 @media (min-width: 900px) {
 
+    .grid-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        padding-right: 130px;
+        padding-left: 130px;
+        padding-top: 47px;
+        gap: 25px;
+        padding-bottom: 40px;
+    }
+
     .skills-grid.skills-mobile {
         display: none;
     }
@@ -638,21 +647,6 @@ footer a:hover {
         100% {
             transform: translateX(-33.333%);
         }
-    }
-}
-
-/* Ultrawide screens */
-@media (min-width: 1200px) {
-    .skills-grid {
-        gap: 150px;
-    }
-
-    .skills-grid img:last-child {
-        margin-right: 40px;
-    }
-
-    .skills-desktop-animation .skills-grid img:first-child {
-        margin-left: 50px;
     }
 }
 
@@ -757,6 +751,7 @@ footer a:hover {
 
     .achievements {
         box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
+        grid-template-columns: 1fr;
     }
 
     .skills h2 {
