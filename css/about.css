@@ -142,9 +142,12 @@
 .profile-photo-column1 {
     display: flex;
     background-color: rgb(22, 22, 22);
-    flex-direction: column;
     align-items: stretch;
     flex-wrap: wrap;
+    max-height: 100%;
+    max-width: 100%;
+    width: 40%;
+    height: auto;
     background: var(--card-gradient);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
@@ -192,53 +195,119 @@
 
 
 
-@media (max-width: 1220px) {
+@media (min-width: 1370px) and (max-width: 1520px) {
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 22px;
-        padding-left: 22px;
+        padding-right: 150px;
+        padding-left: 150px;
         padding-top: 47px;
         padding-bottom: 47px;
     }
-}
 
-@media (max-width: 900px) {
-    .about-flex {
-        flex-direction: column;
-        gap: 1.5rem;
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: 320px;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
     }
 
     .profile-photo-column1 {
-        display: none;
-    }
-
-    .profile-photo-column2 {
         display: flex;
-        flex-direction: column;
+        background-color: rgb(22, 22, 22);
         align-items: stretch;
+        flex-wrap: wrap;
+        max-height: 100%;
+        max-width: 450px;
+        width: auto;
+        height: auto;
         background: var(--card-gradient);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         border: var(--border);
-        flex-wrap: wrap;
-        font-family: var(--font-main);
-        color: var(--text-bright);
         gap: 1.2rem;
+        font-family: var(--font-main);
         justify-content: center;
         position: relative;
         z-index: 1;
+        color: var(--text-bright);
         border-radius: 15px;
         text-align: center;
         padding: 1.5rem 1.2rem;
         margin: 0.5rem 0;
     }
+}
 
-    .about-card {
-        width: 100%;
-        min-width: unset;
-        max-width: unset;
+@media (min-width: 1220px) and (max-width: 1370px) {
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 150px;
+        padding-left: 150px;
+        padding-top: 47px;
+        padding-bottom: 47px;
     }
 
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+    }
+
+    .profile-photo-column1 {
+        display: flex;
+        background-color: rgb(22, 22, 22);
+        align-items: stretch;
+        flex-wrap: wrap;
+        max-height: 100%;
+        max-width: 520px;
+        width: auto;
+        height: auto;
+        background: var(--card-gradient);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: var(--border);
+        gap: 1.2rem;
+        font-family: var(--font-main);
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        color: var(--text-bright);
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+}
+
+@media (min-width: 750px) and (max-width: 1220px) {
     .about-section {
         grid-template-columns: repeat(1, 1fr);
         padding-right: 22px;
@@ -246,9 +315,34 @@
         padding-top: 47px;
         padding-bottom: 47px;
     }
+
+    .profile-photo-column1 {
+        display: flex;
+        background-color: rgb(22, 22, 22);
+        align-items: stretch;
+        flex-wrap: wrap;
+        max-height: 100%;
+        max-width: 100%;
+        width: 50%;
+        height: auto;
+        background: var(--card-gradient);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: var(--border);
+        gap: 1.2rem;
+        font-family: var(--font-main);
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        color: var(--text-bright);
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
+    }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 100px) and (max-width: 750px) {
 
     /*.about-section {
         background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
@@ -271,6 +365,43 @@
         background-attachment: fixed;
     }
 */
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+
+
+    .profile-photo-column1 {
+        display: none;
+    }
+
+    .profile-photo-column2 {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: auto;
+        height: auto;
+        background: var(--card-gradient);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: var(--border);
+        flex-wrap: wrap;
+        font-family: var(--font-main);
+        color: var(--text-bright);
+        gap: 1.2rem;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+
     .about-card li {
         margin-bottom: 0.7em;
         color: var(--text-bright);
