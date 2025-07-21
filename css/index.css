@@ -299,16 +299,15 @@ header {
 .achievements {
     color: #cacaca;
     border-radius: 15px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    max-width: 340px;
     gap: 20px;
     padding: 18px;
-    align-items: start;
     max-width: 100%;
     flex-wrap: wrap;
-    align-items: center;
     width: 100%;
-    justify-self: center;
     background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
     border: 2.5px solid rgba(201, 201, 201, 0.561);
 }
@@ -321,6 +320,8 @@ header {
     border: 2px solid #ffffff61;
     margin: 20px;
     border-radius: 8px;
+    width: fit-content;
+    max-width: 340px;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -357,12 +358,7 @@ header {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.achievements-column {
-    display: flex;
-    flex-direction: column;
-}
-
-.section-title {
+.achievements h2 {
     color: #aeaeaedc;
     margin-bottom: 20px;
     font-size: 2rem;
@@ -661,10 +657,19 @@ footer a:hover {
         padding-bottom: 40px;
     }
 
+    .achievements {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .achievements-card {
+        width: fit-content;
+        max-width: 340px;
+    }
+
 }
 
 /* Laptop/Tablets */
-@media (max-width: 900px) {
+@media(max-width: 1000px) {
 
     .skills-wrapper {
         display: none;
@@ -750,8 +755,12 @@ footer a:hover {
     }
 
     .achievements {
-        box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .achievements-card {
+        width: fit-content;
+        max-width: 440px;
     }
 
     .skills h2 {
@@ -786,7 +795,7 @@ footer a:hover {
 }
 
 /* Mobile screens */
-@media (max-width: 620px) {
+@media (max-width: 700px) and (min-width: 100px) {
 
     .light-mode .hero h1 {
         color: #292929;
@@ -809,6 +818,12 @@ footer a:hover {
     .achievements {
         box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
         grid-template-columns: 1fr;
+        justify-items: center;
+    }
+
+    .achievements-card {
+        width: auto;
+        max-width: fit-content;
     }
 
     /* .home-image {

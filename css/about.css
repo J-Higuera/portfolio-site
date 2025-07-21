@@ -84,7 +84,6 @@
     width: 0.65em;
     height: 0.65em;
     aspect-ratio: 1;
-    /* ✅ always square → circle */
     margin-right: 0.7em;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), var(--primary));
@@ -280,7 +279,7 @@
     }
 }
 
-@media (min-width: 750px) and (max-width: 1220px) {
+@media (min-width: 700px) and (max-width: 1220px) {
     .about-section {
         grid-template-columns: repeat(1, 1fr);
         padding-right: 22px;
@@ -315,7 +314,7 @@
     }
 }
 
-@media (min-width: 100px) and (max-width: 750px) {
+@media (min-width: 100px) and (max-width: 700px) {
 
     /*.about-section {
         background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
