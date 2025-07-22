@@ -305,7 +305,7 @@ header {
     max-width: 100%;
     flex-wrap: wrap;
     width: 100%;
-    background: radial-gradient(circle at top left, #222222dd 0%, #1c1d25e3 30%, #141414c8 50%, #0000009d 75%, #211e1ed4 100%);
+    background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
     border: 2.5px solid rgba(201, 201, 201, 0.561);
 }
 
@@ -817,6 +817,7 @@ footer a:hover {
         box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
         grid-template-columns: 1fr;
         justify-items: center;
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
     }
 
     .achievements-card {
