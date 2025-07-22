@@ -50,16 +50,14 @@ header {
 :root {
     --primary: #d4d4d4;
     --primary-dark: #007c91;
-    --accent: #d000ff;
-    --bg-gradient: radial-gradient(circle at top left, #2a2a2a 0%, #1d213f 30%, #0f2027 50%, #5f7279 75%, #e4e4e4 100%);
+    --accent: #b6b6b6;
     --card-gradient: linear-gradient(145deg, rgba(52, 52, 52, 0.85), rgba(0, 34, 62, 0.9));
     --text-light: #fafdff;
-    --text-bright: #c7faff;
-    --text-muted: #8cb9c7;
+    --text-bright: #c7faffdd;
     --shadow: 0 8px 24px rgba(0, 255, 247, 0.06), 0 1px 3px rgba(0, 0, 0, 0.3);
     --shadow-hover: 0 12px 32px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.3);
     --radius: 1.5rem;
-    --border: 1.5px solid rgba(0, 255, 247, 0.571);
+    --border: 2px solid #ffffff61;
     --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
     --font-mono: 'Fira Mono', 'Consolas', monospace;
 }
@@ -297,7 +295,6 @@ header {
 }
 
 .achievements {
-    color: #cacaca;
     border-radius: 15px;
     display: flex;
     flex-direction: column;
@@ -317,6 +314,7 @@ header {
     background: var(--card-gradient);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
+    color: var(--text-bright);
     border: 2px solid #ffffff61;
     margin: 20px;
     border-radius: 8px;

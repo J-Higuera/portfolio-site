@@ -43,7 +43,7 @@
 }
 
 .about-card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-5px) scale(1.02);
     box-shadow: var(--shadow-hover);
     border-color: var(--accent);
     z-index: 2;
@@ -87,9 +87,8 @@
     margin-right: 0.7em;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--accent), var(--primary));
-    box-shadow: 0 0 8px rgba(255, 0, 200, 0.4);
+    box-shadow: 0 0 8px rgba(176, 176, 176, 0.4);
     vertical-align: middle;
-    transition: background 0.2s;
 }
 
 
@@ -110,7 +109,7 @@
     max-width: 100%;
     width: 40%;
     height: auto;
-    background: var(--card-gradient);
+    background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     border: var(--border);
@@ -151,6 +150,18 @@
     padding-bottom: 15px;
 }
 
+.about-bio {
+    max-height: 100%;
+    max-width: fit-content;
+    width: auto;
+    height: auto;
+    background: var(--card-gradient);
+}
+
+.about-bio h3 {
+    align-self: center;
+}
+
 .about-bio p {
     flex: 1 1 100%;
     max-width: 100%;
@@ -164,8 +175,6 @@
     line-height: 1.7;
     letter-spacing: 0.01em;
 }
-
-
 
 @media (min-width: 1370px) and (max-width: 1520px) {
     .about-section {
@@ -181,6 +190,7 @@
         max-width: fit-content;
         width: auto;
         height: auto;
+        background: var(--card-gradient);
     }
 
     .about-hobbies {
@@ -206,7 +216,7 @@
         max-width: 450px;
         width: auto;
         height: auto;
-        background: var(--card-gradient);
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         border: var(--border);
@@ -262,7 +272,7 @@
         max-width: 520px;
         width: auto;
         height: auto;
-        background: var(--card-gradient);
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         border: var(--border);
@@ -297,7 +307,7 @@
         max-width: 100%;
         width: 50%;
         height: auto;
-        background: var(--card-gradient);
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         border: var(--border);
@@ -429,7 +439,7 @@
         align-items: stretch;
         width: auto;
         height: auto;
-        background: var(--card-gradient);
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
         border: var(--border);
@@ -467,11 +477,5 @@
 
     .about-bio p {
         font-size: 1.07rem;
-    }
-
-    .about-bio {
-        flex: 1 1 100%;
-        max-width: 100%;
-        overflow-wrap: break-word;
     }
 }

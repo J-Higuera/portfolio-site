@@ -15,12 +15,12 @@
 }
 
 .project-card {
-    background: radial-gradient(circle at top left, rgb(63, 63, 63) 0%, #131313 30%, #252525 50%, #040404 75%, #1d1d1d 100%);
+    background: radial-gradient(circle at top left, rgba(63, 63, 63, 0.594) 0%, #131313c3 30%, #252525b8 50%, #040404c9 75%, #1d1d1dc5 100%);
     border: 2.5px solid rgba(106, 106, 106, 0.561);
     border-radius: 18px;
     padding: 10px;
     text-align: center;
-    box-shadow: 0 2px 20px rgba(0, 69, 103, 0.245);
+    box-shadow: 12px 12px 20px rgb(0, 0, 0);
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
@@ -34,14 +34,14 @@
 
 
 .project-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 2px 12px rgba(0, 82, 133, 0.8);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 15px 15px 25px rgb(0, 0, 0);
 }
 
 .project-card h3 {
     margin-bottom: 10px;
     font-size: 18px;
-    color: #00a2c6;
+    color: var(--primary);
     text-align: center;
 }
 
@@ -49,7 +49,7 @@
     margin-bottom: 12px;
     margin-top: 12px;
     font-size: 14px;
-    color: #bfbfbf;
+    color: var(--text-bright);
     text-align: center;
 }
 
