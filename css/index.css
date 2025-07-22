@@ -305,7 +305,7 @@ header {
     max-width: 100%;
     flex-wrap: wrap;
     width: 100%;
-    background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+    background: radial-gradient(circle at top left, #222222dd 0%, #1c1d25e3 30%, #141414c8 50%, #0000009d 75%, #211e1ed4 100%);
     border: 2.5px solid rgba(201, 201, 201, 0.561);
 }
 

@@ -62,7 +62,6 @@
 }
 
 .about-card ul {
-    padding-left: 1.2em;
     margin: 0;
     list-style: none;
 }
@@ -109,7 +108,7 @@
     max-width: 100%;
     width: 40%;
     height: auto;
-    background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+    background: radial-gradient(circle at top left, #222222dd 0%, #1c1d25e3 30%, #141414c8 50%, #0000009d 75%, #211e1ed4 100%);
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     border: var(--border);
@@ -176,6 +175,14 @@
     letter-spacing: 0.01em;
 }
 
+.about-hobbies {
+    max-height: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
+    width: auto;
+    height: auto;
+}
+
 @media (min-width: 1370px) and (max-width: 1520px) {
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -191,13 +198,6 @@
         width: auto;
         height: auto;
         background: var(--card-gradient);
-    }
-
-    .about-hobbies {
-        max-height: 100%;
-        max-width: 100%;
-        width: auto;
-        height: 320px;
     }
 
     .about-details {
@@ -249,9 +249,9 @@
         height: auto;
     }
 
-    .about-hobbies {
+    .about-certificates1 {
         max-height: 100%;
-        max-width: fit-content;
+        max-width: 100%;
         width: auto;
         height: auto;
     }
@@ -269,7 +269,7 @@
         align-items: stretch;
         flex-wrap: wrap;
         max-height: 100%;
-        max-width: 520px;
+        max-width: 350px;
         width: auto;
         height: auto;
         background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
@@ -289,7 +289,37 @@
     }
 }
 
-@media (min-width: 700px) and (max-width: 1220px) {
+@media (min-width: 1020px) and (max-width: 1220px) {
+
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 100%;
+        width: fit-content;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: 100%;
+        width: fit-content;
+        height: auto;
+    }
+
     .about-section {
         grid-template-columns: repeat(1, 1fr);
         padding-right: 22px;
@@ -297,6 +327,100 @@
         padding-top: 47px;
         padding-bottom: 47px;
     }
+
+    .profile-photo-desktop {
+        display: flex;
+        background-color: rgb(22, 22, 22);
+        align-items: stretch;
+        flex-wrap: wrap;
+        max-height: 100%;
+        max-width: 350px;
+        width: auto;
+        height: auto;
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: var(--border);
+        gap: 1.2rem;
+        font-family: var(--font-main);
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        color: var(--text-bright);
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+}
+
+
+@media (min-width: 930px) and (max-width: 1020px) {
+
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+
+    .profile-photo-desktop {
+        display: flex;
+        background-color: rgb(22, 22, 22);
+        align-items: stretch;
+        flex-wrap: wrap;
+        max-height: 100%;
+        max-width: 50%;
+        width: auto;
+        height: auto;
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: var(--border);
+        gap: 1.2rem;
+        font-family: var(--font-main);
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        color: var(--text-bright);
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 930px) {
 
     .profile-photo-desktop {
         display: flex;
@@ -321,6 +445,44 @@
         text-align: center;
         padding: 1.5rem 1.2rem;
         margin: 0.5rem 0;
+    }
+
+    .about-bio {
+        max-height: 100%;
+        flex: 1 1 100%;
+        max-width: fit-content;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-top: 47px;
+        padding-bottom: 47px;
     }
 }
 
@@ -391,6 +553,29 @@
         padding-left: 10px;
     }
 
+    .profile-photo-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: auto;
+        height: auto;
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        border: var(--border);
+        flex-wrap: wrap;
+        font-family: var(--font-main);
+        color: var(--text-bright);
+        gap: 1.2rem;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+
     .about-certificates2 {
         height: auto;
         display: block;
@@ -407,7 +592,6 @@
         padding-top: 10px;
         text-align: center;
         padding-left: 8px;
-        ;
     }
 
     .profile-photo-desktop {
@@ -431,29 +615,6 @@
         padding-left: 22px;
         padding-top: 47px;
         padding-bottom: 47px;
-    }
-
-    .profile-photo-mobile {
-        display: flex;
-        flex-direction: column;
-        align-items: stretch;
-        width: auto;
-        height: auto;
-        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: var(--border);
-        flex-wrap: wrap;
-        font-family: var(--font-main);
-        color: var(--text-bright);
-        gap: 1.2rem;
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-        border-radius: 15px;
-        text-align: center;
-        padding: 1.5rem 1.2rem;
-        margin: 0.5rem 0;
     }
 
     .about-card li {
