@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-    // You can customize base here if needed
-    base: '/',  // this is the default, you can change if needed
+    plugins: [react()],
+    base: '/',
 });

@@ -303,7 +303,6 @@ header {
     gap: 20px;
     padding: 18px;
     max-width: 100%;
-    flex-wrap: wrap;
     width: 100%;
     background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
     border: 2.5px solid rgba(201, 201, 201, 0.561);
@@ -357,7 +356,7 @@ header {
 }
 
 .achievements h2 {
-    color: #aeaeaedc;
+    color: var(--primary);
     margin-bottom: 20px;
     font-size: 2rem;
     text-align: center;
@@ -415,6 +414,54 @@ header {
     z-index: 1;
     animation: fadeIn 2s ease-in-out;
     transition: text-shadow 0.6s ease-in-out, color 0.6s ease-in-out;
+}
+
+.github-contributions-widget {
+    background-color: rgba(15, 15, 15, 0.6);
+    border: 2px solid #ffffff61;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 18px;
+    box-shadow: 0 0 14px rgba(151, 254, 148, 0.419);
+    width: 100%;
+    max-width: 1300px;
+    overflow-x: auto;
+    /* Enable horizontal scroll only if needed */
+    box-sizing: border-box;
+}
+
+
+.github-contributions-widget h3 {
+    font-size: 1.35rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+}
+
+.react-activity-calendar {
+    max-width: 100%;
+    width: fit-content;
+    margin: 0 auto;
+    color: var(--primary);
+    overflow-x: auto;
+}
+
+.react-activity-calendar svg {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.react-activity-calendar text {
+    color: var(--primary);
+    font-size: 19px;
+}
+
+.react-activity-calendar rect {
+    rx: 3;
+    ry: 3;
 }
 
 /* Footer section */
@@ -554,7 +601,7 @@ footer a:hover {
 .light-mode .skills h2,
 .light-mode .achievements h2,
 .light-mode .profile-photo h2 {
-    color: #a3a3a3;
+    color: var(--primary);
 }
 
 .light-mode .skills.active {
@@ -842,10 +889,8 @@ footer a:hover {
     } */
 
     body {
-        align-items: center;
         justify-content: center;
         text-align: center;
-        flex-wrap: wrap;
         background: none;
     }
 
