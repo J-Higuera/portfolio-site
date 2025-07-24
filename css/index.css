@@ -724,19 +724,20 @@ footer a:hover {
     .tooltip-text {
         visibility: hidden;
         opacity: 0;
-        background-color: rgba(29, 29, 29, 0.85);
-        color: #fff;
+        background-color: rgba(255, 255, 255, 0.85);
+        color: #212121;
         text-align: center;
         border-radius: 5px;
         padding: 5px 8px;
         position: absolute;
         z-index: 999;
-        bottom: 118%;
+        bottom: 120%;
         left: 50%;
         transform: translateX(-50%) translateY(5px);
         white-space: nowrap;
         transition: opacity 0.6s ease, transform 0.6s ease;
         font-size: 0.65rem;
+        font-weight: bold;
         pointer-events: none;
     }
 
