@@ -794,7 +794,11 @@ footer a:hover {
         filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.778));
         opacity: 0;
         transition: filter 0.5s ease, transform 0.5s ease;
-        position: static;
+        position: relative;
+        backface-visibility: hidden;
+        transform: translateZ(0);
+        /* triggers hardware acceleration */
+        will-change: transform, filter;
     }
 
     .skills-grid img:hover {
@@ -1036,8 +1040,20 @@ footer a:hover {
         filter: drop-shadow(8px 8px 8px rgba(0, 0, 0, 0.778));
         height: auto;
         transition: opacity 0.5s ease, transform 0.5s ease, filter 0.6s ease;
-        position: relative;
+        position: static;
         z-index: 1;
+    }
+
+    .skills-grid.loading img {
+        pointer-events: none;
+    }
+
+    .skills-grid.loading {
+        pointer-events: none;
+    }
+
+    .skills-grid.expand img {
+        pointer-events: none;
     }
 
     .skills.animate {
