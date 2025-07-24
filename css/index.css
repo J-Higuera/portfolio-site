@@ -628,8 +628,30 @@ footer a:hover {
     background-color: #00000000;
 }
 
+/* Breaker for Qualifications and Photo's width */
+@media (max-width: 1220px) {
+    .grid-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        gap: 25px;
+        padding-bottom: 40px;
+    }
+
+    .achievements {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .achievements-card {
+        width: fit-content;
+        max-width: 340px;
+    }
+
+}
+
 /* smallets large screen size */
-@media (min-width: 900px) {
+@media (min-width: 1000px) {
 
     .grid-wrapper {
         grid-template-columns: repeat(2, 1fr);
@@ -691,30 +713,39 @@ footer a:hover {
     }
 }
 
-/* Breaker for Qualifications and Photo's width */
-@media (max-width: 1220px) {
-    .grid-wrapper {
-        grid-template-columns: repeat(2, 1fr);
-        padding-right: 27px;
-        padding-left: 27px;
-        padding-top: 47px;
-        gap: 25px;
-        padding-bottom: 40px;
-    }
-
-    .achievements {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-
-    .achievements-card {
-        width: fit-content;
-        max-width: 340px;
-    }
-
-}
-
 /* Laptop/Tablets */
 @media(max-width: 1000px) {
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        background-color: rgba(29, 29, 29, 0.85);
+        color: #fff;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px 8px;
+        position: absolute;
+        z-index: 999;
+        bottom: 118%;
+        left: 50%;
+        transform: translateX(-50%) translateY(5px);
+        white-space: nowrap;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        font-size: 0.65rem;
+        pointer-events: none;
+    }
+
+    .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        /* slide up slightly */
+    }
 
     .skills-wrapper {
         display: none;
@@ -791,9 +822,6 @@ footer a:hover {
         padding: 5px 10px;
         border-radius: 12px;
         width: auto;
-        background: url(/images/body/l10.png);
-        background-position: center center;
-        background-size: 400% 180%;
         border: 2.5px solid rgba(201, 201, 201, 0.561);
         width: auto;
         transition: box-shadow 0.6s ease, border 0.6s ease;
@@ -841,6 +869,40 @@ footer a:hover {
 
 /* Mobile screens */
 @media (max-width: 700px) and (min-width: 100px) {
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        background-color: rgba(255, 255, 255, 0.85);
+        color: #212121;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px 8px;
+        position: absolute;
+        z-index: 999;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%) translateY(5px);
+        white-space: nowrap;
+        transition: opacity 0.6s ease, transform 0.6s ease;
+        font-size: 0.65rem;
+        font-weight: bold;
+        pointer-events: none;
+    }
+
+    .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+        /* slide up slightly */
+    }
+
+
 
     .light-mode .hero h1 {
         color: #292929;
@@ -961,9 +1023,6 @@ footer a:hover {
         padding: 5px 10px;
         margin-bottom: 47px;
         border-radius: 12px;
-        background: url(/images/body/l10.png);
-        background-position: center center;
-        background-size: 400% 180%;
         border: 2.5px solid rgba(201, 201, 201, 0.561);
         width: auto;
         overflow: hidden;

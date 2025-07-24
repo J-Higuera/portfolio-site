@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             let scale = 1;
             if (distance < maxDistance) {
-                scale = 1 + (1 - distance / maxDistance) * 0.5;
+                scale = 1 + (1 - distance / maxDistance) * 0.3;
             }
             icon.style.transform = `scale(${scale})`;
         });
