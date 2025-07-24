@@ -894,7 +894,7 @@ footer a:hover {
         left: 50%;
         transform: translateX(-50%) translateY(5px);
         white-space: nowrap;
-        transition: opacity 0.1s ease, transform 0.1s ease;
+        transition: opacity 0.4s ease, transform 0.4s ease;
         font-size: 0.65rem;
         font-weight: bold;
         pointer-events: none;
