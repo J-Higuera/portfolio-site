@@ -547,7 +547,7 @@ header {
 .timeline-item {
     position: relative;
     margin-bottom: 20px;
-    justify-self: left;
+    justify-self: flex-start;
 }
 
 .timeline-item .dot {
