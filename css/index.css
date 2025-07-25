@@ -441,29 +441,36 @@ header {
     animation: fadeIn 2s ease-in-out;
 }
 
-.achievement-badge {
+.certificate-row {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10px 20px;
+}
+
+.certificate-item {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    background: rgba(20, 20, 20, 0.7);
-    border: 2px solid #444;
-    padding: 10px 15px;
-    border-radius: 10px;
-    color: var(--text-bright);
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+}
+
+.certificate-item img {
+    width: 100px;
+    /* or adjust to fit */
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.certificate-item p {
     font-size: 1.1rem;
-    box-shadow: 0 0 6px rgba(0, 255, 170, 0.3);
-    transition: transform 0.3s ease;
-    gap: 12px;
+    color: var(--primary);
 }
 
-.achievement-badge:hover {
-    transform: scale(1.03);
-    box-shadow: 0 0 10px rgba(0, 255, 170, 0.4);
-}
-
-.achievement-badge img {
-    width: 40px;
-    height: 40px;
-}
 
 .achievement-stats {
     display: flex;
@@ -491,6 +498,7 @@ header {
 .timeline-item {
     position: relative;
     margin-bottom: 20px;
+    justify-self: left;
 }
 
 .timeline-item .dot {
@@ -1219,10 +1227,9 @@ footer a:hover {
         left: 50%;
         transform: translateX(-50%) translateY(20px);
         white-space: nowrap;
-        transition: opacity 0.1s ease, transform 0.6s ease;
+        transition: opacity 0.6s ease, transform 0.6s ease;
         font-size: 0.65rem;
         font-weight: bold;
-        pointer-events: none;
     }
 
     .tooltip:hover .tooltip-text {
