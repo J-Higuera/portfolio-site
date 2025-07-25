@@ -16,6 +16,46 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+// hero text animation
+document.addEventListener("DOMContentLoaded", () => {
+    const phrases = ["apps.", "games.", "websites.", "tools.", "systems."];
+    const textElement = document.getElementById("hero-text");
+
+    let currentPhrase = 0;
+    let currentLetter = 0;
+    let isDeleting = false;
+
+    function type() {
+        const word = phrases[currentPhrase];
+
+        if (!isDeleting) {
+            textElement.textContent = word.substring(0, currentLetter + 1);
+            currentLetter++;
+
+            if (currentLetter === word.length) {
+                isDeleting = true;
+                setTimeout(type, 1500); // Pause before deleting
+                return;
+            }
+        } else {
+            textElement.textContent = word.substring(0, currentLetter - 1);
+            currentLetter--;
+
+            if (currentLetter === 0) {
+                isDeleting = false;
+                currentPhrase = (currentPhrase + 1) % phrases.length;
+            }
+        }
+
+        setTimeout(type, isDeleting ? 80 : 120);
+    }
+
+    type();
+});
+
+
+
+
 // === Achievements ===
 document.addEventListener("DOMContentLoaded", () => {
     const achievementsSection = document.querySelector(".achievements");
@@ -155,6 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Run on resize
     window.addEventListener("resize", checkMagnify);
 });
+
 
 
 

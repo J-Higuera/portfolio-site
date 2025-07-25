@@ -580,7 +580,7 @@
     .about-certificates2 {
         height: auto;
         display: block;
-        min-height: 500px;
+        min-height: fit-content;
     }
 
     .about-certificates2 h3 {
