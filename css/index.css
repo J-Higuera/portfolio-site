@@ -464,7 +464,7 @@ header {
     /* or adjust to fit */
     height: auto;
     margin-bottom: 10px;
-    transition: transform 0.2s ease;
+    transition: transform 0.6s ease;
 }
 
 .certificate-item p {
@@ -477,28 +477,29 @@ header {
     position: fixed;
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%) scale(0.0);
+    opacity: 0;
+    transition: transform 0.6s ease, opacity 0.6s ease;
+    z-index: 1001;
+
+    /* ✅ Reset inherited layout styles */
+    display: block;
+    margin: 0 !important;
+    width: auto !important;
+    height: auto !important;
     max-width: 90vw;
     max-height: 90vh;
-    width: auto;
-    height: auto;
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 1001;
+    object-fit: contain;
+    box-sizing: border-box;
 }
 
 .certificate-zoom.show {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-}
-
-.certificate-zoom.zoomed {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) scale(0.9);
     opacity: 1;
 }
 
 .certificate-zoom.fade-out {
-    transform: translate(-50%, -50%) scale(0.1);
+    transform: translate(-50%, -50%) scale(0.0);
     opacity: 0;
 }
 
@@ -507,7 +508,7 @@ header {
     inset: 0;
     background: rgba(0, 0, 0, 0);
     z-index: 1000;
-    transition: background 0.3s ease;
+    transition: background 0.4s ease;
 }
 
 .zoom-backdrop.show {
