@@ -363,6 +363,124 @@ header {
     animation: fadeIn 2s ease-in-out;
 }
 
+.achievement-badge {
+    display: flex;
+    align-items: center;
+    background: rgba(20, 20, 20, 0.7);
+    border: 2px solid #444;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: var(--text-bright);
+    font-size: 1.1rem;
+    box-shadow: 0 0 6px rgba(0, 255, 170, 0.3);
+    transition: transform 0.3s ease;
+    gap: 12px;
+}
+
+.achievement-badge:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 10px rgba(0, 255, 170, 0.4);
+}
+
+.achievement-badge img {
+    width: 40px;
+    height: 40px;
+}
+
+.achievement-stats {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 1rem;
+    color: var(--text-bright);
+    box-shadow: 0 0 6px rgba(0, 255, 255, 0.2);
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.achievement-stats p {
+    margin: 0;
+}
+
+.achievement-timeline {
+    border-left: 3px solid rgb(191, 191, 191);
+    padding-left: 20px;
+    margin-top: 15px;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline-item .dot {
+    position: absolute;
+    left: -15px;
+    top: 8px;
+    width: 8px;
+    height: 2px;
+    background: rgb(205, 205, 205);
+}
+
+.timeline-item p {
+    margin: 0;
+    font-size: 1rem;
+    color: var(--text-bright);
+}
+
+
+.github-contributions-widget {
+    background-color: rgba(14, 14, 14, 0.6);
+    border: 2px solid #ffffff61;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-top: 18px;
+    width: 100%;
+    max-width: 1300px;
+    overflow-x: auto;
+    box-sizing: border-box;
+}
+
+
+.github-contributions-widget h3 {
+    font-size: 1.35rem;
+    color: var(--primary);
+    margin-bottom: 16px;
+}
+
+.react-activity-calendar {
+    max-width: 100%;
+    width: fit-content;
+    margin: 0 auto;
+    color: var(--primary);
+    overflow-x: auto;
+}
+
+.react-activity-calendar svg {
+    display: block;
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.react-activity-calendar text {
+    color: var(--primary);
+    font-size: 19px;
+}
+
+.react-activity-calendar rect {
+    rx: 3;
+    ry: 3;
+}
+
+.react-activity-calendar__footer {
+    background: transparent;
+}
+
 .skills-grid {
     display: flex;
     flex-wrap: nowrap;
@@ -414,56 +532,6 @@ header {
     z-index: 1;
     animation: fadeIn 2s ease-in-out;
     transition: text-shadow 0.6s ease-in-out, color 0.6s ease-in-out;
-}
-
-.github-contributions-widget {
-    background-color: rgba(14, 14, 14, 0.6);
-    border: 2px solid #ffffff61;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    margin-top: 18px;
-    width: 100%;
-    max-width: 1300px;
-    overflow-x: auto;
-    box-sizing: border-box;
-}
-
-
-.github-contributions-widget h3 {
-    font-size: 1.35rem;
-    color: var(--primary);
-    margin-bottom: 16px;
-}
-
-.react-activity-calendar {
-    max-width: 100%;
-    width: fit-content;
-    margin: 0 auto;
-    color: var(--primary);
-    overflow-x: auto;
-}
-
-.react-activity-calendar svg {
-    display: block;
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    margin: 0 auto;
-}
-
-.react-activity-calendar text {
-    color: var(--primary);
-    font-size: 19px;
-}
-
-.react-activity-calendar rect {
-    rx: 3;
-    ry: 3;
-}
-
-.react-activity-calendar__footer {
-    background: transparent;
 }
 
 /* Footer section */
@@ -582,16 +650,6 @@ footer a:hover {
 
 .light-mode .achievements-card p {
     color: #c4c4c4;
-}
-
-.light-mode .profile-photo {
-    background-color: #00091bd8;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
-    color: #191919;
-}
-
-.light-mode .profile-photo p {
-    color: #afafaf;
 }
 
 .light-mode .skills {
@@ -785,10 +843,6 @@ footer a:hover {
         padding-bottom: 40px;
     }*/
 
-    .profile-photo {
-        display: none;
-    }
-
     .skills-grid img {
         width: 60px;
         margin-bottom: 12px;
@@ -878,95 +932,9 @@ footer a:hover {
 /* Mobile screens */
 @media (max-width: 600px) and (min-width: 100px) {
 
-    .tooltip {
-        position: relative;
-        display: inline-block;
+    .desktop-theme-toggle {
+        display: none;
     }
-
-    .tooltip-text {
-        visibility: hidden;
-        opacity: 0;
-        background-color: rgba(42, 42, 42, 0.85);
-        color: #d7d7d7;
-        text-align: center;
-        border-radius: 5px;
-        padding: 5px 8px;
-        position: absolute;
-        z-index: 999;
-        bottom: 120%;
-        left: 50%;
-        transform: translateX(-50%) translateY(20px);
-        white-space: nowrap;
-        transition: opacity 0.1s ease, transform 0.6s ease;
-        font-size: 0.65rem;
-        font-weight: bold;
-        pointer-events: none;
-    }
-
-    .tooltip:hover .tooltip-text {
-        visibility: visible;
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
-    }
-
-    .github-contributions-widget {
-        background-color: rgba(14, 14, 14, 0);
-        border: none;
-        padding: 0;
-        border-radius: 0;
-        text-align: center;
-        margin-top: 18px;
-        width: 100%;
-        max-width: 1300px;
-        overflow-x: auto;
-        box-sizing: border-box;
-    }
-
-    .light-mode .hero h1 {
-        color: #4d3d0a;
-    }
-
-    .light-mode .hero p {
-        color: #4d3d0a;
-        text-decoration: #000000;
-        text-shadow: 5px 10px 10px #00000096;
-    }
-
-    .grid-wrapper {
-        background: none;
-        padding-right: 15px;
-        padding-left: 15px;
-        padding-top: 47px;
-        padding-bottom: 47px;
-    }
-
-    .achievements {
-        box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
-        grid-template-columns: 1fr;
-        justify-items: center;
-        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
-    }
-
-    .achievements-card {
-        width: auto;
-        max-width: fit-content;
-    }
-
-    /* .home-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-    }
-
-    .light-mode .home-image {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed; 
-    } */
 
     body {
         justify-content: center;
@@ -985,10 +953,6 @@ footer a:hover {
         z-index: -1;
     }
 
-    .light-mode .grid-wrapper {
-        background: none;
-    }
-
     .light-mode::before {
         background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/w1.jpg);
         background-position: center center;
@@ -996,20 +960,8 @@ footer a:hover {
         background-size: cover;
     }
 
-    .light-mode .hero {
-        background-color: #00000027;
-    }
-
     .sticky-nav {
         display: none;
-    }
-
-    .desktop-theme-toggle {
-        display: none;
-    }
-
-    .main-container {
-        background-color: #00000000;
     }
 
     .hero {
@@ -1024,6 +976,61 @@ footer a:hover {
         align-items: center;
         justify-content: center;
         text-align: center;
+    }
+
+    .light-mode .hero {
+        background-color: #00000027;
+    }
+
+    .light-mode .hero h1 {
+        color: #4d3d0a;
+    }
+
+    .light-mode .hero p {
+        color: #4d3d0a;
+        text-decoration: #000000;
+        text-shadow: 5px 10px 10px #00000096;
+    }
+
+    .main-container {
+        background-color: #00000000;
+    }
+
+    .grid-wrapper {
+        background: none;
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+
+    .light-mode .grid-wrapper {
+        background: none;
+    }
+
+    .achievements {
+        box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+    }
+
+    .achievements-card {
+        width: auto;
+        max-width: fit-content;
+    }
+
+    .github-contributions-widget {
+        background-color: rgba(14, 14, 14, 0);
+        border: none;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+        margin-top: 18px;
+        width: 100%;
+        max-width: 1300px;
+        overflow-x: auto;
+        box-sizing: border-box;
     }
 
     .skills-grid.skills-mobile {
@@ -1085,6 +1092,53 @@ footer a:hover {
             0 0 25px #00a2c6;
         color: #d4d4d4;
     }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip-text {
+        visibility: hidden;
+        opacity: 0;
+        background-color: rgba(42, 42, 42, 0.85);
+        color: #d7d7d7;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px 8px;
+        position: absolute;
+        z-index: 999;
+        bottom: 120%;
+        left: 50%;
+        transform: translateX(-50%) translateY(20px);
+        white-space: nowrap;
+        transition: opacity 0.1s ease, transform 0.6s ease;
+        font-size: 0.65rem;
+        font-weight: bold;
+        pointer-events: none;
+    }
+
+    .tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+
+    /* .home-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+
+    .light-mode .home-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed; 
+    } */
 
     .mobile-theme-toggle {
         display: block;

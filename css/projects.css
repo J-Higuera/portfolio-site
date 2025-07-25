@@ -15,13 +15,49 @@
 }
 
 .project-card {
-    background: radial-gradient(circle at top left, rgba(63, 63, 63, 0.594) 0%, #131313c3 30%, #252525b8 50%, #040404c9 75%, #1d1d1dc5 100%);
-    border: 2.5px solid rgba(106, 106, 106, 0.561);
+    background: rgba(20, 20, 20, 0.45);
+    backdrop-filter: blur(12px);
+    border: 3px solid rgba(95, 95, 95, 0.921);
     border-radius: 18px;
     padding: 10px;
+    perspective: 1000px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
     text-align: center;
     box-shadow: 12px 12px 20px rgb(0, 0, 0);
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(145deg,
+            rgba(0, 150, 199, 0.22),
+            rgba(80, 0, 120, 0.22),
+            rgba(0, 255, 170, 0.22));
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    animation: borderShift 7s linear infinite;
+}
+
+@keyframes borderShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .project-card img {
@@ -30,19 +66,43 @@
     object-fit: cover;
     border-radius: 8px 8px 0 0;
     margin-bottom: 10px;
+    transition: transform 0.5s ease;
 }
 
 
 .project-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 15px 15px 25px rgb(0, 0, 0);
+    transform: rotateY(2deg) rotateX(1deg) scale(1.04);
+    box-shadow: 0 0 20px rgba(0, 225, 255, 0.2), 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+.project-card:hover img {
+    transform: scale(1.1);
 }
 
 .project-card h3 {
     margin-bottom: 10px;
     font-size: 18px;
+    position: relative;
     color: var(--primary);
     text-align: center;
+}
+
+.project-card h3::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #00f0ff;
+    left: 0;
+    bottom: -5px;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-in-out;
+}
+
+.project-card:hover h3::after {
+    transform: scaleX(1);
+    transform-origin: left;
 }
 
 .project-card p {
@@ -55,11 +115,11 @@
 
 .project-card a {
     text-decoration: none;
-    color: #bfbfbf;
-    border: 2px solid rgba(68, 68, 68, 0.418);
+    background-color: rgba(0, 150, 199, 0.12);
+    border: 1.5px solid rgba(0, 255, 170, 0.3);
+    color: #bde7f7;
     padding: 5px 10px;
     border-radius: 4px;
-    background-color: rgba(44, 44, 44, 0.715);
     font-family: sans-serif;
     font-weight: none;
     transition: all 0.3s ease-in-out, transform 0.2s;
@@ -72,11 +132,11 @@
 }
 
 .project-card a:hover {
-    background-color: #5aafc2;
-    color: #bfbfbf;
-    border: 2px solid rgba(255, 255, 255, 0.358);
+    background-color: rgba(0, 255, 170, 0.15);
+    border: 1.5px solid rgba(0, 255, 170, 0.5);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 255, 170, 0.25);
     transform: translateY(-3px);
-    box-shadow: 0 2px 6px rgba(0, 208, 255, 0.776);
 }
 
 .project-card a:focus {
