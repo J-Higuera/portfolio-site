@@ -1488,7 +1488,7 @@ footer a:hover {
     }
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
 
     .light-mode .hero h1 {
         color: rgb(30, 30, 30);
