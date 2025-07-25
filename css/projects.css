@@ -15,7 +15,7 @@
 }
 
 .project-card {
-    background: rgba(20, 20, 20, 0.45);
+    background: rgba(20, 20, 20, 0.961);
     backdrop-filter: blur(12px);
     border: 3px solid rgba(95, 95, 95, 0.921);
     border-radius: 18px;
@@ -152,7 +152,7 @@
 }
 
 .light-mode .project-card {
-    background-color: #0d0d0ddf;
+    background-color: #0d0d0df6;
     box-shadow: 0 4px 8px rgba(255, 255, 255, 0.527);
 }
 
@@ -203,9 +203,48 @@
         display: none;
     }
 
+    .project-card {
+        backdrop-filter: none;
+        box-shadow: none;
+        transition: none;
+        transform: none;
+        border: 1.5px solid rgba(120, 120, 120, 0.4);
+        /* simpler border */
+    }
+
+    .project-card::before {
+        content: none;
+        animation: none;
+        filter: none;
+    }
+
     .project-card:hover {
-        transform: scale(1.02);
-        box-shadow: 0 6px 12px rgba(0, 200, 255, 0.2);
+        transform: none;
+        box-shadow: none;
+    }
+
+    .project-card:hover img {
+        transform: none;
+    }
+
+    .project-card h3::after {
+        display: none;
+    }
+
+    .project-card a {
+        transition: none;
+    }
+
+    .project-card a:hover {
+        transform: none;
+        background-color: none;
+        border-color: none;
+        color: none;
+        box-shadow: none;
+    }
+
+    .project-card a:focus {
+        animation: none;
     }
 
     .projects-grid {
