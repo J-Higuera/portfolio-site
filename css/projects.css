@@ -214,10 +214,10 @@
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-attachment: fixed; */
-        padding-right: 17px;
-        padding-left: 17px;
-        padding-top: 47px;
-        padding-bottom: 47px;
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
 
     /*.light-mode .projects-grid {
