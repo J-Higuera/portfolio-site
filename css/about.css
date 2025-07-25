@@ -581,10 +581,9 @@
 
     .about-certificates2 {
         display: block;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-        box-sizing: border-box;
+        min-height: 720px;
+        height: 100%;
+        height: auto;
     }
 
     .about-certificates2 h3 {
@@ -594,20 +593,9 @@
     }
 
     .about-certificates2 ul {
-        padding: 10px;
-        margin: 0;
-        list-style: none;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        white-space: normal;
-    }
-
-    .about-certificates2 li {
-        white-space: normal;
-        overflow: visible;
-        word-break: break-word;
-        display: block;
-        padding: 0.4rem 0;
+        padding-top: 10px;
+        text-align: center;
+        padding-left: 8px;
     }
 
     .profile-photo-desktop {
