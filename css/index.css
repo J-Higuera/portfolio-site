@@ -1097,15 +1097,6 @@ footer a:hover {
         background-color: #00000027;
     }
 
-    .light-mode .hero h1 {
-        color: hsl(0, 0%, 15%);
-    }
-
-    .light-mode .hero h2 {
-        color: hsl(0, 0%, 15%);
-        text-decoration: #000000;
-    }
-
     .main-container {
         background-color: #00000000;
     }
@@ -1499,12 +1490,12 @@ footer a:hover {
 @media (prefers-color-scheme: dark) {
 
     .light-mode .hero h1 {
-        color: hsl(0, 0%, 100%);
+        color: hsl(0, 0%, 0%);
         /* Optional overrides if needed for system light + site light */
     }
 
     .light-mode .hero h2 {
-        color: hsl(0, 0%, 100%);
+        color: hsl(0, 0%, 0%);
         /* Optional overrides if needed for system light + site light */
     }
 }
