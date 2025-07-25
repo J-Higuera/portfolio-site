@@ -580,9 +580,8 @@
     }
 
     .about-certificates2 {
-        height: auto;
         display: block;
-        min-height: fit-content;
+        min-height: 650px;
         height: auto;
     }
 
