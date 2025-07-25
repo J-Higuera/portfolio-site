@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const topBar = document.querySelector(".mobile-top-bar");
     const menu = document.getElementById("mobileMenu");
     const header = document.querySelector(".hero");
-    const achievements = document.querySelector(".achievements");
+    const about = document.getElementById("about");
 
     let lastScroll = window.scrollY;
 
-    const hamburgerIcon = "url('/images/menu-toggle/menu.svg')";
-    const closeIcon = "url('/images/menu-toggle/close.svg')";
+    const hamburgerIcon = "url('images/menu-toggle/menu.svg')";
+    const closeIcon = "url('images/menu-toggle/close.svg')";
 
     toggle.style.backgroundImage = hamburgerIcon;
     toggle.classList.add("visible-toggle");
@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const isOpen = menu.getAttribute("data-active") === "true";
 
         const passedHeader = currentScroll > (header.offsetTop + header.offsetHeight - 280);
-        const beforeAchievements = currentScroll < (achievements.offsetTop + 1430);
+        const beforeAbout = currentScroll < (about.offsetTop + 4000);
 
         if (scrollingDown && passedHeader) {
             toggle.classList.remove("visible-toggle", "visible-delay");
@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        if ((scrollingUp && beforeAchievements) || atTop) {
+        if ((scrollingUp && beforeAbout) || atTop) {
             toggle.classList.remove("hidden-toggle");
             nameLabel?.classList.remove("hidden-toggle");
             mobileThemeContainer?.classList.remove("hidden-toggle");
