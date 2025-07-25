@@ -95,6 +95,58 @@ document.addEventListener("DOMContentLoaded", () => {
     runAchievementsSequence();
 });
 
+// === View degree ===
+
+document.addEventListener("DOMContentLoaded", () => {
+    const images = document.querySelectorAll(".certificate-row img");
+
+    images.forEach(img => {
+        img.addEventListener("click", () => {
+            // Remove any existing zoomed image/backdrop
+            document.querySelectorAll(".certificate-zoom").forEach(el => el.remove());
+            document.querySelectorAll(".zoom-backdrop").forEach(el => el.remove());
+
+            const clone = img.cloneNode();
+            clone.classList.add("certificate-zoom");
+
+            const backdrop = document.createElement("div");
+            backdrop.classList.add("zoom-backdrop");
+
+            document.body.appendChild(backdrop);
+            document.body.appendChild(clone);
+
+            // Trigger fade-in + zoom-in after paint
+            requestAnimationFrame(() => {
+                backdrop.classList.add("fade-in");
+                clone.classList.add("zoom-in");
+            });
+
+            // Close when clicking the backdrop
+            backdrop.addEventListener("click", () => {
+                clone.classList.remove("zoom-in");
+                clone.classList.add("fade-out");
+                backdrop.classList.remove("fade-in");
+                backdrop.classList.add("fade-out");
+
+                setTimeout(() => {
+                    clone.remove();
+                    backdrop.remove();
+                }, 400); // Match transition time
+            });
+        });
+    });
+});
+
+
+
+
+
+// Click anywhere else to remove the scale
+document.body.addEventListener("click", () => {
+    document.querySelectorAll(".certificate-row img").forEach(img => img.classList.remove("scaled"));
+});
+
+
 // === Skills-mobile ===
 document.addEventListener("DOMContentLoaded", () => {
     const skillsSection = document.querySelector(".skills");
