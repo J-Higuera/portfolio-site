@@ -479,6 +479,8 @@ header {
     left: 50%;
     max-width: 90vw;
     max-height: 90vh;
+    width: auto;
+    height: auto;
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
     transition: transform 0.3s ease, opacity 0.3s ease;

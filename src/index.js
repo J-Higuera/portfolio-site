@@ -118,11 +118,14 @@ document.addEventListener("DOMContentLoaded", () => {
             // Append the clone first (invisible, off-center)
             document.body.appendChild(clone);
 
-            // Wait for the next paint to apply the final visible styles
+            // Force reflow to stabilize position before animation
+            clone.getBoundingClientRect(); // <- triggers layout
+
             requestAnimationFrame(() => {
                 backdrop.classList.add("show");
-                clone.classList.add("show"); // triggers transform + opacity transition
+                clone.classList.add("show");
             });
+
 
             // Click outside to close
             backdrop.addEventListener("click", () => {
