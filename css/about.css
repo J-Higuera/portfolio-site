@@ -530,6 +530,7 @@
     .photo-card {
         padding-bottom: 0;
         margin-bottom: 0;
+        height: fit-content;
     }
 
     .photo-card img {
@@ -560,6 +561,7 @@
         align-items: stretch;
         width: auto;
         height: auto;
+        max-height: fit-content;
         background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         border-radius: var(--radius);
         box-shadow: var(--shadow);

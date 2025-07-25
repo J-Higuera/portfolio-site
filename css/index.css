@@ -113,7 +113,7 @@ header {
 
 .type-sequence {
     font-size: 1.5rem;
-    color: #cfcfcf;
+    color: #dddcdc;
     overflow: hidden;
     display: inline-block;
     white-space: nowrap;
@@ -142,7 +142,7 @@ header {
     display: inline-block;
     width: 2px;
     height: 1.2em;
-    background-color: #cfcfcf;
+    background-color: #d3d3d3;
     margin-left: 2px;
     animation: blink 1s steps(2, start) infinite;
     vertical-align: bottom;
@@ -1090,11 +1090,11 @@ footer a:hover {
     }
 
     .light-mode .hero h1 {
-        color: #4d3d0a;
+        color: #bcbcbc;
     }
 
     .light-mode .hero h2 {
-        color: #4d3d0a;
+        color: #adadad;
         text-decoration: #000000;
     }
 
