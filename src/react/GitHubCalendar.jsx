@@ -9,8 +9,11 @@ export default function GitHubContributions() {
                 username="J-Higuera"
                 blockSize={14}
                 blockMargin={5}
-                color="#26ff9c"
                 fontSize={14}
+                theme={{
+                    light: ['#151515ff', '#00ff11ff'],
+                    dark: ['#191919ff', '#00d9ffff']
+                }}
             />
         </div>
     );

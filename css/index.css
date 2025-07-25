@@ -417,13 +417,12 @@ header {
 }
 
 .github-contributions-widget {
-    background-color: rgba(15, 15, 15, 0.6);
+    background-color: rgba(14, 14, 14, 0.6);
     border: 2px solid #ffffff61;
     padding: 20px;
     border-radius: 15px;
     text-align: center;
     margin-top: 18px;
-    box-shadow: 0 0 14px rgba(151, 254, 148, 0.419);
     width: 100%;
     max-width: 1300px;
     overflow-x: auto;
@@ -456,10 +455,12 @@ header {
 
 .react-activity-calendar text {
     color: var(--primary);
+    background-color: rgba(235, 235, 235, 0.82);
     font-size: 19px;
 }
 
 .react-activity-calendar rect {
+    background-color: rgba(29, 29, 29, 0.6);
     rx: 3;
     ry: 3;
 }
