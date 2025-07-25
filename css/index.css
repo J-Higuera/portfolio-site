@@ -14,30 +14,25 @@ html {
 body {
     margin: 0;
     padding: 0;
-    display: flex;
-    /* remove to prevent content shift on really small displays */
     flex-direction: column;
     min-height: 100vh;
     max-width: 100vw;
     overflow-x: hidden;
-    overflow-y: auto;
-}
-
-
-body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/hd1.jpg);
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    z-index: -1;
+    background-attachment: fixed;
+    overflow-y: auto;
 }
 
-.light-mode::before {
+
+.light-mode {
     background: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/bw3.png);
     background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 header {
