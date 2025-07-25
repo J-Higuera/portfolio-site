@@ -581,6 +581,7 @@
         height: auto;
         display: block;
         min-height: fit-content;
+        height: auto;
     }
 
     .about-certificates2 h3 {
