@@ -102,45 +102,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     images.forEach(img => {
         img.addEventListener("click", () => {
-            // Remove existing zooms
             document.querySelectorAll(".certificate-zoom").forEach(el => el.remove());
             document.querySelectorAll(".zoom-backdrop").forEach(el => el.remove());
 
-            // Create zoomed image clone
             const clone = img.cloneNode();
             clone.classList.add("certificate-zoom");
 
-            // Create and insert backdrop
             const backdrop = document.createElement("div");
             backdrop.classList.add("zoom-backdrop");
-            document.body.appendChild(backdrop);
 
-            // Append the clone first (invisible, off-center)
+            document.body.appendChild(backdrop);
             document.body.appendChild(clone);
 
-            // Force reflow to stabilize position before animation
-            clone.getBoundingClientRect(); // <- triggers layout
-
-            requestAnimationFrame(() => {
-                backdrop.classList.add("show");
-                clone.classList.add("show");
-            });
-
-
-            // Click outside to close
+            // Close on backdrop click
             backdrop.addEventListener("click", () => {
-                clone.classList.remove("show");
-                backdrop.classList.remove("show");
+                clone.classList.add("fade-out");
+                backdrop.classList.add("fade-out");
 
                 setTimeout(() => {
                     clone.remove();
                     backdrop.remove();
-                }, 300); // match CSS transition time
+                }, 400); // match CSS transition time
             });
         });
     });
 });
-
 
 // Click anywhere else to remove the scale
 document.body.addEventListener("click", () => {

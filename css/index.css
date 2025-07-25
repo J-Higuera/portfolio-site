@@ -472,57 +472,41 @@ header {
     color: var(--primary);
 }
 
-/* Centered modal zoom */
 .certificate-zoom {
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0.0);
-    opacity: 0;
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    z-index: 1001;
-
-    /* ✅ Reset inherited layout styles */
-    display: block;
-    margin: 0 !important;
-    width: auto !important;
-    height: auto !important;
-    max-width: 90vw;
-    max-height: 90vh;
-    object-fit: contain;
-    box-sizing: border-box;
-}
-
-.certificate-zoom.show {
-    transform: translate(-50%, -50%) scale(0.9);
+    width: 60vw;
+    max-width: 500px;
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
+    z-index: 1001;
+    transition: transform 0.4s ease, opacity 0.4s ease;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
 }
 
 .certificate-zoom.fade-out {
-    transform: translate(-50%, -50%) scale(0.0);
+    transform: translate(-50%, -50%) scale(0.7);
     opacity: 0;
 }
 
 .zoom-backdrop {
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0);
-    z-index: 1000;
-    transition: background 0.4s ease;
-}
-
-.zoom-backdrop.show {
-    background: rgba(0, 0, 0, 0.75);
-}
-
-/* Add this class AFTER insertion to fade in */
-.zoom-backdrop.fade-in {
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(10, 10, 10, 0.7);
     opacity: 1;
+    z-index: 1000;
+    transition: opacity 0.4s ease;
 }
 
 .zoom-backdrop.fade-out {
     opacity: 0;
 }
+
 
 .achievement-stats {
     display: flex;
