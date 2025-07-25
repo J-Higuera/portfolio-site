@@ -426,7 +426,6 @@ header {
     width: 100%;
     max-width: 1300px;
     overflow-x: auto;
-    /* Enable horizontal scroll only if needed */
     box-sizing: border-box;
 }
 
@@ -455,14 +454,16 @@ header {
 
 .react-activity-calendar text {
     color: var(--primary);
-    background-color: rgba(235, 235, 235, 0.82);
     font-size: 19px;
 }
 
 .react-activity-calendar rect {
-    background-color: rgba(29, 29, 29, 0.6);
     rx: 3;
     ry: 3;
+}
+
+.react-activity-calendar__footer {
+    background: transparent;
 }
 
 /* Footer section */
@@ -906,10 +907,20 @@ footer a:hover {
         visibility: visible;
         opacity: 1;
         transform: translateX(-50%) translateY(0);
-        /* slide up slightly */
     }
 
-
+    .github-contributions-widget {
+        background-color: rgba(14, 14, 14, 0);
+        border: none;
+        padding: 0;
+        border-radius: 0;
+        text-align: center;
+        margin-top: 18px;
+        width: 100%;
+        max-width: 1300px;
+        overflow-x: auto;
+        box-sizing: border-box;
+    }
 
     .light-mode .hero h1 {
         color: #4d3d0a;
