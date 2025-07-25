@@ -479,10 +479,15 @@ header {
     left: 50%;
     max-width: 90vw;
     max-height: 90vh;
-    transform: translate(-50%, -50%) scale(0.1);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-    z-index: 1001;
+    transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 1001;
+}
+
+.certificate-zoom.show {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
 }
 
 .certificate-zoom.zoomed {
@@ -500,7 +505,7 @@ header {
     inset: 0;
     background: rgba(0, 0, 0, 0);
     z-index: 1000;
-    transition: background 0.6s ease;
+    transition: background 0.3s ease;
 }
 
 .zoom-backdrop.show {

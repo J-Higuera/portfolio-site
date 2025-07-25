@@ -102,42 +102,42 @@ document.addEventListener("DOMContentLoaded", () => {
 
     images.forEach(img => {
         img.addEventListener("click", () => {
-            // Remove any existing zoomed image
+            // Remove existing zooms
             document.querySelectorAll(".certificate-zoom").forEach(el => el.remove());
             document.querySelectorAll(".zoom-backdrop").forEach(el => el.remove());
 
-            // Clone the clicked image
+            // Create zoomed image clone
             const clone = img.cloneNode();
             clone.classList.add("certificate-zoom");
 
-            // Create and insert a backdrop
+            // Create and insert backdrop
             const backdrop = document.createElement("div");
             backdrop.classList.add("zoom-backdrop");
             document.body.appendChild(backdrop);
 
-            // Append clone first, but wait one animation frame before adding the zoom class
+            // Append the clone first (invisible, off-center)
             document.body.appendChild(clone);
 
-            // Force layout before transitioning
+            // Wait for the next paint to apply the final visible styles
             requestAnimationFrame(() => {
-                backdrop.classList.add("show"); // for background fade-in
-                clone.classList.add("zoomed");  // triggers scale & centering
+                backdrop.classList.add("show");
+                clone.classList.add("show"); // triggers transform + opacity transition
             });
 
-            // Remove on backdrop click
+            // Click outside to close
             backdrop.addEventListener("click", () => {
-                clone.classList.remove("zoomed");
+                clone.classList.remove("show");
                 backdrop.classList.remove("show");
 
-                // Wait for transition to finish before removing
                 setTimeout(() => {
                     clone.remove();
                     backdrop.remove();
-                }, 300); // match your transition duration
+                }, 300); // match CSS transition time
             });
         });
     });
 });
+
 
 // Click anywhere else to remove the scale
 document.body.addEventListener("click", () => {
