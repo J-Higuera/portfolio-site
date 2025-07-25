@@ -547,6 +547,8 @@ header {
 .timeline-item {
     position: relative;
     margin-bottom: 20px;
+    left: 0;
+    text-align: left;
     justify-self: flex-start;
 }
 
