@@ -471,7 +471,8 @@ header {
     width: 100px;
     height: auto;
     margin-bottom: 10px;
-    transition: transform 0.6s ease, z-index 0.6s ease;
+    transition: transform 0.6s ease, z-index 0.s ease;
+    z-index: 1;
     position: relative;
 }
 
@@ -486,11 +487,10 @@ header {
 .zoomed-real {
     position: fixed;
     z-index: 1001;
-    object-fit: contain;
-    pointer-events: none;
-    will-change: transform, width, height;
+    will-change: transform;
     isolation: isolate;
     background: transparent;
+    pointer-events: none;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
 }
 
@@ -508,6 +508,7 @@ header {
 .zoom-backdrop.show {
     opacity: 1;
 }
+
 
 .achievement-stats {
     display: flex;
