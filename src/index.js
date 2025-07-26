@@ -114,19 +114,26 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.appendChild(backdrop);
             document.body.appendChild(clone);
 
-            // Close on backdrop click
+            // Force layout reflow before applying .show (triggers transition)
+            requestAnimationFrame(() => {
+                backdrop.classList.add("show");
+                clone.classList.add("show");
+            });
+
             backdrop.addEventListener("click", () => {
+                clone.classList.remove("show");
                 clone.classList.add("fade-out");
                 backdrop.classList.add("fade-out");
 
                 setTimeout(() => {
                     clone.remove();
                     backdrop.remove();
-                }, 400); // match CSS transition time
+                }, 400);
             });
         });
     });
 });
+
 
 // Click anywhere else to remove the scale
 document.body.addEventListener("click", () => {

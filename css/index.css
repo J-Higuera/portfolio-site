@@ -478,16 +478,25 @@ header {
     left: 50%;
     width: 60vw;
     max-width: 500px;
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.1);
+    /* starts small */
+    opacity: 0;
+    /* starts invisible */
     z-index: 1001;
-    transition: transform 0.4s ease, opacity 0.4s ease;
+    transition: transform 0.8s ease, opacity 0.8s ease;
     border-radius: 8px;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
 }
 
+.certificate-zoom.show {
+    transform: translate(-50%, -50%) scale(1);
+    /* full size */
+    opacity: 1;
+    /* visible */
+}
+
 .certificate-zoom.fade-out {
-    transform: translate(-50%, -50%) scale(0.7);
+    transform: translate(-50%, -50%) scale(0.1);
     opacity: 0;
 }
 
@@ -498,13 +507,20 @@ header {
     width: 100vw;
     height: 100vh;
     background: rgba(10, 10, 10, 0.7);
-    opacity: 1;
+    opacity: 0;
+    /* Start invisible */
     z-index: 1000;
     transition: opacity 0.4s ease;
 }
 
+.zoom-backdrop.show {
+    opacity: 1;
+    /* Fade in */
+}
+
 .zoom-backdrop.fade-out {
     opacity: 0;
+    /* Fade out */
 }
 
 
