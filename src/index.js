@@ -138,7 +138,10 @@ document.addEventListener("DOMContentLoaded", () => {
             img.style.zIndex = "1001";
             img.style.margin = "0";
             img.style.transition =
-                "transform 0.6s ease, top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease";
+                "transform 0.6s ease, top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, opacity 0.4s ease";
+            img.style.willChange = "transform, opacity";
+            img.style.imageRendering = "auto";
+            img.style.backfaceVisibility = "hidden";
 
             requestAnimationFrame(() => {
                 backdrop.classList.add("show");
@@ -159,18 +162,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 img.dataset.originalTop = originalTop;
                 img.dataset.originalLeft = originalLeft;
+                img.dataset.scaleX = translateX;
+                img.dataset.scaleY = translateY;
+                img.dataset.scale = scaleFactor;
 
                 img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
             });
 
             // Zoom-out
             backdrop.addEventListener("click", () => {
-                const targetTop = parseFloat(img.dataset.originalTop);
-                const targetLeft = parseFloat(img.dataset.originalLeft);
+                const placeRect = placeholder.getBoundingClientRect();
 
-                img.style.transform = "translate(0px, 0px) scale(1)";
-                img.style.top = `${targetTop - window.scrollY}px`;
-                img.style.left = `${targetLeft - window.scrollX}px`;
+                const isInView =
+                    placeRect.top >= 0 &&
+                    placeRect.bottom <= window.innerHeight &&
+                    placeRect.left >= 0 &&
+                    placeRect.right <= window.innerWidth;
+
+                if (isInView) {
+                    const targetTop = parseFloat(img.dataset.originalTop);
+                    const targetLeft = parseFloat(img.dataset.originalLeft);
+
+                    img.style.transform = "translate(0px, 0px) scale(1)";
+                    img.style.top = `${targetTop - window.scrollY}px`;
+                    img.style.left = `${targetLeft - window.scrollX}px`;
+                } else {
+                    img.style.opacity = "0";
+                    img.style.transform = "scale(0.8)";
+                }
 
                 backdrop.classList.remove("show");
 
@@ -184,6 +203,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
 
 // === Skills-mobile ===
 document.addEventListener("DOMContentLoaded", () => {
