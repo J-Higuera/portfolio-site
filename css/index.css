@@ -1085,7 +1085,7 @@ footer a:hover {
         background: none;
     }
 
-    body::before {
+    /*body::before {
         content: "";
         position: fixed;
         inset: 0;
@@ -1101,7 +1101,7 @@ footer a:hover {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-    }
+    }*/
 
     .sticky-nav {
         display: none;

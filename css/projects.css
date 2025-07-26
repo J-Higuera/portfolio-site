@@ -139,13 +139,14 @@
     animation: button-pulse 2s infinite;
 }
 
+/*
 .light-mode .projects-grid {
     background: url(../images/body/glitch.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-}
+}*/
 
 .light-mode .project-card {
     background-color: #0d0d0df6;
