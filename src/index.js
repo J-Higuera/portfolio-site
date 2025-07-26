@@ -96,61 +96,35 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // === View degree ===
+
 document.addEventListener("DOMContentLoaded", () => {
-    const images = document.querySelectorAll(".certificate-item img");
+    const images = document.querySelectorAll(".certificate-row img");
 
     images.forEach(img => {
-        img.addEventListener("click", (e) => {
-            e.stopPropagation();
+        img.addEventListener("click", () => {
+            document.querySelectorAll(".certificate-zoom").forEach(el => el.remove());
+            document.querySelectorAll(".zoom-backdrop").forEach(el => el.remove());
 
-            // Remove existing zooms
-            document.querySelectorAll(".zoomed-img").forEach(el => el.remove());
-            document.querySelectorAll(".zoom-overlay").forEach(el => el.remove());
+            const clone = img.cloneNode();
+            clone.classList.add("certificate-zoom");
 
-            // Clone the image
-            const clone = img.cloneNode(true);
-            clone.classList.add("zoomed-img");
+            const backdrop = document.createElement("div");
+            backdrop.classList.add("zoom-backdrop");
 
-            // Backdrop
-            const overlay = document.createElement("div");
-            overlay.classList.add("zoom-overlay");
-
-            document.body.appendChild(overlay);
+            document.body.appendChild(backdrop);
             document.body.appendChild(clone);
 
-            // Force reflow to enable transition
-            void clone.offsetWidth;
-            void overlay.offsetWidth;
-
-            overlay.classList.add("visible");
-            clone.classList.add("visible");
-
             // Close on backdrop click
-            overlay.addEventListener("click", () => {
-                clone.classList.remove("visible");
-                overlay.classList.remove("visible");
+            backdrop.addEventListener("click", () => {
+                clone.classList.add("fade-out");
+                backdrop.classList.add("fade-out");
+
                 setTimeout(() => {
                     clone.remove();
-                    overlay.remove();
-                }, 300);
+                    backdrop.remove();
+                }, 400); // match CSS transition time
             });
         });
-    });
-
-    // Global click (outside case)
-    document.addEventListener("click", (e) => {
-        if (!e.target.closest(".certificate-item img")) {
-            const overlay = document.querySelector(".zoom-overlay");
-            const clone = document.querySelector(".zoomed-img");
-            if (overlay && clone) {
-                clone.classList.remove("visible");
-                overlay.classList.remove("visible");
-                setTimeout(() => {
-                    clone.remove();
-                    overlay.remove();
-                }, 300);
-            }
-        }
     });
 });
 
