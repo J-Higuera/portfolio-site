@@ -179,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const fadeCenterLeft = window.innerWidth / 2 - img.offsetWidth / 2;
 
                 img.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-                img.style.transform = `translate(0, 0) scale(0.5)`;
+                img.style.transform = `translate(0, 0) scale(0.3)`;
                 img.style.top = `${fadeCenterTop}px`;
                 img.style.left = `${fadeCenterLeft}px`;
                 img.style.opacity = "0";
@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     placeholder.replaceWith(img);
                     img.style.opacity = "0";
                     requestAnimationFrame(() => {
-                        img.style.transition = "opacity 0.4s ease";
+                        img.style.transition = "opacity 1.9s ease";
                         img.style.opacity = "1";
                     });
                     backdrop.remove();
