@@ -107,9 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const scrollY = window.scrollY;
             const scrollX = window.scrollX;
 
-            const originalTop = rect.top + scrollY;
-            const originalLeft = rect.left + scrollX;
-
             // Backdrop
             const backdrop = document.createElement("div");
             backdrop.classList.add("zoom-backdrop");
@@ -128,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Move real image to body
             document.body.appendChild(img);
 
-            // Initial style for fixed positioning
+            // Initial style
             img.classList.add("zoomed-real");
             img.style.position = "fixed";
             img.style.top = `${rect.top}px`;
@@ -137,12 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img.style.height = `${rect.height}px`;
             img.style.zIndex = "1001";
             img.style.margin = "0";
-            img.style.opacity = "1";
-            img.style.transition =
-                "transform 0.6s ease, top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, opacity 0.8s ease";
-            img.style.willChange = "transform, opacity";
-            img.style.imageRendering = "auto";
-            img.style.backfaceVisibility = "hidden";
+            img.style.transition = "transform 0.6s ease, opacity 0.3s ease";
 
             requestAnimationFrame(() => {
                 backdrop.classList.add("show");
@@ -150,53 +142,60 @@ document.addEventListener("DOMContentLoaded", () => {
                 const viewportCenterX = window.innerWidth / 2;
                 const viewportCenterY = window.innerHeight / 2;
 
-                const imgCenterX = rect.left + scrollX + rect.width / 2;
-                const imgCenterY = rect.top + scrollY + rect.height / 2;
+                const imgCenterX = rect.left + rect.width / 2;
+                const imgCenterY = rect.top + rect.height / 2;
 
-                const translateX = viewportCenterX - imgCenterX + scrollX;
-                const translateY = viewportCenterY - imgCenterY + scrollY;
+                const translateX = viewportCenterX - imgCenterX;
+                const translateY = viewportCenterY - imgCenterY;
 
                 const scaleFactor = Math.min(
-                    window.innerWidth * 0.8 / rect.width,
-                    window.innerHeight * 0.8 / rect.height
+                    window.innerWidth * 0.9 / rect.width,
+                    window.innerHeight * 0.9 / rect.height
                 );
 
-                img.dataset.originalTop = originalTop;
-                img.dataset.originalLeft = originalLeft;
-                img.dataset.scaleX = translateX;
-                img.dataset.scaleY = translateY;
-                img.dataset.scale = scaleFactor;
+                img.dataset.targetWidth = rect.width * scaleFactor;
+                img.dataset.targetHeight = rect.height * scaleFactor;
 
                 img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
             });
 
-            // Zoom-out
-            backdrop.addEventListener("click", () => {
-                // Always fade out and scale down to center
-                img.style.opacity = "0";
-                img.style.transform = "scale(1.0)";
-                backdrop.classList.remove("show");
+            // After transition ends, apply crisp width/height
+            img.addEventListener("transitionend", function finalize() {
+                img.removeEventListener("transitionend", finalize);
 
+                const targetWidth = parseFloat(img.dataset.targetWidth);
+                const targetHeight = parseFloat(img.dataset.targetHeight);
+                const viewportCenterX = window.innerWidth / 2;
+                const viewportCenterY = window.innerHeight / 2;
+
+                const newTop = viewportCenterY - targetHeight / 2;
+                const newLeft = viewportCenterX - targetWidth / 2;
+
+                img.style.transition = "none";
+                img.style.transform = "none";
+                img.style.top = `${newTop}px`;
+                img.style.left = `${newLeft}px`;
+                img.style.width = `${targetWidth}px`;
+                img.style.height = `${targetHeight}px`;
+            });
+
+            backdrop.addEventListener("click", () => {
                 const placeRect = placeholder.getBoundingClientRect();
-                const isInView =
-                    placeRect.top >= 0 &&
-                    placeRect.bottom <= window.innerHeight &&
-                    placeRect.left >= 0 &&
-                    placeRect.right <= window.innerWidth;
+
+                img.style.transition = "top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, opacity 0.6s ease";
+                img.style.top = `${placeRect.top}px`;
+                img.style.left = `${placeRect.left}px`;
+                img.style.width = `${placeRect.width}px`;
+                img.style.height = `${placeRect.height}px`;
+                img.style.opacity = "0";
+
+                backdrop.classList.remove("show");
 
                 setTimeout(() => {
                     img.removeAttribute("style");
                     img.classList.remove("zoomed-real");
                     placeholder.replaceWith(img);
                     backdrop.remove();
-
-                    if (isInView) {
-                        img.style.opacity = "0";
-                        img.style.transition = "opacity 1.5s ease";
-                        requestAnimationFrame(() => {
-                            img.style.opacity = "1";
-                        });
-                    }
                 }, 600);
             });
         });

@@ -486,10 +486,11 @@ header {
 .zoomed-real {
     position: fixed;
     z-index: 1001;
-    will-change: transform, top, left;
+    object-fit: contain;
+    pointer-events: none;
+    will-change: transform, width, height;
     isolation: isolate;
     background: transparent;
-    pointer-events: none;
     box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
 }
 
