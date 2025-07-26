@@ -454,7 +454,9 @@ header {
     padding: 10px 20px;
 }
 
-.certificate-item {
+.certificate1,
+.certificate2,
+.certificate3 {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -463,67 +465,48 @@ header {
     text-align: center;
 }
 
-.certificate-item img {
+.certificate1 img,
+.certificate2 img,
+.certificate3 img {
     width: 100px;
-    /* or adjust to fit */
     height: auto;
     margin-bottom: 10px;
-    transition: transform 0.6s ease;
+    transition: transform 0.6s ease, z-index 0.6s ease;
+    position: relative;
 }
 
-.certificate-item p {
+.certificate1 p,
+.certificate2 p,
+.certificate3 p {
     font-size: 1.1rem;
     color: var(--primary);
+    position: relative;
 }
 
-.certificate-zoom {
+.zoomed-real {
     position: fixed;
-    inset: 0;
-    margin: auto;
-    width: 60vw;
-    max-width: 500px;
-    max-height: 90vh;
-    transform: scale(0.1);
-    opacity: 0;
     z-index: 1001;
-    transition: transform 0.6s ease, opacity 0.6s ease;
-    border-radius: 8px;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
-}
-
-.certificate-zoom.show {
-    transform: scale(1.2);
-    opacity: 1;
-}
-
-.certificate-zoom.fade-out {
-    transform: scale(0.1);
-    opacity: 0;
+    will-change: transform;
+    isolation: isolate;
+    background: transparent;
+    pointer-events: none;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
 }
 
 .zoom-backdrop {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0;
     background: rgba(10, 10, 10, 0.7);
     opacity: 0;
-    /* Start invisible */
     z-index: 1000;
-    transition: opacity 0.6s ease;
+    transition: opacity 0.6s ease-in-out;
+    pointer-events: auto;
+    will-change: opacity;
 }
 
 .zoom-backdrop.show {
     opacity: 1;
-    /* Fade in */
 }
-
-.zoom-backdrop.fade-out {
-    opacity: 0;
-    /* Fade out */
-}
-
 
 .achievement-stats {
     display: flex;

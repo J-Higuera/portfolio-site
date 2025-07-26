@@ -96,50 +96,91 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // === View degree ===
-
 document.addEventListener("DOMContentLoaded", () => {
     const images = document.querySelectorAll(".certificate-row img");
 
-    images.forEach(img => {
+    images.forEach((img) => {
         img.addEventListener("click", () => {
-            document.querySelectorAll(".certificate-zoom").forEach(el => el.remove());
-            document.querySelectorAll(".zoom-backdrop").forEach(el => el.remove());
+            if (document.querySelector(".zoom-backdrop")) return;
 
-            const clone = img.cloneNode();
-            clone.classList.add("certificate-zoom");
+            const rect = img.getBoundingClientRect();
+            const scrollY = window.scrollY;
+            const scrollX = window.scrollX;
 
+            // Backdrop
             const backdrop = document.createElement("div");
             backdrop.classList.add("zoom-backdrop");
-
             document.body.appendChild(backdrop);
-            document.body.appendChild(clone);
 
-            // Force layout reflow before applying .show (triggers transition)
+            // Placeholder
+            const placeholder = document.createElement("div");
+            const imgStyle = getComputedStyle(img);
+            placeholder.style.width = `${rect.width}px`;
+            placeholder.style.height = `${rect.height}px`;
+            placeholder.style.display = imgStyle.display;
+            placeholder.style.verticalAlign = imgStyle.verticalAlign;
+            placeholder.style.marginBottom = imgStyle.marginBottom;
+            img.parentNode.insertBefore(placeholder, img);
+
+            // Move real image to body
+            document.body.appendChild(img);
+
+            // Initial style for fixed positioning
+            img.classList.add("zoomed-real");
+            img.style.position = "fixed";
+            img.style.top = `${rect.top}px`;
+            img.style.left = `${rect.left}px`;
+            img.style.width = `${rect.width}px`;
+            img.style.height = `${rect.height}px`;
+            img.style.zIndex = "1001";
+            img.style.margin = "0";
+            img.style.transition =
+                "transform 0.6s ease, top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease";
+
             requestAnimationFrame(() => {
                 backdrop.classList.add("show");
-                clone.classList.add("show");
+
+                const viewportCenterX = window.innerWidth / 2;
+                const viewportCenterY = window.innerHeight / 2;
+
+                const imgCenterX = rect.left + scrollX + rect.width / 2;
+                const imgCenterY = rect.top + rect.height / 2;
+
+                const translateX = viewportCenterX - imgCenterX;
+                const translateY = viewportCenterY - imgCenterY;
+
+                const scaleFactor = Math.min(
+                    window.innerWidth * 0.8 / rect.width,
+                    window.innerHeight * 0.8 / rect.height
+                );
+
+                img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
             });
 
+            // Handle zoom-out
             backdrop.addEventListener("click", () => {
-                clone.classList.remove("show");
-                clone.classList.add("fade-out");
-                backdrop.classList.add("fade-out");
+                const placeRect = placeholder.getBoundingClientRect();
+
+                // Correctly return to original position (fixed coordinates)
+                const targetTop = placeRect.top;
+                const targetLeft = placeRect.left;
+
+                img.style.transform = "translate(0px, 0px) scale(1)";
+                img.style.top = `${targetTop}px`;
+                img.style.left = `${targetLeft}px`;
+
+                backdrop.classList.remove("show");
 
                 setTimeout(() => {
-                    clone.remove();
+                    img.removeAttribute("style");
+                    img.classList.remove("zoomed-real");
+                    placeholder.replaceWith(img);
                     backdrop.remove();
-                }, 400);
+                }, 600);
             });
         });
     });
 });
-
-
-// Click anywhere else to remove the scale
-document.body.addEventListener("click", () => {
-    document.querySelectorAll(".certificate-row img").forEach(img => img.classList.remove("scaled"));
-});
-
 
 // === Skills-mobile ===
 document.addEventListener("DOMContentLoaded", () => {
