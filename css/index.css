@@ -486,7 +486,7 @@ header {
 .zoomed-real {
     position: fixed;
     z-index: 1001;
-    will-change: transform;
+    will-change: transform, top, left;
     isolation: isolate;
     background: transparent;
     pointer-events: none;

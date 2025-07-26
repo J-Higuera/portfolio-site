@@ -107,6 +107,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const scrollY = window.scrollY;
             const scrollX = window.scrollX;
 
+            const originalTop = rect.top + scrollY;
+            const originalLeft = rect.left + scrollX;
+
             // Backdrop
             const backdrop = document.createElement("div");
             backdrop.classList.add("zoom-backdrop");
@@ -144,30 +147,30 @@ document.addEventListener("DOMContentLoaded", () => {
                 const viewportCenterY = window.innerHeight / 2;
 
                 const imgCenterX = rect.left + scrollX + rect.width / 2;
-                const imgCenterY = rect.top + rect.height / 2;
+                const imgCenterY = rect.top + scrollY + rect.height / 2;
 
-                const translateX = viewportCenterX - imgCenterX;
-                const translateY = viewportCenterY - imgCenterY;
+                const translateX = viewportCenterX - imgCenterX + scrollX;
+                const translateY = viewportCenterY - imgCenterY + scrollY;
 
                 const scaleFactor = Math.min(
                     window.innerWidth * 0.8 / rect.width,
                     window.innerHeight * 0.8 / rect.height
                 );
 
+                img.dataset.originalTop = originalTop;
+                img.dataset.originalLeft = originalLeft;
+
                 img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
             });
 
-            // Handle zoom-out
+            // Zoom-out
             backdrop.addEventListener("click", () => {
-                const placeRect = placeholder.getBoundingClientRect();
-
-                // Correctly return to original position (fixed coordinates)
-                const targetTop = placeRect.top;
-                const targetLeft = placeRect.left;
+                const targetTop = parseFloat(img.dataset.originalTop);
+                const targetLeft = parseFloat(img.dataset.originalLeft);
 
                 img.style.transform = "translate(0px, 0px) scale(1)";
-                img.style.top = `${targetTop}px`;
-                img.style.left = `${targetLeft}px`;
+                img.style.top = `${targetTop - window.scrollY}px`;
+                img.style.left = `${targetLeft - window.scrollX}px`;
 
                 backdrop.classList.remove("show");
 
