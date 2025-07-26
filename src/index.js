@@ -155,11 +155,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 img.dataset.targetWidth = rect.width * scaleFactor;
                 img.dataset.targetHeight = rect.height * scaleFactor;
+                img.dataset.originalTop = rect.top;
+                img.dataset.originalLeft = rect.left;
 
                 img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
             });
 
-            // After transition ends, apply crisp width/height
             img.addEventListener("transitionend", function finalize() {
                 img.removeEventListener("transitionend", finalize);
 
@@ -182,13 +183,29 @@ document.addEventListener("DOMContentLoaded", () => {
             backdrop.addEventListener("click", () => {
                 const placeRect = placeholder.getBoundingClientRect();
 
-                img.style.transition = "top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, opacity 0.6s ease";
-                img.style.top = `${placeRect.top}px`;
-                img.style.left = `${placeRect.left}px`;
-                img.style.width = `${placeRect.width}px`;
-                img.style.height = `${placeRect.height}px`;
-                img.style.opacity = "0";
+                const inViewport =
+                    placeRect.top >= 0 &&
+                    placeRect.left >= 0 &&
+                    placeRect.bottom <= window.innerHeight &&
+                    placeRect.right <= window.innerWidth;
 
+                img.style.transition = "top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, opacity 0.6s ease";
+
+                if (inViewport) {
+                    img.style.top = `${placeRect.top}px`;
+                    img.style.left = `${placeRect.left}px`;
+                    img.style.width = `${placeRect.width}px`;
+                    img.style.height = `${placeRect.height}px`;
+                } else {
+                    const fadeCenterTop = window.innerHeight / 2 - img.offsetHeight / 2;
+                    const fadeCenterLeft = window.innerWidth / 2 - img.offsetWidth / 2;
+                    img.style.top = `${fadeCenterTop}px`;
+                    img.style.left = `${fadeCenterLeft}px`;
+                    img.style.width = `${img.offsetWidth}px`;
+                    img.style.height = `${img.offsetHeight}px`;
+                }
+
+                img.style.opacity = "0";
                 backdrop.classList.remove("show");
 
                 setTimeout(() => {
