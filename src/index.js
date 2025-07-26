@@ -98,34 +98,28 @@ document.addEventListener("DOMContentLoaded", () => {
 // === View degree ===
 document.addEventListener("DOMContentLoaded", () => {
     const images = document.querySelectorAll(".certificate-row img");
+    let isAnimating = false;
 
     images.forEach((img) => {
         img.addEventListener("click", () => {
-            if (document.querySelector(".zoom-backdrop")) return;
+            if (document.querySelector(".zoom-backdrop") || isAnimating) return;
+            isAnimating = true;
 
             const rect = img.getBoundingClientRect();
-            const scrollY = window.scrollY;
-            const scrollX = window.scrollX;
+            const computed = getComputedStyle(img);
 
-            // Backdrop
             const backdrop = document.createElement("div");
             backdrop.classList.add("zoom-backdrop");
             document.body.appendChild(backdrop);
 
-            // Placeholder
             const placeholder = document.createElement("div");
-            const imgStyle = getComputedStyle(img);
-            placeholder.style.width = `${rect.width}px`;
-            placeholder.style.height = `${rect.height}px`;
-            placeholder.style.display = imgStyle.display;
-            placeholder.style.verticalAlign = imgStyle.verticalAlign;
-            placeholder.style.marginBottom = imgStyle.marginBottom;
-            img.parentNode.insertBefore(placeholder, img);
+            ["width", "height", "display", "verticalAlign", "marginTop", "marginRight", "marginBottom", "marginLeft"].forEach(prop => {
+                placeholder.style[prop] = computed[prop];
+            });
 
-            // Move real image to body
+            img.parentNode.insertBefore(placeholder, img);
             document.body.appendChild(img);
 
-            // Initial style
             img.classList.add("zoomed-real");
             img.style.position = "fixed";
             img.style.top = `${rect.top}px`;
@@ -134,6 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             img.style.height = `${rect.height}px`;
             img.style.zIndex = "1001";
             img.style.margin = "0";
+            img.style.opacity = "1";
             img.style.transition = "transform 0.6s ease, opacity 0.3s ease";
 
             requestAnimationFrame(() => {
@@ -141,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const viewportCenterX = window.innerWidth / 2;
                 const viewportCenterY = window.innerHeight / 2;
-
                 const imgCenterX = rect.left + rect.width / 2;
                 const imgCenterY = rect.top + rect.height / 2;
 
@@ -155,8 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 img.dataset.targetWidth = rect.width * scaleFactor;
                 img.dataset.targetHeight = rect.height * scaleFactor;
-                img.dataset.originalTop = rect.top;
-                img.dataset.originalLeft = rect.left;
 
                 img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
             });
@@ -166,11 +158,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const targetWidth = parseFloat(img.dataset.targetWidth);
                 const targetHeight = parseFloat(img.dataset.targetHeight);
-                const viewportCenterX = window.innerWidth / 2;
-                const viewportCenterY = window.innerHeight / 2;
-
-                const newTop = viewportCenterY - targetHeight / 2;
-                const newLeft = viewportCenterX - targetWidth / 2;
+                const newTop = window.innerHeight / 2 - targetHeight / 2;
+                const newLeft = window.innerWidth / 2 - targetWidth / 2;
 
                 img.style.transition = "none";
                 img.style.transform = "none";
@@ -178,41 +167,36 @@ document.addEventListener("DOMContentLoaded", () => {
                 img.style.left = `${newLeft}px`;
                 img.style.width = `${targetWidth}px`;
                 img.style.height = `${targetHeight}px`;
+
+                setTimeout(() => (isAnimating = false), 50);
             });
 
             backdrop.addEventListener("click", () => {
-                const placeRect = placeholder.getBoundingClientRect();
+                if (isAnimating) return;
+                isAnimating = true;
 
-                const inViewport =
-                    placeRect.top >= 0 &&
-                    placeRect.left >= 0 &&
-                    placeRect.bottom <= window.innerHeight &&
-                    placeRect.right <= window.innerWidth;
+                const fadeCenterTop = window.innerHeight / 2 - img.offsetHeight / 2;
+                const fadeCenterLeft = window.innerWidth / 2 - img.offsetWidth / 2;
 
-                img.style.transition = "top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, opacity 0.6s ease";
-
-                if (inViewport) {
-                    img.style.top = `${placeRect.top}px`;
-                    img.style.left = `${placeRect.left}px`;
-                    img.style.width = `${placeRect.width}px`;
-                    img.style.height = `${placeRect.height}px`;
-                } else {
-                    const fadeCenterTop = window.innerHeight / 2 - img.offsetHeight / 2;
-                    const fadeCenterLeft = window.innerWidth / 2 - img.offsetWidth / 2;
-                    img.style.top = `${fadeCenterTop}px`;
-                    img.style.left = `${fadeCenterLeft}px`;
-                    img.style.width = `${img.offsetWidth}px`;
-                    img.style.height = `${img.offsetHeight}px`;
-                }
-
+                img.style.transition = "transform 0.6s ease, opacity 0.6s ease";
+                img.style.transform = `translate(0, 0) scale(0.5)`;
+                img.style.top = `${fadeCenterTop}px`;
+                img.style.left = `${fadeCenterLeft}px`;
                 img.style.opacity = "0";
+
                 backdrop.classList.remove("show");
 
                 setTimeout(() => {
                     img.removeAttribute("style");
                     img.classList.remove("zoomed-real");
                     placeholder.replaceWith(img);
+                    img.style.opacity = "0";
+                    requestAnimationFrame(() => {
+                        img.style.transition = "opacity 0.4s ease";
+                        img.style.opacity = "1";
+                    });
                     backdrop.remove();
+                    setTimeout(() => (isAnimating = false), 400);
                 }, 600);
             });
         });
