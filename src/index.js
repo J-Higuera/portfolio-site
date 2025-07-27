@@ -2,49 +2,39 @@
 //======================== Hero Text Animation ==================================
 // === Hero Text Typewriter Animation ===
 document.addEventListener("DOMContentLoaded", () => {
-    // List of phrases to cycle through
     const phrases = ["apps.", "games.", "websites.", "tools.", "systems."];
-
-    // The span in your HTML where the word will appear (e.g., <span id="hero-text">apps</span>)
     const textElement = document.getElementById("hero-text");
 
-    // Keep track of which phrase and which letter we're on
     let currentPhrase = 0;
     let currentLetter = 0;
     let isDeleting = false;
 
-    // === Typing function ===
     function type() {
-        const word = phrases[currentPhrase]; // Get the current word to display
+        const word = phrases[currentPhrase];
 
+        // Update only the hero-text span
         if (!isDeleting) {
-            // Typing forward: increase substring length
             textElement.textContent = word.substring(0, currentLetter + 1);
             currentLetter++;
 
             if (currentLetter === word.length) {
-                // Word is fully typed — wait before deleting
                 isDeleting = true;
-                setTimeout(type, 1500); // Wait 1.5s before deleting
+                setTimeout(type, 1500);
                 return;
             }
         } else {
-            // Deleting: shorten the text by 1 letter
             textElement.textContent = word.substring(0, currentLetter - 1);
             currentLetter--;
 
             if (currentLetter === 0) {
-                // Finished deleting — move to the next phrase
                 isDeleting = false;
-                currentPhrase = (currentPhrase + 1) % phrases.length; // Loop back to start
+                currentPhrase = (currentPhrase + 1) % phrases.length;
             }
         }
 
-        // Control typing/deleting speed
         setTimeout(type, isDeleting ? 80 : 120);
     }
 
-    // Start the typing animation when the page is ready
     type();
 });
 
@@ -211,9 +201,10 @@ document.addEventListener("DOMContentLoaded", () => {
             img.style.top = "50%";
             img.style.left = "50%";
             img.style.transform = "translate(-50%, -50%)";
-            img.style.width = "90vw"; // Responsive full-screen size
-            img.style.height = "auto";
+            img.style.maxWidth = "90vw";
             img.style.maxHeight = "90vh";
+            img.style.width = "auto";
+            img.style.height = "auto";
             img.style.zIndex = "1001"; // On top of all other content
             img.style.transition = "opacity 0.8s ease";
             img.style.opacity = "0"; // Start invisible

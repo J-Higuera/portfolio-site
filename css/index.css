@@ -116,12 +116,9 @@ header {
 
 .type-sequence {
     font-size: 1.5rem;
-    color: #dddcdc;
     overflow: hidden;
     white-space: nowrap;
     font-family: inherit;
-    white-space: normal;
-    word-wrap: break-word;
     text-align: center;
     overflow-wrap: break-word;
     max-width: 90vw;
@@ -145,7 +142,7 @@ header {
     margin-left: 2px;
     font-weight: bold;
     animation: blink 1s steps(1) infinite;
-    color: #cfcfcf;
+    color: #c5c5c5;
 }
 
 @keyframes blink {
@@ -159,7 +156,6 @@ header {
         opacity: 0;
     }
 }
-
 
 .content {
     height: auto;
@@ -493,6 +489,14 @@ footer a:hover {
 
 .light-mode .hero h2 {
     color: #00091bd8;
+}
+
+.light-mode .cursor {
+    display: inline-block;
+    margin-left: 2px;
+    font-weight: bold;
+    animation: blink 1s steps(1) infinite;
+    color: #0e0e0e;
 }
 
 .light-mode .main-container {
