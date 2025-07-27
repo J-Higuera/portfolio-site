@@ -478,29 +478,22 @@ header {
     position: relative;
 }
 
-.zoomed-real {
-    position: fixed;
-    z-index: 1001;
-    will-change: transform;
-    isolation: isolate;
-    background: transparent;
-    pointer-events: none;
-    box-shadow: 0 0 12px rgba(0, 0, 0, 0.6);
-}
-
 .zoom-backdrop {
     position: fixed;
     inset: 0;
     background: rgba(10, 10, 10, 0.7);
     opacity: 0;
     z-index: 1000;
-    transition: opacity 0.6s ease-in-out;
-    pointer-events: auto;
-    will-change: opacity;
+    transition: opacity 0.8s ease;
 }
 
 .zoom-backdrop.show {
     opacity: 1;
+}
+
+.zoomed-real {
+    pointer-events: none;
+    will-change: opacity;
 }
 
 .achievement-stats {

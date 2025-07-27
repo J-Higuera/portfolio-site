@@ -122,70 +122,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
             img.classList.add("zoomed-real");
             img.style.position = "fixed";
-            img.style.top = `${rect.top}px`;
-            img.style.left = `${rect.left}px`;
-            img.style.width = `${rect.width}px`;
-            img.style.height = `${rect.height}px`;
+            img.style.top = "50%";
+            img.style.left = "50%";
+            img.style.transform = "translate(-50%, -50%)";
+            img.style.width = "90vw";
+            img.style.height = "auto";
+            img.style.maxHeight = "90vh";
             img.style.zIndex = "1001";
-            img.style.margin = "0";
-            img.style.opacity = "1";
-            img.style.transition = "transform 0.6s ease, opacity 0.3s ease";
+            img.style.transition = "opacity 0.8s ease";
+            img.style.opacity = "0";
 
             requestAnimationFrame(() => {
                 backdrop.classList.add("show");
-
-                const viewportCenterX = window.innerWidth / 2;
-                const viewportCenterY = window.innerHeight / 2;
-                const imgCenterX = rect.left + rect.width / 2;
-                const imgCenterY = rect.top + rect.height / 2;
-
-                const translateX = viewportCenterX - imgCenterX;
-                const translateY = viewportCenterY - imgCenterY;
-
-                const scaleFactor = Math.min(
-                    window.innerWidth * 0.9 / rect.width,
-                    window.innerHeight * 0.9 / rect.height
-                );
-
-                img.dataset.targetWidth = rect.width * scaleFactor;
-                img.dataset.targetHeight = rect.height * scaleFactor;
-
-                img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
-            });
-
-            img.addEventListener("transitionend", function finalize(e) {
-                if (e.propertyName !== "transform") return;
-                img.removeEventListener("transitionend", finalize);
-
-                const targetWidth = parseFloat(img.dataset.targetWidth);
-                const targetHeight = parseFloat(img.dataset.targetHeight);
-                const newTop = window.innerHeight / 2 - targetHeight / 2;
-                const newLeft = window.innerWidth / 2 - targetWidth / 2;
-
-                img.style.transition = "none";
-                img.style.transform = "none";
-                img.style.top = `${newTop}px`;
-                img.style.left = `${newLeft}px`;
-                img.style.width = `${targetWidth}px`;
-                img.style.height = `${targetHeight}px`;
-
-                setTimeout(() => (isAnimating = false), 50);
+                img.style.opacity = "1";
+                setTimeout(() => isAnimating = false, 800);
             });
 
             backdrop.addEventListener("click", () => {
                 if (isAnimating) return;
                 isAnimating = true;
 
-                const fadeCenterTop = window.innerHeight / 2 - img.offsetHeight / 2;
-                const fadeCenterLeft = window.innerWidth / 2 - img.offsetHeight / 2;
-
-                img.style.transition = "top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, opacity 0.6s ease";
-                img.style.top = `${fadeCenterTop}px`;
-                img.style.left = `${fadeCenterLeft}px`;
-                img.style.width = `${img.offsetWidth * 0.5}px`;
-                img.style.height = `${img.offsetHeight * 0.5}px`;
+                img.style.transition = "opacity 0.6s ease";
                 img.style.opacity = "0";
-
                 backdrop.classList.remove("show");
 
                 setTimeout(() => {
@@ -193,18 +151,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     img.classList.remove("zoomed-real");
                     placeholder.replaceWith(img);
                     img.style.opacity = "0";
+
                     requestAnimationFrame(() => {
-                        img.style.transition = "opacity 0.4s ease";
+                        img.style.transition = "opacity 0.6s ease";
                         img.style.opacity = "1";
                     });
+
                     backdrop.remove();
-                    setTimeout(() => (isAnimating = false), 400);
+                    setTimeout(() => isAnimating = false, 600);
                 }, 600);
             });
         });
     });
 });
-
 
 // === Skills-mobile ===
 document.addEventListener("DOMContentLoaded", () => {
