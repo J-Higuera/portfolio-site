@@ -42,13 +42,6 @@
     overflow: hidden;
 }
 
-.about-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--accent);
-    z-index: 2;
-}
-
 .about-card h3 {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -88,6 +81,13 @@
     background: linear-gradient(135deg, var(--accent), var(--primary));
     box-shadow: 0 0 8px rgba(176, 176, 176, 0.4);
     vertical-align: middle;
+}
+
+.about-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--accent);
+    z-index: 2;
 }
 
 
@@ -185,27 +185,13 @@
 }
 
 @media (min-width: 1370px) and (max-width: 1520px) {
+
     .about-section {
         grid-template-columns: repeat(1, 1fr);
         padding-right: 130px;
         padding-left: 130px;
         padding-top: 47px;
         padding-bottom: 47px;
-    }
-
-    .about-bio {
-        max-height: 100%;
-        max-width: fit-content;
-        width: auto;
-        height: auto;
-        background: var(--card-gradient);
-    }
-
-    .about-details {
-        max-height: 100%;
-        max-width: fit-content;
-        width: auto;
-        height: auto;
     }
 
     .profile-photo-desktop {
@@ -232,6 +218,21 @@
         padding: 1.5rem 1.2rem;
         margin: 0.5rem 0;
     }
+
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+        background: var(--card-gradient);
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+    }
 }
 
 @media (min-width: 1220px) and (max-width: 1370px) {
@@ -241,27 +242,6 @@
         padding-left: 130px;
         padding-top: 47px;
         padding-bottom: 47px;
-    }
-
-    .about-bio {
-        max-height: 100%;
-        max-width: fit-content;
-        width: auto;
-        height: auto;
-    }
-
-    .about-certificates1 {
-        max-height: 100%;
-        max-width: 100%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-details {
-        max-height: 100%;
-        max-width: fit-content;
-        width: auto;
-        height: auto;
     }
 
     .profile-photo-desktop {
@@ -288,38 +268,30 @@
         padding: 1.5rem 1.2rem;
         margin: 0.5rem 0;
     }
-}
-
-@media (min-width: 1020px) and (max-width: 1220px) {
 
     .about-bio {
         max-height: 100%;
         max-width: fit-content;
-        width: 100%;
+        width: auto;
         height: auto;
     }
 
     .about-certificates1 {
         max-height: 100%;
         max-width: 100%;
-        width: fit-content;
-        height: auto;
-    }
-
-    .about-hobbies {
-        max-height: 100%;
-        max-width: 100%;
-        flex: 1 1 100%;
         width: auto;
         height: auto;
     }
 
     .about-details {
         max-height: 100%;
-        max-width: 100%;
-        width: fit-content;
+        max-width: fit-content;
+        width: auto;
         height: auto;
     }
+}
+
+@media (min-width: 1020px) and (max-width: 1220px) {
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -353,10 +325,6 @@
         padding: 1.5rem 1.2rem;
         margin: 0.5rem 0;
     }
-}
-
-
-@media (min-width: 930px) and (max-width: 1020px) {
 
     .about-bio {
         max-height: 100%;
@@ -368,7 +336,7 @@
     .about-certificates1 {
         max-height: 100%;
         max-width: 100%;
-        width: auto;
+        width: fit-content;
         height: auto;
     }
 
@@ -383,9 +351,12 @@
     .about-details {
         max-height: 100%;
         max-width: 100%;
-        width: auto;
+        width: fit-content;
         height: auto;
     }
+}
+
+@media (min-width: 930px) and (max-width: 1020px) {
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -419,9 +390,46 @@
         padding: 1.5rem 1.2rem;
         margin: 0.5rem 0;
     }
+
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
 }
 
 @media (min-width: 700px) and (max-width: 930px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
 
     .profile-photo-desktop {
         display: flex;
@@ -477,14 +485,6 @@
         width: auto;
         height: auto;
     }
-
-    .about-section {
-        grid-template-columns: repeat(1, 1fr);
-        padding-right: 22px;
-        padding-left: 22px;
-        padding-top: 47px;
-        padding-bottom: 47px;
-    }
 }
 
 @media (min-width: 100px) and (max-width: 700px) {
@@ -511,6 +511,49 @@
     }
 */
 
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .about-card:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: #ffffff61;
+        z-index: 2;
+    }
+
+    .about-card li:hover {
+        color: var(--text-bright);
+    }
+
+    .about-card li {
+        margin-bottom: 0.7em;
+        color: var(--text-bright);
+        font-size: 1.07rem;
+        position: relative;
+        line-height: 1.7;
+        display: flex;
+        text-align: start;
+        transition: color 0.2s;
+    }
+
+    .about-card {
+        padding: 1.2rem 0.7rem;
+        flex: 1 1 auto;
+    }
+
+    .about-card h3 {
+        font-size: 1.05rem;
+    }
+
+    .profile-photo-desktop {
+        display: none;
+    }
+
     .about-bio {
         display: none;
     }
@@ -525,34 +568,6 @@
 
     .about-certificates1 {
         display: none;
-    }
-
-    .photo-card {
-        padding-bottom: 0;
-        margin-bottom: 0;
-        height: fit-content;
-    }
-
-    .photo-card img {
-        width: 260px;
-        height: auto;
-        border-radius: 50px;
-        padding-bottom: 0;
-    }
-
-    .photo-card h3 {
-        font-size: 1.2rem;
-        margin: 0;
-        color: var(--primary);
-        text-transform: uppercase;
-        font-family: var(--font-mono);
-        text-shadow: 0 2px 12px rgba(0, 255, 247, 0.2);
-    }
-
-    .profile-photo-mobile p {
-        padding-bottom: 20px;
-        padding-right: 10px;
-        padding-left: 10px;
     }
 
     .profile-photo-mobile {
@@ -579,6 +594,34 @@
         margin: 0.5rem 0;
     }
 
+    .profile-photo-mobile p {
+        padding-bottom: 20px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .photo-card {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        height: fit-content;
+    }
+
+    .photo-card img {
+        width: 260px;
+        height: auto;
+        border-radius: 50px;
+        padding-bottom: 0;
+    }
+
+    .photo-card h3 {
+        font-size: 1.2rem;
+        margin: 0;
+        color: var(--primary);
+        text-transform: uppercase;
+        font-family: var(--font-mono);
+        text-shadow: 0 2px 12px rgba(0, 255, 247, 0.2);
+    }
+
     .about-certificates2 {
         display: block;
     }
@@ -593,52 +636,5 @@
         padding-top: 10px;
         text-align: center;
         padding-left: 8px;
-    }
-
-    .profile-photo-desktop {
-        display: none;
-    }
-
-    .about-card:hover {
-        transform: none;
-        box-shadow: none;
-        border-color: var(--border);
-        z-index: 2;
-    }
-
-    .about-card li:hover {
-        color: var(--text-bright);
-    }
-
-    .about-section {
-        grid-template-columns: repeat(1, 1fr);
-        padding-right: 5px;
-        padding-left: 5px;
-        padding-top: 10px;
-        padding-bottom: 10px;
-    }
-
-    .about-card li {
-        margin-bottom: 0.7em;
-        color: var(--text-bright);
-        font-size: 1.07rem;
-        position: relative;
-        line-height: 1.7;
-        display: flex;
-        text-align: start;
-        transition: color 0.2s;
-    }
-
-    .about-card {
-        padding: 1.2rem 0.7rem;
-        flex: 1 1 auto;
-    }
-
-    .about-card h3 {
-        font-size: 1.05rem;
-    }
-
-    .about-bio p {
-        font-size: 1.07rem;
     }
 }

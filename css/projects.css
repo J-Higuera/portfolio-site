@@ -196,9 +196,26 @@
 }
 
 @media (max-width: 620px) {
-    .left-panel {
-        display: none;
+
+    .projects-grid {
+        /*background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.475)), url(/images/body/ab5.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed; */
+        padding-right: 5px;
+        padding-left: 5px;
+        padding-top: 40px;
+        padding-bottom: 40px;
     }
+
+    /*.light-mode .projects-grid {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    } */
 
     .project-card {
         backdrop-filter: none;
@@ -243,24 +260,4 @@
     .project-card a:focus {
         animation: none;
     }
-
-    .projects-grid {
-        /*background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.475)), url(/images/body/ab5.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed; */
-        padding-right: 5px;
-        padding-left: 5px;
-        padding-top: 40px;
-        padding-bottom: 40px;
-    }
-
-    /*.light-mode .projects-grid {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-    } */
 }
