@@ -153,7 +153,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 img.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scaleFactor})`;
             });
 
-            img.addEventListener("transitionend", function finalize() {
+            img.addEventListener("transitionend", function finalize(e) {
+                if (e.propertyName !== "transform") return;
                 img.removeEventListener("transitionend", finalize);
 
                 const targetWidth = parseFloat(img.dataset.targetWidth);
@@ -176,12 +177,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 isAnimating = true;
 
                 const fadeCenterTop = window.innerHeight / 2 - img.offsetHeight / 2;
-                const fadeCenterLeft = window.innerWidth / 2 - img.offsetWidth / 2;
+                const fadeCenterLeft = window.innerWidth / 2 - img.offsetHeight / 2;
 
-                img.style.transition = "transform 0.6s ease, opacity 0.6s ease";
-                img.style.transform = `translate(0, 0) scale(0.3)`;
+                img.style.transition = "top 0.6s ease, left 0.6s ease, width 0.6s ease, height 0.6s ease, opacity 0.6s ease";
                 img.style.top = `${fadeCenterTop}px`;
                 img.style.left = `${fadeCenterLeft}px`;
+                img.style.width = `${img.offsetWidth * 0.5}px`;
+                img.style.height = `${img.offsetHeight * 0.5}px`;
                 img.style.opacity = "0";
 
                 backdrop.classList.remove("show");
@@ -192,7 +194,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     placeholder.replaceWith(img);
                     img.style.opacity = "0";
                     requestAnimationFrame(() => {
-                        img.style.transition = "opacity 1.9s ease";
+                        img.style.transition = "opacity 0.4s ease";
                         img.style.opacity = "1";
                     });
                     backdrop.remove();
@@ -202,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
 
 // === Skills-mobile ===
 document.addEventListener("DOMContentLoaded", () => {
