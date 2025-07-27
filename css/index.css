@@ -390,61 +390,6 @@ header {
     border: 2.5px solid rgba(201, 201, 201, 0.561);
 }
 
-.achievements-card {
-    padding: 15px;
-    background: var(--card-gradient);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    color: var(--text-bright);
-    border: 2px solid #ffffff61;
-    margin: 20px;
-    border-radius: 8px;
-    width: fit-content;
-    max-width: 340px;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
-    opacity: 0;
-    transform: translateY(20px);
-    z-index: 100;
-}
-
-.achievements-card.animate {
-    animation: fadeInUp 1.5s ease forwards;
-}
-
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.achievements-card p {
-    padding: 8px;
-    margin: 0;
-    border-radius: 8px;
-    display: inline-block;
-    position: relative;
-    width: 100%;
-    font-size: 1.3em;
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.achievements h2 {
-    color: var(--primary);
-    margin-bottom: 20px;
-    font-size: 2rem;
-    text-align: center;
-    animation: fadeIn 2s ease-in-out;
-}
-
 .certificate-row {
     display: flex;
     justify-content: space-between;
