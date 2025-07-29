@@ -1,8 +1,8 @@
 .about-section {
     box-shadow: var(--shadow);
     position: relative;
-    padding-right: 130px;
-    padding-left: 130px;
+    padding-right: 43px;
+    padding-left: 43px;
     padding-top: 47px;
     padding-bottom: 47px;
     overflow: hidden;
@@ -188,10 +188,10 @@
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 130px;
-        padding-left: 130px;
+        padding-right: 27px;
+        padding-left: 27px;
         padding-top: 47px;
-        padding-bottom: 47px;
+        padding-bottom: 40px;
     }
 
     .profile-photo-desktop {
@@ -238,8 +238,8 @@
 @media (min-width: 1220px) and (max-width: 1370px) {
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 130px;
-        padding-left: 130px;
+        padding-right: 27px;
+        padding-left: 27px;
         padding-top: 47px;
         padding-bottom: 47px;
     }
