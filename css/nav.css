@@ -307,7 +307,7 @@
         right: 0;
         z-index: 500;
         display: block;
-        background-color: rgba(99, 99, 99, 0.041);
+        background-color: rgba(233, 233, 233, 0.041);
         backdrop-filter: blur(10px);
         text-align: center;
         transform: translateY(-100%);
@@ -343,22 +343,23 @@
     }
 
     #mobileMenu a {
-        color: #fbfbfb9c;
+        color: #fbfbfbc3;
         text-decoration: none;
         font-size: 1.4rem;
         font-family: serif;
         padding: 10px 20%;
         display: inline-block;
-        background-color: #181818e0;
+        background-color: #161616de;
         border-radius: 12px;
-        border: rgba(28, 28, 28, 0.314) 5px solid;
-        box-shadow: 0 5px 9px #00a2c642;
+        border: rgba(23, 23, 23, 0.736) 5px solid;
+        box-shadow: 0 0 5px #a6d7ff;
         transition: all 0.2s ease-in-out;
     }
 
     #mobileMenu a:hover {
-        background-color: #00a2c6b1;
+        background-color: #282828b1;
         color: #fff;
+        box-shadow: 0 0 8px #ffffffad;
         transform: scale(1.05);
     }
 

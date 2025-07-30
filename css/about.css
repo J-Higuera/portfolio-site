@@ -83,18 +83,6 @@
     vertical-align: middle;
 }
 
-.about-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: var(--shadow-hover);
-    border-color: var(--accent);
-    z-index: 2;
-}
-
-
-.about-card li:hover {
-    color: var(--accent);
-}
-
 .profile-photo-mobile {
     display: none;
 }
