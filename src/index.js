@@ -40,53 +40,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //============================ Skills ==================================
+//============================ Skills ==================================
+
 document.addEventListener("DOMContentLoaded", () => {
     // === Mobile Skills Animation ===
+    const mobileSkillsSection = document.querySelector(".skills1.mobile-only");
+    const mobileIcons = mobileSkillsSection?.querySelectorAll(".skills-grid img") || [];
 
-    // Select the main section and all tech icons inside the grid
-    const skillsSection = document.querySelector(".skills");
-    const skillsIcons = document.querySelectorAll(".skills-grid img");
+    if (mobileSkillsSection) {
+        const mobileObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    mobileSkillsSection.classList.add("animate");
+                    mobileIcons.forEach((icon) => icon.classList.add("show"));
+                } else {
+                    mobileSkillsSection.classList.remove("animate");
+                    mobileIcons.forEach((icon) => icon.classList.remove("show"));
+                }
+            });
+        }, { threshold: 0.40 });
 
-    // Create an IntersectionObserver that triggers when the section enters the viewport
-    const skillsObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-                // Section is visible: trigger animations
-                skillsSection.classList.add("animate");           // for section glow or background animation
-                skillsIcons.forEach((icon) => icon.classList.add("show")); // for fade-in + scale effect
-            } else {
-                // Section scrolled out of view: reset
-                skillsSection.classList.remove("animate");
-                skillsIcons.forEach((icon) => icon.classList.remove("show"));
-            }
-        });
-    }, { threshold: 0.3 }); // Trigger when 30% of the section is visible
+        mobileObserver.observe(mobileSkillsSection);
+    }
 
-    // Start observing
-    skillsObserver.observe(skillsSection);
-});
-
-// === Skills Desktop Conveyor Belt Animation ===
-
-document.addEventListener("DOMContentLoaded", () => {
-    // Select the container that holds the repeating icons
+    // === Desktop Conveyor Belt Animation ===
     const wrapper = document.querySelector(".skills-wrapper");
     const track = document.querySelector(".skills-track");
-
-    // Stop if any key element is missing
     if (!wrapper || !track) return;
 
     let hasStarted = false;
 
-    // Create observer to start animation once wrapper is in view
-    const observer = new IntersectionObserver(entries => {
+    const desktopObserver = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             if (entry.isIntersecting && !hasStarted) {
-                // Start conveyor animation once when in view
-                track.style.animation = "conveyor 35s linear infinite";
+                track.style.animation = "conveyor 45s linear infinite";
                 hasStarted = true;
-
-                // Optionally add glow or visual activation to section
                 const skillsSection = wrapper.closest('.skills');
                 if (skillsSection) {
                     skillsSection.classList.add('active');
@@ -94,26 +82,20 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }, {
-        threshold: 0.2 // Trigger when 20% of wrapper is visible
+        threshold: 0.2
     });
 
-    observer.observe(wrapper);
+    desktopObserver.observe(wrapper);
 
-
-    // Smooth magnifying glass effect with dynamic window size handling
-    // Select all icons inside the desktop conveyor grid
     const icons = wrapper.querySelectorAll(".skills-grid img");
     let isMagnifying = false;
 
-    // === Function to dynamically scale icons near center ===
     const magnify = () => {
-        // Skip on small screens (mobile)
         if (window.innerWidth < 900) {
             isMagnifying = false;
             return;
         }
 
-        // Determine center of the wrapper with a slight offset
         const wrapRect = wrapper.getBoundingClientRect();
         const centerX = wrapRect.left + wrapRect.width / 2 + 40;
 
@@ -123,28 +105,23 @@ document.addEventListener("DOMContentLoaded", () => {
             const distance = Math.abs(centerX - iconCenter);
             const maxDistance = wrapRect.width / 3;
 
-            // Scale icons based on distance from center (max 1.3x)
             let scale = 1;
             if (distance < maxDistance) {
-                scale = 1 + (1 - distance / maxDistance) * 0.3;
+                scale = 1 + (1 - distance / maxDistance) * 0.22;
             }
             icon.style.transform = `scale(${scale})`;
         });
 
-        // Keep loop running only if allowed
         if (isMagnifying) {
             requestAnimationFrame(magnify);
         }
     };
 
-    // === Handles switching magnify effect on/off based on screen size ===
     const checkMagnify = () => {
         if (window.innerWidth >= 900 && !isMagnifying) {
-            // Enable magnify on desktop
             isMagnifying = true;
             magnify();
         } else if (window.innerWidth < 900 && isMagnifying) {
-            // Reset and disable magnify on mobile
             isMagnifying = false;
             icons.forEach(icon => {
                 icon.style.transform = "scale(1)";
@@ -153,10 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Run immediately on page load
     checkMagnify();
-
-    // Also run on screen resize (to toggle mobile/desktop behavior)
     window.addEventListener("resize", checkMagnify);
 });
 

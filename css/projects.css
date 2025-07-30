@@ -17,7 +17,7 @@
 .project-card {
     background: rgba(20, 20, 20, 0.961);
     backdrop-filter: blur(12px);
-    border: 3px solid rgba(95, 95, 95, 0.921);
+    border: 1.7px solid rgba(64, 31, 66, 0.921);
     border-radius: 18px;
     padding: 10px;
     perspective: 1000px;
