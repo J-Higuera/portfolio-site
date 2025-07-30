@@ -503,6 +503,7 @@
         grid-template-columns: repeat(1, 1fr);
         padding-right: 5px;
         padding-left: 5px;
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         padding-top: 10px;
         padding-bottom: 10px;
     }
@@ -565,10 +566,8 @@
         width: auto;
         height: auto;
         max-height: fit-content;
-        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         border-radius: var(--radius);
         box-shadow: var(--shadow);
-        border: var(--border);
         flex-wrap: wrap;
         font-family: var(--font-main);
         color: var(--text-bright);
