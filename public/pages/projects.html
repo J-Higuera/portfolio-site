@@ -13,25 +13,13 @@
     <link rel="stylesheet" href="/css/projects.css">
     <link rel="stylesheet" href="/css/about.css">
     <link rel="stylesheet" href="/css/contact.css">
-    <link rel="stylesheet" href="/css/social-links.css">
+    <link rel="stylesheet" href="/css/project1.css">
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
 </head>
 
 <body>
-    <!-- Sticky Desktop Nav -->
-    <div class="desktop-theme-toggle">
-        <div class="theme-switch" id="themeToggleDesktop">
-            <div class="switch-thumb">OFF</div>
-        </div>
-    </div>
-    <!-- mobile nav -->
-    <h2><a href="/index.html">Back</a></h2>
-    <div class="mobile-theme-toggle">
-        <div class="theme-switch" id="themeToggleMobile">
-            <div class="switch-thumb">OFF</div>
-        </div>
-    </div>
+    <h2 class="back-button"><a href="/index.html">Back</a></h2>
     <!-- Preloader -->
     <div id="preloader">
         <div class="glitch" data-text="Loading Portfolio...">Loading Portfolio...</div>
@@ -43,47 +31,57 @@
         </div>
     </div>
     <!-- Hero Header -->
-    <div class="container">
-        <header class="hero">
-            <div id="index.html">
-                <!-- Social Links -->
-                <div class="social-links">
-                    <ul>
-                        <li><a href="https://github.com/J-Higuera" target="_blank">
-                                <img src="/images/social/github.png" alt="Github Logo"
-                                    style="width: 45px; height: 45px;">
-                            </a></li>
-                        <li><a href="https://www.linkedin.com/in/juan-higuera-104318337/" target="_blank">
-                                <img src="/images/social/linkedin.svg" alt="LinkedIN Logo"
-                                    style="width: 45px; height: 45px;">
-                            </a></li>
-                        <li><a href="https://www.instagram.com/the_homie_og/" target="_blank">
-                                <img src="/images/social/instagram.svg" alt="Instagram Logo"
-                                    style="width: 45px; height: 45px;">
-                            </a></li>
-                        <li><a href="https://www.youtube.com/@theaverage10" target="_blank">
-                                <img src="/images/social/tube2.png" alt="YouTube Logo"
-                                    style="width: 45px; height: 45px;">
-                            </a></li>
-                    </ul>
+    <header>
+    </header>
+    <!-- ...existing code... -->
+    <main class="movie-assistant-showcase">
+        <section class="movie-assistant-details">
+            <img src="/videos/movie_preview.webp" alt="AI Movie Assistant Preview"
+                style="max-width:350px; border-radius:8px; margin-bottom:20px;">
+            <h2>AI Movie Assistant</h2>
+            <p>
+                The AI Movie Assistant is an intelligent tool designed to help users discover movies tailored to their
+                preferences.
+                Enter your favorite genres, actors, or moods, and receive personalized recommendations powered by
+                advanced AI algorithms.
+                The assistant uses natural language processing to understand your queries and fetches movie data from
+                online databases.
+                It also provides trailers, ratings, and summaries to help you decide what to watch next.
+            </p>
+            <!-- ...existing code... -->
+            <div class="tech-stack">
+                <h2>Stack</h2>
+                <div class="tech-items-row">
+                    <div class="tech-item"><img src="/images/icons/html5.svg" alt="HTML5" /><span>HTML5</span></div>
+                    <div class="tech-item"><img src="/images/icons/css3.svg" alt="CSS3" /><span>CSS3</span></div>
+                    <div class="tech-item"><img src="/images/icons/javascript.svg"
+                            alt="JavaScript" /><span>JavaScript</span></div>
+                    <div class="tech-item"><img src="/images/icons/docker.svg" alt="Docker" /><span>Docker</span></div>
+                    <div class="tech-item"><img src="/images/icons/git.svg" alt="Git" /><span>Git</span></div>
+                    <div class="tech-item"><img src="/images/icons/python.svg" alt="Python" /><span>Python</span></div>
+                    <div class="tech-item"><img src="/images/icons/nodejs.svg" alt="Nodejs" /><span>Nodejs</span></div>
+                    <div class="tech-item"><img src="/images/icons/mysql.svg" alt="MySQL" /><span>MySQL</span></div>
+                    <div class="tech-item"><img src="/images/icons/react.svg" alt="React" /><span>React</span></div>
+                    <div class="tech-item"><img src="/images/icons/c++.svg" alt="C++" /><span>C++</span></div>
+                    <div class="tech-item"><img src="/images/icons/visual-studio-code.svg"
+                            alt="VScode" /><span>VScode</span></div>
+                    <div class="tech-item"><img src="/images/icons/github.svg" alt="Github" /><span>Github</span></div>
+                    <div class="tech-item"><img src="/images/icons/Vite.js.svg" alt="Vite" /><span>Vite</span></div>
                 </div>
             </div>
-        </header>
-        <div class="main-container">
-            <main class="content">
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <img src="/videos/movie_preview.webp" alt="Project 2 image">
-                        <h3>AI Movie Assistant</h3>
-                        <a href="/movie_assistant/movie_assistant.html" target="_blank">View</a>
-                        <a href="https://github.com/J-Higuera/AI-Movie-Assistant" target="_blank">Download</a>
-                    </div>
-                </div>
-            </main>
-        </div>
-        <footer>
-            <p>© Made by Juan Higuera. Portfolio 2025.</p>
-        </footer>
+            <!-- ...existing code... -->
+            <div style="margin-top:18px;">
+                <a href="/movie_assistant/movie_assistant.html" target="_blank" class="project-link">View Demo</a>
+                <a href="https://github.com/J-Higuera/AI-Movie-Assistant" target="_blank" class="project-link">Download
+                    Source</a>
+            </div>
+            </div>
+        </section>
+    </main>
+    <!-- ...existing code... -->
+    <footer>
+        <p>© Made by Juan Higuera. Portfolio 2025.</p>
+    </footer>
     </div>
     <script type="module" src="/src/main.js"></script>
 </body>

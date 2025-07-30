@@ -69,11 +69,6 @@
     transition: transform 0.5s ease;
 }
 
-
-.project-card:hover {
-    transform: rotateY(2deg) rotateX(1deg) scale(1.04);
-}
-
 .project-card h3 {
     margin-bottom: 10px;
     font-size: 18px;
@@ -132,6 +127,64 @@
     animation: button-pulse 2s infinite;
 }
 
+.tech-stack-prev {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 28px 0 0 0;
+    padding: 0 8px;
+}
+
+.tech-stack-prev h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+    color: #00a2c6;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.tech-items-row-prev {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    justify-content: center;
+    width: 100%;
+}
+
+.tech-item-prev {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 1.5px solid #222;
+    border-radius: 7px;
+    background: #181c24;
+    padding: 2px 8px;
+    box-shadow: 0 2px 8px rgba(255, 255, 255, 0.07);
+    min-width: 0;
+    margin-bottom: 4px;
+    height: 28px;
+    /* Ensures consistent height */
+}
+
+.tech-stack-prev img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 3px;
+    background: transparent;
+    border: none;
+    margin: 0;
+}
+
+.tech-stack-prev span {
+    font-size: 0.92rem;
+    color: #e3e3e3;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
 /*
 .light-mode .projects-grid {
     background: url(../images/body/glitch.jpg);
@@ -185,6 +238,10 @@
         padding-left: 27px;
         padding-top: 47px;
         padding-bottom: 47px;
+    }
+
+    .tech-stack-prev {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
@@ -244,5 +301,28 @@
 
     .project-card a:focus {
         animation: none;
+    }
+
+    .tech-stack-prev {
+        gap: 7px 7px;
+        padding: 0 2px;
+    }
+
+    .tech-items-row-prev {
+        gap: 7px 7px;
+    }
+
+    .tech-stack-prev img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .tech-stack-prev span {
+        font-size: 0.88rem;
+    }
+
+    .tech-item-prev {
+        padding: 2px 4px;
+        height: 24px;
     }
 }
