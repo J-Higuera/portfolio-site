@@ -11,10 +11,18 @@
     padding-left: 43px;
     padding-top: 47px;
     padding-bottom: 47px;
+    display: grid;
+    align-items: stretch;
+    /* ensures all cards expand fully */
     z-index: 999;
 }
 
 .project-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    /* ensures it fills the grid cell */
     background: radial-gradient(circle at top left, #222222ba 0%, #1c1d25cb 30%, #141414c7 50%, #000000d5 75%, #211e1ed8 100%);
     backdrop-filter: blur(12px);
     border-radius: 18px;
@@ -25,6 +33,14 @@
     z-index: 1;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card-buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .project-card::before {
