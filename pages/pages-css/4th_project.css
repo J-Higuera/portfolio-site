@@ -1,0 +1,200 @@
+/* Movie Assistant Project Showcase */
+
+body {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
+}
+
+.movie-assistant-showcase {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+    background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
+    padding-bottom: 100px;
+    padding-top: 0;
+}
+
+.movie-assistant-details {
+    background: radial-gradient(circle at top left, #222 0%, #1c1d25 40%, #141414 80%);
+    border: 2.5px solid rgba(201, 201, 201, 0.561);
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 200, 255, 0.13);
+    padding: 32px 28px;
+    max-width: 580px;
+    text-align: center;
+    color: var(--text-bright, #e3e3e3);
+}
+
+.movie-assistant-details img {
+    width: 100%;
+    max-width: 350px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18);
+}
+
+.movie-assistant-details h2 {
+    color: #00a2c6;
+    font-size: 2.2rem;
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+}
+
+.movie-assistant-details p {
+    font-size: 1.15rem;
+    margin-bottom: 22px;
+    color: var(--text-bright, #e3e3e3);
+}
+
+.project-link {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    background-color: rgba(0, 150, 199, 0.12);
+    border: 1.5px solid rgba(0, 255, 170, 0.3);
+    color: #bde7f7;
+    transition: all 0.4s ease-in-out, transform 0.3s;
+    border: 2px solid #57787f;
+}
+
+.project-link:hover {
+    background-color: rgba(0, 255, 170, 0.15);
+    border: 1.5px solid rgba(0, 255, 170, 0.5);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 255, 170, 0.25);
+}
+
+.back-button {
+    padding: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    display: flex;
+}
+
+.back-button a {
+    padding: 8px 22px;
+    border-radius: 6px;
+    text-decoration: none;
+    background-color: rgba(0, 150, 199, 0.12);
+    border: 1.5px solid rgba(0, 255, 170, 0.3);
+    color: #bde7f7;
+    border: 2px solid #57787f;
+    transition: all 0.4s ease-in-out, transform 0.3s;
+}
+
+.back-button a:hover {
+    background-color: rgba(0, 255, 170, 0.15);
+    border: 1.5px solid rgba(0, 255, 170, 0.5);
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 255, 170, 0.25);
+}
+
+.tech-stack {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 28px 0 0 0;
+    padding: 0 8px;
+}
+
+.tech-stack h2 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 16px;
+    font-size: 1.2rem;
+    color: #00a2c6;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.tech-items-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 12px;
+    justify-content: center;
+    width: 100%;
+}
+
+.tech-item {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 1.5px solid #222;
+    border-radius: 7px;
+    background: #181c24;
+    padding: 2px 8px;
+    box-shadow: 0 2px 8px rgba(0, 162, 198, 0.07);
+    min-width: 0;
+    margin-bottom: 4px;
+    height: 28px;
+    /* Ensures consistent height */
+}
+
+.tech-stack img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    border-radius: 3px;
+    background: #23272f;
+    border: none;
+    margin: 0;
+}
+
+.tech-stack span {
+    font-size: 0.92rem;
+    color: #e3e3e3;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+@media (max-width: 900px) {
+    .tech-stack {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .movie-assistant-details {
+        padding: 18px 8px;
+        max-width: 92vw;
+    }
+
+    .movie-assistant-details h2 {
+        font-size: 1.5rem;
+    }
+
+    .movie-assistant-details img {
+        max-width: 98vw;
+    }
+
+    .tech-stack {
+        gap: 7px 7px;
+        padding: 0 2px;
+    }
+
+    .tech-items-row {
+        gap: 7px 7px;
+    }
+
+    .tech-stack img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .tech-stack span {
+        font-size: 0.88rem;
+    }
+
+    .tech-item {
+        padding: 2px 6px;
+        height: 24px;
+    }
+}
