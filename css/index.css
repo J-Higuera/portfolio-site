@@ -186,43 +186,6 @@ header {
     z-index: 100;
 }
 
-.main-container {
-    display: flex;
-    flex: 1;
-    flex-direction: column;
-    height: auto;
-    overflow: hidden;
-    z-index: 100;
-}
-
-.first-banner {
-    background: linear-gradient(135deg, #007da3 0%, #5e5e00 100%);
-    padding: 2px 0;
-    text-align: center;
-}
-
-.first-banner h2 {
-    color: #aeaeaedc;
-    background-color: #0d0d0ddf;
-    width: 100%;
-    text-align: center;
-    padding: 12px;
-}
-
-.heading-banner {
-    background: linear-gradient(135deg, #007da3 0%, #5e5e00 100%);
-    padding: 2px 0;
-    text-align: center;
-}
-
-.heading-banner h2 {
-    color: #aeaeaedc;
-    background-color: #0d0d0ddf;
-    width: 100%;
-    text-align: center;
-    padding: 12px;
-}
-
 /* Achievements section */
 
 /*.home-image {
@@ -502,7 +465,7 @@ footer a {
 }
 
 .light-mode .container {
-    background: linear-gradient(to right, #e4f1d7, #b7bcee, #ffd9f9);
+    background: linear-gradient(to right, #e4f1d79d, #b7bceea5, #ffd9f98a);
     /* match dark mode border */
 }
 
@@ -525,10 +488,6 @@ footer a {
     font-weight: bold;
     animation: blink 1s steps(1) infinite;
     color: #0e0e0e;
-}
-
-.light-mode .main-container {
-    background-color: #00000018;
 }
 
 .light-mode .first-banner {
@@ -797,7 +756,7 @@ footer a {
         margin-left: 30px;
         margin-bottom: 47px;
         padding: 5px 10px;
-        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+        background: radial-gradient(circle at top left, #2f2f2f 0%, #272833 30%, #212121 50%, #1c1c1c 75%, #222526 100%);
         border-radius: 12px;
         width: auto;
         border: 2.5px solid rgba(201, 201, 201, 0.561);
@@ -874,7 +833,7 @@ footer a {
         z-index: 1;
         height: auto;
         padding-top: 120px;
-        padding-bottom: 18px;
+        padding-bottom: 80px;
         display: flex;
         align-items: center;
         justify-content: center;

@@ -97,7 +97,7 @@
     width: 40%;
     height: auto;
     background: none;
-    gap: 1.2rem;
+    gap: 0.5rem;
     justify-content: center;
     position: relative;
     z-index: 1;
@@ -131,6 +131,10 @@
     text-transform: uppercase;
     font-family: var(--font-mono);
     text-shadow: 0 2px 12px rgba(0, 255, 247, 0.2);
+}
+
+.photo-card p {
+    padding: 12px;
 }
 
 .photo-card img {
@@ -253,7 +257,7 @@
 
     .profile-photo-desktop {
         max-height: 100%;
-        max-width: 50%;
+        max-width: 35%;
         width: auto;
         height: auto;
     }
@@ -298,7 +302,12 @@
         padding-bottom: 47px;
     }
 
-
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 55%;
+        width: auto;
+        height: auto;
+    }
 
     .about-bio {
         max-height: 100%;
@@ -309,7 +318,7 @@
 
     .about-certificates1 {
         max-height: 100%;
-        max-width: 100%;
+        max-width: 50%;
         width: auto;
         height: auto;
     }
@@ -340,7 +349,12 @@
         padding-bottom: 47px;
     }
 
-
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 55%;
+        width: auto;
+        height: auto;
+    }
 
     .about-bio {
         max-height: 100%;
@@ -352,7 +366,7 @@
 
     .about-certificates1 {
         max-height: 100%;
-        max-width: 100%;
+        max-width: 450%;
         width: auto;
         height: auto;
     }
@@ -405,8 +419,8 @@
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 5px;
-        padding-left: 5px;
+        padding-right: 15px;
+        padding-left: 15px;
         padding-top: 10px;
         padding-bottom: 10px;
     }
@@ -474,6 +488,7 @@
         flex-wrap: wrap;
         font-family: var(--font-main);
         color: var(--text-bright);
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         gap: 1.2rem;
         justify-content: center;
         position: relative;
@@ -494,8 +509,8 @@
         padding-bottom: 0;
         margin-bottom: 0;
         height: fit-content;
-        background: none;
         border: none;
+        background: none;
     }
 
     .photo-card img {
@@ -528,5 +543,29 @@
         padding-top: 10px;
         text-align: center;
         padding-left: 8px;
+    }
+
+    .light-mode .profile-photo-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: auto;
+        height: auto;
+        max-height: fit-content;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        flex-wrap: wrap;
+        font-family: var(--font-main);
+        color: var(--text-bright);
+        background: radial-gradient(circle at top left, #395c6086 0%, #374d5490 30%, #3d575a9e 50%, #3b4e5190 75%, #234e5685 100%);
+
+        gap: 1.2rem;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
     }
 }
