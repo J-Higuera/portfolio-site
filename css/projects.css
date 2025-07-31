@@ -7,14 +7,20 @@
     background-size: cover;
     background-attachment: fixed;*/
     gap: 30px;
-    padding-right: 43px;
-    padding-left: 43px;
-    padding-top: 47px;
-    padding-bottom: 47px;
+    padding: 47px 43px;
+    align-items: stretch;
+    /* NEW */
     z-index: 999;
 }
 
 .project-card {
+    display: flex;
+    /* NEW */
+    flex-direction: column;
+    /* NEW */
+    justify-content: space-between;
+    /* NEW */
+    height: 100%;
     background: radial-gradient(circle at top left, #222222ba 0%, #1c1d25cb 30%, #141414c7 50%, #000000d5 75%, #211e1ed8 100%);
     backdrop-filter: blur(12px);
     border-radius: 18px;
@@ -24,7 +30,27 @@
     overflow: hidden;
     z-index: 1;
     text-align: center;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.6s, box-shadow 0.6s;
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+}
+
+.project-card.visible {
+    animation: fadeInUp 1s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
 }
 
 .project-card::before {
@@ -126,6 +152,14 @@
 
 .project-card a:focus {
     animation: button-pulse 2s infinite;
+}
+
+.card-buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
 }
 
 .tech-stack-prev {

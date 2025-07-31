@@ -40,8 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 //============================ Skills ==================================
-//============================ Skills ==================================
-
 document.addEventListener("DOMContentLoaded", () => {
     // === Mobile Skills Animation ===
     const mobileSkillsSection = document.querySelector(".skills1.mobile-only");
