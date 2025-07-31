@@ -154,6 +154,29 @@ body {
     white-space: nowrap;
 }
 
+/* Footer section */
+footer {
+    width: 100%;
+    min-width: 100%;
+    background: linear-gradient(to top, #000000a7, #00000091, #00000081 100%);
+    padding: 10px 0;
+    z-index: 100;
+    flex-shrink: 0;
+}
+
+footer p {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #aebcc588;
+}
+
+footer a {
+    color: #00a2c6b1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
 @media (max-width: 900px) {
     .tech-stack {
         grid-template-columns: repeat(3, 1fr);

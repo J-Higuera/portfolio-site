@@ -208,7 +208,7 @@ p {
     --glow-color: #b2e4ffdb;
     --glow-spread-color: rgba(178, 228, 255, 0.19);
     border: 2px solid var(--glow-color);
-    padding: 0.75em 2em;
+    padding: 0.45em 1.2em;
     color: var(--glow-color);
     font-size: 15px;
     font-weight: bold;
@@ -276,8 +276,15 @@ select:-webkit-autofill {
 
 /* Exit Button */
 .exit-button {
-    font-size: 25px;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
 }
 
 .exit-button a {
