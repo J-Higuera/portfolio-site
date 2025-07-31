@@ -798,7 +798,7 @@ footer a {
         margin-left: 30px;
         margin-bottom: 47px;
         padding: 5px 10px;
-        background: radial-gradient(circle at top left, #272831 0%, #323341 30%, #424455 50%, #23242d 75%, #202129 100%);
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         border-radius: 12px;
         width: auto;
         border: 2.5px solid rgba(201, 201, 201, 0.561);
@@ -831,7 +831,7 @@ footer a {
     }
 
     .skills1 {
-        box-shadow: 0 0 6px #00ff116a, 0 0 14px #33f9b490, 0 0 18px #00d5ff90;
+        box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
         transition: box-shadow 0.5s ease, border 0.5s ease;
     }
 
@@ -1018,7 +1018,7 @@ footer a {
     }
 
     .skills1.animate {
-        box-shadow: 0 0 6px #00ff116a, 0 0 14px #33f9b490, 0 0 18px #00d5ff90;
+        box-shadow: 0 0 6px #00ff11, 0 0 14px #0048ff, 0 0 18px #a600ff;
         z-index: 1;
     }
 
