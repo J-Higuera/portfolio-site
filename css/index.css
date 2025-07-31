@@ -87,11 +87,10 @@ header {
 .hero {
     position: relative;
     width: 100%;
-    height: 300px;
-    padding-top: 300px;
+    padding-top: 220px;
     background-position: center;
     background-size: cover;
-    padding-bottom: 205px;
+    padding-bottom: 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -144,7 +143,7 @@ header {
     overflow-wrap: break-word;
     max-width: 90vw;
     margin: 0 auto;
-    margin-bottom: 90px;
+    margin-bottom: 0;
 }
 
 .type-wrapper {
@@ -840,6 +839,7 @@ footer a {
         z-index: 1;
     }
 
+
 }
 
 /* Mobile screens */
@@ -874,7 +874,7 @@ footer a {
         z-index: 1;
         height: auto;
         padding-top: 120px;
-        padding-bottom: 80px;
+        padding-bottom: 18px;
         display: flex;
         align-items: center;
         justify-content: center;

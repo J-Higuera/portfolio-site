@@ -87,29 +87,23 @@
     display: none;
 }
 
+
 .profile-photo-desktop {
     display: flex;
-    background-color: rgb(22, 22, 22);
     align-items: stretch;
     flex-wrap: wrap;
     max-height: 100%;
     max-width: 100%;
     width: 40%;
     height: auto;
-    background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: var(--border);
+    background: none;
     gap: 1.2rem;
-    font-family: var(--font-main);
     justify-content: center;
     position: relative;
     z-index: 1;
-    color: var(--text-bright);
     border-radius: 15px;
     text-align: center;
-    padding: 1.5rem 1.2rem;
-    margin: 0.5rem 0;
+    padding: 0.5rem 0;
 }
 
 .photo-card {
@@ -117,9 +111,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
+    padding-top: 10px;
     padding-bottom: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
     width: 100%;
-
+    background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: var(--border);
+    font-family: var(--font-main);
+    color: var(--text-bright);
 }
 
 .photo-card h3 {
@@ -182,30 +184,7 @@
         padding-bottom: 40px;
     }
 
-    .profile-photo-desktop {
-        display: flex;
-        background-color: rgb(22, 22, 22);
-        align-items: stretch;
-        flex-wrap: wrap;
-        max-height: 100%;
-        max-width: 450px;
-        width: auto;
-        height: auto;
-        background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: var(--border);
-        gap: 1.2rem;
-        font-family: var(--font-main);
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-        color: var(--text-bright);
-        border-radius: 15px;
-        text-align: center;
-        padding: 1.5rem 1.2rem;
-        margin: 0.5rem 0;
-    }
+
 
     .about-bio {
         max-height: 100%;
@@ -233,28 +212,11 @@
     }
 
     .profile-photo-desktop {
-        display: flex;
-        background-color: rgb(22, 22, 22);
-        align-items: stretch;
-        flex-wrap: wrap;
         max-height: 100%;
         max-width: 350px;
         width: auto;
         height: auto;
-        background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: var(--border);
-        gap: 1.2rem;
-        font-family: var(--font-main);
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-        color: var(--text-bright);
-        border-radius: 15px;
-        text-align: center;
-        padding: 1.5rem 1.2rem;
-        margin: 0.5rem 0;
+        background: none;
     }
 
     .about-bio {
@@ -279,7 +241,7 @@
     }
 }
 
-@media (min-width: 1020px) and (max-width: 1220px) {
+@media (max-width: 1220px) {
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -290,28 +252,10 @@
     }
 
     .profile-photo-desktop {
-        display: flex;
-        background-color: rgb(22, 22, 22);
-        align-items: stretch;
-        flex-wrap: wrap;
         max-height: 100%;
-        max-width: 350px;
+        max-width: 50%;
         width: auto;
         height: auto;
-        background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: var(--border);
-        gap: 1.2rem;
-        font-family: var(--font-main);
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-        color: var(--text-bright);
-        border-radius: 15px;
-        text-align: center;
-        padding: 1.5rem 1.2rem;
-        margin: 0.5rem 0;
     }
 
     .about-bio {
@@ -323,7 +267,7 @@
 
     .about-certificates1 {
         max-height: 100%;
-        max-width: 100%;
+        max-width: 40%;
         width: fit-content;
         height: auto;
     }
@@ -354,30 +298,7 @@
         padding-bottom: 47px;
     }
 
-    .profile-photo-desktop {
-        display: flex;
-        background-color: rgb(22, 22, 22);
-        align-items: stretch;
-        flex-wrap: wrap;
-        max-height: 100%;
-        max-width: 50%;
-        width: auto;
-        height: auto;
-        background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: var(--border);
-        gap: 1.2rem;
-        font-family: var(--font-main);
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-        color: var(--text-bright);
-        border-radius: 15px;
-        text-align: center;
-        padding: 1.5rem 1.2rem;
-        margin: 0.5rem 0;
-    }
+
 
     .about-bio {
         max-height: 100%;
@@ -419,30 +340,7 @@
         padding-bottom: 47px;
     }
 
-    .profile-photo-desktop {
-        display: flex;
-        background-color: rgb(22, 22, 22);
-        align-items: stretch;
-        flex-wrap: wrap;
-        max-height: 100%;
-        max-width: 100%;
-        width: 50%;
-        height: auto;
-        background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
-        border-radius: var(--radius);
-        box-shadow: var(--shadow);
-        border: var(--border);
-        gap: 1.2rem;
-        font-family: var(--font-main);
-        justify-content: center;
-        position: relative;
-        z-index: 1;
-        color: var(--text-bright);
-        border-radius: 15px;
-        text-align: center;
-        padding: 1.5rem 1.2rem;
-        margin: 0.5rem 0;
-    }
+
 
     .about-bio {
         max-height: 100%;
@@ -498,6 +396,12 @@
         background-attachment: fixed;
     }
 */
+
+    .about-section .social-links2 {
+        display: none;
+    }
+
+
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -590,6 +494,8 @@
         padding-bottom: 0;
         margin-bottom: 0;
         height: fit-content;
+        background: none;
+        border: none;
     }
 
     .photo-card img {

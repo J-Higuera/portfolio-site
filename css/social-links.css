@@ -1,5 +1,5 @@
-.social-links {
-    position: absolute;
+.social-links1 {
+    position: relative;
     bottom: 0;
     /* adjust based on desired spacing */
     left: 0;
@@ -10,7 +10,7 @@
     padding: 0;
 }
 
-.social-links ul {
+.social-links1 ul {
     margin: 0;
     padding: 0;
     gap: 45px;
@@ -19,27 +19,70 @@
     justify-content: center;
 }
 
-.social-links ul li a img {
+.social-links1 ul li a img {
     border-radius: 10px;
     transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
 }
 
-.social-links ul li a img:hover {
+.social-links1 ul li a img:hover {
     transform: scale(1.2) translateY(-4px);
 }
 
-.light-mode .social-links ul li a img {
+.light-mode .social-links1 ul li a img {
     display: inline-block;
 }
 
-.light-mode .social-links {
+.light-mode .social-links1 {
+    background-color: #00000000;
+}
+
+.social-links2 {
+    background: var(--card-gradient);
+    border: var(--border);
+    box-shadow: var(--shadow);
+    border-radius: var(--radius);
+    padding: 12px 18px;
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto 1.2rem auto;
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+}
+
+.social-links2 ul {
+    margin: 0;
+    padding: 0;
+    gap: 45px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.social-links2 li a img {
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    width: 45px;
+    height: 45px;
+    transition: transform 0.3s ease;
+}
+
+.social-links2 li a img:hover {
+    transform: scale(1.2) translateY(-4px);
+}
+
+.light-mode .social-links2 ul li a img {
+    display: inline-block;
+}
+
+.light-mode .social-links2 {
     background-color: #00000000;
 }
 
 @media (max-width: 700px) and (min-width: 320px) {
 
 
-    .social-links ul {
+    .social-links1 ul {
         list-style: none;
         gap: 32px;
         padding: 0;
@@ -48,11 +91,11 @@
         justify-content: center;
     }
 
-    .social-links ul li a img {
+    .social-links1 ul li a img {
         filter: brightness(100%) contrast(100%);
     }
 
-    .social-links ul li a img:hover {
+    .social-links1 ul li a img:hover {
         transform: none;
         filter: none;
     }
