@@ -630,6 +630,10 @@ footer a {
         padding: 0;
     }
 
+    .hero {
+        padding-bottom: 170px;
+    }
+
     .hero h1 {
         font-size: 3.2rem;
         margin: 0;

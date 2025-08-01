@@ -557,7 +557,7 @@
         flex-wrap: wrap;
         font-family: var(--font-main);
         color: var(--text-bright);
-        background: radial-gradient(circle at top left, #77c6cf86 0%, #74a4b290 30%, #80b7bd9e 50%, #82b3bb90 75%, #53afc085 100%);
+        background: radial-gradient(circle at top left, #58939a86 0%, #54778290 30%, #5e878b9e 50%, #5b7e8390 75%, #356d7685 100%);
         box-shadow: 0 0 18px black;
         gap: 1.2rem;
         justify-content: center;
