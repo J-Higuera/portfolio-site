@@ -65,13 +65,18 @@
         margin: 0;
         border-radius: 15px;
         padding: 8px 10px 8px 10px;
-        filter: drop-shadow(8px 8px 3.5px rgb(0, 0, 0));
+
         box-shadow: 0 0 10px rgb(65, 132, 154);
     }
 
     .social-links1 ul li a img {
         border-radius: 10px;
+        filter: drop-shadow(8px 8px 3.5px rgb(0, 0, 0));
         transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+    }
+
+    .social-links1 ul li {
+        filter: drop-shadow(8px 8px 3.5px rgb(0, 0, 0));
     }
 
     .social-links1 ul li a img:hover {
@@ -85,8 +90,7 @@
         margin: 0;
         border-radius: 15px;
         padding: 8px 10px 8px 10px;
-        filter: drop-shadow(8px 8px 3.5px rgb(0, 0, 0));
-        box-shadow: 0 0 10px rgb(150, 150, 150);
+        box-shadow: 0 0 19px rgb(0, 0, 0);
     }
 
     .light-mode .social-links1 ul li a img {
