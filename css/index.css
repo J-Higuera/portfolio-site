@@ -807,13 +807,14 @@ footer a {
     body {
         justify-content: center;
         text-align: center;
+        background: none;
     }
 
-    /*body::before {
+    body::before {
         content: "";
         position: fixed;
         inset: 0;
-        background: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/d7.jpg);
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/neon-light.jpg);
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -821,11 +822,11 @@ footer a {
     }
 
     .light-mode::before {
-        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/w1.jpg);
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/neon-light.jpg);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-    }*/
+    }
 
     .hero {
         position: relative;
