@@ -8,11 +8,11 @@ body {
     font-family: 'Courier New', monospace;
     margin: 0;
     padding: 0;
-    background: url(images/main/t2.jpg) rgba(18, 18, 18, 0.575) no-repeat center center;
+    background: url(images/main/t2.webp) rgba(18, 18, 18, 0.575) no-repeat center center;
     background-size: cover;
     display: flex;
     flex-direction: column;
-    height: 100%;
+    height: 100vh;
 }
 
 /* Header styling */
