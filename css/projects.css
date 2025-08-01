@@ -22,9 +22,10 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    /* ensures it fills the grid cell */
-    background: radial-gradient(circle at top left, #222222ba 0%, #1c1d25cb 30%, #141414c7 50%, #000000d5 75%, #211e1ed8 100%);
-    backdrop-filter: blur(12px);
+    background: linear-gradient(145deg,
+            rgba(106, 113, 93, 0.22),
+            rgba(69, 67, 98, 0.22),
+            rgba(61, 86, 90, 0.658));
     border-radius: 18px;
     padding-bottom: 20px;
     perspective: 1000px;
@@ -34,19 +35,15 @@
     text-align: center;
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
     pointer-events: none;
-    /* prevents interaction before visible */
 }
 
 .project-card.visible {
     opacity: 1;
-    transform: translateY(0);
     pointer-events: auto;
     animation: fadeInUp 1s ease forwards;
 }
-
-
 
 .card-buttons {
     margin-top: auto;
@@ -54,38 +51,6 @@
     justify-content: center;
     gap: 10px;
     flex-wrap: wrap;
-}
-
-.project-card::before {
-    content: "";
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
-    background: linear-gradient(145deg,
-            rgba(106, 113, 93, 0.22),
-            rgba(69, 67, 98, 0.22),
-            rgba(61, 86, 90, 0.658));
-    background-size: 1%;
-    box-shadow: 0 0 40px rgb(252, 252, 252);
-    z-index: -1;
-    filter: blur(7px);
-    animation: borderShift 7s linear infinite;
-}
-
-@keyframes borderShift {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
 }
 
 .project-card img {
@@ -109,23 +74,7 @@
     text-align: center;
 }
 
-.project-card h3::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    background: #00eeff6a;
-    left: 0;
-    bottom: 5px;
-    transform: scaleX(0);
-    transform-origin: right;
-    transition: transform 0.3s ease-in-out;
-}
 
-.project-card:hover h3::after {
-    transform: scaleX(1);
-    transform-origin: left;
-}
 
 .project-card a {
     text-decoration: none;
@@ -136,7 +85,7 @@
     border-radius: 4px;
     font-family: sans-serif;
     font-weight: none;
-    transition: all 0.3s ease-in-out, transform 0.2s;
+    transition: all 0.4s ease-in-out, transform 0.3s;
     display: inline-block;
     margin-top: 5px 10px;
 }
@@ -215,7 +164,7 @@
 }*/
 
 .light-mode .project-card {
-    background-color: #0d0d0df6;
+    background-color: #0d0d0dc2;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.527);
 }
 
