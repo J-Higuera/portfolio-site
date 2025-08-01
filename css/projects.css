@@ -28,7 +28,6 @@
             rgba(61, 86, 90, 0.658));
     border-radius: 18px;
     padding-bottom: 20px;
-    perspective: 1000px;
     position: relative;
     overflow: hidden;
     z-index: 1;
@@ -42,7 +41,7 @@
 .project-card.visible {
     opacity: 1;
     pointer-events: auto;
-    animation: fadeInUp 1s ease forwards;
+    animation: fadeInUp 1.2s ease forwards;
 }
 
 .card-buttons {

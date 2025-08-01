@@ -1,0 +1,572 @@
+.about-section {
+    box-shadow: var(--shadow);
+    position: relative;
+    padding-right: 43px;
+    padding-left: 43px;
+    padding-top: 47px;
+    padding-bottom: 47px;
+    overflow: hidden;
+}
+
+.about-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    justify-content: center;
+    align-items: stretch;
+    position: relative;
+    z-index: 1;
+}
+
+.about-card {
+    flex: 1 1 280px;
+    min-width: 200px;
+    max-width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    padding: 1.5rem 1.2rem;
+    margin: 0.5rem 0;
+    background: var(--card-gradient);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: var(--border);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    backdrop-filter: blur(3px);
+    overflow: hidden;
+}
+
+.about-card h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    text-shadow: 0 2px 12px rgba(0, 255, 247, 0.2);
+}
+
+.about-card ul {
+    margin: 0;
+    list-style: none;
+}
+
+.about-card li {
+    margin-bottom: 0.7em;
+    color: var(--text-bright);
+    font-size: 1.07rem;
+    position: relative;
+    line-height: 1.7;
+    display: flex;
+    align-items: center;
+    transition: color 0.2s;
+}
+
+.about-card li::before {
+    content: "";
+    display: inline-block;
+    width: 0.65em;
+    height: 0.65em;
+    aspect-ratio: 1;
+    margin-right: 0.7em;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--primary));
+    box-shadow: 0 0 8px rgba(176, 176, 176, 0.4);
+    vertical-align: middle;
+}
+
+.profile-photo-mobile {
+    display: none;
+}
+
+
+.profile-photo-desktop {
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    max-height: 100%;
+    max-width: 100%;
+    width: 40%;
+    height: auto;
+    background: none;
+    gap: 0.5rem;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    border-radius: 15px;
+    text-align: center;
+    padding: 0.5rem 0;
+}
+
+.photo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 10px;
+    padding-bottom: 14px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 100%;
+    background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: var(--border);
+    font-family: var(--font-main);
+    color: var(--text-bright);
+}
+
+.photo-card h3 {
+    font-size: 1.2rem;
+    margin: 0.5rem 0 0.5rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+    text-shadow: 0 2px 12px rgba(0, 255, 247, 0.2);
+}
+
+.photo-card p {
+    padding: 12px;
+}
+
+.photo-card img {
+    width: 260px;
+    height: auto;
+    border: 3px solid rgb(76, 100, 108);
+    border-radius: 50px;
+    padding-bottom: 15px;
+}
+
+.about-bio {
+    max-height: 100%;
+    max-width: fit-content;
+    width: auto;
+    height: auto;
+    background: var(--card-gradient);
+}
+
+.about-bio h3 {
+    align-self: center;
+}
+
+.about-bio p {
+    flex: 1 1 100%;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    color: var(--text-bright);
+    font-size: 1.2rem;
+    text-align: center;
+    margin: 0 0 1rem 0;
+    font-family: var(--font-main);
+    text-shadow: 0 1px 8px rgba(0, 255, 247, 0.1);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+}
+
+.about-hobbies {
+    max-height: 100%;
+    max-width: 100%;
+    flex: 1 1 100%;
+    width: auto;
+    height: auto;
+}
+
+@media (min-width: 1370px) and (max-width: 1520px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 40px;
+    }
+
+
+
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+        background: var(--card-gradient);
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 1220px) and (max-width: 1370px) {
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 350px;
+        width: auto;
+        height: auto;
+        background: none;
+    }
+
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: fit-content;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 1220px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 35%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 40%;
+        width: fit-content;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: 100%;
+        width: fit-content;
+        height: auto;
+    }
+}
+
+@media (min-width: 930px) and (max-width: 1020px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 55%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-bio {
+        max-height: 100%;
+        max-width: fit-content;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 50%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 700px) and (max-width: 930px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 55%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-bio {
+        max-height: 100%;
+        flex: 1 1 100%;
+        max-width: fit-content;
+        width: 100%;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 450%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-details {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (min-width: 100px) and (max-width: 700px) {
+
+    /*.about-section {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 22px;
+        padding-left: 22px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+
+    .light-mode .about-section {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+*/
+
+    .about-section .social-links2 {
+        display: none;
+    }
+
+
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-right: 15px;
+        padding-left: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .about-card:hover {
+        transform: none;
+        box-shadow: none;
+        border-color: #ffffff61;
+        z-index: 2;
+    }
+
+    .about-card li:hover {
+        color: var(--text-bright);
+    }
+
+    .about-card li {
+        margin-bottom: 0.7em;
+        color: var(--text-bright);
+        font-size: 1.07rem;
+        position: relative;
+        line-height: 1.7;
+        display: flex;
+        text-align: start;
+        transition: color 0.2s;
+    }
+
+    .about-card {
+        padding: 1.2rem 0.7rem;
+        flex: 1 1 auto;
+    }
+
+    .about-card h3 {
+        font-size: 1.05rem;
+    }
+
+    .profile-photo-desktop {
+        display: none;
+    }
+
+    .about-bio {
+        display: none;
+    }
+
+    .about-hobbies {
+        display: none;
+    }
+
+    .about-details {
+        display: none;
+    }
+
+    .about-certificates1 {
+        display: none;
+    }
+
+    .profile-photo-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: auto;
+        height: auto;
+        max-height: fit-content;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        flex-wrap: wrap;
+        font-family: var(--font-main);
+        color: var(--text-bright);
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+        gap: 1.2rem;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+
+    .profile-photo-mobile p {
+        padding-bottom: 20px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .photo-card {
+        padding-bottom: 0;
+        margin-bottom: 0;
+        height: fit-content;
+        border: none;
+        background: none;
+    }
+
+    .photo-card img {
+        width: 260px;
+        height: auto;
+        border-radius: 50px;
+        padding-bottom: 0;
+    }
+
+    .photo-card h3 {
+        font-size: 1.2rem;
+        margin: 0;
+        color: var(--primary);
+        text-transform: uppercase;
+        font-family: var(--font-mono);
+        text-shadow: 0 2px 12px rgba(0, 255, 247, 0.2);
+    }
+
+    .about-certificates2 {
+        display: block;
+    }
+
+    .about-certificates2 h3 {
+        padding-top: 10px;
+        text-align: left;
+        padding-left: 8px;
+    }
+
+    .about-certificates2 ul {
+        padding-top: 10px;
+        text-align: center;
+        padding-left: 8px;
+    }
+
+    .light-mode .profile-photo-mobile {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: auto;
+        height: auto;
+        max-height: fit-content;
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        flex-wrap: wrap;
+        font-family: var(--font-main);
+        color: var(--text-bright);
+        background: radial-gradient(circle at top left, #58939a86 0%, #54778290 30%, #5e878b9e 50%, #5b7e8390 75%, #356d7685 100%);
+        box-shadow: 0 0 18px black;
+        gap: 1.2rem;
+        justify-content: center;
+        position: relative;
+        z-index: 1;
+        border-radius: 15px;
+        text-align: center;
+        padding: 1.5rem 1.2rem;
+        margin: 0.5rem 0;
+    }
+}
