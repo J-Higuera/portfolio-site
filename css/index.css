@@ -21,7 +21,7 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     background: radial-gradient(ellipse at center, #05050500 0%, #00000064 100%),
-        url('/images/body/neon-light.jpg');
+        url('/images/body/neon-light.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -817,7 +817,7 @@ footer a {
         content: "";
         position: fixed;
         inset: 0;
-        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/neon-light.jpg);
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/neon-light.webp);
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -825,7 +825,7 @@ footer a {
     }
 
     .light-mode::before {
-        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/neon-light.jpg);
+        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/neon-light.webp);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -1050,12 +1050,12 @@ footer a {
 @media (prefers-color-scheme: dark) {
 
     .light-mode .hero h1 {
-        color: hsl(0, 0%, 0%);
+        color: hsl(0, 0%, 13%);
         /* Optional overrides if needed for system light + site light */
     }
 
     .light-mode .hero h2 {
-        color: hsl(0, 0%, 0%);
+        color: hsl(0, 0%, 13%);
         /* Optional overrides if needed for system light + site light */
     }
 }

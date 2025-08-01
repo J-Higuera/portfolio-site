@@ -140,6 +140,7 @@
 .photo-card img {
     width: 260px;
     height: auto;
+    border: 3px solid rgb(76, 100, 108);
     border-radius: 50px;
     padding-bottom: 15px;
 }
