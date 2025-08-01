@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     mobileIcons.forEach((icon) => icon.classList.remove("show"));
                 }
             });
-        }, { threshold: 0.25 });
+        }, { threshold: 0.3 });
 
         mobileObserver.observe(mobileSkillsSection);
     }
