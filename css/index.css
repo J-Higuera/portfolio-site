@@ -23,8 +23,7 @@ body {
     background: radial-gradient(ellipse at center, #05050500 0%, #00000064 100%),
         url('/images/body/neon-light.jpg');
     background-size: cover;
-    background-attachment: fixed;
-
+    background-position: center;
     background-attachment: fixed;
     color: #e0e0e0;
     position: relative;
