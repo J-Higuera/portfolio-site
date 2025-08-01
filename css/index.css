@@ -810,10 +810,9 @@ footer a {
     body {
         justify-content: center;
         text-align: center;
-        background: none;
     }
 
-    body::before {
+    /*body::before {
         content: "";
         position: fixed;
         inset: 0;
@@ -829,7 +828,7 @@ footer a {
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
-    }
+    }*/
 
     .hero {
         position: relative;
