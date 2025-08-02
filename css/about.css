@@ -183,7 +183,7 @@
 }
 
 .resume-button {
-    color: #00eaff;
+    color: #00b3ff;
     font-weight: 500;
     text-decoration: none;
     text-align: center;
@@ -194,7 +194,6 @@
     width: 18px;
     height: 18px;
     vertical-align: middle;
-    filter: drop-shadow(0 0 3px rgb(255, 255, 255));
 }
 
 .photo-card img.download-icon {
@@ -205,8 +204,7 @@
 .resume-content {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    /* Controls spacing between icon and text */
+    gap: 2px;
 }
 
 .resume-content .download-icon {
@@ -222,10 +220,6 @@
 @media (hover: hover) and (pointer: fine) {
     .resume-button:hover {
         color: #99ff00;
-    }
-
-    .resume-button:hover .download-icon {
-        filter: drop-shadow(0 0 6px rgba(153, 255, 0, 1));
     }
 }
 
@@ -562,11 +556,10 @@
         margin: 0;
         width: 100%;
         background-color: #0d1a0d;
-        /* deep green-black */
         border: 2px solid #99ff00;
         box-shadow:
-            0 0 12px rgba(153, 255, 0, 0.4),
-            inset 0 0 8px rgba(153, 255, 0, 0.2);
+            0 0 10px rgba(153, 255, 0, 0.4),
+            inset 0 0 18px rgba(153, 255, 0, 0.2);
         border-radius: var(--radius);
         font-family: var(--font-main);
         color: var(--text-bright);

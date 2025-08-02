@@ -1,6 +1,6 @@
 .social-links2 {
     background: radial-gradient(circle at top left, #d3d3d3 0%, #9a9a9a 30%, #7c7c7c 50%, #5a5a5a 75%, #505050 100%);
-    box-shadow: 15px 8px 12px 3px rgba(0, 0, 0, 0.419);
+    box-shadow: 8px 7px 8px 3px rgba(0, 0, 0, 0.419);
     border-radius: var(--radius);
     padding: 12px 12px;
     width: 100%;
