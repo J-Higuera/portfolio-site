@@ -73,7 +73,3 @@ document.addEventListener("DOMContentLoaded", () => {
     // === Start progress update loop ===
     updateProgress();
 });
-
-
-
-
