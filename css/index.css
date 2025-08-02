@@ -330,6 +330,21 @@ header {
     color: var(--text-bright);
 }
 
+.github-contributions-container {
+    display: flex;
+    flex-direction: column;
+    /* Stack vertically */
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.github-title {
+    text-align: center;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
 
 .github-contributions-widget {
     background-color: rgba(14, 14, 14, 0.6);
