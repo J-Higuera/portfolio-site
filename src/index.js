@@ -148,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
             isAnimating = true;
 
             // === Get original position and style of image ===
-            const rect = img.getBoundingClientRect(); // for animation reference
             const computed = getComputedStyle(img);// for placeholder copy
 
             // === Create a semi-transparent dark background (modal effect) ===
