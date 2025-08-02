@@ -1,9 +1,11 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import GitHubContributions from './react/GitHubCalendar';
+import React from "react";
+import { createRoot } from "react-dom/client";
 
-ReactDOM.createRoot(document.getElementById('github-root')).render(
-    <React.StrictMode>
-        <GitHubContributions />
-    </React.StrictMode>
-);
+document.addEventListener("DOMContentLoaded", () => {
+    requestIdleCallback(() => {
+        import("./react/GitHubCalendar.jsx").then(({ default: GitHubCalendar }) => {
+            const root = createRoot(document.getElementById("github-root"));
+            root.render(<GitHubCalendar />);
+        });
+    });
+});
