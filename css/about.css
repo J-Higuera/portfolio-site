@@ -55,7 +55,7 @@
 
 .about-card ul {
     margin: 0;
-    list-style: none;
+    list-style: circle;
 }
 
 .about-card li {
@@ -64,22 +64,8 @@
     font-size: 1.07rem;
     position: relative;
     line-height: 1.7;
-    display: flex;
     align-items: center;
     transition: color 0.2s;
-}
-
-.about-card li::before {
-    content: "";
-    display: inline-block;
-    width: 0.65em;
-    height: 0.65em;
-    aspect-ratio: 1;
-    margin-right: 0.7em;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent), var(--primary));
-    box-shadow: 0 0 8px rgba(176, 176, 176, 0.4);
-    vertical-align: middle;
 }
 
 .profile-photo-mobile {
@@ -102,80 +88,136 @@
     z-index: 1;
     border-radius: 15px;
     text-align: center;
-    padding: 0.5rem 0;
+    padding: 0;
 }
 
 .photo-card {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
-    padding-top: 10px;
-    padding-bottom: 14px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 1.2rem;
+    margin: 0.5rem 0;
     width: 100%;
-    background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
+    background-color: #0d1a0d;
+    /* deep green-black */
+    border: 2px solid #99ff00;
+    box-shadow:
+        0 0 12px rgba(153, 255, 0, 0.4),
+        inset 0 0 8px rgba(153, 255, 0, 0.2);
     border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    border: var(--border);
     font-family: var(--font-main);
     color: var(--text-bright);
+    transition: all 0.3s ease-in-out;
 }
 
-.photo-card h3 {
-    font-size: 1.2rem;
-    margin: 0.5rem 0 0.5rem;
-    color: var(--primary);
-    text-transform: uppercase;
-    font-family: var(--font-mono);
-    text-shadow: 0 2px 12px rgba(0, 255, 247, 0.2);
-}
+
 
 .photo-card p {
     padding: 12px;
 }
 
 .photo-card img {
-    width: 260px;
+    width: 175px;
     height: auto;
-    border: 3px solid rgb(76, 100, 108);
-    border-radius: 50px;
-    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-radius: 12px;
 }
 
-.about-bio {
-    max-height: 100%;
-    max-width: fit-content;
-    width: auto;
-    height: auto;
-    background: var(--card-gradient);
+.about-highlights blockquote {
+    font-style: italic;
+    color: #a6f3ff;
+    margin: 1rem 0;
+    border-left: 3px solid #00eaff;
+    padding-left: 0.8rem;
+    line-height: 1.4;
 }
 
-.about-bio h3 {
-    align-self: center;
+.about-highlights .timeline {
+    border-top: 1px solid #00a2c6;
+    padding-top: 1rem;
+    font-size: 1rem;
+    color: #d0f0ff;
+    line-height: 1.5;
 }
 
-.about-bio p {
-    flex: 1 1 100%;
-    max-width: 100%;
-    overflow-wrap: break-word;
-    color: var(--text-bright);
-    font-size: 1.2rem;
-    text-align: center;
-    margin: 0 0 1rem 0;
-    font-family: var(--font-main);
-    text-shadow: 0 1px 8px rgba(0, 255, 247, 0.1);
-    line-height: 1.7;
-    letter-spacing: 0.01em;
+.about-highlights ul {
+    list-style: none;
 }
 
+.about-card,
+.about-certificates1,
+.about-certificates2,
 .about-hobbies {
-    max-height: 100%;
+    flex: 1 1 300px;
+    min-width: 240px;
     max-width: 100%;
-    flex: 1 1 100%;
-    width: auto;
-    height: auto;
+    background: linear-gradient(145deg, rgba(26, 32, 47, 0.95), rgba(0, 100, 135, 0.85));
+    border: 2px solid rgba(0, 255, 247, 0.35);
+    box-shadow: 0 8px 20px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
+    border-radius: var(--radius);
+    padding: 1.5rem 1.2rem;
+    margin: 0.5rem 0;
+    color: var(--text-bright);
+    font-family: var(--font-main);
+    transition: all 0.3s ease-in-out;
+    backdrop-filter: blur(4px);
+}
+
+.about-card h3,
+.about-certificates1 h3,
+.about-certificates2 h3,
+.about-hobbies h3 {
+    color: #00eaff;
+    font-family: var(--font-mono);
+    text-shadow: 0 2px 12px rgba(0, 255, 247, 0.3);
+}
+
+.about-certificates1 ul,
+.about-certificates2 ul,
+.about-hobbies ul {
+    list-style: disc;
+    padding-left: 8px;
+}
+
+.photo-info-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.photo-image img {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.photo-meta {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 1rem;
+}
+
+.username {
+    color: var(--text-bright);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
+
+.resume-button {
+    color: #00eaff;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.resume-button:hover {
+    color: #99ff00;
+    text-decoration: underline;
 }
 
 @media (min-width: 1370px) and (max-width: 1520px) {
@@ -186,16 +228,6 @@
         padding-left: 27px;
         padding-top: 47px;
         padding-bottom: 40px;
-    }
-
-
-
-    .about-bio {
-        max-height: 100%;
-        max-width: fit-content;
-        width: auto;
-        height: auto;
-        background: var(--card-gradient);
     }
 
     .about-details {
@@ -221,13 +253,6 @@
         width: auto;
         height: auto;
         background: none;
-    }
-
-    .about-bio {
-        max-height: 100%;
-        max-width: fit-content;
-        width: auto;
-        height: auto;
     }
 
     .about-certificates1 {
@@ -259,13 +284,6 @@
         max-height: 100%;
         max-width: 35%;
         width: auto;
-        height: auto;
-    }
-
-    .about-bio {
-        max-height: 100%;
-        max-width: fit-content;
-        width: 100%;
         height: auto;
     }
 
@@ -309,13 +327,6 @@
         height: auto;
     }
 
-    .about-bio {
-        max-height: 100%;
-        max-width: fit-content;
-        width: 100%;
-        height: auto;
-    }
-
     .about-certificates1 {
         max-height: 100%;
         max-width: 50%;
@@ -356,17 +367,9 @@
         height: auto;
     }
 
-    .about-bio {
-        max-height: 100%;
-        flex: 1 1 100%;
-        max-width: fit-content;
-        width: 100%;
-        height: auto;
-    }
-
     .about-certificates1 {
         max-height: 100%;
-        max-width: 450%;
+        max-width: 40%;
         width: auto;
         height: auto;
     }
@@ -411,11 +414,13 @@
     }
 */
 
-    .about-section .social-links2 {
+    .about-highlights {
         display: none;
     }
 
-
+    .about-section .social-links2 {
+        display: none;
+    }
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -460,10 +465,6 @@
         display: none;
     }
 
-    .about-bio {
-        display: none;
-    }
-
     .about-hobbies {
         display: none;
     }
@@ -483,20 +484,20 @@
         width: auto;
         height: auto;
         max-height: fit-content;
-        border-radius: var(--radius);
         box-shadow: var(--shadow);
         flex-wrap: wrap;
         font-family: var(--font-main);
         color: var(--text-bright);
+        border: var(--border);
+        border-radius: var(--radius);
         background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         gap: 1.2rem;
         justify-content: center;
         position: relative;
         z-index: 1;
-        border-radius: 15px;
         text-align: center;
-        padding: 1.5rem 1.2rem;
-        margin: 0.5rem 0;
+        margin: 0 0;
+        padding-bottom: 10px;
     }
 
     .profile-photo-mobile p {
@@ -506,18 +507,32 @@
     }
 
     .photo-card {
-        padding-bottom: 0;
         margin-bottom: 0;
         height: fit-content;
-        border: none;
         background: none;
+        border: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 1.2rem;
+        margin: 0;
+        width: 100%;
+        background-color: #0d1a0d;
+        /* deep green-black */
+        border: 2px solid #99ff00;
+        box-shadow:
+            0 0 12px rgba(153, 255, 0, 0.4),
+            inset 0 0 8px rgba(153, 255, 0, 0.2);
+        border-radius: var(--radius);
+        font-family: var(--font-main);
+        color: var(--text-bright);
+        transition: all 0.3s ease-in-out;
     }
 
     .photo-card img {
-        width: 260px;
-        height: auto;
-        border-radius: 50px;
-        padding-bottom: 0;
+        width: 165px;
+        height: 160px;
+        margin-bottom: 0;
     }
 
     .photo-card h3 {
@@ -531,6 +546,8 @@
 
     .about-certificates2 {
         display: block;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
     .about-certificates2 h3 {

@@ -78,6 +78,10 @@ header {
     margin-bottom: 100px;
     padding: 0 0;
     overflow: hidden;
+    border-left: 2px solid #99ff0086;
+    border-right: 2px solid #99ff0086;
+    border-top: 2px solid rgba(0, 221, 255, 0.619);
+    border-bottom: 2px solid rgba(0, 221, 255, 0.619);
     background: linear-gradient(100deg, #000000b0, #15262bce, #0d1821d3, #0a1b26e7, #000000d2);
     border-radius: 20px;
     box-shadow: 0 0 50px rgba(255, 255, 255, 0.402);
@@ -629,6 +633,10 @@ footer a {
         border-radius: 0;
         margin-bottom: 0;
         padding: 0;
+        border-left: none;
+        border-right: none;
+        border-top: none;
+        border-bottom: none;
     }
 
     .hero {
