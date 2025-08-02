@@ -221,6 +221,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
+const observer = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            import('./react-entry.jsx');
+            obs.disconnect(); // only load once
+        }
+    });
+}, {
+    threshold: 0.1
+});
+
+const githubRoot = document.getElementById('github-root');
+if (githubRoot) {
+    observer.observe(githubRoot);
+}
+
+
 
 
 
