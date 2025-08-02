@@ -2,8 +2,8 @@ import GitHubCalendar from 'react-github-calendar';
 
 export default function GitHubContributions() {
     return (
-        <div className="github-contributions-container">
-            <h3 className="github-title">GitHub Contributions (2025)</h3>
+        <div className="github-contributions-widget">
+            <h3>GitHub Contributions (2025)</h3>
             <GitHubCalendar
                 username="J-Higuera"
                 blockSize={14}
