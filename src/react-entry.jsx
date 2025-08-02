@@ -4,19 +4,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const target = document.getElementById("github-root");
     if (!target) return;
 
-    const idle = window.requestIdleCallback || function (cb) {
-        setTimeout(cb, 1);
-    };
-
     const observer = new IntersectionObserver(
         (entries, observer) => {
             const entry = entries[0];
             if (entry.isIntersecting) {
-                idle(() => {
-                    import("./react/GitHubCalendar.jsx").then(({ default: GitHubCalendar }) => {
-                        const root = createRoot(target);
-                        root.render(<GitHubCalendar />);
-                    });
+                import("./react/GitHubCalendar.jsx").then(({ default: GitHubCalendar }) => {
+                    const root = createRoot(target);
+                    root.render(<GitHubCalendar />);
                 });
 
                 observer.unobserve(entry.target);
@@ -24,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         {
             threshold: 0,
-            rootMargin: "100px 0px" // Triggers before fully visible — useful on mobile
+            rootMargin: "100px 0px" // Preload ~100px early for seamless entry
         }
     );
 
