@@ -9,9 +9,56 @@
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"> -->
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
+    <style>
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: #0e0e0e;
+            color: #00eaff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: monospace;
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+        }
+
+        .progress-bar {
+            margin-top: 1rem;
+            width: 200px;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #00eaff;
+            transition: width 0.3s ease;
+        }
+
+        .fade-out {
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="glitch" data-text="Loading Portfolio...">Loading Portfolio...</div>
+        <div class="progress-wrapper">
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+            <div id="progress-percent">0%</div>
+        </div>
+    </div>
     <!-- Sticky Desktop Nav -->
     <nav class="sticky-nav">
         <ul>
@@ -48,16 +95,6 @@
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    <!-- Preloader -->
-    <div id="preloader">
-        <div class="glitch" data-text="Loading Portfolio...">Loading Portfolio...</div>
-        <div class="progress-wrapper">
-            <div class="progress-bar">
-                <div class="progress-fill"></div>
-            </div>
-            <div id="progress-percent">0%</div>
-        </div>
-    </div>
     <!-- Hero Header -->
     <div class="container">
         <header class="hero">

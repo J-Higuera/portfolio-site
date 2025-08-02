@@ -1,75 +1,63 @@
 document.addEventListener("DOMContentLoaded", () => {
     // ==================== Smooth Scroll ====================
-    // Applies to <a> elements with class "scroll-link"
     document.querySelectorAll('a.scroll-link').forEach(link => {
         link.addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent default jump behavior
-
-            // Get the target section from the href (e.g. "#about")
+            e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            if (!target) return; // If no matching section, do nothing
+            if (!target) return;
 
-            const offset = 0; // You can adjust this if you have sticky headers
-            const topPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            const offset = 0;
+            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
 
-            // Smooth scroll to the target section
             window.scrollTo({
-                top: topPosition,
+                top,
                 behavior: 'smooth'
             });
         });
     });
+});
 
-    // ==================== Preloader Progress Bar ====================
-    // Elements used for loading progress
-    const fill = document.querySelector(".progress-fill");        // Fills the loading bar
-    const percentText = document.getElementById("progress-percent"); // Shows % text
-    const preloader = document.getElementById("preloader");       // Fullscreen preloader container
+// ==================== Preloader Progress Bar ====================
+window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    const fill = document.querySelector(".progress-fill");
+    const percentText = document.getElementById("progress-percent");
+
+    if (!preloader || !fill || !percentText) return;
 
     let progress = 0;
-    let simulatedTotal = 10; // Simulated 100% progress mapped to "10"
+    const updateSpeed = 16; // ~60fps
 
-    // === Updates the progress bar smoothly over time ===
     const updateProgress = () => {
-        if (progress < simulatedTotal) {
-            // Randomly increase progress between 0–2 units per frame
+        if (progress < 100) {
+            // Simulate natural loading steps
             progress += Math.random() * 2;
-            progress = Math.min(progress, simulatedTotal); // Cap at simulated max
+            progress = Math.min(progress, 100);
+
+            fill.style.width = `${Math.floor(progress)}%`;
+            percentText.textContent = `${Math.floor(progress)}%`;
         }
 
-        // Apply to DOM: fill width and % text
-        fill.style.width = `${Math.floor(progress)}%`;
-        percentText.textContent = `${Math.floor(progress)}%`;
-
-        // Once page is fully loaded and simulated bar reaches 100%
-        if (document.readyState === "complete" && progress >= simulatedTotal) {
-            progress = 100;
+        // Check both progress and real document readiness
+        if (progress >= 100 && document.readyState === "complete") {
             fill.style.width = "100%";
             percentText.textContent = "100%";
 
-            // Fade out animation
+            // Fade out preloader naturally
+            preloader.classList.add("fade-out");
+
+            // Fully remove after transition
             setTimeout(() => {
-                preloader.classList.add("fade-out");
-
-                // Fully remove the preloader from view after fade
-                setTimeout(() => {
-                    preloader.style.display = "none";
-
-                    // Remove "loading" class to re-enable scrolling and effects
-                    document.documentElement.classList.remove("loading");
-
-                    // Apply a class for further transition effects (e.g. fade-in body)
-                    requestAnimationFrame(() => {
-                        document.body.classList.add("content-loaded");
-                    });
-                }, 500); // Fade duration
-            }, 400); // Delay before fade starts
+                preloader.style.display = "none";
+                document.documentElement.classList.remove("loading");
+                document.body.classList.remove("loading");
+            }, 500); // match CSS transition time
         } else {
-            // Keep updating on next animation frame
-            requestAnimationFrame(updateProgress);
+            requestAnimationFrame(updateProgress); // keep updating
         }
     };
 
-    // === Start progress update loop ===
-    updateProgress();
+    // Start the loop
+    requestAnimationFrame(updateProgress);
 });
+
