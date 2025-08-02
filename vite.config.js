@@ -15,7 +15,6 @@ export default defineConfig({
                 project2: resolve(__dirname, 'pages/2nd_project.html'),
                 project3: resolve(__dirname, 'pages/3rd_project.html'),
                 project4: resolve(__dirname, 'pages/4th_project.html'),
-                reactEntry: './src/react-entry.jsx' // ensure it's split
             }
         }
     }

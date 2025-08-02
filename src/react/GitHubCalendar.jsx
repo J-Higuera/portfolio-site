@@ -1,3 +1,4 @@
+import React from 'react';
 import GitHubCalendar from 'react-github-calendar';
 
 export default function GitHubContributions() {
@@ -17,4 +18,3 @@ export default function GitHubContributions() {
         </div>
     );
 }
-
