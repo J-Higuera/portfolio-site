@@ -107,7 +107,6 @@
     border-radius: var(--radius);
     font-family: var(--font-main);
     color: var(--text-bright);
-    transition: all 0.3s ease-in-out;
 }
 
 
@@ -217,7 +216,6 @@
 
 .resume-button:hover {
     color: #99ff00;
-    text-decoration: underline;
 }
 
 @media (min-width: 1370px) and (max-width: 1520px) {
@@ -526,7 +524,6 @@
         border-radius: var(--radius);
         font-family: var(--font-main);
         color: var(--text-bright);
-        transition: all 0.3s ease-in-out;
     }
 
     .photo-card img {
@@ -568,6 +565,6 @@
         font-family: var(--font-main);
         color: var(--text-bright);
         background: radial-gradient(circle at top left, #58939a86 0%, #54778290 30%, #5e878b9e 50%, #5b7e8390 75%, #356d7685 100%);
-        box-shadow: 0 0 18px black;
+        box-shadow: 0 0 8px black;
     }
 }

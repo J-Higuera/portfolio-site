@@ -26,6 +26,7 @@
     width: 45px;
     height: 45px;
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.778));
+    background-color: #0606066d;
     backface-visibility: hidden;
     transform: translateZ(0);
     will-change: transform, filter;
