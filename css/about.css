@@ -109,26 +109,15 @@
     color: var(--text-bright);
 }
 
-
-
 .photo-card p {
     padding: 12px;
 }
 
 .photo-card img {
-    width: 175px;
+    width: 170px;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 2px;
     border-radius: 12px;
-}
-
-.about-highlights blockquote {
-    font-style: italic;
-    color: #a6f3ff;
-    margin: 1rem 0;
-    border-left: 3px solid #00eaff;
-    padding-left: 0.8rem;
-    line-height: 1.4;
 }
 
 .about-highlights .timeline {
@@ -147,19 +136,12 @@
 .about-certificates1,
 .about-certificates2,
 .about-hobbies {
-    flex: 1 1 300px;
-    min-width: 240px;
-    max-width: 100%;
     background: linear-gradient(145deg, rgba(26, 32, 47, 0.95), rgba(0, 100, 135, 0.85));
     border: 2px solid rgba(0, 255, 247, 0.35);
     box-shadow: 0 8px 20px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
     border-radius: var(--radius);
-    padding: 1.5rem 1.2rem;
-    margin: 0.5rem 0;
     color: var(--text-bright);
     font-family: var(--font-main);
-    transition: all 0.3s ease-in-out;
-    backdrop-filter: blur(4px);
 }
 
 .about-card h3,
@@ -168,7 +150,6 @@
 .about-hobbies h3 {
     color: #00eaff;
     font-family: var(--font-mono);
-    text-shadow: 0 2px 12px rgba(0, 255, 247, 0.3);
 }
 
 .about-certificates1 ul,
@@ -205,6 +186,7 @@
     color: var(--text-bright);
     font-weight: 600;
     margin-bottom: 0.4rem;
+    align-self: center;
 }
 
 .resume-button {
@@ -228,9 +210,24 @@
         padding-bottom: 40px;
     }
 
-    .about-details {
+    .profile-photo-desktop {
         max-height: 100%;
-        max-width: fit-content;
+        max-width: 40%;
+        width: auto;
+        height: auto;
+        background: none;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 45%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-highlights {
+        max-height: 100%;
+        max-width: 30%;
         width: auto;
         height: auto;
     }
@@ -247,16 +244,22 @@
 
     .profile-photo-desktop {
         max-height: 100%;
-        max-width: 350px;
+        max-width: 35%;
         width: auto;
         height: auto;
-        background: none;
+    }
+
+    .about-highlights {
+        max-height: 100%;
+        max-width: 30%;
+        width: auto;
+        height: auto;
     }
 
     .about-certificates1 {
         max-height: 100%;
-        max-width: 100%;
-        width: auto;
+        max-width: 30%;
+        width: fit-content;
         height: auto;
     }
 
@@ -285,9 +288,16 @@
         height: auto;
     }
 
+    .about-highlights {
+        max-height: 100%;
+        max-width: 30%;
+        width: auto;
+        height: auto;
+    }
+
     .about-certificates1 {
         max-height: 100%;
-        max-width: 40%;
+        max-width: 30%;
         width: fit-content;
         height: auto;
     }
@@ -297,13 +307,6 @@
         max-width: 100%;
         flex: 1 1 100%;
         width: auto;
-        height: auto;
-    }
-
-    .about-details {
-        max-height: 100%;
-        max-width: 100%;
-        width: fit-content;
         height: auto;
     }
 }
@@ -320,7 +323,7 @@
 
     .profile-photo-desktop {
         max-height: 100%;
-        max-width: 55%;
+        max-width: 50%;
         width: auto;
         height: auto;
     }
@@ -328,6 +331,13 @@
     .about-certificates1 {
         max-height: 100%;
         max-width: 50%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-highlights {
+        max-height: 100%;
+        max-width: 100%;
         width: auto;
         height: auto;
     }
@@ -360,14 +370,21 @@
 
     .profile-photo-desktop {
         max-height: 100%;
-        max-width: 55%;
+        max-width: 50%;
         width: auto;
         height: auto;
     }
 
     .about-certificates1 {
         max-height: 100%;
-        max-width: 40%;
+        max-width: 50%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-highlights {
+        max-height: 100%;
+        max-width: 100%;
         width: auto;
         height: auto;
     }
