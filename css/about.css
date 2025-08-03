@@ -138,7 +138,7 @@
 .about-hobbies {
     background: linear-gradient(145deg, rgba(26, 32, 47, 0.95), rgba(0, 100, 135, 0.85));
     border: 2px solid rgba(0, 255, 247, 0.35);
-    box-shadow: 0 8px 20px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
@@ -161,10 +161,7 @@
 
 .photo-info-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: center;
     gap: 1rem;
-    flex-wrap: wrap;
 }
 
 .photo-meta {
@@ -177,23 +174,17 @@
 
 .username {
     color: var(--text-bright);
-    font-weight: 600;
+    font-weight: bold;
     margin-bottom: 0.4rem;
     align-self: center;
 }
 
 .resume-button {
     color: #00b3ff;
-    font-weight: 500;
+    font-weight: bold;
     text-decoration: none;
     text-align: center;
-    transition: color 0.2s;
-}
-
-.download-icon {
-    width: 18px;
-    height: 18px;
-    vertical-align: middle;
+    transition: color 0.3s;
 }
 
 .photo-card img.download-icon {
@@ -208,11 +199,8 @@
 }
 
 .resume-content .download-icon {
-    width: 18px;
-    height: 18px;
     margin: 0;
     padding: 0;
-    vertical-align: middle;
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -221,7 +209,7 @@
     }
 }
 
-@media (min-width: 1370px) and (max-width: 1520px) {
+@media (max-width: 1520px) {
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -232,13 +220,13 @@
     }
 
     .profile-photo-desktop {
-        max-width: 32%;
+        max-width: 38%;
         width: auto;
         height: auto;
     }
 
     .about-certificates1 {
-        max-width: 35%;
+        max-width: 27%;
         width: auto;
         height: auto;
     }
@@ -246,38 +234,6 @@
     .about-highlights {
         max-width: 30%;
         width: auto;
-        height: auto;
-    }
-
-}
-
-@media (min-width: 1220px) and (max-width: 1370px) {
-    .about-section {
-        grid-template-columns: repeat(1, 1fr);
-        padding-right: 27px;
-        padding-left: 27px;
-        padding-top: 47px;
-        padding-bottom: 47px;
-    }
-
-    .profile-photo-desktop {
-        max-height: 100%;
-        max-width: 35%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-highlights {
-        max-height: 100%;
-        max-width: 30%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-certificates1 {
-        max-height: 100%;
-        max-width: 30%;
-        width: fit-content;
         height: auto;
     }
 }
@@ -299,6 +255,14 @@
         height: auto;
     }
 
+    .photo-meta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        font-size: 0.8rem;
+    }
+
     .about-highlights {
         max-height: 100%;
         max-width: 30%;
@@ -322,7 +286,7 @@
     }
 }
 
-@media (min-width: 930px) and (max-width: 1020px) {
+@media (max-width: 1020px) {
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -337,6 +301,10 @@
         max-width: 50%;
         width: auto;
         height: auto;
+    }
+
+    .photo-meta {
+        font-size: 1rem;
     }
 
     .about-certificates1 {
@@ -362,7 +330,7 @@
     }
 }
 
-@media (min-width: 700px) and (max-width: 930px) {
+@media (max-width: 930px) {
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -377,6 +345,10 @@
         max-width: 50%;
         width: auto;
         height: auto;
+    }
+
+    .photo-meta {
+        font-size: 1rem;
     }
 
     .about-certificates1 {
@@ -402,7 +374,7 @@
     }
 }
 
-@media (min-width: 100px) and (max-width: 700px) {
+@media (max-width: 700px) {
 
     /*.about-section {
         background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
@@ -440,6 +412,10 @@
         padding-left: 15px;
         padding-top: 10px;
         padding-bottom: 10px;
+    }
+
+    .photo-meta {
+        font-size: 1rem;
     }
 
     .about-card:hover {
@@ -525,11 +501,7 @@
         padding: 1.2rem;
         margin: 0;
         width: 100%;
-        background-color: #0d1a0d;
-        border: 2px solid #99ff00;
-        box-shadow:
-            0 0 10px rgba(153, 255, 0, 0.4),
-            inset 0 0 18px rgba(153, 255, 0, 0.2);
+
         border-radius: var(--radius);
         font-family: var(--font-main);
         color: var(--text-bright);
