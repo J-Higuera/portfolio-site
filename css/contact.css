@@ -2,11 +2,6 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3px;
-    background: url(../images/body/2121.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
     padding-right: 130px;
     padding-left: 130px;
     padding-top: 47px;
