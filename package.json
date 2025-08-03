@@ -5,20 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run critical",
-    "critical": "critical index.html --inline --base dist/ --width 390 --height 844"
+    "build": "vite build"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
-    "critical": "^7.2.1",
-    "critters": "^0.0.23",
-    "vite": "^7.0.3",
-    "vite-plugin-html": "^3.2.2"
+    "vite": "^7.0.3"
   },
   "dependencies": {
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
-    "react-github-calendar": "^4.5.9",
-    "three": "^0.178.0"
+    "react-github-calendar": "^4.5.9"
   }
 }

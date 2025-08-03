@@ -1,0 +1,377 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-blend-mode: darken;
+    color: #00f5ff;
+    font-family: 'Courier New', monospace;
+    margin: 0;
+    padding: 0;
+    background: url(images/main/t2.webp) rgba(18, 18, 18, 0.575) no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* Header styling */
+header {
+    position: relative;
+    width: 100%;
+    height: 74px;
+    background: linear-gradient(to bottom, rgb(0, 0, 0), #000000b6 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 0 0.20em rgba(255, 255, 255, 0.368),
+        0 0 10.5em #b2e4ff81,
+        inset 0 0 1em rgba(255, 255, 255, 0.1);
+    text-align: center;
+    color: rgb(180, 180, 180);
+}
+
+.container {
+    flex: 1;
+    background-blend-mode: darken;
+    background-size: cover;
+    background-position: center;
+    border-radius: 30px;
+    text-align: center;
+    padding: 25px;
+    width: 100%;
+    max-width: 1080px;
+    margin: 16px auto;
+}
+
+h2 {
+    color: #c5c5c5;
+    text-shadow: 0 0 10px #b2e4ff81;
+}
+
+p {
+    color: #c5c5c5;
+    font-size: 16px;
+}
+
+.output {
+    background: #0d0d0d;
+    color: #f0f0f0;
+    max-width: 100%;
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 5px;
+    margin-bottom: 5px;
+    border: 2px solid #e5e5e5;
+    border-radius: 10px;
+    box-shadow:
+        0 0 0.20em rgba(255, 255, 255, 0.368),
+        0 0 1.5em #b2e4ff,
+        inset 0 0 1em rgba(255, 255, 255, 0.1);
+    height: 50vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    transition: box-shadow 0.3s ease;
+}
+
+.message {
+    margin: 10px 0;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    box-sizing: border-box;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.movie-item {
+    background: #121212;
+    border: 5px solid #252525;
+    box-shadow: 0 4px 3px rgba(255, 255, 255, 0.675);
+    border-radius: 8px;
+    padding: 6px;
+    color: #e4e4e4;
+    font-size: 1rem;
+    text-align: center;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-item .number {
+    display: inline-block;
+    font-weight: bold;
+    color: rgba(255, 201, 40, 0.5);
+    white-space: nowrap;
+}
+
+.movie-item .title {
+    display: inline;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.movie-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 2px;
+    object-fit: cover;
+    margin-bottom: 4px;
+}
+
+.movie-caption {
+    color: #c9c9c9;
+    font-size: 0.85rem;
+    font-weight: bold;
+    line-height: 1.2;
+    text-align: center;
+    margin-top: 3px;
+    height: auto;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.movie-caption .number {
+    color: rgba(255, 201, 40, 0.75);
+    font-weight: bold;
+    margin-right: 1px;
+}
+
+/* Input and Button Grouping */
+#mainControls {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Stack inputs vertically */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    width: 80%;
+    align-self: center;
+}
+
+#deleteContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+#deleteContainer .input-group {
+    width: 87%;
+    max-width: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0 auto;
+    /* this forces centering */
+}
+
+
+#deleteContainer .input-box {
+    width: 100%;
+    max-width: 100%;
+    align-self: center;
+}
+
+/* Arrange buttons horizontally */
+.button-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 8px;
+    gap: 20px;
+}
+
+.button-group button,
+.button-group2 button {
+    --btn-color: #14191f;
+    --glow-color: #b2e4ffdb;
+    --glow-spread-color: rgba(178, 228, 255, 0.19);
+    border: 2px solid var(--glow-color);
+    padding: 0.45em 1.2em;
+    color: var(--glow-color);
+    font-size: 15px;
+    font-weight: bold;
+    background-color: var(--btn-color);
+    border-radius: 10px;
+    cursor: pointer;
+    outline: none;
+    box-shadow:
+        0 0 0.2em 0.10em var(--glow-color),
+        0 0 1.2em 0.3em var(--glow-spread-color),
+        inset 0 0 0.3em 0.1em var(--glow-color);
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-group button:hover,
+.button-group2 button:hover {
+    box-shadow:
+        0 0 0.7em 0.2em var(--glow-color),
+        0 0 2.5em 0.5em var(--glow-spread-color),
+        inset 0 0 0.6em 0.2em var(--glow-color);
+    text-shadow: none;
+}
+
+
+.button-group button::after,
+.button-group2 button::after {
+    pointer-events: none;
+    content: "";
+    position: absolute;
+    top: 120%;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: var(--glow-spread-color);
+    filter: blur(1em);
+    opacity: 0.25;
+    transform: perspective(1.5em) rotateX(35deg) scale(1, 0.6);
+}
+
+.input-box {
+    padding: 8px;
+    margin-top: 9px;
+    font-size: 16px;
+    border: 1.8px solid #c6e7f9;
+    box-shadow:
+        0 0 0.10em rgba(255, 255, 255, 0.368),
+        0 0 0.50em #b2e4ff,
+        inset 0 0 0.10em rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    background: #222222e6;
+    color: #e5e5e5;
+    width: 100%;
+    text-align: center;
+}
+
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    box-shadow: 0 0 0px 1000px #1e1e1e inset !important;
+    -webkit-text-fill-color: #ccc !important;
+    caret-color: #fff;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/* Exit Button */
+.exit-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 12px;
+    padding-right: 12px;
+    box-sizing: border-box;
+}
+
+.exit-button a {
+    font-size: 18px;
+    text-decoration: none;
+    color: #bfbfbf;
+    background-color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow:
+        0 0 0.10em rgba(255, 255, 255, 0.368),
+        0 0 0.5em #b2e4ff,
+        inset 0 0 0.10em rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.exit-button a:hover {
+    background-color: #000;
+    color: #ba1a1a;
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(255, 201, 40, 0.5);
+}
+
+/* Footer styling */
+footer {
+    width: 100%;
+    background-color: #121212;
+    padding: 8px 10px;
+    text-align: center;
+    border-top: 3px solid #363636;
+    margin-top: auto;
+    position: relative;
+}
+
+footer p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #787878;
+}
+
+footer a {
+    color: #00a2c6b1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+@media (max-width: 700px) {
+
+    .container {
+        padding: 10px;
+        width: 100%;
+        max-width: 100%;
+        margin: 15px auto;
+    }
+
+    #deleteContainer .input-group {
+        width: 95%;
+        max-width: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 0 auto;
+        /* this forces centering */
+    }
+
+    .input-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 95%;
+        align-self: center;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px 10px;
+    }
+
+    .movie-item {
+        padding: 1px;
+    }
+
+    .movie-item img {
+        height: 100%;
+        max-height: auto;
+        object-fit: cover;
+    }
+}

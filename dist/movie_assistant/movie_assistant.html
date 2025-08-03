@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Movie Assistant</title>
+    <link rel="stylesheet" href="movie_assistant.css">
+</head>
+
+<body>
+    <header>
+        <div class="exit-button">
+            <a href="#" onclick="window.close()" class="active"><strong>EXIT</strong></a>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="output" id="output">
+            <h2>Welcome to the AI Movie Assistant!</h2><br>
+            <p>Here you can save all of your favorite movies to their respective categories and retrieve them whenever
+                you can't remember that one film you loved but don't remember.</p>
+        </div>
+
+        <!-- Main Controls -->
+        <div class="controls" id="mainControls">
+            <div class="input-group">
+                <input id="categoryInput" class="input-box" placeholder="Enter category">
+                <textarea id="bulkInput" class="input-box" rows="3"
+                    placeholder="input format: Title Year, Title Year,... (make sure to check spelling and include any special characters from the title)"></textarea>
+            </div>
+            <div class="button-group">
+                <button id="setMoviesButton">Add</button>
+                <button id="getMoviesButton">Find</button>
+                <button id="showDeleteButton">Delete</button>
+            </div>
+        </div>
+
+        <!-- Delete Controls -->
+        <div id="deleteContainer" style="display: none;">
+            <div class="input-group">
+                <input id="deleteCategoryInput" class="input-box" placeholder="Category to delete from">
+                <textarea id="deleteTitleInput" class="input-box" rows="3"
+                    placeholder="input format: Title Year, Title Year,... (make sure to check spelling and include any special characters from the title)"></textarea>
+            </div>
+
+            <div class="button-group">
+                <button id="findDeleteCategory">Find</button>
+                <button id="confirmDeleteButton">Delete</button>
+                <button id="backButton" style="display: none;">Back</button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 My Portfolio. All rights reserved.</p>
+        <p><a href="https://github.com/J-Higuera" target="_blank">GitHub</a> |
+            <a href="https://www.linkedin.com/in/juan-higuera-104318337/" target="_blank">LinkedIn</a>
+        </p>
+    </footer>
+    <script src="movie_assistant.js"></script>
+</body>
+
+</html>
