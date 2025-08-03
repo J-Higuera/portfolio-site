@@ -6,10 +6,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "critical": "critical dist/index.html --inline --base dist/ --minify --width 390 --height 844"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
+    "critical": "^7.2.1",
     "critters": "^0.0.23",
     "vite": "^7.0.3",
     "vite-plugin-html": "^3.2.2"
