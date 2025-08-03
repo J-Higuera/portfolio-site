@@ -9,5 +9,4 @@ import './contact.js';
 import './react-entry.jsx';
 import '../css/projects.css';
 import '../css/contact.css';
-import '../css/nav.css';
 import '../css/social-links.css';
