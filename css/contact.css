@@ -79,13 +79,13 @@
     color: #ffffff;
 }
 
-.light-mode .contact-grid {
-    background: url(../images/body/1470.jpg);
+/*.light-mode .contact-grid {
+    background: url(../images/body/emoji.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
-}
+}*/
 
 .light-mode .contact-section {
     background-color: #00091bd8;
