@@ -1,9 +1,29 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
 import react from '@vitejs/plugin-react';
+import { createHtmlPlugin } from 'vite-plugin-html';
+import Critters from 'critters';
 
 export default defineConfig({
-    plugins: [react()],
+    plugins: [
+        react(),
+        createHtmlPlugin(), // enables HTML injection and minification
+        {
+            name: 'inline-critical-css',
+            enforce: 'post',
+            apply: 'build',
+            async generateBundle(_, bundle) {
+                const critters = new Critters({ path: './dist' });
+
+                for (const fileName of Object.keys(bundle)) {
+                    const file = bundle[fileName];
+                    if (file.type === 'asset' && file.fileName.endsWith('.html')) {
+                        file.source = await critters.process(file.source);
+                    }
+                }
+            }
+        }
+    ],
     base: '/',
     build: {
         rollupOptions: {
