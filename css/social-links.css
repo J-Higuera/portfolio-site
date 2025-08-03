@@ -22,14 +22,11 @@
 
 .social-links2 li a img {
     border-radius: 10px;
-    transition: opacity 0.3s ease, transform 0.3s ease, filter 0.4s ease;
+    transition: opacity 0.3s ease, transform 0.4s ease, filter 0.4s ease;
     width: 45px;
     height: 45px;
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.778));
     background-color: #0606066d;
-    backface-visibility: hidden;
-    transform: translateZ(0);
-    will-change: transform, filter;
 }
 
 .social-links2 li a img:hover {
@@ -43,6 +40,13 @@
 
 .light-mode .social-links2 {
     background-color: #00000000;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .social-links2 li a img:hover {
+        transform: scale(1.2) translateY(-4px);
+        filter: drop-shadow(14px 14px 3.5px rgba(0, 0, 0, 0.584));
+    }
 }
 
 @media (max-width: 700px) and (min-width: 320px) {
@@ -72,10 +76,6 @@
         border-radius: 10px;
         background-color: rgba(5, 5, 5, 0.256);
         filter: drop-shadow(6px 6px 3.5px rgb(0, 0, 0));
-    }
-
-    .social-links1 ul li a img:hover {
-        transform: none;
     }
 
     .light-mode .social-links1 ul {
