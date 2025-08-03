@@ -280,13 +280,6 @@
         width: fit-content;
         height: auto;
     }
-
-    .about-details {
-        max-height: 100%;
-        max-width: fit-content;
-        width: auto;
-        height: auto;
-    }
 }
 
 @media (max-width: 1220px) {
@@ -367,13 +360,6 @@
         width: auto;
         height: auto;
     }
-
-    .about-details {
-        max-height: 100%;
-        max-width: 100%;
-        width: auto;
-        height: auto;
-    }
 }
 
 @media (min-width: 700px) and (max-width: 930px) {
@@ -411,13 +397,6 @@
         max-height: 100%;
         max-width: 100%;
         flex: 1 1 100%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-details {
-        max-height: 100%;
-        max-width: 100%;
         width: auto;
         height: auto;
     }
@@ -499,10 +478,6 @@
     }
 
     .about-hobbies {
-        display: none;
-    }
-
-    .about-details {
         display: none;
     }
 
