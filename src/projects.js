@@ -1,19 +1,19 @@
-const observer = new IntersectionObserver((entries) => {
-    let delay = 0;
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
+document.addEventListener('DOMContentLoaded', () => {
+
+    const cards = document.querySelectorAll('.project-card');
+    const observerOptions = { threshold: 0.2 };
+
+    // Debounce IntersectionObserver for optimal scroll performance
+    const observer = new IntersectionObserver((entries, observer) => {
+        const visibleEntries = entries.filter(entry => entry.isIntersecting);
+
+        visibleEntries.forEach((entry, index) => {
             setTimeout(() => {
                 entry.target.classList.add('visible');
-            }, delay);
-            delay += 150; // 150ms between each card fade-in
-            observer.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.2
-});
+                observer.unobserve(entry.target);
+            }, index * 150); // same staggered 150ms interval
+        });
+    }, observerOptions);
 
-document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.project-card');
-    cards.forEach((card) => observer.observe(card));
+    cards.forEach(card => observer.observe(card));
 });
