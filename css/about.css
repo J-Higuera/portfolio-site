@@ -442,9 +442,6 @@
     .profile-photo-mobile {
         display: flex;
         flex-direction: column;
-        width: auto;
-        height: auto;
-        flex-wrap: wrap;
         font-family: var(--font-main);
         color: var(--text-bright);
         border: var(--border);
@@ -463,13 +460,6 @@
     }
 
     .photo-card {
-        margin-bottom: 0;
-        height: fit-content;
-        background: none;
-        border: none;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         padding: 1.2rem;
         margin: 0;
         width: 100%;
