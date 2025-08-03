@@ -66,9 +66,10 @@
     font-size: 1.07rem;
     position: relative;
     line-height: 1.7;
-    align-items: center;
+    text-align: start;
     transition: color 0.2s;
 }
+
 
 .profile-photo-mobile {
     display: none;
@@ -403,18 +404,10 @@
         transform: none;
         box-shadow: none;
         border-color: none;
-        z-index: 2;
     }
 
     .about-card li {
-        margin-bottom: 0.7em;
-        color: var(--text-bright);
-        font-size: 1.07rem;
-        position: relative;
-        line-height: 1.7;
         display: flex;
-        text-align: start;
-        transition: color 0.2s;
     }
 
     .about-card {
@@ -449,7 +442,6 @@
         background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         gap: 1.2rem;
         text-align: center;
-        margin: 0 0;
         padding-bottom: 10px;
     }
 
