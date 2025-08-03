@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && npm run critical",
     "critical": "critical index.html --inline --base dist/ --width 390 --height 844"
   },
   "devDependencies": {
