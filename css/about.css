@@ -21,7 +21,7 @@
     max-width: 100%;
     padding: 1.5rem 1.2rem;
     margin: 0.5rem 0;
-
+    box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
     background: linear-gradient(145deg, rgba(26, 32, 47, 0.95), rgb(0, 86, 118));
     border: 2px solid rgba(0, 255, 247, 0.35);
     border-radius: var(--radius);
@@ -38,7 +38,7 @@
     letter-spacing: 0.05em;
     text-transform: uppercase;
     font-family: var(--font-mono);
-
+    text-shadow: 0 2px 12px rgba(0, 255, 247, 0.277);
 }
 
 .about-card ul {
@@ -67,8 +67,8 @@
     flex-wrap: wrap;
     width: 40%;
     gap: 0.7rem;
+    border-radius: 15px;
     text-align: center;
-    z-index: 1;
 }
 
 .photo-card {
@@ -77,9 +77,11 @@
     align-items: center;
     padding: 1.2rem;
     margin: 0.5rem 0;
+    width: 100%;
     background-color: #0d1a0d;
     border: 2px solid #99ff00;
-
+    box-shadow:
+        0 0 8px rgba(153, 255, 0, 0.4);
     border-radius: var(--radius);
     font-family: var(--font-main);
     color: var(--text-bright);
@@ -392,6 +394,7 @@
 
     .about-card h3 {
         font-size: 1.05rem;
+        text-shadow: none;
     }
 
     .profile-photo-desktop {
@@ -412,7 +415,7 @@
         font-family: var(--font-main);
         color: var(--text-bright);
         border: var(--border);
-        border-radius: var(--radius);
+        border-radius: 30px;
         background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         gap: 1.2rem;
         text-align: center;
@@ -431,7 +434,11 @@
         width: 100%;
         background-color: #0d1a0d;
         border: 2px solid #99ff00;
-
+        box-shadow:
+            0 0 8px rgba(153, 255, 0, 0.4);
+        border-radius: var(--radius);
+        font-family: var(--font-main);
+        color: var(--text-bright);
     }
 
     .photo-card img {
@@ -461,10 +468,9 @@
 
     .light-mode .profile-photo-mobile {
         border-radius: var(--radius);
-
         font-family: var(--font-main);
         color: var(--text-bright);
         background: radial-gradient(circle at top left, #58939a86 0%, #54778290 30%, #5e878b9e 50%, #5b7e8390 75%, #356d7685 100%);
-
+        box-shadow: 0 0 8px rgb(0, 0, 0);
     }
 }
