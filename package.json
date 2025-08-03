@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "critical": "critical dist/index.html --inline --base dist/ --minify --width 390 --height 844"
+    "critical": "critical dist/index.html --inline --base dist/ --width 390 --height 844"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
