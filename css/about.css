@@ -1,5 +1,4 @@
 .about-section {
-    box-shadow: var(--shadow);
     position: relative;
     padding-right: 43px;
     padding-left: 43px;
@@ -13,8 +12,6 @@
     flex-wrap: wrap;
     gap: 1.2rem;
     justify-content: center;
-    align-items: stretch;
-    position: relative;
     z-index: 1;
 }
 
@@ -22,25 +19,14 @@
     flex: 1 1 280px;
     min-width: 200px;
     max-width: 100%;
-    box-sizing: border-box;
-    word-wrap: break-word;
     padding: 1.5rem 1.2rem;
     margin: 0.5rem 0;
     box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(145deg, rgba(26, 32, 47, 0.95), rgba(0, 100, 135, 0.85));
+    background: linear-gradient(145deg, rgba(26, 32, 47, 0.95), rgb(0, 86, 118));
     border: 2px solid rgba(0, 255, 247, 0.35);
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
-    transition:
-        transform 0.25s ease,
-        box-shadow 0.25s ease,
-        border-color 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    position: relative;
-    overflow: hidden;
 }
 
 .about-card h3 {
@@ -78,20 +64,11 @@
 
 .profile-photo-desktop {
     display: flex;
-    align-items: stretch;
     flex-wrap: wrap;
-    max-height: 100%;
-    max-width: 100%;
     width: 40%;
-    height: auto;
-    background: none;
-    gap: 0.5rem;
-    justify-content: center;
-    position: relative;
-    z-index: 1;
-    border-radius: 15px;
+    gap: 0.7rem;
     text-align: center;
-    padding: 0;
+    z-index: 1;
 }
 
 .photo-card {
@@ -100,7 +77,6 @@
     align-items: center;
     padding: 1.2rem;
     margin: 0.5rem 0;
-    width: 100%;
     background-color: #0d1a0d;
     border: 2px solid #99ff00;
     box-shadow:
@@ -458,8 +434,8 @@
         background-color: #0d1a0d;
         border: 2px solid #99ff00;
         box-shadow:
-            0 0 8px rgba(153, 255, 0, 0.4),
-            inset 0 0 0 rgba(153, 255, 0, 0.2);
+            0 0 6px rgba(153, 255, 0, 0.438),
+            inset 0 0 0 rgba(153, 255, 0, 0);
         border-radius: var(--radius);
         font-family: var(--font-main);
         color: var(--text-bright);
