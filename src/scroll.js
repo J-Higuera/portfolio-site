@@ -16,6 +16,3 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
-
-// ==================== Preloader ====================
-

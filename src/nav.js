@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    // =================== Desktop Scroll Handler (mobile-style) ===================
+    // =================== Desktop Scroll Handler (mobile-style)
     const handleDesktopScroll = throttle(() => {
         const currentScroll = window.scrollY;
         const scrollingDown = currentScroll > lastScrollY && currentScroll > 100;
