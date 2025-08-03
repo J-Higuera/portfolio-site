@@ -215,6 +215,8 @@
     vertical-align: middle;
 }
 
+
+
 @media (hover: hover) and (pointer: fine) {
     .resume-button:hover {
         color: #99ff00;
@@ -232,23 +234,26 @@
     }
 
     .profile-photo-desktop {
-        max-width: 32%;
+        max-height: 100%;
+        max-width: 40%;
         width: auto;
         height: auto;
+        background: none;
     }
 
     .about-certificates1 {
-        max-width: 35%;
+        max-height: 100%;
+        max-width: 45%;
         width: auto;
         height: auto;
     }
 
     .about-highlights {
+        max-height: 100%;
         max-width: 30%;
         width: auto;
         height: auto;
     }
-
 }
 
 @media (min-width: 1220px) and (max-width: 1370px) {
