@@ -92,6 +92,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const passedHeader = currentScroll > (header.offsetTop + header.offsetHeight - 280);
         const beforeAchievements = currentScroll < (achievements.offsetTop + 1430);
 
+        // === Disable transitions temporarily while scrolling if menu is open ===
+        if (isOpen) {
+            clearTimeout(window._navScrollTimer);
+            window._navScrollTimer = setTimeout(() => {
+                document.body.removeAttribute("data-scrolling");
+            }, 150);
+        }
+
+        // === Scroll Down Logic ===
         if (scrollingDown && passedHeader) {
             [toggle, nameLabel, mobileThemeContainer].forEach(el => {
                 el?.classList.remove("visible-toggle", "visible-delay");
@@ -105,6 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
+        // === Scroll Up or At Top ===
         if ((scrollingUp && beforeAchievements) || atTop) {
             [toggle, nameLabel, mobileThemeContainer].forEach(el => {
                 el?.classList.remove("hidden-toggle");
@@ -128,5 +138,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         lastScroll = currentScroll;
     }, 50);
+
     window.addEventListener("scroll", handleMobileScroll, { passive: true });
+
 });
