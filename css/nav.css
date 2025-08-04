@@ -188,8 +188,12 @@ nav.sticky-nav.visible-toggle {
     .theme-switch {
         width: 45px;
         height: 10px;
-        border-radius: 10px;
         cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.666);
+        border: 1.7px solid #99ff004e;
+        border-radius: 18px;
+        box-shadow:
+            0 0 6px rgba(153, 255, 0, 0.288);
         align-items: center;
         display: flex;
     }
@@ -197,11 +201,16 @@ nav.sticky-nav.visible-toggle {
     .switch-thumb {
         width: 20px;
         height: 20px;
-        border-radius: 5px;
+        color: var(--text-bright);
+        background-color: rgb(26, 26, 26);
+        border: 1.7px solid #99ff0045;
+        box-shadow:
+            0 0 6px rgba(153, 255, 0, 0.279);
+        border-radius: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 9px;
+        font-size: 8px;
         font-weight: bold;
     }
 
@@ -253,11 +262,13 @@ nav.sticky-nav.visible-toggle {
         width: 2.4rem;
         aspect-ratio: 1;
         background-image: url("/images/menu-toggle/menu.svg");
-        background-color: #2727277d;
+        background-color: rgb(23, 23, 23);
+        border: 2px solid #99ff0046;
+        border-radius: 16px;
+        box-shadow:
+            0 0 6px rgba(153, 255, 0, 0.4);
         background-size: cover;
         background-repeat: no-repeat;
-        border: 2px solid rgb(35, 35, 35);
-        border-radius: 6px;
         cursor: pointer;
         transition: opacity 0.4s ease, transform 0.4s ease;
     }
@@ -281,7 +292,10 @@ nav.sticky-nav.visible-toggle {
 
     .mobile-name a {
         text-decoration: none;
-        color: #ffffff8a;
+        color: var(--accent);
+        text-shadow: 0 0 8px #99ff00b8;
+        box-shadow:
+            0 0 6x rgba(153, 255, 0, 0.4);
     }
 
     .mobile-name.shifted-up {
