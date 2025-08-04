@@ -1,3 +1,4 @@
+// =============================== Nav ===============================
 document.addEventListener("DOMContentLoaded", () => {
     const navbar = document.querySelector("nav.sticky-nav");
     let lastScrollY = window.scrollY;
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
+    // =================== Throttle Utility ===================
     function throttle(fn, wait) {
         let lastCall = 0;
         return function (...args) {
@@ -59,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
+    // =================== Desktop Scroll Handler (mobile-style)
     const handleDesktopScroll = throttle(() => {
         const currentScroll = window.scrollY;
         const scrollingDown = currentScroll > lastScrollY && currentScroll > 100;
@@ -78,6 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 50);
     window.addEventListener("scroll", handleDesktopScroll, { passive: true });
 
+    // =================== Mobile Scroll Handler ===================
     const handleMobileScroll = throttle(() => {
         const currentScroll = window.scrollY;
         const scrollingDown = currentScroll > lastScroll;
