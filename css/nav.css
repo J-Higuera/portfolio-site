@@ -322,7 +322,7 @@ nav.sticky-nav.visible-toggle {
         left: 0;
         right: 0;
         display: block;
-        background-color: rgba(0, 0, 0, 0.282);
+        background-color: rgba(0, 0, 0, 0.616);
         backdrop-filter: blur(10px);
         text-align: center;
         transform: translateY(-100%);
