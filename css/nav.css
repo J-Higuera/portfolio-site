@@ -187,13 +187,11 @@ nav.sticky-nav.visible-toggle {
 
     .theme-switch {
         width: 45px;
+        background-color: #000000;
+        box-shadow: inset 0 0 6px rgb(255, 255, 255);
         height: 10px;
+        border-radius: 10px;
         cursor: pointer;
-        background-color: rgba(0, 0, 0, 0.666);
-        border: 1.7px solid #99ff004e;
-        border-radius: 18px;
-        box-shadow:
-            0 0 6px rgba(153, 255, 0, 0.288);
         align-items: center;
         display: flex;
     }
@@ -201,16 +199,13 @@ nav.sticky-nav.visible-toggle {
     .switch-thumb {
         width: 20px;
         height: 20px;
-        color: var(--text-bright);
-        background-color: rgb(26, 26, 26);
-        border: 1.7px solid #99ff0045;
-        box-shadow:
-            0 0 6px rgba(153, 255, 0, 0.279);
-        border-radius: 4px;
+        color: rgb(186, 208, 215);
+        border-radius: 3px;
+        background-color: #303030;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 8px;
+        font-size: 9px;
         font-weight: bold;
     }
 
@@ -262,13 +257,11 @@ nav.sticky-nav.visible-toggle {
         width: 2.4rem;
         aspect-ratio: 1;
         background-image: url("/images/menu-toggle/menu.svg");
-        background-color: rgb(23, 23, 23);
-        border: 2px solid #99ff0046;
-        border-radius: 16px;
-        box-shadow:
-            0 0 6px rgba(153, 255, 0, 0.4);
+        background-color: #141414;
         background-size: cover;
         background-repeat: no-repeat;
+        border: 2px solid rgb(24, 64, 88);
+        border-radius: 6px;
         cursor: pointer;
         transition: opacity 0.4s ease, transform 0.4s ease;
     }
@@ -282,6 +275,7 @@ nav.sticky-nav.visible-toggle {
         padding-left: 10px;
         padding-top: 8px;
         padding-bottom: 18px;
+        text-shadow: 0 0 10px #00c8ffb9;
         background: linear-gradient(to bottom, #000000b5, #00000075, #00000000 100%);
         font-weight: bold;
         width: 100%;
@@ -292,10 +286,7 @@ nav.sticky-nav.visible-toggle {
 
     .mobile-name a {
         text-decoration: none;
-        color: var(--accent);
-        text-shadow: 0 0 8px #99ff00b8;
-        box-shadow:
-            0 0 6x rgba(153, 255, 0, 0.4);
+        color: #ffffff8a;
     }
 
     .mobile-name.shifted-up {
@@ -336,7 +327,7 @@ nav.sticky-nav.visible-toggle {
         left: 0;
         right: 0;
         display: block;
-        background-color: rgba(0, 0, 0, 0.616);
+        background-color: rgba(0, 0, 0, 0.47);
         backdrop-filter: blur(10px);
         text-align: center;
         transform: translateY(-100%);
