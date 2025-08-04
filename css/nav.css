@@ -332,7 +332,7 @@ nav.sticky-nav.visible-toggle {
         transition:
             transform 0.6s ease,
             opacity 0.6s ease,
-            padding-top 0.4s ease;
+            padding-top 0s ease;
         z-index: 1000;
     }
 
