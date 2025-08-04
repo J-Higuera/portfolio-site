@@ -1,8 +1,44 @@
-// =============================== Nav ===============================
+//======================== Desktop Nav =================================
 document.addEventListener("DOMContentLoaded", () => {
     const navbar = document.querySelector("nav.sticky-nav");
+    if (!navbar) return;
+
     let lastScrollY = window.scrollY;
 
+    function throttle(fn, wait) {
+        let lastCall = 0;
+        return function (...args) {
+            const now = Date.now();
+            if (now - lastCall >= wait) {
+                lastCall = now;
+                fn.apply(this, args);
+            }
+        };
+    }
+
+    const handleDesktopScroll = throttle(() => {
+        const currentScroll = window.scrollY;
+        const scrollingDown = currentScroll > lastScrollY && currentScroll > 100;
+        const scrollingUp = currentScroll < lastScrollY;
+
+        if (scrollingDown) {
+            navbar.classList.remove("visible-toggle");
+            navbar.classList.add("hidden-toggle");
+        }
+
+        if (scrollingUp || currentScroll <= 0) {
+            navbar.classList.remove("hidden-toggle");
+            navbar.classList.add("visible-toggle");
+        }
+
+        lastScrollY = currentScroll;
+    }, 50);
+
+    window.addEventListener("scroll", handleDesktopScroll, { passive: true });
+});
+
+//======================== Mobile Nav =================================
+document.addEventListener("DOMContentLoaded", () => {
     const mobileThemeContainer = document.querySelector(".mobile-theme-toggle");
     const toggle = document.querySelector(".mobile-toggle");
     const nameLabel = document.querySelector(".mobile-name");
@@ -10,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const menu = document.getElementById("mobileMenu");
     const header = document.querySelector(".hero");
     const achievements = document.querySelector(".achievements");
+
+    if (!toggle || !menu || !header || !achievements) return;
 
     let lastScroll = window.scrollY;
 
@@ -49,7 +87,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // =================== Throttle Utility ===================
     function throttle(fn, wait) {
         let lastCall = 0;
         return function (...args) {
@@ -61,27 +98,6 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
-    // =================== Desktop Scroll Handler (mobile-style)
-    const handleDesktopScroll = throttle(() => {
-        const currentScroll = window.scrollY;
-        const scrollingDown = currentScroll > lastScrollY && currentScroll > 100;
-        const scrollingUp = currentScroll < lastScrollY;
-
-        if (scrollingDown) {
-            navbar.classList.remove("visible-toggle");
-            navbar.classList.add("hidden-toggle");
-        }
-
-        if (scrollingUp || currentScroll <= 0) {
-            navbar.classList.remove("hidden-toggle");
-            navbar.classList.add("visible-toggle");
-        }
-
-        lastScrollY = currentScroll;
-    }, 50);
-    window.addEventListener("scroll", handleDesktopScroll, { passive: true });
-
-    // =================== Mobile Scroll Handler ===================
     const handleMobileScroll = throttle(() => {
         const currentScroll = window.scrollY;
         const scrollingDown = currentScroll > lastScroll;
@@ -92,15 +108,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const passedHeader = currentScroll > (header.offsetTop + header.offsetHeight - 280);
         const beforeAchievements = currentScroll < (achievements.offsetTop + 1430);
 
-        // === Disable transitions temporarily while scrolling if menu is open ===
+        // Temporarily disable transitions during scroll if menu is open
         if (isOpen) {
+            document.body.setAttribute("data-scrolling", "true");
             clearTimeout(window._navScrollTimer);
             window._navScrollTimer = setTimeout(() => {
                 document.body.removeAttribute("data-scrolling");
             }, 150);
         }
 
-        // === Scroll Down Logic ===
         if (scrollingDown && passedHeader) {
             [toggle, nameLabel, mobileThemeContainer].forEach(el => {
                 el?.classList.remove("visible-toggle", "visible-delay");
@@ -114,7 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // === Scroll Up or At Top ===
         if ((scrollingUp && beforeAchievements) || atTop) {
             [toggle, nameLabel, mobileThemeContainer].forEach(el => {
                 el?.classList.remove("hidden-toggle");
@@ -140,5 +155,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 50);
 
     window.addEventListener("scroll", handleMobileScroll, { passive: true });
-
 });

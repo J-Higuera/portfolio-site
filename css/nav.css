@@ -322,9 +322,9 @@ nav.sticky-nav.visible-toggle {
         left: 0;
         right: 0;
         display: block;
-        background-color: rgba(0, 0, 0, 0);
-        backdrop-filter: blur(10px);
+        background: linear-gradient(to bottom, #111111ee 90%, #99ff0000);
         text-align: center;
+        padding-bottom: 65px;
         transform: translateY(-100%);
         opacity: 0;
         pointer-events: none;
@@ -359,23 +359,26 @@ nav.sticky-nav.visible-toggle {
     }
 
     #mobileMenu a {
-        color: #fbfbfbc3;
         text-decoration: none;
-        font-size: 1.4rem;
         font-family: serif;
         padding: 10px 20%;
         display: inline-block;
-        background-color: #161616de;
+        font-size: 1.2rem;
+        font-family: 'Orbitron', sans-serif;
+        color: #b8eaff;
+        background: linear-gradient(to right, #111111d1, #0e0e0ec0);
+        border: 2px solid #0081957a;
         border-radius: 12px;
-        border: rgba(23, 23, 23, 0.736) 5px solid;
-        box-shadow: 0 0 5px #a6d7ff;
+        box-shadow: 0 0 8px #00eaff2d;
+        transition: all 0.25s ease;
     }
 
     #mobileMenu a:hover {
-        background-color: #282828b1;
-        color: #fff;
-        box-shadow: 0 0 8px #ffffffad;
-        transform: scale(1.05);
+        background-color: #0e0e0ebf;
+        border-color: #7bff008a;
+        box-shadow: 0 0 12px #bbff00;
+        color: #ffffff;
+        transform: scale(1.03);
     }
 
     .light-mode #mobileMenu a {
