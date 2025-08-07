@@ -16,7 +16,6 @@ body {
     flex-direction: column;
     min-height: 100vh;
     max-width: 100vw;
-    width: 100vw;
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
@@ -93,8 +92,8 @@ html.loading {
 
 .container {
     max-width: fit-content;
-    margin-left: 12%;
-    margin-right: 12%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-top: 100px;
     margin-bottom: 100px;
     padding: 0 0;
@@ -112,10 +111,10 @@ html.loading {
 .hero {
     position: relative;
     width: 100%;
-    padding-top: 220px;
+    padding-top: 170px;
     background-position: center;
     background-size: cover;
-    padding-bottom: 100px;
+    padding-bottom: 150px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -125,7 +124,8 @@ html.loading {
 
 
 .hero h1 {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
+    font-family: "Michroma", sans-serif;
     margin: 0;
     color: #bfbfbf;
     display: block;
@@ -137,7 +137,7 @@ html.loading {
 }
 
 .hero h2 {
-    font-size: 2.5rem;
+    font-size: 2.3rem;
     color: #bfbfbf;
     margin-top: 15px;
     animation: fadeIn 5s ease-in-out;
@@ -160,15 +160,19 @@ html.loading {
 }
 
 .type-sequence {
-    font-size: 1.5rem;
     overflow: hidden;
     white-space: nowrap;
-    font-family: inherit;
+    font-family: "Michroma", sans-serif;
     text-align: center;
     overflow-wrap: break-word;
     max-width: 90vw;
     margin: 0 auto;
     margin-bottom: 0;
+}
+
+.type-sequence i {
+    font-size: 2.8rem;
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .type-wrapper {
@@ -360,7 +364,7 @@ html.loading {
     margin-top: 18px;
     width: 100%;
     justify-self: center;
-    max-width: 1300px;
+    max-width: 100%;
     min-height: 200px;
     display: flex;
     flex-direction: column;
@@ -491,16 +495,6 @@ footer a {
 
 .light-mode .container {
     background: linear-gradient(to right, #e4f1d79d, #b7bceea5, #ffd9f98a);
-    /* match dark mode border */
-}
-
-/* Light mode section */
-.light-mode .hero {
-    background-color: #bf080800;
-}
-
-.light-mode .hero h1 {
-    color: #00091bd8;
 }
 
 .light-mode .hero h2 {
@@ -513,36 +507,6 @@ footer a {
     font-weight: bold;
     animation: blink 1s steps(1) infinite;
     color: #0e0e0e;
-}
-
-.light-mode .first-banner {
-    width: 100%;
-    text-align: center;
-    box-shadow: none;
-}
-
-.light-mode .first-banner h2 {
-    color: rgb(177, 177, 177);
-    background-color: #161616df;
-    box-shadow: none;
-    width: 100%;
-    text-align: center;
-    padding: 12px;
-}
-
-.light-mode .heading-banner {
-    width: 100%;
-    text-align: center;
-    box-shadow: none;
-}
-
-.light-mode .heading-banner h2 {
-    color: rgb(177, 177, 177);
-    background-color: #161616df;
-    box-shadow: none;
-    width: 100%;
-    text-align: center;
-    padding: 12px;
 }
 
 .light-mode .achievements {
@@ -625,6 +589,26 @@ footer a {
     }
 }
 
+@media (min-width: 1200px) and (max-width: 1500px) {
+
+    .container {
+        max-width: fit-content;
+        margin-left: 5%;
+        margin-right: 5%;
+        margin-top: 100px;
+        margin-bottom: 100px;
+        padding: 0 0;
+        border-left: 2px solid #99ff0086;
+        border-right: 2px solid #99ff0086;
+        border-top: 2px solid rgba(0, 221, 255, 0.619);
+        border-bottom: 2px solid rgba(0, 221, 255, 0.619);
+        background: linear-gradient(100deg, #000000dd, #15262be0, #0d1821eb, #0a1b26e7, #000000e4);
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(255, 255, 255, 0.402);
+        backdrop-filter: blur(2px);
+    }
+}
+
 /* Laptop/Tablets */
 @media(max-width: 1200px) {
 
@@ -675,11 +659,12 @@ footer a {
     }
 
     .hero {
-        padding-bottom: 170px;
+        padding-top: 190px;
+        padding-bottom: 150px;
     }
 
     .hero h1 {
-        font-size: 3.2rem;
+        font-size: 2.5rem;
         margin: 0;
         color: #bfbfbf;
         display: block;
@@ -688,6 +673,17 @@ footer a {
         padding-left: 10px;
         padding-right: 10px;
         animation: fadeIn 4s ease-in-out;
+    }
+
+    .hero h2 {
+        font-size: 1.7rem;
+        color: #bfbfbf;
+        margin-top: 15px;
+        animation: fadeIn 5s ease-in-out;
+    }
+
+    .type-sequence i {
+        font-size: 2.3rem;
     }
 
     .tooltip {
@@ -901,7 +897,7 @@ footer a {
     }
 
     .hero h1 {
-        font-size: 3.3rem;
+        font-size: 2.7rem;
         margin: 0;
         color: #bfbfbf;
         display: block;
@@ -913,7 +909,7 @@ footer a {
     }
 
     .hero h2 {
-        font-size: 2.2rem;
+        font-size: 2rem;
         color: #bfbfbf;
         margin-top: 15px;
         animation: fadeIn 5s ease-in-out;

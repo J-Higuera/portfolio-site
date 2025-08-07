@@ -50,15 +50,17 @@ nav.sticky-nav.visible-toggle {
 
 .sticky-nav a {
     color: #fbfbfb6e;
+    text-shadow: 0 0 10px #adadadb9;
+    font-weight: bold;
     text-decoration: none;
-    font-size: 1.5em;
-    font-family: serif;
+    font-size: 1.3em;
+    font-family: "Michroma", sans-serif;
+    transition: all 0.2s ease-in-out;
 }
 
 .sticky-nav a:hover {
     color: #c0c0c0;
     margin: 2%;
-    transition: all 0.2s ease-in-out;
 }
 
 .sticky-nav.hidden {
@@ -84,7 +86,8 @@ nav.sticky-nav.visible-toggle {
     width: 45px;
     height: 10px;
     border-radius: 10px;
-    background-color: #414141b6;
+    background-color: #000000;
+    box-shadow: inset 0 0 6px rgb(255, 255, 255);
     cursor: pointer;
     align-items: center;
     transition: background-color 0.3s ease;
@@ -94,7 +97,9 @@ nav.sticky-nav.visible-toggle {
 .switch-thumb {
     width: 20px;
     height: 20px;
-    background-color: #cfcfcfc9;
+    color: rgb(186, 208, 215);
+    border-radius: 3px;
+    background-color: #303030;
     transition: transform 0.5s ease;
     border-radius: 10px;
     display: flex;
@@ -103,7 +108,6 @@ nav.sticky-nav.visible-toggle {
     font-size: 9px;
     border-radius: 5px;
     font-weight: bold;
-    color: rgb(0, 0, 0);
 }
 
 .light-mode .theme-switch .switch-thumb {
@@ -152,6 +156,16 @@ nav.sticky-nav.visible-toggle {
         justify-content: flex-end;
         transition: opacity 0.8s ease, transform 0.8s ease;
         z-index: 1000;
+    }
+
+    .sticky-nav a {
+        color: #fbfbfb6e;
+        text-shadow: 0 0 10px #adadadb9;
+        font-weight: bold;
+        text-decoration: none;
+        font-size: 1.2em;
+        font-family: "Michroma", sans-serif;
+        transition: all 0.2s ease-in-out;
     }
 
     .sticky-nav ul {
@@ -286,7 +300,10 @@ nav.sticky-nav.visible-toggle {
 
     .mobile-name a {
         text-decoration: none;
-        color: #ffffff8a;
+        color: #fbfbfb6e;
+        text-shadow: 0 0 10px #adadadb9;
+        font-family: "Michroma", sans-serif;
+        font-size: 1.15rem;
     }
 
     .mobile-name.shifted-up {
@@ -366,8 +383,8 @@ nav.sticky-nav.visible-toggle {
     #mobileMenu a {
         color: #fbfbfbc3;
         text-decoration: none;
-        font-size: 1.4rem;
-        font-family: serif;
+        font-family: "Michroma", sans-serif;
+        font-size: 1.1rem;
         padding: 10px 20%;
         display: inline-block;
         background-color: #161616de;
