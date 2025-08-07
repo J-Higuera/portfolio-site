@@ -666,8 +666,6 @@ footer a {
         display: block;
         text-align: center;
         width: 100%;
-        padding-left: 10px;
-        padding-right: 10px;
         animation: fadeIn 4s ease-in-out;
     }
 
@@ -886,6 +884,8 @@ footer a {
         height: auto;
         padding-top: 120px;
         padding-bottom: 80px;
+        padding-right: 15px;
+        padding-left: 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -908,12 +908,18 @@ footer a {
         font-size: 1.7rem;
         color: #bfbfbf;
         margin-top: 15px;
+        padding-right: 15px;
+        padding-left: 15px;
         animation: fadeIn 5s ease-in-out;
     }
 
     .type-sequence {
         text-align: center;
-        /* Add more spacing below the text */
+        max-width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin: 0 auto;
+        margin-bottom: 0;
     }
 
     .type-wrapper {
