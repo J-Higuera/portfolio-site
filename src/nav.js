@@ -156,3 +156,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", handleMobileScroll, { passive: true });
 });
+

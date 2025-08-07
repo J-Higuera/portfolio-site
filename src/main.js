@@ -7,5 +7,3 @@ import './theme.js';
 import './about.js';
 import './contact.js';
 import './react-entry.jsx';
-import '../css/projects.css';
-import '../css/contact.css';
