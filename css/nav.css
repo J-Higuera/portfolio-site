@@ -12,8 +12,30 @@
     background: linear-gradient(to bottom, #000000d2, #000000b3, #00000000 100%);
     display: flex;
     justify-content: center;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.8s ease, transform 0.8s ease;
     z-index: 1000;
+}
+
+.sticky-nav a {
+    color: #fbfbfb6e;
+    text-shadow: 0 0 10px #adadadb9;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 1.3em;
+    font-family: "Michroma", sans-serif;
+    transition: all 0.2s ease-in-out;
+}
+
+.sticky-nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    border-radius: 10px;
+    margin: 0;
+    padding: 3px;
+    padding-bottom: 12px;
+    padding-right: 25px;
+
 }
 
 nav.sticky-nav {
@@ -32,30 +54,8 @@ nav.sticky-nav.visible-toggle {
     pointer-events: auto;
 }
 
-.sticky-nav ul {
-    display: flex;
-    list-style: none;
-    gap: 20px;
-    border-radius: 10px;
-    margin: 0;
-    padding: 3px;
-    padding-bottom: 20px;
-    padding-right: 5px;
-
-}
-
 .sticky-nav li {
     margin: 0;
-}
-
-.sticky-nav a {
-    color: #fbfbfb6e;
-    text-shadow: 0 0 10px #adadadb9;
-    font-weight: bold;
-    text-decoration: none;
-    font-size: 1.3em;
-    font-family: "Michroma", sans-serif;
-    transition: all 0.2s ease-in-out;
 }
 
 .sticky-nav a:hover {
