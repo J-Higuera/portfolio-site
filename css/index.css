@@ -497,16 +497,12 @@ footer a {
     background: linear-gradient(to right, #e4f1d79d, #b7bceea5, #ffd9f98a);
 }
 
-.light-mode .hero h2 {
-    color: #00091bd8;
-}
-
 .light-mode .cursor {
     display: inline-block;
     margin-left: 2px;
     font-weight: bold;
     animation: blink 1s steps(1) infinite;
-    color: #0e0e0e;
+    color: #cecece;
 }
 
 .light-mode .achievements {
@@ -1101,12 +1097,12 @@ footer a {
 @media (prefers-color-scheme: dark) {
 
     .light-mode .hero h1 {
-        color: hsl(0, 0%, 13%);
+        color: hsl(0, 0%, 82%);
         /* Optional overrides if needed for system light + site light */
     }
 
     .light-mode .hero h2 {
-        color: hsl(0, 0%, 13%);
+        color: hsl(0, 0%, 81%);
         /* Optional overrides if needed for system light + site light */
     }
 }
