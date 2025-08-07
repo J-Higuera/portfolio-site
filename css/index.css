@@ -897,7 +897,7 @@ footer a {
     }
 
     .hero h1 {
-        font-size: 2.7rem;
+        font-size: 2.5rem;
         margin: 0;
         color: #bfbfbf;
         display: block;
@@ -909,14 +909,13 @@ footer a {
     }
 
     .hero h2 {
-        font-size: 2rem;
+        font-size: 1.7rem;
         color: #bfbfbf;
         margin-top: 15px;
         animation: fadeIn 5s ease-in-out;
     }
 
     .type-sequence {
-        font-size: 1.4rem;
         text-align: center;
         /* Add more spacing below the text */
     }
