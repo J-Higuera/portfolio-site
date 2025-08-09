@@ -285,6 +285,19 @@ html.loading {
     transition: transform 0.6s ease, z-index 0.3s ease;
 }
 
+.zoom-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .75);
+    opacity: 0;
+    transition: opacity .3s ease;
+    z-index: 1000;
+}
+
+.zoom-backdrop.show {
+    opacity: 1;
+}
+
 .certificate p {
     font-size: 1.1rem;
     color: var(--primary);
