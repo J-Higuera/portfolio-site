@@ -144,34 +144,32 @@ document.addEventListener("DOMContentLoaded", () => {
             if (document.querySelector(".zoom-backdrop") || isAnimating) return;
             isAnimating = true;
 
-            // get rendered size before moving the image
-            const rect = img.getBoundingClientRect();
+            const rect = img.getBoundingClientRect(); // get actual size
             const computed = getComputedStyle(img);
 
-            // backdrop
+            // Backdrop
             const backdrop = document.createElement("div");
             backdrop.classList.add("zoom-backdrop");
             document.body.appendChild(backdrop);
 
-            // placeholder to keep layout from shifting
+            // Placeholder
             const placeholder = document.createElement("div");
-            placeholder.className = "zoom-placeholder";
-            // copy margins so spacing stays identical
-            ["marginTop", "marginRight", "marginBottom", "marginLeft"].forEach(p => {
-                placeholder.style[p] = computed[p];
-            });
-            // **KEY LINES** — lock the flex slot to the image's size
+            ["display", "verticalAlign", "marginTop", "marginRight", "marginBottom", "marginLeft"]
+                .forEach(prop => {
+                    placeholder.style[prop] = computed[prop];
+                });
+
+            // NEW: lock width/height so text doesn’t move
             placeholder.style.width = rect.width + "px";
             placeholder.style.height = rect.height + "px";
-            placeholder.style.flex = `0 0 ${rect.width}px`;   // fixed flex-basis, no grow/shrink
+            placeholder.style.flex = `0 0 ${rect.width}px`; // fixed flex-basis
             placeholder.style.flexShrink = "0";
-            placeholder.style.display = "block";
 
-            // insert placeholder, move image to <body>
+            // Insert placeholder, move image to <body>
             img.parentNode.insertBefore(placeholder, img);
             document.body.appendChild(img);
 
-            // prepare zoomed image styles
+            // Zoom styles
             img.classList.add("zoomed-real");
             img.style.position = "fixed";
             img.style.top = "50%";
@@ -185,18 +183,13 @@ document.addEventListener("DOMContentLoaded", () => {
             img.style.transition = "opacity 0.8s ease";
             img.style.opacity = "0";
 
-            // optional: prevent scrollbar jump while zoomed
-            const prevOverflow = document.documentElement.style.overflow;
-            document.documentElement.style.overflow = "hidden";
-
-            // animate in
             requestAnimationFrame(() => {
                 backdrop.classList.add("show");
                 img.style.opacity = "1";
-                setTimeout(() => (isAnimating = false), 800);
+                setTimeout(() => isAnimating = false, 800);
             });
 
-            // close on backdrop
+            // Close on backdrop click
             backdrop.addEventListener("click", () => {
                 if (isAnimating) return;
                 isAnimating = true;
@@ -206,25 +199,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 backdrop.classList.remove("show");
 
                 setTimeout(() => {
-                    // restore image to original spot
                     img.removeAttribute("style");
                     img.classList.remove("zoomed-real");
                     placeholder.replaceWith(img);
-
-                    // fade back in smoothly
                     img.style.opacity = "0";
+
                     requestAnimationFrame(() => {
                         img.style.transition = "opacity 0.6s ease";
                         img.style.opacity = "1";
                     });
 
-                    // cleanup
                     backdrop.remove();
-                    document.documentElement.style.overflow = prevOverflow || "";
-
-                    setTimeout(() => (isAnimating = false), 600);
+                    setTimeout(() => isAnimating = false, 600);
                 }, 600);
-            }, { once: true });
+            });
         });
     });
 });
