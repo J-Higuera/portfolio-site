@@ -604,7 +604,7 @@ footer a {
         content: "";
         position: fixed;
         inset: 0;
-        background: linear-gradient(170deg, #000000ef, #15262bed, #0d1821f6, #0a1b26ed, #000000f3), url(/images/body/neon-light.webp);
+        background: linear-gradient(170deg, #000000, #15262bea, #0d1821af, #0a1b26dc, #000000), url(/images/body/neon-light.webp);
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
