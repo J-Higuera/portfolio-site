@@ -961,7 +961,6 @@ footer a {
         gap: 16px;
         padding: 10px 0;
         border-bottom: 1px solid #333;
-        /* optional separator */
     }
 
     .certificate img {
@@ -975,7 +974,6 @@ footer a {
         text-align: left;
         margin: 0;
     }
-
 
     .github-contributions-widget {
         background-color: rgba(14, 14, 14, 0);
