@@ -19,7 +19,7 @@ body {
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    background: radial-gradient(ellipse at center, #05050500 0%, #00000064 100%),
+    background: linear-gradient(100deg, #000000dd, #15262be0, #0d1821eb, #0a1b26e7, #000000e4),
         url('/images/body/neon-light.webp');
     background-size: cover;
     background-position: center;
@@ -101,7 +101,6 @@ html.loading {
     border-right: 2px solid #99ff0086;
     border-top: 2px solid rgba(0, 221, 255, 0.619);
     border-bottom: 2px solid rgba(0, 221, 255, 0.619);
-    background: linear-gradient(100deg, #000000dd, #15262be0, #0d1821eb, #0a1b26e7, #000000e4);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.402);
     backdrop-filter: blur(2px);
@@ -598,7 +597,6 @@ footer a {
         border-right: 2px solid #99ff0086;
         border-top: 2px solid rgba(0, 221, 255, 0.619);
         border-bottom: 2px solid rgba(0, 221, 255, 0.619);
-        background: linear-gradient(100deg, #000000dd, #15262be0, #0d1821eb, #0a1b26e7, #000000e4);
         border-radius: 20px;
         box-shadow: 0 0 30px rgba(255, 255, 255, 0.402);
         backdrop-filter: blur(2px);
@@ -859,7 +857,7 @@ footer a {
         content: "";
         position: fixed;
         inset: 0;
-        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/neon-light.webp);
+        background: url(/images/body/neon-light.webp);
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -871,7 +869,7 @@ footer a {
     }
 
     .light-mode::before {
-        background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0)), url(/images/body/neon-light.webp);
+        background: url(/images/body/neon-light.webp);
         background-position: center center;
         background-repeat: no-repeat;
         background-size: cover;
