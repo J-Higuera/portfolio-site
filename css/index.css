@@ -596,6 +596,21 @@ footer a {
 /* Laptop/Tablets */
 @media(max-width: 1200px) {
 
+    body {
+        background: none;
+    }
+
+    body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: linear-gradient(170deg, #000000ef, #15262bed, #0d1821f6, #0a1b26ed, #000000f3), url(/images/body/neon-light.webp);
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        z-index: -1;
+    }
+
     .grid-wrapper {
         padding-right: 27px;
         padding-left: 27px;
@@ -634,6 +649,7 @@ footer a {
         border-radius: 0;
         margin-bottom: 0;
         padding: 0;
+        background: none;
         border-left: none;
         border-right: none;
         border-top: none;
@@ -838,21 +854,6 @@ footer a {
 
 /* Mobile screens */
 @media (max-width: 600px) and (min-width: 320px) {
-
-    body {
-        background: none;
-    }
-
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: linear-gradient(170deg, #000000ef, #15262bed, #0d1821f6, #0a1b26ed, #000000f3), url(/images/body/neon-light.webp);
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        z-index: -1;
-    }
 
     ::-webkit-scrollbar {
         width: 0;
