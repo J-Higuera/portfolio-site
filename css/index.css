@@ -19,7 +19,7 @@ body {
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    background: linear-gradient(100deg, #000000dd, #15262be0, #0d1821eb, #0a1b26e7, #000000e4),
+    background: radial-gradient(ellipse at center, #050505a9 0%, #000000b5 100%),
         url('/images/body/neon-light.webp');
     background-size: cover;
     background-position: center;
@@ -101,6 +101,7 @@ html.loading {
     border-right: 2px solid #99ff0086;
     border-top: 2px solid rgba(0, 221, 255, 0.619);
     border-bottom: 2px solid rgba(0, 221, 255, 0.619);
+    background: linear-gradient(100deg, #000000dd, #15262be0, #0d1821eb, #0a1b26e7, #000000e4);
     border-radius: 20px;
     box-shadow: 0 0 30px rgba(255, 255, 255, 0.402);
     backdrop-filter: blur(2px);
@@ -493,7 +494,7 @@ footer a {
 }
 
 .light-mode .container {
-    background: linear-gradient(to right, #e4f1d79d, #b7bceea5, #ffd9f98a);
+    background: linear-gradient(to right, #e4f1d772, #b7bceea5, #ffd9f98a);
 }
 
 .light-mode .cursor {
@@ -587,19 +588,8 @@ footer a {
 @media (min-width: 1200px) and (max-width: 1500px) {
 
     .container {
-        max-width: fit-content;
         margin-left: 5%;
         margin-right: 5%;
-        margin-top: 100px;
-        margin-bottom: 100px;
-        padding: 0 0;
-        border-left: 2px solid #99ff0086;
-        border-right: 2px solid #99ff0086;
-        border-top: 2px solid rgba(0, 221, 255, 0.619);
-        border-bottom: 2px solid rgba(0, 221, 255, 0.619);
-        border-radius: 20px;
-        box-shadow: 0 0 30px rgba(255, 255, 255, 0.402);
-        backdrop-filter: blur(2px);
     }
 }
 
@@ -857,7 +847,7 @@ footer a {
         content: "";
         position: fixed;
         inset: 0;
-        background: linear-gradient(100deg, #000000dd, #15262be0, #0d1821eb, #0a1b26e7, #000000e4), url(/images/body/neon-light.webp);
+        background: linear-gradient(170deg, #000000ef, #15262bed, #0d1821f6, #0a1b26ed, #000000f3), url(/images/body/neon-light.webp);
         background-size: cover;
         background-position: center center;
         background-repeat: no-repeat;
@@ -909,6 +899,10 @@ footer a {
         padding-right: 15px;
         padding-left: 15px;
         animation: fadeIn 5s ease-in-out;
+    }
+
+    .container {
+        background: none;
     }
 
     .type-sequence {
