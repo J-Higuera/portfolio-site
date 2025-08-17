@@ -1,6 +1,4 @@
 // Import other site scripts
-import './projects.css';
-import './contact.css';
 import './index.js';
 import './nav.js';
 import './projects.js';
