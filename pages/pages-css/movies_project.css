@@ -1,11 +1,4 @@
 /* Movie Assistant Project Showcase */
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 body {
     margin: 0;
     padding: 0;
@@ -17,10 +10,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
     background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
-    padding-bottom: 70px;
     padding-top: 0;
+    padding-bottom: 50px;
+    padding-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .movie-assistant-details {
@@ -193,7 +188,8 @@ footer a {
 @media (max-width: 600px) {
     .movie-assistant-details {
         padding: 18px 8px;
-        max-width: 92vw;
+        max-width: 90vw;
+        box-sizing: border-box;
     }
 
     .movie-assistant-details h2 {
