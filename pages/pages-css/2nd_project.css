@@ -1,9 +1,16 @@
 /* Movie Assistant Project Showcase */
 
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
     border: none;
+    box-sizing: border-box;
     background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
 }
 
@@ -11,7 +18,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 70vh;
+    min-height: 90vh;
+    min-width: 100vw;
     background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
     padding-bottom: 100px;
     padding-top: 0;
@@ -43,11 +51,7 @@ body {
     letter-spacing: 1px;
 }
 
-.movie-assistant-details p {
-    font-size: 1.15rem;
-    margin-bottom: 22px;
-    color: var(--text-bright, #e3e3e3);
-}
+
 
 .project-link {
     display: inline-block;
@@ -96,62 +100,29 @@ body {
     box-shadow: 0 2px 8px rgba(0, 255, 170, 0.25);
 }
 
-.tech-stack {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 28px 0 0 0;
-    padding: 0 8px;
+/* Footer section */
+footer {
+    width: 100%;
+    min-width: 100%;
+    background: linear-gradient(to top, #000000a7, #00000091, #00000081 100%);
+    padding: 10px 20px;
+    z-index: 100;
+    flex-shrink: 0;
+    position: absolute;
+    bottom: 0;
 }
 
-.tech-stack h2 {
-    width: 100%;
+footer p {
+    margin-top: 10px;
     text-align: center;
-    margin-bottom: 16px;
-    font-size: 1.2rem;
-    color: #00a2c6;
-    font-weight: 700;
-    letter-spacing: 1px;
+    font-size: 14px;
+    color: #aebcc588;
 }
 
-.tech-items-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px 12px;
-    justify-content: center;
-    width: 100%;
-}
-
-.tech-item {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    border: 1.5px solid #222;
-    border-radius: 7px;
-    background: #181c24;
-    padding: 2px 8px;
-    box-shadow: 0 2px 8px rgba(0, 162, 198, 0.07);
-    min-width: 0;
-    margin-bottom: 4px;
-    height: 28px;
-    /* Ensures consistent height */
-}
-
-.tech-stack img {
-    width: 20px;
-    height: 20px;
-    object-fit: contain;
-    border-radius: 3px;
-    background: #23272f;
-    border: none;
-    margin: 0;
-}
-
-.tech-stack span {
-    font-size: 0.92rem;
-    color: #e3e3e3;
-    font-weight: 500;
-    white-space: nowrap;
+footer a {
+    color: #00a2c6b1;
+    text-decoration: none;
+    transition: color 0.3s;
 }
 
 @media (max-width: 900px) {
