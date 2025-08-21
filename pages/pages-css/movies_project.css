@@ -58,7 +58,6 @@ body {
     text-decoration: none;
     font-weight: 600;
     background-color: rgba(0, 150, 199, 0.12);
-    border: 1.5px solid rgba(0, 255, 170, 0.3);
     color: #bde7f7;
     transition: all 0.4s ease-in-out, transform 0.3s;
     border: 2px solid #57787f;
@@ -190,6 +189,20 @@ footer a {
         padding: 18px 8px;
         max-width: 90vw;
         box-sizing: border-box;
+    }
+
+    .project-link {
+        display: inline-block;
+        margin: 0 10px;
+        padding: 10px 8px;
+        font-size: 0.8rem;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        background-color: rgba(0, 150, 199, 0.12);
+        color: #bde7f7;
+        transition: all 0.4s ease-in-out, transform 0.3s;
+        border: 2px solid #57787f;
     }
 
     .movie-assistant-details h2 {
