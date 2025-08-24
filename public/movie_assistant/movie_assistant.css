@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 body {
@@ -12,7 +14,7 @@ body {
     background-size: cover;
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100dvh;
 }
 
 /* Header styling */
@@ -39,10 +41,17 @@ header {
     background-position: center;
     border-radius: 30px;
     text-align: center;
-    padding: 25px;
+    padding-right: 40px;
+    padding-left: 40px;
+    padding-top: 10px;
+    padding-bottom: 30px;
     width: 100%;
-    max-width: 1080px;
+    max-width: 1380px;
     margin: 16px auto;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 h2 {
@@ -56,6 +65,10 @@ p {
 }
 
 .output {
+    flex: 1 1 auto;
+    min-height: 240px;
+    max-height: none;
+    overflow-y: auto;
     background: #0d0d0d;
     color: #f0f0f0;
     max-width: 100%;
@@ -69,7 +82,7 @@ p {
         0 0 0.20em rgba(255, 255, 255, 0.368),
         0 0 1.5em #b2e4ff,
         inset 0 0 1em rgba(255, 255, 255, 0.1);
-    height: 50vh;
+    height: 79%;
     overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
@@ -135,13 +148,14 @@ p {
     font-size: 0.85rem;
     font-weight: bold;
     line-height: 1.2;
-    text-align: center;
+    text-align: left;
     margin-top: 3px;
     height: auto;
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
+    padding-bottom: 2px;
     -webkit-box-orient: vertical;
 }
 
@@ -306,21 +320,22 @@ select:-webkit-autofill {
     box-shadow: 0 4px 8px rgba(255, 201, 40, 0.5);
 }
 
-/* Footer styling */
+/* Footer section */
 footer {
     width: 100%;
-    background-color: #121212;
-    padding: 8px 10px;
-    text-align: center;
-    border-top: 3px solid #363636;
-    margin-top: auto;
-    position: relative;
+    min-width: 100%;
+    background: linear-gradient(to top, #000000a7, #00000091, #00000081 100%);
+    padding: 10px 20px;
+    z-index: 100;
+    position: static;
+    flex-shrink: 0;
 }
 
 footer p {
-    margin: 5px 0;
+    margin-top: 10px;
+    text-align: center;
     font-size: 14px;
-    color: #787878;
+    color: #aebcc588;
 }
 
 footer a {
@@ -329,16 +344,13 @@ footer a {
     transition: color 0.3s;
 }
 
-footer a:hover {
-    color: #ffffff;
-}
-
 @media (max-width: 700px) {
 
     .container {
         padding: 10px;
         width: 100%;
-        max-width: 100%;
+        padding-right: 12px;
+        padding-left: 12px;
         margin: 15px auto;
     }
 
