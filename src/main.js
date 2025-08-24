@@ -4,3 +4,4 @@ import './nav.js';
 import './projects.js';
 import './scroll.js';
 import './theme.js';
+import './react-entry.jsx';
