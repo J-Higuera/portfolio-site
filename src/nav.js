@@ -1,4 +1,6 @@
-//======================== Desktop Nav =================================
+"use strict";
+
+/* ======================== Desktop Nav ======================== */
 document.addEventListener("DOMContentLoaded", () => {
     const navbar = document.querySelector("nav.sticky-nav");
     if (!navbar) return;
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", handleDesktopScroll, { passive: true });
 });
 
-//======================== Mobile Nav =================================
+/* ======================== Mobile Nav ======================== */
 document.addEventListener("DOMContentLoaded", () => {
     const mobileThemeContainer = document.querySelector(".mobile-theme-toggle");
     const toggle = document.querySelector(".mobile-toggle");
@@ -45,48 +47,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const topBar = document.querySelector(".mobile-top-bar");
     const menu = document.getElementById("mobileMenu");
     const header = document.querySelector(".hero");
+    // achievements is no longer used for gating visibility, but we keep the node for layout if needed.
     const achievements = document.querySelector(".achievements");
 
-    if (!toggle || !menu || !header || !achievements) return;
+    if (!toggle || !menu || !header) return;
 
     let lastScroll = window.scrollY;
 
     const hamburgerIcon = "url('/images/menu-toggle/menu.svg')";
     const closeIcon = "url('/images/menu-toggle/close.svg')";
+    const headerHideOffset = 280; // how far past the hero before we hide on scroll-down
 
+    // initial UI state
     toggle.style.backgroundImage = hamburgerIcon;
     toggle.classList.add("visible-toggle");
     nameLabel?.classList.add("visible-toggle");
     mobileThemeContainer?.classList.add("visible-toggle");
 
-    toggle.addEventListener("click", () => {
-        const isOpen = menu.getAttribute("data-active") === "true";
-        const newState = !isOpen;
-
-        menu.setAttribute("data-active", newState);
-        toggle.setAttribute("aria-expanded", newState);
-        toggle.style.backgroundImage = newState ? closeIcon : hamburgerIcon;
-
-        if (newState) {
-            [toggle, nameLabel, mobileThemeContainer].forEach(el => {
-                el?.classList.remove("hidden-toggle");
-                el?.classList.add("visible-toggle");
-            });
-
-            [topBar, menu, toggle, nameLabel, mobileThemeContainer].forEach(el => {
-                el?.classList.remove("shifted-up");
-            });
-        }
-    });
-
-    menu.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", () => {
-            menu.setAttribute("data-active", "false");
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.style.backgroundImage = hamburgerIcon;
-        });
-    });
-
+    // helpers
     function throttle(fn, wait) {
         let lastCall = 0;
         return function (...args) {
@@ -98,6 +76,60 @@ document.addEventListener("DOMContentLoaded", () => {
         };
     }
 
+    function showMobileChrome() {
+        [toggle, nameLabel, mobileThemeContainer].forEach((el) => {
+            el?.classList.remove("hidden-toggle", "shifted-up", "visible-delay");
+            el?.classList.add("visible-toggle");
+        });
+        [topBar, menu].forEach((el) => el?.classList.remove("shifted-up"));
+    }
+
+    function hideMobileChrome() {
+        [toggle, nameLabel, mobileThemeContainer].forEach((el) => {
+            el?.classList.remove("visible-toggle", "visible-delay");
+            el?.classList.add("hidden-toggle");
+        });
+    }
+
+    function forceShowNav() {
+        showMobileChrome();
+        lastScroll = window.scrollY; // reset scroll baseline after jumps
+    }
+
+    // toggle (hamburger) click
+    toggle.addEventListener("click", () => {
+        const isOpen = menu.getAttribute("data-active") === "true";
+        const newState = !isOpen;
+
+        menu.setAttribute("data-active", String(newState));
+        toggle.setAttribute("aria-expanded", String(newState));
+        toggle.style.backgroundImage = newState ? closeIcon : hamburgerIcon;
+
+        if (newState) {
+            // ensure everything is visible when opening
+            showMobileChrome();
+        }
+    });
+
+    // close menu + make controls visible when a menu link is clicked (anchor jump)
+    menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            menu.setAttribute("data-active", "false");
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.style.backgroundImage = hamburgerIcon;
+
+            // force nav back to visible state after the jump
+            showMobileChrome();
+
+            // sync scroll baseline to the new position
+            lastScroll = window.scrollY;
+        });
+    });
+
+    // bring nav back whenever the URL hash changes (e.g., #contact)
+    window.addEventListener("hashchange", forceShowNav);
+
+    // main scroll logic
     const handleMobileScroll = throttle(() => {
         const currentScroll = window.scrollY;
         const scrollingDown = currentScroll > lastScroll;
@@ -105,10 +137,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const atTop = currentScroll <= 0;
         const isOpen = menu.getAttribute("data-active") === "true";
 
-        const passedHeader = currentScroll > (header.offsetTop + header.offsetHeight - 280);
-        const beforeAchievements = currentScroll < (achievements.offsetTop + 1430);
+        const passedHeader =
+            currentScroll > header.offsetTop + header.offsetHeight - headerHideOffset;
 
-        // Temporarily disable transitions during scroll if menu is open
+        // if menu is open, temporarily disable transitions (optional)
         if (isOpen) {
             document.body.setAttribute("data-scrolling", "true");
             clearTimeout(window._navScrollTimer);
@@ -117,37 +149,34 @@ document.addEventListener("DOMContentLoaded", () => {
             }, 150);
         }
 
+        // hide on scroll down after passing hero
         if (scrollingDown && passedHeader) {
-            [toggle, nameLabel, mobileThemeContainer].forEach(el => {
-                el?.classList.remove("visible-toggle", "visible-delay");
-                el?.classList.add("hidden-toggle");
-            });
-
+            hideMobileChrome();
             if (isOpen) {
-                [topBar, menu, toggle, nameLabel, mobileThemeContainer].forEach(el => {
-                    el?.classList.add("shifted-up");
-                });
+                [topBar, menu, toggle, nameLabel, mobileThemeContainer].forEach((el) =>
+                    el?.classList.add("shifted-up")
+                );
             }
         }
 
-        if ((scrollingUp && beforeAchievements) || atTop) {
-            [toggle, nameLabel, mobileThemeContainer].forEach(el => {
+        // show again anywhere on scroll-up, or at top
+        if (scrollingUp || atTop) {
+            [toggle, nameLabel, mobileThemeContainer].forEach((el) => {
                 el?.classList.remove("hidden-toggle");
                 el?.classList.add("visible-toggle");
             });
 
             if (isOpen) {
-                [toggle, nameLabel, mobileThemeContainer].forEach(el => {
-                    el?.classList.add("visible-delay");
-                });
-
-                [topBar, menu, toggle, nameLabel, mobileThemeContainer].forEach(el => {
-                    el?.classList.remove("shifted-up");
-                });
+                [topBar, menu, toggle, nameLabel, mobileThemeContainer].forEach((el) =>
+                    el?.classList.remove("shifted-up")
+                );
+                [toggle, nameLabel, mobileThemeContainer].forEach((el) =>
+                    el?.classList.add("visible-delay")
+                );
             } else {
-                [toggle, nameLabel, mobileThemeContainer].forEach(el => {
-                    el?.classList.remove("visible-delay", "shifted-up");
-                });
+                [toggle, nameLabel, mobileThemeContainer].forEach((el) =>
+                    el?.classList.remove("visible-delay", "shifted-up")
+                );
             }
         }
 
@@ -156,4 +185,3 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("scroll", handleMobileScroll, { passive: true });
 });
-
