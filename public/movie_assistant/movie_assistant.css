@@ -4,6 +4,12 @@
     margin: 0;
 }
 
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
 body {
     background-blend-mode: darken;
     color: #00f5ff;
@@ -32,26 +38,23 @@ header {
         inset 0 0 1em rgba(255, 255, 255, 0.1);
     text-align: center;
     color: rgb(180, 180, 180);
+    flex-shrink: 0;
 }
 
 .container {
-    flex: 1;
-    background-blend-mode: darken;
-    background-size: cover;
-    background-position: center;
-    border-radius: 30px;
-    text-align: center;
-    padding-right: 40px;
-    padding-left: 40px;
-    padding-top: 10px;
-    padding-bottom: 30px;
-    width: 100%;
-    max-width: 1380px;
-    margin: 16px auto;
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
     min-height: 0;
+    width: 100%;
+    max-width: 1380px;
+    margin: 16px auto;
+    padding: 10px 40px 30px;
+    border-radius: 30px;
+    text-align: center;
+    background-blend-mode: darken;
+    background-size: cover;
+    background-position: center;
 }
 
 h2 {
@@ -88,6 +91,8 @@ p {
     text-align: center;
     backdrop-filter: blur(2px);
     transition: box-shadow 0.3s ease;
+    scrollbar-width: thin;
+    scrollbar-color: #b4b4b4 #111;
 }
 
 .message {
@@ -271,7 +276,7 @@ p {
         0 0 0.50em #b2e4ff,
         inset 0 0 0.10em rgba(255, 255, 255, 0.1);
     border-radius: 10px;
-    background: #222222e6;
+    background: #151515e6;
     color: #e5e5e5;
     width: 100%;
     text-align: center;
