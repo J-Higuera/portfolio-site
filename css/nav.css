@@ -292,14 +292,6 @@ nav.sticky-nav.visible-toggle {
         pointer-events: none;
     }
 
-    .visible-delay {
-        transition: opacity 0.25s ease 0.25s;
-    }
-
-    .shifted-up {
-        transform: translateY(-100%);
-    }
-
     #mobileMenu.shifted-up {
         padding-top: 10px;
     }
