@@ -47,9 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const topBar = document.querySelector(".mobile-top-bar");
     const menu = document.getElementById("mobileMenu");
     const header = document.querySelector(".hero");
-    // achievements is no longer used for gating visibility, but we keep the node for layout if needed.
-    const achievements = document.querySelector(".achievements");
-
+    // achievements is no longer used for gating visibility, but we keep the node 
     if (!toggle || !menu || !header) return;
 
     let lastScroll = window.scrollY;
@@ -58,11 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeIcon = "url('/images/menu-toggle/close.svg')";
     const headerHideOffset = 280; // how far past the hero before we hide on scroll-down
 
-    // initial UI state
-    toggle.style.backgroundImage = hamburgerIcon;
-    toggle.classList.add("visible-toggle");
-    nameLabel?.classList.add("visible-toggle");
-    mobileThemeContainer?.classList.add("visible-toggle");
+
 
     // helpers
     function throttle(fn, wait) {
