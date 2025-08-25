@@ -567,14 +567,6 @@ footer a {
     }
 }
 
-@media (min-width: 1200px) and (max-width: 1500px) {
-
-    .container {
-        margin-left: 5%;
-        margin-right: 5%;
-    }
-}
-
 /* Laptop/Tablets */
 @media(max-width: 1200px) {
 
@@ -1051,7 +1043,7 @@ footer a {
     } */
 }
 
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
 
     .light-mode .hero h1 {
         color: hsl(0, 0%, 0%);
