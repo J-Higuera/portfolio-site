@@ -19,9 +19,11 @@ body {
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    background: radial-gradient(ellipse at center, #050505a9 0%, #000000b5 100%),
-        url('/images/body/neon-light.webp');
-    background-size: f;
+    background: linear-gradient(180deg, #000000c2, #101c39a0, #000000a5);
+    background-size: 100% 100%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    z-index: -1;
     background-position: center;
     background-attachment: fixed;
     color: #e0e0e0;
@@ -90,22 +92,7 @@ html.loading {
     --font-mono: 'Fira Mono', 'Consolas', monospace;
 }
 
-.container {
-    max-width: fit-content;
-    margin-left: 10%;
-    margin-right: 10%;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    padding: 0 0;
-    border-left: 2px solid #99ff0086;
-    border-right: 2px solid #99ff0086;
-    border-top: 2px solid rgba(0, 221, 255, 0.619);
-    border-bottom: 2px solid rgba(0, 221, 255, 0.619);
-    background: linear-gradient(100deg, #000000dd, #15262be0, #0d1821eb, #0a1b26e7, #000000e4);
-    border-radius: 20px;
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.402);
-    backdrop-filter: blur(2px);
-}
+
 
 /* Header section */
 .hero {
@@ -488,8 +475,8 @@ footer a {
     transition: color 0.3s;
 }
 
-.light-mode .container {
-    background: linear-gradient(to right, #e4f1d772, #b7bceea5, #ffd9f98a);
+.light-mode {
+    background: linear-gradient(180deg, #92b4d4c2, #2e7e87a0, #4c5556a5);
 }
 
 .light-mode .cursor {
@@ -590,21 +577,6 @@ footer a {
 
 /* Laptop/Tablets */
 @media(max-width: 1200px) {
-
-    body {
-        background: none;
-    }
-
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background: linear-gradient(170deg, #000000, #15262bea, #0d1821af, #0a1b26dc, #000000), url(/images/body/neon-light.webp);
-        background-size: cover;
-        background-position: 50% 100%;
-        background-repeat: no-repeat;
-        z-index: -1;
-    }
 
     .grid-wrapper {
         padding-right: 27px;
@@ -852,13 +824,6 @@ footer a {
 
     ::-webkit-scrollbar {
         width: 0;
-    }
-
-    .light-mode::before {
-        background: url(/images/body/neon-light.webp);
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
     }
 
     .hero {
