@@ -601,7 +601,7 @@ footer a {
         inset: 0;
         background: linear-gradient(170deg, #000000, #15262bea, #0d1821af, #0a1b26dc, #000000), url(/images/body/neon-light.webp);
         background-size: cover;
-        background-position: center center;
+        background-position: 50% 100%;
         background-repeat: no-repeat;
         z-index: -1;
     }
