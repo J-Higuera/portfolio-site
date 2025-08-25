@@ -603,16 +603,7 @@ footer a {
         background-size: cover;
         background-position: 50% 100%;
         background-repeat: no-repeat;
-        height: 100svh;
         z-index: -1;
-    }
-
-    @supports not (height: 100svh) {
-
-        .hero,
-        body::before {
-            min-height: 100vh;
-        }
     }
 
     .grid-wrapper {
@@ -665,7 +656,6 @@ footer a {
     .hero {
         padding-top: 190px;
         padding-bottom: 150px;
-        min-height: 100svh;
     }
 
     .hero h1 {
