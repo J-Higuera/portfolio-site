@@ -193,8 +193,8 @@ nav.sticky-nav.visible-toggle {
         opacity: 1;
         pointer-events: auto;
         position: absolute;
-        top: 1.3rem;
-        right: 4rem;
+        bottom: 1.5rem;
+        right: 3.9rem;
         z-index: 570;
         transition: transform 0.4s ease, opacity 0.4s ease;
     }
@@ -246,6 +246,7 @@ nav.sticky-nav.visible-toggle {
         display: block;
         pointer-events: auto;
         position: fixed;
+        bottom: .5rem;
         right: 0.5rem;
         z-index: 1010;
         width: 2.4rem;
@@ -267,7 +268,7 @@ nav.sticky-nav.visible-toggle {
         padding-top: 8px;
         padding-bottom: 18px;
         text-shadow: 0 0 10px #00c8ffb9;
-        background: linear-gradient(to bottom, #000000b5, #00000075, #00000000 100%);
+        background: linear-gradient(to bottom, #40878ea5, #000000da, #000000 100%);
         font-weight: bold;
         width: 100%;
         text-align: left;
@@ -297,25 +298,25 @@ nav.sticky-nav.visible-toggle {
     }
 
     .shifted-up {
-        transform: translateY(-100%);
+        transform: translateY(100%);
         transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
     #mobileMenu {
         position: fixed;
-        top: 0;
+        bottom: 0;
         left: 0;
         right: 0;
         overflow-y: auto;
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
         display: block;
-        background: linear-gradient(to bottom, #000000, #000000f3, #000000ec, #000000e6, #000000dc, #000000c6, #00000000 100%);
+        background: linear-gradient(to bottom, #00000000, #000000dd, #000000e3, #000000e0, #000000ef, #000000f1, #000000 100%);
         text-align: center;
-        transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, 100%, 0);
         opacity: 0;
         pointer-events: none;
-        transition: transform .45s ease, opacity .45s ease;
+        transition: transform .65s ease, opacity .65s ease;
         will-change: transform, opacity;
         contain: paint style;
         z-index: 1000;
@@ -330,13 +331,13 @@ nav.sticky-nav.visible-toggle {
     }
 
     #mobileMenu>* {
-        transform: translate3d(0, var(--menu-offset, 60px), 0);
+        transform: translate3d(0, var(--menu-offset, 80px), 0);
         transition: transform .32s ease;
         will-change: transform;
     }
 
     #mobileMenu.shifted-up>* {
-        --menu-offset: 10px;
+        --menu-offset: 138px;
     }
 
     #mobileMenu ul {
