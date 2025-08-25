@@ -39,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener("scroll", handleDesktopScroll, { passive: true });
 });
 
-/* ======================== Mobile Nav ======================== */
+/* ======================== Mobile Nav (clean) ======================== */
 document.addEventListener("DOMContentLoaded", () => {
     const mobileThemeContainer = document.querySelector(".mobile-theme-toggle");
     const toggle = document.querySelector(".mobile-toggle");
@@ -51,43 +51,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // --- state ---
     let lastScroll = window.scrollY || 0;
-    let ticking = false;     // rAF gate
-    let chromeHidden = false;     // current chrome visibility
-    let headerBottom = 0;         // cached threshold
+    let ticking = false;             // rAF gate
+    let chromeHidden = false;             // whether UI chrome is hidden
+    let headerBottom = 0;                 // px from doc top where hero ends (minus offset)
     let lastYForDir = lastScroll;
-    const DIR_DEADZONE = 4;
+    const DIR_DEADZONE = 4;               // px hysteresis to avoid flicker
+    const HEADER_HIDE_OFFSET = 280;
 
-    const hamburgerIcon = "url('/images/menu-toggle/menu.svg')";
-    const closeIcon = "url('/images/menu-toggle/close.svg')";
-    const headerHideOffset = 280;
+    const HAMBURGER = "url('/images/menu-toggle/menu.svg')";
+    const CLOSE = "url('/images/menu-toggle/close.svg')";
 
+    // elements affected together
     const CHROME = [toggle, nameLabel, mobileThemeContainer];
     const MOVERS = [topBar, menu, toggle, nameLabel, mobileThemeContainer];
 
-    // --------- geometry (cache per viewport change) ---------
+    // ----- geometry -----
     function measure() {
-        const rect = header.getBoundingClientRect();
-        headerBottom = (rect.top + window.scrollY) + rect.height - headerHideOffset;
+        const r = header.getBoundingClientRect();
+        headerBottom = (r.top + window.scrollY) + r.height - HEADER_HIDE_OFFSET;
     }
     measure();
     window.addEventListener("load", measure, { passive: true });
     window.addEventListener("resize", measure, { passive: true });
     window.addEventListener("orientationchange", () => setTimeout(measure, 250), { passive: true });
 
-    // --------- chrome show/hide ---------
+    // ----- chrome show/hide -----
     function showChrome() {
-        CHROME.forEach(el => {
-            el?.classList.remove("hidden-toggle", "shifted-up", "visible-delay");
-            el?.classList.add("visible-toggle");
-        });
+        CHROME.forEach(el => el?.classList.remove("hidden-toggle", "shifted-up", "visible-delay"));
         MOVERS.forEach(el => el?.classList.remove("shifted-up"));
         chromeHidden = false;
     }
     function hideChrome() {
-        CHROME.forEach(el => {
-            el?.classList.remove("visible-toggle", "visible-delay");
-            el?.classList.add("hidden-toggle");
-        });
+        CHROME.forEach(el => el?.classList.add("hidden-toggle"));
         chromeHidden = true;
     }
     function forceShowNav() {
@@ -96,32 +91,22 @@ document.addEventListener("DOMContentLoaded", () => {
         lastYForDir = lastScroll;
     }
 
-    // --------- helpers for open/close + background scroll lock ---------
-    function lockBackgroundScroll(lock) {
-        document.documentElement.classList.toggle("lock-scroll", !!lock);
-        document.body.classList.toggle("lock-scroll", !!lock);
-    }
-    function setMenuOpen(state) {
-        menu.setAttribute("data-active", String(state));
-        toggle.setAttribute("aria-expanded", String(state));
-        toggle.style.backgroundImage = state ? closeIcon : hamburgerIcon;
-        lockBackgroundScroll(state);
-        // Ensure the bottom item is reachable if content is tall:
-        if (state) {
-            // Scroll menu to top on open so last item isn't clipped
-            menu.scrollTop = 0;
-        }
+    // ----- open/close -----
+    function setMenuOpen(open) {
+        menu.setAttribute("data-active", String(open));
+        toggle.setAttribute("aria-expanded", String(open));
+        toggle.style.backgroundImage = open ? CLOSE : HAMBURGER;
+        if (open) menu.scrollTop = 0; // ensure bottom link isn’t clipped on open
     }
 
-    // --------- toggle (hamburger) ---------
     toggle.addEventListener("click", () => {
         const isOpen = menu.getAttribute("data-active") === "true";
-        const newState = !isOpen;
-        setMenuOpen(newState);
-        if (newState) showChrome();
+        const next = !isOpen;
+        setMenuOpen(next);
+        if (next) showChrome();
     });
 
-    // Close menu on link click; keep chrome visible after anchor jump
+    // Close after clicking a link; keep chrome visible after the jump
     menu.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", () => {
             setMenuOpen(false);
@@ -129,22 +114,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Also show again on hash change (e.g., #contact)
+    // Also fix state after hash changes (e.g., #contact)
     window.addEventListener("hashchange", forceShowNav);
 
-    // --------- scroll (single rAF with hysteresis) ---------
+    // ----- scroll (single rAF with hysteresis) -----
     function onScrollRAF() {
         ticking = false;
 
         const y = Math.max(0, window.scrollY || 0);
         const dy = y - lastYForDir;
-        const isOpen = menu.getAttribute("data-active") === "true";
-
         const scrollingDown = dy > DIR_DEADZONE;
         const scrollingUp = dy < -DIR_DEADZONE;
         const atTop = y <= 0;
+        const isOpen = menu.getAttribute("data-active") === "true";
 
-        // Hide on scroll down after passing hero
+        // hide on scroll down after passing hero
         if (scrollingDown && y > headerBottom) {
             if (!chromeHidden) {
                 hideChrome();
@@ -152,20 +136,15 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
 
-        // Show anywhere on scroll-up or at top
+        // show anywhere on scroll up or at top
         if ((scrollingUp || atTop) && chromeHidden) {
-            CHROME.forEach(el => {
-                el?.classList.remove("hidden-toggle");
-                el?.classList.add("visible-toggle");
-            });
-
+            CHROME.forEach(el => el?.classList.remove("hidden-toggle"));
             if (isOpen) {
                 MOVERS.forEach(el => el?.classList.remove("shifted-up"));
                 CHROME.forEach(el => el?.classList.add("visible-delay"));
             } else {
                 CHROME.forEach(el => el?.classList.remove("visible-delay", "shifted-up"));
             }
-
             chromeHidden = false;
         }
 
@@ -179,5 +158,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, { passive: true });
 });
+
 
 

@@ -294,16 +294,12 @@ nav.sticky-nav.visible-toggle {
     }
 
     .visible-delay {
-        transition: opacity 0.25s ease 0.25s;
+        transition: opacity 0.45s ease;
     }
 
     .shifted-up {
         transform: translateY(-100%);
-    }
-
-    #mobileMenu.shifted-up {
-        padding-top: 10px;
-        transition: padding-top 0.4s ease;
+        transition: opacity 0.2s ease, transform 0.2s ease;
     }
 
     #mobileMenu {
