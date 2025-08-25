@@ -10,7 +10,7 @@
 .about-flex {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.2rem;
+    gap: 1.4rem;
     justify-content: center;
     z-index: 1;
 }
@@ -161,6 +161,32 @@
     padding: 0;
 }
 
+.light-mode .about-card {
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.444), 6px 2px 6px rgba(0, 0, 0, 0.191);
+    background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
+    border: 2px solid rgba(255, 255, 255, 0.67);
+    border-radius: var(--radius);
+    font-family: var(--font-main);
+}
+
+.light-mode .about-card h3 {
+    color: #24486e;
+    font-family: var(--font-mono);
+    text-shadow: 0 2px 12px rgb(255, 255, 255);
+}
+
+.light-mode .about-card li {
+    color: rgb(255, 255, 255);
+}
+
+.light-mode .about-highlights .timeline {
+    border-top: 1px solid #8eeaff;
+    padding-top: 1rem;
+    font-size: 1rem;
+    color: #000000;
+    line-height: 1.5;
+}
+
 @media (hover: hover) and (pointer: fine) {
     .resume-button:hover {
         color: #99ff00;
@@ -190,7 +216,7 @@
     }
 
     .about-highlights {
-        max-width: 30%;
+        max-width: 32%;
         width: auto;
         height: auto;
     }
