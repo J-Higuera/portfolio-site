@@ -49,113 +49,150 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector(".hero");
     if (!toggle || !menu || !header) return;
 
-    let lastScroll = window.scrollY;
-    let ticking = false;          // rAF gate
-    let isHidden = false;         // current chrome visibility
+    // --- state ---
+    let lastScroll = window.scrollY || 0;
+    let ticking = false;     // rAF gate
+    let chromeHidden = false;     // current chrome visibility
     let headerBottom = 0;         // cached threshold
+    let lastYForDir = lastScroll;
+    const DIR_DEADZONE = 4;
 
     const hamburgerIcon = "url('/images/menu-toggle/menu.svg')";
     const closeIcon = "url('/images/menu-toggle/close.svg')";
-    const headerHideOffset = 280; // same behavior as before
+    const headerHideOffset = 280;
 
-    // ---------- helpers ----------
-    const uiEls = [toggle, nameLabel, mobileThemeContainer];
+    const CHROME = [toggle, nameLabel, mobileThemeContainer];
+    const MOVERS = [topBar, menu, toggle, nameLabel, mobileThemeContainer];
 
-    function showMobileChrome() {
-        uiEls.forEach(el => {
-            el?.classList.remove("hidden-toggle", "shifted-up", "visible-delay");
-            el?.classList.add("visible-toggle");
+    // --------- perf helpers: only react to transitions on the MENU itself ---------
+    function beginMenuAnimation(el) {
+        el.classList.add("is-animating");
+        clearTimeout(el._animTO);
+        el._animTO = setTimeout(() => el.classList.remove("is-animating"), 600);
+    }
+    function endMenuAnimation(el) {
+        el.classList.remove("is-animating");
+        clearTimeout(el._animTO);
+    }
+    if (!menu._wired) {
+        menu._wired = true;
+        menu.addEventListener("transitionstart", (e) => {
+            // Ignore bubbled transitions from children (e.g., link hover scale)
+            if (e.target !== menu) return;
+            if (e.propertyName === "transform" || e.propertyName === "opacity") beginMenuAnimation(menu);
         });
-        [topBar, menu].forEach(el => el?.classList.remove("shifted-up"));
-    }
-
-    function hideMobileChrome() {
-        uiEls.forEach(el => {
-            el?.classList.remove("visible-toggle", "visible-delay");
-            el?.classList.add("hidden-toggle");
+        menu.addEventListener("transitionend", (e) => {
+            if (e.target !== menu) return;
+            if (e.propertyName === "transform" || e.propertyName === "opacity") endMenuAnimation(menu);
         });
     }
 
-    function forceShowNav() {
-        showMobileChrome();
-        isHidden = false;
-        lastScroll = window.scrollY; // reset baseline after jumps
-    }
-
-    // cache geometry once per viewport change (not every scroll)
+    // --------- geometry (cache per viewport change) ---------
     function measure() {
         const rect = header.getBoundingClientRect();
-        headerBottom = rect.top + window.scrollY + rect.height - headerHideOffset;
+        headerBottom = (rect.top + window.scrollY) + rect.height - headerHideOffset;
     }
-
     measure();
+    window.addEventListener("load", measure, { passive: true });
     window.addEventListener("resize", measure, { passive: true });
     window.addEventListener("orientationchange", () => setTimeout(measure, 250), { passive: true });
 
-    // ---------- toggle (hamburger) ----------
+    // --------- chrome show/hide ---------
+    function showChrome() {
+        CHROME.forEach(el => {
+            el?.classList.remove("hidden-toggle", "shifted-up", "visible-delay");
+            el?.classList.add("visible-toggle");
+        });
+        MOVERS.forEach(el => el?.classList.remove("shifted-up"));
+        chromeHidden = false;
+    }
+    function hideChrome() {
+        CHROME.forEach(el => {
+            el?.classList.remove("visible-toggle", "visible-delay");
+            el?.classList.add("hidden-toggle");
+        });
+        chromeHidden = true;
+    }
+    function forceShowNav() {
+        showChrome();
+        lastScroll = window.scrollY || 0;
+        lastYForDir = lastScroll;
+    }
+
+    // --------- helpers for open/close + background scroll lock ---------
+    function lockBackgroundScroll(lock) {
+        document.documentElement.classList.toggle("lock-scroll", !!lock);
+        document.body.classList.toggle("lock-scroll", !!lock);
+    }
+    function setMenuOpen(state) {
+        menu.setAttribute("data-active", String(state));
+        toggle.setAttribute("aria-expanded", String(state));
+        toggle.style.backgroundImage = state ? closeIcon : hamburgerIcon;
+        lockBackgroundScroll(state);
+        // Ensure the bottom item is reachable if content is tall:
+        if (state) {
+            // Scroll menu to top on open so last item isn't clipped
+            menu.scrollTop = 0;
+        }
+    }
+
+    // --------- toggle (hamburger) ---------
     toggle.addEventListener("click", () => {
         const isOpen = menu.getAttribute("data-active") === "true";
         const newState = !isOpen;
-
-        menu.setAttribute("data-active", String(newState));
-        toggle.setAttribute("aria-expanded", String(newState));
-        toggle.style.backgroundImage = newState ? closeIcon : hamburgerIcon;
-
-        if (newState) showMobileChrome(); // same behavior
+        setMenuOpen(newState);
+        if (newState) showChrome();
     });
 
-    // close menu on link click; keep chrome visible after jump
+    // Close menu on link click; keep chrome visible after anchor jump
     menu.querySelectorAll("a").forEach(link => {
         link.addEventListener("click", () => {
-            menu.setAttribute("data-active", "false");
-            toggle.setAttribute("aria-expanded", "false");
-            toggle.style.backgroundImage = hamburgerIcon;
+            setMenuOpen(false);
             forceShowNav();
         });
     });
 
-    // also show again on hash change
+    // Also show again on hash change (e.g., #contact)
     window.addEventListener("hashchange", forceShowNav);
 
-    // ---------- scroll (single rAF; same thresholds/feel) ----------
+    // --------- scroll (single rAF with hysteresis) ---------
     function onScrollRAF() {
         ticking = false;
 
-        const y = window.scrollY;
-        const scrollingDown = y > lastScroll;
-        const scrollingUp = y < lastScroll;
-        const atTop = y <= 0;
+        const y = Math.max(0, window.scrollY || 0);
+        const dy = y - lastYForDir;
         const isOpen = menu.getAttribute("data-active") === "true";
 
-        // hide on scroll down after passing hero
+        const scrollingDown = dy > DIR_DEADZONE;
+        const scrollingUp = dy < -DIR_DEADZONE;
+        const atTop = y <= 0;
+
+        // Hide on scroll down after passing hero
         if (scrollingDown && y > headerBottom) {
-            if (!isHidden) {
-                hideMobileChrome();
-                if (isOpen) [topBar, menu, toggle, nameLabel, mobileThemeContainer]
-                    .forEach(el => el?.classList.add("shifted-up"));
-                isHidden = true;
+            if (!chromeHidden) {
+                hideChrome();
+                if (isOpen) MOVERS.forEach(el => el?.classList.add("shifted-up"));
             }
         }
 
-        // show again anywhere on scroll-up, or at top
-        if ((scrollingUp || atTop) && isHidden) {
-            uiEls.forEach(el => {
+        // Show anywhere on scroll-up or at top
+        if ((scrollingUp || atTop) && chromeHidden) {
+            CHROME.forEach(el => {
                 el?.classList.remove("hidden-toggle");
                 el?.classList.add("visible-toggle");
             });
 
             if (isOpen) {
-                [topBar, menu, toggle, nameLabel, mobileThemeContainer]
-                    .forEach(el => el?.classList.remove("shifted-up"));
-                uiEls.forEach(el => el?.classList.add("visible-delay"));
+                MOVERS.forEach(el => el?.classList.remove("shifted-up"));
+                CHROME.forEach(el => el?.classList.add("visible-delay"));
             } else {
-                uiEls.forEach(el => el?.classList.remove("visible-delay", "shifted-up"));
+                CHROME.forEach(el => el?.classList.remove("visible-delay", "shifted-up"));
             }
 
-            isHidden = false;
+            chromeHidden = false;
         }
 
-        lastScroll = y;
+        if (Math.abs(dy) > DIR_DEADZONE) lastYForDir = y;
     }
 
     window.addEventListener("scroll", () => {
@@ -165,4 +202,5 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }, { passive: true });
 });
+
 

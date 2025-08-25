@@ -248,7 +248,7 @@ nav.sticky-nav.visible-toggle {
         position: fixed;
         top: 0.5rem;
         right: 0.5rem;
-        z-index: 510;
+        z-index: 1010;
         width: 2.4rem;
         aspect-ratio: 1;
         background-image: url("/images/menu-toggle/menu.svg");
@@ -259,6 +259,7 @@ nav.sticky-nav.visible-toggle {
         border-radius: 6px;
         cursor: pointer;
         transition: opacity 0.4s ease, transform 0.4s ease;
+        will-change: transform, opacity;
     }
 
     .mobile-name {
@@ -310,32 +311,49 @@ nav.sticky-nav.visible-toggle {
         top: 0;
         left: 0;
         right: 0;
+        overflow-y: auto;
+        overscroll-behavior: contain;
+        -webkit-overflow-scrolling: touch;
         display: block;
         background-color: rgba(0, 0, 0, 0.47);
         backdrop-filter: blur(10px);
         text-align: center;
-        transform: translateY(-100%);
+        transform: translate3d(0, -100%, 0);
         opacity: 0;
         pointer-events: none;
-        padding-top: 60px;
-        transition:
-            transform 0.6s ease,
-            opacity 0.6s ease,
-            padding-top 0.4s ease;
-
+        transition: transform .45s ease, opacity .45s ease;
+        will-change: transform, opacity;
+        contain: paint style;
         z-index: 1000;
+        padding-bottom: max(70px, env(safe-area-inset-bottom));
+        padding-top: 10px;
     }
 
     #mobileMenu[data-active="true"] {
-        transform: translateY(0);
+        transform: translate3d(0, 0, 0);
         opacity: 1;
         pointer-events: auto;
     }
 
+    #mobileMenu>* {
+        transform: translate3d(0, var(--menu-offset, 60px), 0);
+        transition: transform .32s ease;
+        will-change: transform;
+    }
+
+    #mobileMenu.shifted-up>* {
+        --menu-offset: 10px;
+    }
+
+    #mobileMenu.is-animating {
+        backdrop-filter: none;
+        background-color: rgba(0, 0, 0, .62);
+    }
+
     #mobileMenu ul {
         list-style: none;
-        padding: 0;
         margin: 0;
+        padding: 0;
     }
 
     #mobileMenu li {
@@ -353,6 +371,7 @@ nav.sticky-nav.visible-toggle {
         border-radius: 12px;
         border: rgba(23, 23, 23, 0.736) 5px solid;
         box-shadow: 0 0 5px #a6d7ff;
+        transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease, color .2s ease;
     }
 
     #mobileMenu a:hover {
