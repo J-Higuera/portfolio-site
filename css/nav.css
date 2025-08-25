@@ -302,6 +302,7 @@ nav.sticky-nav.visible-toggle {
 
     #mobileMenu.shifted-up {
         padding-top: 10px;
+        transition: padding-top 0.4s ease;
     }
 
     #mobileMenu {
@@ -318,7 +319,10 @@ nav.sticky-nav.visible-toggle {
         pointer-events: none;
         padding-top: 60px;
         transition:
+            transform 0.6s ease,
+            opacity 0.6s ease,
             padding-top 0.4s ease;
+
         z-index: 1000;
     }
 
