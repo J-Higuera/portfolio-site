@@ -64,29 +64,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const CHROME = [toggle, nameLabel, mobileThemeContainer];
     const MOVERS = [topBar, menu, toggle, nameLabel, mobileThemeContainer];
 
-    // --------- perf helpers: only react to transitions on the MENU itself ---------
-    function beginMenuAnimation(el) {
-        el.classList.add("is-animating");
-        clearTimeout(el._animTO);
-        el._animTO = setTimeout(() => el.classList.remove("is-animating"), 600);
-    }
-    function endMenuAnimation(el) {
-        el.classList.remove("is-animating");
-        clearTimeout(el._animTO);
-    }
-    if (!menu._wired) {
-        menu._wired = true;
-        menu.addEventListener("transitionstart", (e) => {
-            // Ignore bubbled transitions from children (e.g., link hover scale)
-            if (e.target !== menu) return;
-            if (e.propertyName === "transform" || e.propertyName === "opacity") beginMenuAnimation(menu);
-        });
-        menu.addEventListener("transitionend", (e) => {
-            if (e.target !== menu) return;
-            if (e.propertyName === "transform" || e.propertyName === "opacity") endMenuAnimation(menu);
-        });
-    }
-
     // --------- geometry (cache per viewport change) ---------
     function measure() {
         const rect = header.getBoundingClientRect();

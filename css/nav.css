@@ -315,8 +315,7 @@ nav.sticky-nav.visible-toggle {
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
         display: block;
-        background-color: rgba(0, 0, 0, 0.47);
-        backdrop-filter: blur(10px);
+        background: linear-gradient(to bottom, #000000, #000000f3, #000000ec, #000000e6, #000000dc, #000000c6, #00000000 100%);
         text-align: center;
         transform: translate3d(0, -100%, 0);
         opacity: 0;
@@ -325,7 +324,7 @@ nav.sticky-nav.visible-toggle {
         will-change: transform, opacity;
         contain: paint style;
         z-index: 1000;
-        padding-bottom: max(70px, env(safe-area-inset-bottom));
+        padding-bottom: max(140px, env(safe-area-inset-bottom));
         padding-top: 10px;
     }
 
@@ -343,11 +342,6 @@ nav.sticky-nav.visible-toggle {
 
     #mobileMenu.shifted-up>* {
         --menu-offset: 10px;
-    }
-
-    #mobileMenu.is-animating {
-        backdrop-filter: none;
-        background-color: rgba(0, 0, 0, .62);
     }
 
     #mobileMenu ul {
