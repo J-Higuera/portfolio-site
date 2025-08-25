@@ -476,7 +476,7 @@ footer a {
 }
 
 .light-mode {
-    background: linear-gradient(180deg, #bddfffc2, #fee8ffa0, #a8f6ffa5);
+    background: linear-gradient(180deg, #bddfff, #fee8ff, #a8f6ff);
 }
 
 .light-mode .cursor {
@@ -1043,7 +1043,7 @@ footer a {
     } */
 }
 
-@media (prefers-color-scheme: light) {
+@media (prefers-color-scheme:dark) {
 
     .light-mode .hero h1 {
         color: hsl(0, 0%, 0%);
