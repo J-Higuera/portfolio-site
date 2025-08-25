@@ -223,21 +223,6 @@ nav.sticky-nav.visible-toggle {
         font-weight: bold;
     }
 
-    /* SHIFT + TOGGLE STATES */
-    .mobile-theme-toggle.visible-toggle {
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .mobile-theme-toggle.hidden-toggle {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .mobile-theme-toggle.shifted-up {
-        transform: translateY(-100%);
-    }
-
     .sticky-nav {
         display: none;
     }
@@ -254,10 +239,6 @@ nav.sticky-nav.visible-toggle {
         background: transparent;
         z-index: 1001;
 
-    }
-
-    .mobile-top-bar.shifted-up {
-        transform: translateY(-100%);
     }
 
     .mobile-toggle {
@@ -278,10 +259,6 @@ nav.sticky-nav.visible-toggle {
         border-radius: 6px;
         cursor: pointer;
         transition: opacity 0.4s ease, transform 0.4s ease;
-    }
-
-    .mobile-toggle.shifted-up {
-        transform: translateY(-100%);
     }
 
     .mobile-name {
@@ -306,17 +283,8 @@ nav.sticky-nav.visible-toggle {
         font-size: 1.15rem;
     }
 
-    .mobile-name.shifted-up {
-        transform: translateY(-100%);
-    }
-
     .light-mode .mobile-name {
         color: #ffffffaf;
-    }
-
-    .visible-toggle {
-        opacity: 1;
-        pointer-events: auto;
     }
 
     .hidden-toggle {
@@ -334,8 +302,6 @@ nav.sticky-nav.visible-toggle {
 
     #mobileMenu.shifted-up {
         padding-top: 10px;
-        margin-top: 0;
-
     }
 
     #mobileMenu {
@@ -363,12 +329,6 @@ nav.sticky-nav.visible-toggle {
         opacity: 1;
         pointer-events: auto;
     }
-
-    #mobileMenu[data-active="true"].fully-hidden {
-        transform: translateY(-100%);
-
-    }
-
 
     #mobileMenu ul {
         list-style: none;
