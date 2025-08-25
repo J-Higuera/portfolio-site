@@ -21,7 +21,7 @@ body {
     overflow-y: auto;
     background: radial-gradient(ellipse at center, #050505a9 0%, #000000b5 100%),
         url('/images/body/neon-light.webp');
-    background-size: cover;
+    background-size: f;
     background-position: center;
     background-attachment: fixed;
     color: #e0e0e0;
@@ -593,17 +593,34 @@ footer a {
 
     body {
         background: none;
+        overscroll-behavior-y: none;
     }
 
     body::before {
         content: "";
         position: fixed;
         inset: 0;
-        background: linear-gradient(170deg, #000000, #15262bea, #0d1821af, #0a1b26dc, #000000), url(/images/body/neon-light.webp);
-        background-size: cover;
-        background-position: 50% 100%;
-        background-repeat: no-repeat;
         z-index: -1;
+
+        /* your backgrounds */
+        background:
+            linear-gradient(170deg, #000000, #15262bea, #0d1821af, #0a1b26dc, #000000), url(/images/body/neon-light.webp);
+        background-repeat: no-repeat;
+        background-position: 50% 100%;
+        background-size: cover;
+
+        /* ✅ lock to a stable viewport so URL bar changes don't resize it */
+        width: 100%;
+        height: 100svh;
+        will-change: transform;
+        /* small viewport height = doesn’t grow/shrink on scroll */
+    }
+
+    /* Fallbacks for older browsers */
+    @supports not (height: 100svh) {
+        body::before {
+            height: 100vh;
+        }
     }
 
     .grid-wrapper {
