@@ -479,12 +479,18 @@ footer a {
     background: linear-gradient(180deg, #bddfff, #fee8ff, #a8f6ff);
 }
 
+.light-mode .hero h1 {
+    color: hsl(0, 0%, 0%);
+    /* Optional overrides if needed for system light + site light */
+}
+
+.light-mode .hero h2 {
+    color: hsl(0, 0%, 0%);
+    /* Optional overrides if needed for system light + site light */
+}
+
 .light-mode .cursor {
-    display: inline-block;
-    margin-left: 2px;
-    font-weight: bold;
-    animation: blink 1s steps(1) infinite;
-    color: #cecece;
+    color: #0e0e0e;
 }
 
 .light-mode .achievements {
