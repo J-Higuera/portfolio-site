@@ -233,7 +233,7 @@ nav.sticky-nav.visible-toggle {
         justify-content: space-between;
         align-items: center;
         position: fixed;
-        top: 0;
+        bottom: 0;
         left: 0;
         right: 0;
         background: transparent;
@@ -246,7 +246,6 @@ nav.sticky-nav.visible-toggle {
         display: block;
         pointer-events: auto;
         position: fixed;
-        top: 0.5rem;
         right: 0.5rem;
         z-index: 1010;
         width: 2.4rem;
