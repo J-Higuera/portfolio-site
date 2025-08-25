@@ -56,8 +56,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const closeIcon = "url('/images/menu-toggle/close.svg')";
     const headerHideOffset = 280; // how far past the hero before we hide on scroll-down
 
-
-
     // helpers
     function throttle(fn, wait) {
         let lastCall = 0;
@@ -133,15 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const passedHeader =
             currentScroll > header.offsetTop + header.offsetHeight - headerHideOffset;
-
-        // if menu is open, temporarily disable transitions (optional)
-        if (isOpen) {
-            document.body.setAttribute("data-scrolling", "true");
-            clearTimeout(window._navScrollTimer);
-            window._navScrollTimer = setTimeout(() => {
-                document.body.removeAttribute("data-scrolling");
-            }, 150);
-        }
 
         // hide on scroll down after passing hero
         if (scrollingDown && passedHeader) {
