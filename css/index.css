@@ -476,7 +476,7 @@ footer a {
 }
 
 .light-mode {
-    background: linear-gradient(180deg, #92b4d4c2, #2e7e87a0, #4c5556a5);
+    background: linear-gradient(180deg, #bddfffc2, #fee8ffa0, #a8f6ffa5);
 }
 
 .light-mode .cursor {
@@ -1054,12 +1054,16 @@ footer a {
 @media (prefers-color-scheme: dark) {
 
     .light-mode .hero h1 {
-        color: hsl(0, 0%, 82%);
+        color: hsl(0, 0%, 0%);
         /* Optional overrides if needed for system light + site light */
     }
 
     .light-mode .hero h2 {
-        color: hsl(0, 0%, 81%);
+        color: hsl(0, 0%, 0%);
         /* Optional overrides if needed for system light + site light */
+    }
+
+    .light-mode .cursor {
+        color: #0e0e0e;
     }
 }
