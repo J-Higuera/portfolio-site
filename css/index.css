@@ -213,8 +213,8 @@ html.loading {
 }*/
 
 .grid-wrapper {
-    padding-right: 43px;
-    padding-left: 43px;
+    padding-right: 143px;
+    padding-left: 143px;
     padding-top: 17px;
     gap: 20px;
     padding-bottom: 37px;
@@ -231,7 +231,14 @@ html.loading {
     max-width: 100%;
     width: 100%;
     background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
+    border: 2.5px solid rgb(255, 255, 255);
+}
+
+.light-mode .achievements {
+    background: rgba(255, 255, 255, 0.258);
     border: 2.5px solid rgba(201, 201, 201, 0.561);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
+    color: #bfbfbf;
 }
 
 @keyframes fadeInUp {
@@ -291,6 +298,10 @@ html.loading {
     position: relative;
 }
 
+.light-mode .certificate p {
+    color: black;
+}
+
 .achievement-stats {
     display: flex;
     justify-content: space-around;
@@ -304,6 +315,12 @@ html.loading {
     gap: 12px;
 }
 
+.light-mode .achievement-stats {
+    background: rgba(58, 106, 127, 0.4);
+    color: black;
+    box-shadow: 0 0 40px rgb(255, 255, 255);
+}
+
 .achievement-stats p {
     margin: 0;
 }
@@ -312,6 +329,10 @@ html.loading {
     border-left: 3px solid rgb(191, 191, 191);
     padding-left: 20px;
     margin-top: 15px;
+}
+
+.light-mode .achievement-timeline {
+    border-left: 3px solid black;
 }
 
 .timeline-item {
@@ -331,10 +352,18 @@ html.loading {
     background: rgb(205, 205, 205);
 }
 
+.light-mode .timeline-item .dot {
+    background: black;
+}
+
 .timeline-item p {
     margin: 0;
     font-size: 1rem;
     color: var(--text-bright);
+}
+
+.light-mode .timeline-item p {
+    color: black;
 }
 
 .github-contributions-widget {
@@ -344,7 +373,7 @@ html.loading {
     border-radius: 15px;
     text-align: center;
     margin-top: 18px;
-    width: 100%;
+    width: 80%;
     justify-self: center;
     max-width: 100%;
     min-height: 200px;
@@ -356,11 +385,19 @@ html.loading {
     box-sizing: border-box;
 }
 
+.light-mode .github-contributions-widget {
+    background-color: #a0a0a000;
+    border: none;
+}
 
 .github-contributions-widget h3 {
     font-size: 1.35rem;
     color: var(--primary);
     margin-bottom: 16px;
+}
+
+.light-mode .github-contributions-widget h3 {
+    color: #222222;
 }
 
 .react-activity-calendar {
@@ -369,6 +406,10 @@ html.loading {
     margin: 0 auto;
     color: var(--primary);
     overflow-x: auto;
+}
+
+.light-mode .react-activity-calendar {
+    color: #222222;
 }
 
 .react-activity-calendar svg {
@@ -382,6 +423,10 @@ html.loading {
 .react-activity-calendar text {
     color: var(--primary);
     font-size: 22px;
+}
+
+.light-mode .react-activity-calendar text {
+    color: #222222;
 }
 
 .react-activity-calendar__footer {
@@ -433,6 +478,17 @@ html.loading {
 }
 
 .skills.active h2 {
+    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
+    transition: text-shadow 0.6s ease-in-out;
+    color: #d7d7d7;
+}
+
+.light-mode .skills.active {
+    box-shadow: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
+}
+
+.light-mode .skills.active h2 {
     text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
     transition: text-shadow 0.6s ease-in-out;
     color: #d7d7d7;
@@ -493,34 +549,8 @@ footer a {
     color: #0e0e0e;
 }
 
-.light-mode .achievements {
-    background-color: #00091bd8;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.829);
-    color: #bfbfbf;
-}
-
-.light-mode .skills.active {
-    box-shadow: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
-    transition: box-shadow 0.5s ease, border 0.5s ease;
-}
-
-.light-mode .skills.active h2 {
-    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
-    transition: text-shadow 0.6s ease-in-out;
-    color: #d7d7d7;
-}
-
 /* smallets large screen size */
-@media (min-width: 1200px) {
-
-    .grid-wrapper {
-        grid-template-columns: repeat(2, 1fr);
-        padding-right: 43px;
-        padding-left: 43px;
-        padding-top: 47px;
-        padding-bottom: 40px;
-        gap: 25px;
-    }
+@media (min-width: 1201px) {
 
     .skills-grid.skills-mobile {
         display: none;
@@ -570,6 +600,16 @@ footer a {
         100% {
             transform: translateX(-33.333%);
         }
+    }
+}
+
+@media (max-width: 1520px) {
+
+    .grid-wrapper {
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 40px;
     }
 }
 
@@ -647,6 +687,11 @@ footer a {
 
     .type-sequence i {
         font-size: 2.3rem;
+    }
+
+    .achievements {
+        grid-template-columns: 1fr 1fr;
+        box-shadow: 0 0 4px #ffffff, 0 0 6px #ffffff, 0 0 8px #ffffff;
     }
 
     .tooltip {
@@ -771,9 +816,19 @@ footer a {
         transition: box-shadow 0.6s ease, border 0.6s ease;
     }
 
-    .achievements {
-        grid-template-columns: 1fr 1fr;
-        box-shadow: 0 0 4px #ffffff, 0 0 6px #ffffff, 0 0 8px #ffffff;
+    .light-mode .skills1 {
+        background: radial-gradient(circle at top left, #00000033 0%, #c1c1c183 30%, #f4f4f45b 50%, #6767675a 75%, #9a9a9a4f 100%);
+        border: none;
+    }
+
+    .skills1.animate {
+        box-shadow: 0 0 8px #00ff11, 0 0 8px #0048ff, 0 0 8px #a600ff;
+        z-index: 1;
+    }
+
+    .light-mode .skills1.animate {
+        box-shadow: 2px 5px 20px #000000;
+        z-index: 1;
     }
 
     .skills1 h2 {
@@ -795,9 +850,11 @@ footer a {
         transition: color 0.6s;
     }
 
-    .skills1 {
-        box-shadow: 0 0 6px #00ff11, 0 0 8px #0048ff, 0 0 8px #a600ff;
-        transition: box-shadow 0.5s ease, border 0.5s ease;
+    .light-mode .skills1.animate h2 {
+        text-shadow: 0 0 5px #a4d8e7, 0 0 10px #e2feff;
+        transition: text-shadow 0.6s ease-in-out;
+        color: #464646;
+        transition: color 0.6s;
     }
 
     footer {
@@ -811,9 +868,23 @@ footer a {
         flex-shrink: 0;
     }
 
-    .light-mode .skills1.animate {
-        box-shadow: 0 0 10px #ffffff;
-        z-index: 1;
+    .github-contributions-widget {
+        background-color: rgba(14, 14, 14, 0.6);
+        border: 2px solid #ffffff61;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        margin-top: 18px;
+        width: 100%;
+        justify-self: center;
+        max-width: 100%;
+        min-height: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow-x: auto;
+        box-sizing: border-box;
     }
 }
 
@@ -980,17 +1051,6 @@ footer a {
 
     .skills-grid.expand img {
         pointer-events: none;
-    }
-
-    .skills1.animate {
-        box-shadow: 0 0 8px #00ff11, 0 0 8px #0048ff, 0 0 8px #a600ff;
-        z-index: 1;
-    }
-
-    .light-mode .skills1.animate {
-        box-shadow: 0 0 10px #ffffff;
-        z-index: 1;
-        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, filter 0.6s ease-in-out;
     }
 
     .skills1.animate h2 {

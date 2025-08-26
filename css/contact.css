@@ -2,8 +2,8 @@
     display: grid;
     grid-template-columns: 1fr;
     gap: 3px;
-    padding-right: 130px;
-    padding-left: 130px;
+    padding-right: 230px;
+    padding-left: 230px;
     padding-top: 47px;
     padding-bottom: 47px;
     align-items: start;
@@ -21,10 +21,21 @@
     z-index: 999;
 }
 
+.light-mode .contact-section {
+    background: rgba(255, 255, 255, 0.256);
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.833);
+}
+
 .contact-section p {
     margin-bottom: 20px;
     font-size: 1.2rem;
     color: var(--text-bright);
+}
+
+.light-mode .contact-section p {
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+    color: #303030;
 }
 
 .contact-section h2 {
@@ -32,6 +43,11 @@
     font-size: 2rem;
     margin-bottom: 20px;
     animation: fadeIn 3s ease-in-out;
+}
+
+.light-mode .contact-section h2 {
+    color: #373737;
+    font-size: 2rem;
 }
 
 @keyframes fadeIn {
@@ -57,6 +73,12 @@
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.light-mode .contact-card {
+    background: #acacacd6;
+    border: 2px solid #ffffff61;
+    box-shadow: 0 0 12px rgb(0, 0, 0);
+}
+
 .contact-info {
     list-style: none;
     padding: 10px;
@@ -68,6 +90,10 @@
     color: var(--text-bright);
 }
 
+.light-mode .contact-info li {
+    color: #252525;
+}
+
 .contact-info a {
     color: #00a2c6;
     text-decoration: none;
@@ -75,8 +101,18 @@
     font-size: large;
 }
 
+.light-mode .contact-info a {
+    color: #00e5ffa1;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
 .contact-info a:hover {
     color: #ffffff;
+}
+
+.light-mode .contact-info a:hover {
+    color: #bdf700;
 }
 
 /*.light-mode .contact-grid {
@@ -86,45 +122,6 @@
     background-size: cover;
     background-attachment: fixed;
 }*/
-
-.light-mode .contact-section {
-    background-color: #00091bd8;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.833);
-}
-
-.light-mode .contact-section h2 {
-    color: #b5b5b5;
-    font-size: 2rem;
-    margin-bottom: 20px;
-    animation: fadeIn 3s ease-in-out;
-}
-
-.light-mode .contact-section p {
-    margin-bottom: 20px;
-    font-size: 1.2rem;
-    color: #bcbcbc;
-}
-
-.light-mode .contact-card {
-    background-color: #acacacd6;
-    border: 2px solid #ffffff61;
-    box-shadow: 0 15px 8px rgb(0, 0, 0);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.light-mode .contact-info li {
-    color: #c4c4c4;
-}
-
-.light-mode .contact-info a {
-    color: #00e5ffa1;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.light-mode .contact-info a:hover {
-    color: #bdf700;
-}
 
 @media (max-width: 1220px) {
     .contact-grid {

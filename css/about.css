@@ -1,7 +1,7 @@
 .about-section {
     position: relative;
-    padding-right: 43px;
-    padding-left: 43px;
+    padding-right: 170px;
+    padding-left: 170px;
     padding-top: 47px;
     padding-bottom: 47px;
     overflow: hidden;
@@ -29,6 +29,12 @@
     font-family: var(--font-main);
 }
 
+.light-mode .about-card {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.444), 6px 2px 6px rgba(0, 0, 0, 0.191);
+    background: rgba(255, 255, 255, 0.258);
+    border: 2px solid rgba(255, 255, 255, 0.67);
+}
+
 .about-card h3 {
     margin-top: 0;
     margin-bottom: 1rem;
@@ -39,6 +45,12 @@
     text-transform: uppercase;
     font-family: var(--font-mono);
     text-shadow: 0 2px 12px rgba(0, 255, 247, 0.277);
+}
+
+.light-mode .about-card h3 {
+    color: #24486e;
+    font-family: var(--font-mono);
+    text-shadow: 0 2px 12px rgb(255, 255, 255);
 }
 
 .about-card ul {
@@ -56,6 +68,9 @@
     transition: color 0.2s;
 }
 
+.light-mode .about-card li {
+    color: rgb(34, 34, 34);
+}
 
 .profile-photo-mobile {
     display: none;
@@ -87,6 +102,13 @@
     color: var(--text-bright);
 }
 
+.light-mode .photo-card {
+    background: rgba(255, 255, 255, 0.258);
+    border: 2px solid rgba(255, 255, 255, 0.67);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.444), 6px 2px 6px rgba(0, 0, 0, 0.191);
+    color: black;
+}
+
 .photo-card p {
     padding: 12px;
 }
@@ -104,6 +126,11 @@
     font-size: 1rem;
     color: #d0f0ff;
     line-height: 1.5;
+}
+
+.light-mode .about-highlights .timeline {
+    border-top: 1px solid #8eeaff;
+    color: #000000;
 }
 
 .about-highlights ul {
@@ -137,6 +164,10 @@
     align-self: center;
 }
 
+.light-mode .username {
+    color: #000000;
+}
+
 .resume-button {
     color: #00b3ff;
     font-weight: bold;
@@ -159,32 +190,6 @@
 .resume-content .download-icon {
     margin: 0;
     padding: 0;
-}
-
-.light-mode .about-card {
-    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.444), 6px 2px 6px rgba(0, 0, 0, 0.191);
-    background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
-    border: 2px solid rgba(255, 255, 255, 0.67);
-    border-radius: var(--radius);
-    font-family: var(--font-main);
-}
-
-.light-mode .about-card h3 {
-    color: #24486e;
-    font-family: var(--font-mono);
-    text-shadow: 0 2px 12px rgb(255, 255, 255);
-}
-
-.light-mode .about-card li {
-    color: rgb(255, 255, 255);
-}
-
-.light-mode .about-highlights .timeline {
-    border-top: 1px solid #8eeaff;
-    padding-top: 1rem;
-    font-size: 1rem;
-    color: #000000;
-    line-height: 1.5;
 }
 
 @media (hover: hover) and (pointer: fine) {

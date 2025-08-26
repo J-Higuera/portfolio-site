@@ -7,8 +7,8 @@
     background-size: cover;
     background-attachment: fixed;*/
     gap: 30px;
-    padding-right: 43px;
-    padding-left: 43px;
+    padding-right: 100px;
+    padding-left: 100px;
     padding-top: 47px;
     padding-bottom: 47px;
     display: grid;
@@ -211,6 +211,15 @@
     }
 }
 
+@media (max-width: 1520px) {
+    .projects-grid {
+        padding-right: 27px;
+        padding-left: 27px;
+        padding-top: 47px;
+        padding-bottom: 47px;
+    }
+}
+
 @media (max-width: 1220px) {
     .projects-grid {
         padding-right: 27px;
@@ -219,9 +228,6 @@
         padding-bottom: 47px;
     }
 
-    .tech-stack-prev {
-        grid-template-columns: repeat(3, 1fr);
-    }
 }
 
 @media (max-width: 620px) {
