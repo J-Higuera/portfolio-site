@@ -11,24 +11,7 @@ html {
 }
 
 body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    max-width: 100vw;
-    height: auto;
-    overflow-x: hidden;
-    overflow-y: auto;
     background: linear-gradient(180deg, #000000c2, #101c39a0, #000000a5);
-    background-size: 100% 100%;
-    background-position: 50% 100%;
-    background-repeat: no-repeat;
-    z-index: -1;
-    background-position: center;
-    background-attachment: fixed;
-    color: #e0e0e0;
-    position: relative;
 }
 
 /*body::before {
@@ -892,6 +875,22 @@ footer a {
 /* Mobile screens */
 @media (max-width: 600px) and (min-width: 320px) {
 
+    .home-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/mobile/d1.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+
+    .light-mode {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.008), rgba(0, 0, 0, 0.017)), url(/images/body/mobile/l2.PNG);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+
     ::-webkit-scrollbar {
         width: 0;
     }
@@ -1091,27 +1090,6 @@ footer a {
         opacity: 1;
         transform: translateX(-50%) translateY(0);
         transition: opacity 0.05s ease, transform 0.6s ease;
-    }
-
-    .home-image::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/mobile/d1.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        z-index: -1;
-    }
-
-    .light-mode .home-image::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image: url(/images/body/mobile/l2.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
     }
 }
 
