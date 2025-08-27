@@ -233,24 +233,24 @@
 @media (max-width: 620px) {
 
     .projects-grid {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.475)), url(/images/body/mobile/d7.jpg);
+        /*background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.475)), url(/images/body/ab5.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        background-attachment: fixed;
+        background-attachment: fixed; */
         padding-right: 15px;
         padding-left: 15px;
         padding-top: 40px;
         padding-bottom: 40px;
     }
 
-    .light-mode .projects-grid {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/mobile/l2.PNG);
+    /*.light-mode .projects-grid {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-attachment: fixed;
-    }
+    } */
 
     .project-card:hover img {
         transform: none;

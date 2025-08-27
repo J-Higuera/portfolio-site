@@ -473,6 +473,28 @@ html.loading {
 
 }
 
+.skills.active {
+    box-shadow: 0 0 6px #00ff11, 0 0 10px #0048ff, 0 0 10px #a600ff;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
+}
+
+.skills.active h2 {
+    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
+    transition: text-shadow 0.6s ease-in-out;
+    color: #d7d7d7;
+}
+
+.light-mode .skills.active {
+    box-shadow: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
+}
+
+.light-mode .skills.active h2 {
+    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
+    transition: text-shadow 0.6s ease-in-out;
+    color: #d7d7d7;
+}
+
 .skills h2 {
     color: rgba(174, 174, 174, 0.71);
     margin-bottom: 10px;
@@ -483,17 +505,6 @@ html.loading {
     z-index: 1;
     animation: fadeIn 2s ease-in-out;
     transition: text-shadow 0.6s ease-in-out, color 0.6s ease-in-out;
-}
-
-.skills.active {
-    box-shadow: 0 0 6px #00ff11, 0 0 10px #0048ff, 0 0 10px #a600ff;
-    transition: box-shadow 0.5s ease, border 0.5s ease;
-}
-
-.skills.active h2 {
-    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
-    transition: text-shadow 0.6s ease-in-out;
-    color: #d7d7d7;
 }
 
 /* Footer section */
@@ -523,17 +534,6 @@ footer a {
 
 .light-mode {
     background: linear-gradient(180deg, #bddfff, #fee8ff, #a8f6ff);
-}
-
-.light-mode .skills.active {
-    box-shadow: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
-    transition: box-shadow 0.5s ease, border 0.5s ease;
-}
-
-.light-mode .skills.active h2 {
-    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
-    transition: text-shadow 0.6s ease-in-out;
-    color: #d7d7d7;
 }
 
 .light-mode .hero h1 {
@@ -960,11 +960,7 @@ footer a {
     }
 
     .light-mode .grid-wrapper {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/mobile/l2.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
+        background: none;
     }
 
     .achievements {
@@ -1096,6 +1092,22 @@ footer a {
         transform: translateX(-50%) translateY(0);
         transition: opacity 0.05s ease, transform 0.6s ease;
     }
+
+    /* .home-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+
+    .light-mode .home-image {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-attachment: fixed; 
+    } */
 }
 
 @media (prefers-color-scheme:dark) {
