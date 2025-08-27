@@ -6,7 +6,7 @@
     padding-bottom: 47px;
     overflow: hidden;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    background: linear-gradient(rgba(0, 0, 0, 0.886), rgba(0, 0, 0, 0.691)), url(../images/body/neon-light.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0.881), rgba(0, 0, 0, 0.762)), url(../images/body/neon-light.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -371,11 +371,11 @@
 
 @media (max-width: 700px) {
 
-    .about-section {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/mobile/d3.jpg);
+    /*.about-section {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: 100% 100%;
         background-attachment: fixed;
         grid-template-columns: repeat(1, 1fr);
         padding-right: 22px;
@@ -385,13 +385,13 @@
     }
 
     .light-mode .about-section {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/mobile/l2.PNG);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-attachment: fixed;
     }
-
+*/
 
     .about-highlights {
         display: none;

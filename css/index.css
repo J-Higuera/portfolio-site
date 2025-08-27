@@ -377,6 +377,7 @@ html.loading {
     color: black;
 }
 
+
 .github-contributions-widget {
     background-color: rgba(14, 14, 14, 0.6);
     border: 2px solid #ffffff61;
@@ -632,6 +633,11 @@ footer a {
         padding-left: 27px;
         padding-top: 47px;
         padding-bottom: 40px;
+        background: linear-gradient(rgba(0, 0, 0, 0.886), rgba(0, 0, 0, 0.691)), url(../images/body/neon-light.webp);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
     }
 
     @keyframes fadeIn {
@@ -738,6 +744,14 @@ footer a {
         /* slide up slightly */
     }
 
+    .skills-theme {
+        background: linear-gradient(rgba(0, 0, 0, 0.886), rgba(0, 0, 0, 0.691)), url(../images/body/neon-light.webp);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+
     .desktop-only {
         display: none;
     }
@@ -748,13 +762,6 @@ footer a {
 
     .skills-wrapper {
         display: none;
-    }
-
-    .grid-wrapper {
-        padding-right: 27px;
-        padding-left: 27px;
-        padding-top: 47px;
-        padding-bottom: 40px;
     }
 
     .skills-grid.skills-mobile {
@@ -902,6 +909,8 @@ footer a {
 /* Mobile screens */
 @media (max-width: 600px) and (min-width: 320px) {
 
+
+
     ::-webkit-scrollbar {
         width: 0;
     }
@@ -967,6 +976,11 @@ footer a {
         padding-left: 15px;
         padding-top: 40px;
         padding-bottom: 40px;
+        background: linear-gradient(rgba(0, 0, 0, 0.886), rgba(0, 0, 0, 0.691)), url(../images/body/neon-light.webp);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
     }
 
     .light-mode .grid-wrapper {
