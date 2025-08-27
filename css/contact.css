@@ -7,11 +7,6 @@
     padding-top: 47px;
     padding-bottom: 47px;
     align-items: start;
-    background: linear-gradient(rgba(0, 0, 0, 0.886), rgba(0, 0, 0, 0.691)), url(../images/body/neon-light.webp);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
     z-index: 999;
 }
 

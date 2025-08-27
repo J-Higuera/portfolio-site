@@ -5,12 +5,6 @@
     padding-top: 47px;
     padding-bottom: 47px;
     overflow: hidden;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    background: linear-gradient(rgba(0, 0, 0, 0.881), rgba(0, 0, 0, 0.762)), url(../images/body/neon-light.webp);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
 }
 
 .about-flex {

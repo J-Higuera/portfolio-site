@@ -1,11 +1,11 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    background: linear-gradient(rgba(0, 0, 0, 0.886), rgba(0, 0, 0, 0.691)), url(../images/body/neon-light.webp);
+    /*background: url(../images/body/1470.jpg);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-attachment: fixed;
+    background-attachment: fixed;*/
     gap: 30px;
     padding-right: 100px;
     padding-left: 100px;
@@ -233,24 +233,24 @@
 @media (max-width: 620px) {
 
     .projects-grid {
-        /*background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.475)), url(/images/body/ab5.jpg);
+        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.475)), url(/images/body/mobile/d7.jpg);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        background-attachment: fixed; */
+        background-attachment: fixed;
         padding-right: 15px;
         padding-left: 15px;
         padding-top: 40px;
         padding-bottom: 40px;
     }
 
-    /*.light-mode .projects-grid {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
+    .light-mode .projects-grid {
+        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/mobile/l2.PNG);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-attachment: fixed;
-    } */
+    }
 
     .project-card:hover img {
         transform: none;
