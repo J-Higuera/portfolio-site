@@ -10,8 +10,8 @@ export default function GitHubContributions() {
                 blockMargin={5}
                 fontSize={14}
                 theme={{
-                    light: ['#151515ff', '#00ff11ff'],
-                    dark: ['#ffffffff', '#00d9ffff']
+                    light: ['#151515ff', '#00d9ffff'],
+                    dark: ['#191919ff', '#00d9ffff']
                 }}
             />
         </div>
