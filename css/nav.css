@@ -311,7 +311,7 @@ nav.sticky-nav.visible-toggle {
         overscroll-behavior: contain;
         -webkit-overflow-scrolling: touch;
         display: block;
-        background: linear-gradient(to bottom, #000000, #000000f3, #000000ec, #000000e6, #000000dc, #000000c6, #00000000 100%);
+        background: linear-gradient(to bottom, #000000d3, #000000e2, #000000dd, #000000d2, #000000c1, #000000b5, #00000000 100%);
         text-align: center;
         transform: translate3d(0, -100%, 0);
         opacity: 0;

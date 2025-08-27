@@ -1102,7 +1102,7 @@ footer a {
     }
 
     .light-mode {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.008), rgba(0, 0, 0, 0.017)), url(/images/body/mobile/l2.PNG);
+        background-image: url(/images/body/mobile/l2.PNG);
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100% 100%;
