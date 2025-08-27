@@ -11,7 +11,7 @@ export default function GitHubContributions() {
                 fontSize={14}
                 theme={{
                     light: ['#151515ff', '#00ff11ff'],
-                    dark: ['#191919ff', '#00d9ffff']
+                    dark: ['#ffffffff', '#00d9ffff']
                 }}
             />
         </div>
