@@ -5,6 +5,12 @@
     padding-top: 47px;
     padding-bottom: 47px;
     overflow: hidden;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    background: url(../images/body/neon-light.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .about-flex {
@@ -405,12 +411,6 @@
 
     .photo-meta {
         font-size: 1rem;
-    }
-
-    .about-card:hover {
-        transform: none;
-        box-shadow: none;
-        border-color: none;
     }
 
     .about-card li {

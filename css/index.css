@@ -10,7 +10,26 @@ html {
     scroll-behavior: auto;
 }
 
-body {}
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    max-width: 100vw;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: linear-gradient(180deg, #000000c2, #101c39a0, #000000a5);
+    background-size: 100% 100%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    z-index: -1;
+    background-position: center;
+    background-attachment: fixed;
+    color: #e0e0e0;
+    position: relative;
+}
 
 /*body::before {
     content: "";
@@ -89,6 +108,11 @@ html.loading {
     align-items: center;
     text-align: center;
     z-index: 100;
+    background: url(../images/body/neon-light.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 
@@ -200,6 +224,11 @@ html.loading {
     padding-top: 17px;
     gap: 20px;
     padding-bottom: 37px;
+    background: url(../images/body/neon-light.webp);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
 
 .achievements {
@@ -872,29 +901,6 @@ footer a {
 
 /* Mobile screens */
 @media (max-width: 600px) and (min-width: 320px) {
-
-    body {
-        background: none;
-    }
-
-    .home-image::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/mobile/d1.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-    }
-
-    .light-mode::before {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.008), rgba(0, 0, 0, 0.017)), url(/images/body/mobile/l2.PNG);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-    }
 
     ::-webkit-scrollbar {
         width: 0;
