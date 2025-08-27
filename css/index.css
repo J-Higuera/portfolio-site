@@ -516,8 +516,6 @@ footer {
     background: linear-gradient(to top, #000000a7, #00000091, #00000081 100%);
     padding: 10px 20px;
     z-index: 100;
-    border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;
     flex-shrink: 0;
 }
 
