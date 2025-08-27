@@ -10,9 +10,7 @@ html {
     scroll-behavior: auto;
 }
 
-body {
-    background: linear-gradient(180deg, #000000c2, #101c39a0, #000000a5);
-}
+body {}
 
 /*body::before {
     content: "";
@@ -456,28 +454,6 @@ html.loading {
 
 }
 
-.skills.active {
-    box-shadow: 0 0 6px #00ff11, 0 0 10px #0048ff, 0 0 10px #a600ff;
-    transition: box-shadow 0.5s ease, border 0.5s ease;
-}
-
-.skills.active h2 {
-    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
-    transition: text-shadow 0.6s ease-in-out;
-    color: #d7d7d7;
-}
-
-.light-mode .skills.active {
-    box-shadow: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
-    transition: box-shadow 0.5s ease, border 0.5s ease;
-}
-
-.light-mode .skills.active h2 {
-    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
-    transition: text-shadow 0.6s ease-in-out;
-    color: #d7d7d7;
-}
-
 .skills h2 {
     color: rgba(174, 174, 174, 0.71);
     margin-bottom: 10px;
@@ -488,6 +464,17 @@ html.loading {
     z-index: 1;
     animation: fadeIn 2s ease-in-out;
     transition: text-shadow 0.6s ease-in-out, color 0.6s ease-in-out;
+}
+
+.skills.active {
+    box-shadow: 0 0 6px #00ff11, 0 0 10px #0048ff, 0 0 10px #a600ff;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
+}
+
+.skills.active h2 {
+    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
+    transition: text-shadow 0.6s ease-in-out;
+    color: #d7d7d7;
 }
 
 /* Footer section */
@@ -517,6 +504,17 @@ footer a {
 
 .light-mode {
     background: linear-gradient(180deg, #bddfff, #fee8ff, #a8f6ff);
+}
+
+.light-mode .skills.active {
+    box-shadow: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
+    transition: box-shadow 0.5s ease, border 0.5s ease;
+}
+
+.light-mode .skills.active h2 {
+    text-shadow: 0 0 5px #ffffff5a, 0 0 10px #ffffff63;
+    transition: text-shadow 0.6s ease-in-out;
+    color: #d7d7d7;
 }
 
 .light-mode .hero h1 {
@@ -875,7 +873,14 @@ footer a {
 /* Mobile screens */
 @media (max-width: 600px) and (min-width: 320px) {
 
-    .home-image {
+    body {
+        background: none;
+    }
+
+    .home-image::before {
+        content: "";
+        position: fixed;
+        inset: 0;
         background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/mobile/d1.jpg);
         background-position: center;
         background-repeat: no-repeat;
@@ -883,7 +888,7 @@ footer a {
         background-attachment: fixed;
     }
 
-    .light-mode {
+    .light-mode::before {
         background-image: linear-gradient(rgba(0, 0, 0, 0.008), rgba(0, 0, 0, 0.017)), url(/images/body/mobile/l2.PNG);
         background-position: center;
         background-repeat: no-repeat;
