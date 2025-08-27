@@ -1100,7 +1100,7 @@ footer a {
         background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/mobile/d1.jpg);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 100% 100%;
+        background-size: cover;
         z-index: -1;
     }
 
@@ -1111,7 +1111,7 @@ footer a {
         background-image: url(/images/body/mobile/l2.PNG);
         background-position: center;
         background-repeat: no-repeat;
-        background-size: 100% 100%;
+        background-size: cover;
     }
 }
 
