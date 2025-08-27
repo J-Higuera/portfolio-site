@@ -1104,7 +1104,7 @@ footer a {
         z-index: -1;
     }
 
-    .light-mode::before {
+    .light-mode .home-image::before {
         content: "";
         position: fixed;
         inset: 0;
