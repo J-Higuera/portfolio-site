@@ -20,7 +20,9 @@ body {
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    background: linear-gradient(180deg, #000000c2, #101c39a0, #000000a5);
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.188), transparent 60%), radial-gradient(circle at top, rgba(0, 0, 0, 0.58), transparent 60%), radial-gradient(circle at top left, rgba(0, 179, 255, 0.4), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(25, 25, 25, 0.35), transparent 60%), radial-gradient(circle at bottom, rgba(150, 150, 150, 0.35), transparent 60%), radial-gradient(circle at bottom left, rgba(0, 119, 170, 0.4), transparent 60%),
+        #000000;
     background-size: 100% 100%;
     background-position: 50% 100%;
     background-repeat: no-repeat;
@@ -33,7 +35,16 @@ body {
 
 
 .light-mode {
-    background: linear-gradient(180deg, #bddfff, #fee8ff, #a8f6ff);
+    background: radial-gradient(circle at top left, #ffdffb, transparent),
+        radial-gradient(circle at bottom right, #fffed3, transparent),
+        #101214;
+    background-size: 100% 100%;
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    z-index: -1;
+    background-position: center;
+    background-attachment: fixed;
+
 }
 
 /*body::before {
@@ -239,7 +250,7 @@ html.loading {
 }
 
 .light-mode .achievements {
-    background: rgba(255, 255, 255, 0.258);
+    background: rgba(144, 180, 194, 0.792);
     border: 2.5px solid rgba(201, 201, 201, 0.561);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
     color: #bfbfbf;
@@ -978,7 +989,7 @@ footer a {
         background-color: rgba(14, 14, 14, 0);
         border: none;
         padding: 0;
-        border-radius: 0;
+        border-radius: 15px;
         text-align: center;
         margin-top: 18px;
         width: 100%;

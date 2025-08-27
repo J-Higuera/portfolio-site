@@ -115,6 +115,10 @@
     color: #bdf700;
 }
 
+.light-mode .contact-info a {
+    color: #097381;
+}
+
 /*.light-mode .contact-grid {
     background: url(../images/body/emoji.jpg);
     background-position: center;
