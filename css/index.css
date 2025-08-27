@@ -108,7 +108,7 @@ html.loading {
     align-items: center;
     text-align: center;
     z-index: 100;
-    background: url(../images/body/neon-light.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0.886), rgba(0, 0, 0, 0.691)), url(../images/body/neon-light.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -224,7 +224,7 @@ html.loading {
     padding-top: 17px;
     gap: 20px;
     padding-bottom: 37px;
-    background: url(../images/body/neon-light.webp);
+    background: linear-gradient(rgba(0, 0, 0, 0.886), rgba(0, 0, 0, 0.691)), url(../images/body/neon-light.webp);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
