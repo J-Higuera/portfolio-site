@@ -20,8 +20,8 @@ body {
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.188), transparent 60%), radial-gradient(circle at top, rgba(0, 0, 0, 0.58), transparent 60%), radial-gradient(circle at top left, rgba(0, 179, 255, 0.4), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(25, 25, 25, 0.35), transparent 60%), radial-gradient(circle at bottom, rgba(150, 150, 150, 0.35), transparent 60%), radial-gradient(circle at bottom left, rgba(0, 119, 170, 0.4), transparent 60%),
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.188), transparent 60%), radial-gradient(circle at top, rgba(89, 117, 129, 0.4), transparent 60%), radial-gradient(circle at top left, rgba(0, 0, 0, 0.4), transparent 60%),
+        radial-gradient(circle at bottom right, rgba(28, 28, 28, 0.35), transparent 60%), radial-gradient(circle at bottom, rgba(59, 79, 108, 0.35), transparent 60%), radial-gradient(circle at bottom left, rgba(68, 98, 121, 0.4), transparent 60%),
         #000000;
     background-size: 100% 100%;
     background-position: 50% 100%;
