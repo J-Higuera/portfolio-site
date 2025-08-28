@@ -901,8 +901,8 @@ footer a {
 @media (max-width: 600px) and (min-width: 320px) {
 
     body {
-        background: radial-gradient(at right, rgba(0, 0, 0, 0.384), transparent 50%), radial-gradient(at center, rgba(112, 176, 255, 0.27), transparent 70%), radial-gradient(at top, rgba(0, 0, 0, 0.693), transparent 60%), radial-gradient(at left, rgb(0, 0, 0), transparent 50%),
-            radial-gradient(at bottom, rgb(56, 80, 88), transparent 100%), #000000e9;
+        background: radial-gradient(at right, rgba(59, 59, 59, 0.317), transparent 50%), radial-gradient(at center, rgba(70, 89, 114, 0.517), transparent 70%), radial-gradient(at top, rgba(37, 58, 77, 0.693), transparent 60%), radial-gradient(at left, rgba(43, 43, 43, 0.336), transparent 50%),
+            radial-gradient(at bottom, rgba(56, 80, 88, 0.368), transparent 100%), #000000e9;
         background-position: center;
         background-attachment: fixed;
     }
