@@ -20,9 +20,7 @@ body {
     height: auto;
     overflow-x: hidden;
     overflow-y: auto;
-    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.188), transparent 60%), radial-gradient(circle at top, rgba(89, 117, 129, 0.4), transparent 60%), radial-gradient(circle at top left, rgba(0, 0, 0, 0.4), transparent 60%),
-        radial-gradient(circle at bottom right, rgba(28, 28, 28, 0.35), transparent 60%), radial-gradient(circle at bottom, rgba(59, 79, 108, 0.35), transparent 60%), radial-gradient(circle at bottom left, rgba(68, 98, 121, 0.4), transparent 60%),
-        #000000;
+    background: var(--background-dark);
     background-size: 100% 100%;
     background-position: 50% 100%;
     background-repeat: no-repeat;
@@ -35,9 +33,7 @@ body {
 
 
 .light-mode {
-    background: radial-gradient(circle at top left, #ffdffb, transparent),
-        radial-gradient(circle at bottom right, #fffed3, transparent),
-        #101214;
+    background: var(--background-light);
     background-size: 100% 100%;
     background-position: 50% 100%;
     background-repeat: no-repeat;
@@ -107,6 +103,13 @@ html.loading {
     --border: 2px solid #ffffff61;
     --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
     --font-mono: 'Fira Mono', 'Consolas', monospace;
+    --background-dark: radial-gradient(at right, rgba(59, 59, 59, 0.317), transparent 50%), radial-gradient(at center, rgba(70, 89, 114, 0.517), transparent 80%), radial-gradient(at top, rgba(37, 58, 77, 0.693), transparent 80%), radial-gradient(at left, rgba(43, 43, 43, 0.336), transparent 50%),
+        radial-gradient(at bottom, rgba(56, 80, 88, 0.368), transparent 100%), #000000e9;
+    --background-light: radial-gradient(circle at top left, #ffdffb, transparent),
+        radial-gradient(circle at bottom right, #fffed3, transparent),
+        #101214;
+    --box-shadow-active: 0 0 6px #00ff11, 0 0 10px #0048ff, 0 0 10px #a600ff;
+    --box-shadow-light: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
 }
 
 /* Header section */
@@ -245,12 +248,13 @@ html.loading {
     padding: 18px;
     max-width: 100%;
     width: 100%;
+    box-shadow: 0 0 6px #00ff11, 0 0 8px #0048ff, 0 0 8px #a600ff;
     background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
     border: 2.5px solid rgb(255, 255, 255);
 }
 
 .light-mode .achievements {
-    background: rgba(144, 180, 194, 0.792);
+    background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
     border: 2.5px solid rgba(201, 201, 201, 0.561);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
     color: #bfbfbf;
@@ -290,7 +294,6 @@ html.loading {
 .certificate img {
     width: 100px;
     height: auto;
-    margin-bottom: 10px;
     transition: transform 0.6s ease, z-index 0.3s ease;
 }
 
@@ -308,6 +311,7 @@ html.loading {
 }
 
 .certificate p {
+    padding-top: 8px;
     font-size: 1.1rem;
     color: var(--primary);
     position: relative;
@@ -487,7 +491,7 @@ html.loading {
 }
 
 .skills.active {
-    box-shadow: 0 0 6px #00ff11, 0 0 10px #0048ff, 0 0 10px #a600ff;
+    box-shadow: var(--box-shadow-active);
     transition: box-shadow 0.5s ease, border 0.5s ease;
 }
 
@@ -498,7 +502,7 @@ html.loading {
 }
 
 .light-mode .skills.active {
-    box-shadow: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
+    box-shadow: var(--box-shadow-light);
     transition: box-shadow 0.5s ease, border 0.5s ease;
 }
 
@@ -624,26 +628,6 @@ footer a {
 
 /* Laptop/Tablets */
 @media(max-width: 1200px) {
-    body {
-        background: radial-gradient(circle at top right, rgb(0, 0, 0), transparent 60%), radial-gradient(circle at top, rgba(111, 151, 199, 0.4), transparent 60%), radial-gradient(circle at top left, rgb(0, 0, 0), transparent 60%),
-            radial-gradient(circle at bottom right, rgb(0, 0, 0), transparent 60%), radial-gradient(circle at bottom, rgba(111, 151, 199, 0.456), transparent 60%), radial-gradient(circle at bottom left, rgb(0, 0, 0), transparent 60%),
-            #000000e9;
-        background-attachment: fixed;
-    }
-
-
-    .light-mode {
-        background: radial-gradient(circle at top left, #ffdffb, transparent),
-            radial-gradient(circle at bottom right, #ffffef, transparent),
-            #101214;
-        background-size: 100% 100%;
-        background-position: 50% 100%;
-        background-repeat: no-repeat;
-        z-index: -1;
-        background-position: center;
-        background-attachment: fixed;
-
-    }
 
     .grid-wrapper {
         padding-right: 27px;
@@ -720,7 +704,7 @@ footer a {
 
     .achievements {
         grid-template-columns: 1fr 1fr;
-        box-shadow: 0 0 4px #ffffff, 0 0 6px #ffffff, 0 0 8px #ffffff;
+        box-shadow: 0 0 6px #00ff11, 0 0 8px #0048ff, 0 0 8px #a600ff;
     }
 
     .tooltip {
@@ -899,14 +883,6 @@ footer a {
 
 /* Mobile screens */
 @media (max-width: 600px) and (min-width: 320px) {
-
-    body {
-        background: radial-gradient(at right, rgba(59, 59, 59, 0.317), transparent 50%), radial-gradient(at center, rgba(70, 89, 114, 0.517), transparent 80%), radial-gradient(at top, rgba(37, 58, 77, 0.693), transparent 80%), radial-gradient(at left, rgba(43, 43, 43, 0.336), transparent 50%),
-            radial-gradient(at bottom, rgba(56, 80, 88, 0.368), transparent 100%), #000000e9;
-        background-position: center;
-        background-attachment: fixed;
-    }
-
     ::-webkit-scrollbar {
         width: 0;
     }
@@ -1007,9 +983,9 @@ footer a {
     }
 
     .certificate p {
+        padding-top: 0;
         font-size: 1rem;
         text-align: left;
-        margin: 0;
     }
 
     .github-contributions-widget {

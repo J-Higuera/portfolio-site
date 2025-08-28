@@ -22,7 +22,7 @@
 }
 
 .light-mode .contact-section {
-    background: rgba(144, 180, 194, 0.792);
+    background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.833);
 }
 

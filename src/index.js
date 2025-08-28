@@ -36,11 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     type();
-});
 
-
-//============================ Skills ==================================
-document.addEventListener("DOMContentLoaded", () => {
     // === Mobile Skills Animation ===
     const mobileSkillsSection = document.querySelector(".skills1.mobile-only");
     const mobileIcons = mobileSkillsSection?.querySelectorAll(".skills-grid img") || [];
@@ -131,88 +127,84 @@ document.addEventListener("DOMContentLoaded", () => {
     checkMagnify();
     window.addEventListener("resize", checkMagnify);
 });
+// === View degree/certification ===
+const images = document.querySelectorAll(".certificate-row img");
+let isAnimating = false;
 
+images.forEach((img) => {
+    img.addEventListener("click", () => {
+        if (document.querySelector(".zoom-backdrop") || isAnimating) return;
+        isAnimating = true;
 
-// ============================ Achievements ==================================
-// === View degree ===
-document.addEventListener("DOMContentLoaded", () => {
-    const images = document.querySelectorAll(".certificate-row img");
-    let isAnimating = false;
+        const rect = img.getBoundingClientRect(); // get actual size
+        const computed = getComputedStyle(img);
 
-    images.forEach((img) => {
-        img.addEventListener("click", () => {
-            if (document.querySelector(".zoom-backdrop") || isAnimating) return;
+        // Backdrop
+        const backdrop = document.createElement("div");
+        backdrop.classList.add("zoom-backdrop");
+        document.body.appendChild(backdrop);
+
+        // Placeholder
+        const placeholder = document.createElement("div");
+        ["display", "verticalAlign", "marginTop", "marginRight", "marginBottom", "marginLeft"]
+            .forEach(prop => {
+                placeholder.style[prop] = computed[prop];
+            });
+
+        // NEW: lock width/height so text doesn’t move
+        placeholder.style.width = rect.width + "px";
+        placeholder.style.height = rect.height + "px";
+        placeholder.style.flex = `0 0 ${rect.width}px`; // fixed flex-basis
+        placeholder.style.flexShrink = "0";
+
+        // Insert placeholder, move image to <body>
+        img.parentNode.insertBefore(placeholder, img);
+        document.body.appendChild(img);
+
+        // Zoom styles
+        img.classList.add("zoomed-real");
+        img.style.position = "fixed";
+        img.style.top = "50%";
+        img.style.left = "50%";
+        img.style.transform = "translate(-50%, -50%)";
+        img.style.maxWidth = "90vw";
+        img.style.maxHeight = "90vh";
+        img.style.width = "auto";
+        img.style.height = "auto";
+        img.style.zIndex = "1001";
+        img.style.transition = "opacity 0.8s ease";
+        img.style.opacity = "0";
+
+        requestAnimationFrame(() => {
+            backdrop.classList.add("show");
+            img.style.opacity = "1";
+            setTimeout(() => isAnimating = false, 800);
+        });
+
+        // Close on backdrop click
+        backdrop.addEventListener("click", () => {
+            if (isAnimating) return;
             isAnimating = true;
 
-            const rect = img.getBoundingClientRect(); // get actual size
-            const computed = getComputedStyle(img);
+            img.style.transition = "opacity 0.6s ease";
+            img.style.opacity = "0";
+            backdrop.classList.remove("show");
 
-            // Backdrop
-            const backdrop = document.createElement("div");
-            backdrop.classList.add("zoom-backdrop");
-            document.body.appendChild(backdrop);
+            setTimeout(() => {
+                img.removeAttribute("style");
+                img.classList.remove("zoomed-real");
+                placeholder.replaceWith(img);
+                img.style.opacity = "0";
 
-            // Placeholder
-            const placeholder = document.createElement("div");
-            ["display", "verticalAlign", "marginTop", "marginRight", "marginBottom", "marginLeft"]
-                .forEach(prop => {
-                    placeholder.style[prop] = computed[prop];
+                requestAnimationFrame(() => {
+                    img.style.transition = "opacity 0.6s ease";
+                    img.style.opacity = "1";
                 });
 
-            // NEW: lock width/height so text doesn’t move
-            placeholder.style.width = rect.width + "px";
-            placeholder.style.height = rect.height + "px";
-            placeholder.style.flex = `0 0 ${rect.width}px`; // fixed flex-basis
-            placeholder.style.flexShrink = "0";
-
-            // Insert placeholder, move image to <body>
-            img.parentNode.insertBefore(placeholder, img);
-            document.body.appendChild(img);
-
-            // Zoom styles
-            img.classList.add("zoomed-real");
-            img.style.position = "fixed";
-            img.style.top = "50%";
-            img.style.left = "50%";
-            img.style.transform = "translate(-50%, -50%)";
-            img.style.maxWidth = "90vw";
-            img.style.maxHeight = "90vh";
-            img.style.width = "auto";
-            img.style.height = "auto";
-            img.style.zIndex = "1001";
-            img.style.transition = "opacity 0.8s ease";
-            img.style.opacity = "0";
-
-            requestAnimationFrame(() => {
-                backdrop.classList.add("show");
-                img.style.opacity = "1";
-                setTimeout(() => isAnimating = false, 800);
-            });
-
-            // Close on backdrop click
-            backdrop.addEventListener("click", () => {
-                if (isAnimating) return;
-                isAnimating = true;
-
-                img.style.transition = "opacity 0.6s ease";
-                img.style.opacity = "0";
-                backdrop.classList.remove("show");
-
-                setTimeout(() => {
-                    img.removeAttribute("style");
-                    img.classList.remove("zoomed-real");
-                    placeholder.replaceWith(img);
-                    img.style.opacity = "0";
-
-                    requestAnimationFrame(() => {
-                        img.style.transition = "opacity 0.6s ease";
-                        img.style.opacity = "1";
-                    });
-
-                    backdrop.remove();
-                    setTimeout(() => isAnimating = false, 600);
-                }, 600);
-            });
+                backdrop.remove();
+                setTimeout(() => isAnimating = false, 600);
+            }, 600);
         });
     });
 });
+

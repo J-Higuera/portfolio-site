@@ -12,7 +12,7 @@
 }
 
 .light-mode .social-links2 {
-    background: radial-gradient(circle at top left, #00000033 0%, #c1c1c183 30%, #f4f4f45b 50%, #6767675a 75%, #9a9a9a4f 100%);
+    background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
     box-shadow: 8px 7px 8px 3px rgba(0, 0, 0, 0.419);
     border-radius: var(--radius);
 }
