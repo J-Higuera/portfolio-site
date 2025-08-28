@@ -625,9 +625,9 @@ footer a {
 /* Laptop/Tablets */
 @media(max-width: 1200px) {
     body {
-        background: radial-gradient(circle at top right, rgb(0, 0, 0), transparent 60%), radial-gradient(circle at top, rgba(78, 127, 153, 0.615), transparent 60%), radial-gradient(circle at top left, rgba(0, 0, 0, 0.4), transparent 60%),
-            radial-gradient(circle at bottom right, rgba(114, 152, 158, 0.549), transparent 60%), radial-gradient(circle at bottom, rgba(0, 0, 0, 0.35), transparent 60%), radial-gradient(circle at bottom left, rgba(129, 138, 157, 0.412), transparent 60%),
-            #000000;
+        background: radial-gradient(circle at top right, rgba(0, 30, 56, 0.574), transparent 60%), radial-gradient(circle at top, rgba(93, 116, 144, 0.615), transparent 60%), radial-gradient(circle at top left, rgba(255, 255, 255, 0.198), transparent 60%),
+            radial-gradient(circle at bottom right, rgba(56, 75, 78, 0.549), transparent 60%), radial-gradient(circle at bottom, rgba(0, 0, 0, 0.35), transparent 60%), radial-gradient(circle at bottom left, rgba(60, 67, 84, 0.412), transparent 60%),
+            #000000e9;
         background-attachment: fixed;
     }
 
