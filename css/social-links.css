@@ -12,7 +12,7 @@
 }
 
 .light-mode .social-links2 {
-    background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
+    background: linear-gradient(170deg, rgb(158, 212, 223), rgba(186, 156, 194, 0.571), rgb(174, 214, 230));
     box-shadow: 8px 7px 8px 3px rgba(0, 0, 0, 0.419);
     border-radius: var(--radius);
 }
@@ -29,17 +29,17 @@
 .social-links2 li a img {
     border-radius: 10px;
     transition: opacity 0.3s ease, transform 0.4s ease, filter 0.4s ease;
-    width: 45px;
-    height: 45px;
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.778));
     background-color: #0606066d;
 }
 
-@media (hover: hover) and (pointer: fine) {
-    .social-links2 li a img:hover {
-        transform: scale(1.2) translateY(-4px);
-        filter: drop-shadow(14px 14px 3.5px rgba(0, 0, 0, 0.584));
-    }
+.social-links2 li a img:hover {
+    transform: scale(1.2) translateY(-4px);
+    filter: drop-shadow(14px 14px 3.5px rgba(0, 0, 0, 0.584));
+}
+
+.light-mode .social-links2 ul li a img {
+    display: inline-block;
 }
 
 @media (max-width: 800px) and (min-width: 320px) {
