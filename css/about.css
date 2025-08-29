@@ -80,10 +80,23 @@
 .profile-photo-desktop {
     display: flex;
     flex-wrap: wrap;
-    width: 40%;
+    width: 35%;
     gap: 0.7rem;
     border-radius: 15px;
     text-align: center;
+}
+
+.about-certificates1 {
+    max-width: 27%;
+    min-width: 30%;
+    width: auto;
+    height: auto;
+}
+
+.about-highlights {
+    max-width: 32%;
+    width: auto;
+    height: auto;
 }
 
 .photo-card {
@@ -198,7 +211,7 @@
     }
 }
 
-@media (max-width: 1520px) {
+@media (max-width: 1720px) {
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
@@ -363,7 +376,7 @@
     }
 }
 
-@media (max-width: 800px) {
+@media (max-width: 700px) {
 
     /*.about-section {
         background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
