@@ -77,6 +77,9 @@
 
     .light-mode .social-links1 ul {
         box-shadow: none;
+        background: rgba(255, 255, 255, 0.258);
+        border: none;
+        box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.89);
 
     }
 
