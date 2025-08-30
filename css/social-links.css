@@ -1,6 +1,6 @@
 .social-links2 {
-    background: linear-gradient(145deg, rgba(114, 133, 141, 0.95), rgb(37, 95, 117));
-    border: 2px solid #b8b8b8;
+    background: linear-gradient(145deg, rgba(186, 206, 214, 0.95), rgb(70, 137, 163));
+    border: 2px solid #5e94a4;
     box-shadow: inset 0 0 10px rgb(179, 179, 179);
     border-radius: var(--radius);
     padding: 8px 10px 4px 10px;
@@ -21,7 +21,7 @@
 .social-links2 ul {
     margin: 0;
     padding: 0;
-    gap: 37px;
+    gap: 40px;
     list-style: none;
     display: flex;
     justify-content: center;
@@ -42,7 +42,7 @@
     }
 }
 
-@media (max-width: 800px) and (min-width: 320px) {
+@media (max-width: 1000px) {
 
     .social-links1 {
         position: relative;
@@ -59,7 +59,8 @@
         list-style: none;
         display: flex;
         gap: 48px;
-        background: #1b303b;
+        background: linear-gradient(145deg, rgba(42, 73, 86, 0.95), rgb(37, 95, 117));
+        border: 2px solid #5e94a4;
         margin: 0;
         border-radius: 15px;
         padding: 8px 10px 4px 10px;
