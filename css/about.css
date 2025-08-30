@@ -332,7 +332,7 @@
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
