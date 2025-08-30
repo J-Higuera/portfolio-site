@@ -7,9 +7,6 @@
     width: 100%;
     max-width: 400px;
     margin: 0 auto auto auto;
-    display: flex;
-    justify-content: center;
-    gap: 17px;
 }
 
 .light-mode .social-links2 {
