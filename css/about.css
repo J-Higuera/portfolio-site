@@ -376,7 +376,7 @@
     }
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 800px) {
 
     /*.about-section {
         background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.546)), url(/images/body/ab5.jpg);
