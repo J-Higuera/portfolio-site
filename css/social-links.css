@@ -6,6 +6,9 @@
     padding: 8px 10px 4px 10px;
     width: 100%;
     max-width: 400px;
+    margin: 0 auto auto auto;
+    display: flex;
+    justify-content: center;
 }
 
 .light-mode .social-links2 {
@@ -14,14 +17,7 @@
     border-radius: var(--radius);
 }
 
-.social-links2 ul {
-    margin: 0;
-    padding: 0;
-    gap: 28px;
-    list-style: none;
-    display: flex;
-    justify-content: center;
-}
+.social-links2 ul {}
 
 .social-links2 ul li a img {
     border-radius: 10px;
