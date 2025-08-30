@@ -65,7 +65,7 @@
         list-style: none;
         display: flex;
         gap: 48px;
-        background: linear-gradient(145deg, rgba(42, 73, 86, 0.95), rgb(37, 95, 117));
+        background: linear-gradient(145deg, rgba(29, 29, 29, 0.95), rgb(60, 105, 122), rgb(23, 23, 23));
         border: 2px solid #5e94a4;
         margin: 0;
         border-radius: 15px;
