@@ -6,7 +6,10 @@
     padding: 8px 10px 4px 10px;
     width: 100%;
     max-width: 400px;
-
+    margin: 0 auto auto auto;
+    display: flex;
+    justify-content: center;
+    gap: 17px;
 }
 
 .light-mode .social-links2 {
@@ -18,7 +21,7 @@
 .social-links2 ul {
     margin: 0;
     padding: 0;
-    gap: 40px;
+    gap: 28px;
     list-style: none;
     display: flex;
     justify-content: center;
