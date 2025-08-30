@@ -75,8 +75,8 @@
 
     .social-links3 ul li a img {
         border-radius: 10px;
-        background-color: rgba(5, 5, 5, 0.256);
-        filter: drop-shadow(6px 6px 3.5px rgb(0, 0, 0));
+        background-color: rgb(5, 5, 5);
+        filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.778));
     }
 
     .light-mode .social-links3 ul {
