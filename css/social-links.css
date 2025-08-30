@@ -4,9 +4,8 @@
     box-shadow: inset 0 0 10px rgb(179, 179, 179);
     border-radius: var(--radius);
     padding: 8px 10px 4px 10px;
-
-    margin: 0 auto auto auto;
-
+    width: 100%;
+    max-width: 400px;
 }
 
 .light-mode .social-links2 {
