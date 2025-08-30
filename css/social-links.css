@@ -33,6 +33,10 @@
     background-color: #0606066d;
 }
 
+.social-links3 {
+    display: none;
+}
+
 
 @media (hover: hover) and (pointer: fine) {
     .social-links2 ul li a img:hover {
@@ -41,7 +45,55 @@
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
+
+    .social-links2 {
+        display: none;
+    }
+
+    .social-links3 {
+        position: relative;
+        bottom: 5px;
+        justify-content: center;
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto auto auto;
+        display: flex;
+    }
+
+    .social-links3 ul {
+        list-style: none;
+        display: flex;
+        gap: 48px;
+        background: linear-gradient(145deg, rgba(42, 73, 86, 0.95), rgb(37, 95, 117));
+        border: 2px solid #5e94a4;
+        margin: 0;
+        border-radius: 15px;
+        padding: 8px 10px 4px 10px;
+        box-shadow: inset 0 0 10px rgb(198, 198, 198);
+    }
+
+    .social-links3 ul li a img {
+        border-radius: 10px;
+        background-color: rgba(5, 5, 5, 0.256);
+        filter: drop-shadow(6px 6px 3.5px rgb(0, 0, 0));
+    }
+
+    .light-mode .social-links3 ul {
+        box-shadow: none;
+        background: rgba(255, 255, 255, 0.258);
+        border: none;
+        box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.89);
+
+    }
+
+    .light-mode .social-links3 ul li a img {
+        display: inline-block;
+    }
+
+}
+
+@media (max-width: 720px) {
 
     .social-links1 {
         position: relative;
