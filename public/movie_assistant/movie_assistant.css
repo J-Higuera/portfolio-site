@@ -4,11 +4,6 @@
     margin: 0;
 }
 
-html,
-body {
-    height: 100%;
-    overflow: hidden;
-}
 
 body {
     background-blend-mode: darken;
@@ -68,24 +63,19 @@ p {
 }
 
 .output {
-    flex: 1 1 auto;
-    min-height: 240px;
-    max-height: none;
-    overflow-y: auto;
+
     background: #0d0d0d;
     color: #f0f0f0;
-    max-width: 100%;
-    padding-top: 20px;
-    padding-left: 10px;
-    padding-right: 5px;
-    margin-bottom: 5px;
     border: 2px solid #e5e5e5;
     border-radius: 10px;
+    max-width: 100%;
+    padding: 25px;
+    margin-bottom: 10px;
     box-shadow:
         0 0 0.20em rgba(255, 255, 255, 0.368),
         0 0 1.5em #b2e4ff,
         inset 0 0 1em rgba(255, 255, 255, 0.1);
-    height: 79%;
+    height: 60vh;
     overflow-y: auto;
     overflow-x: hidden;
     text-align: center;
