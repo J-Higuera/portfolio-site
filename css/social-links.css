@@ -22,7 +22,7 @@
     .social-links3 ul {
         list-style: none;
         display: flex;
-        gap: 40px;
+        gap: 48px;
         background: linear-gradient(145deg, rgba(29, 29, 29, 0.95), rgb(60, 105, 122), rgb(23, 23, 23));
         border: 2px solid #5e94a4;
         margin: 0;
@@ -33,7 +33,7 @@
 
     .social-links3 ul li a img {
         border-radius: 10px;
-        background-color: rgb(34, 34, 34);
+        background-color: rgba(22, 22, 22, 0.488);
         filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.778));
     }
 
