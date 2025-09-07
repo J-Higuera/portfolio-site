@@ -1,13 +1,8 @@
-/* =========================
-   Base Dock (shared)
-   ========================= */
-
 .social-links2 {
     margin: 0 auto;
 }
 
 .dock-outer {
-    /* center in flow; positioning props removed */
     width: 100%;
     max-width: 100%;
     display: flex;
@@ -19,18 +14,6 @@
     display: flex;
     align-items: flex-end;
     gap: 1.5rem;
-    align-self: center;
-    width: fit-content;
-
-    /* panel chrome */
-    background: linear-gradient(145deg, rgba(42, 73, 86, .95), rgb(37, 95, 117));
-    border: 2px solid #5e94a4;
-    box-shadow: inset 0 0 10px rgb(198, 198, 198);
-    border-radius: 1rem;
-    padding: 0 .5rem .5rem;
-
-    /* don’t clip grown children (labels/glows) */
-    overflow: visible;
 }
 
 .light-mode .dock-panel {
@@ -41,14 +24,8 @@
 }
 
 .dock-item {
-    position: relative;
-    flex: 0 0 auto;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(0, 0, 0, .188);
-    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.207);
+    border-radius: 14px;
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, .778));
     cursor: pointer;
     outline: none;
@@ -61,19 +38,19 @@
 }
 
 .dock-icon {
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .dock-icon :is(img, svg) {
-    width: 100%;
-    height: 100%;
+    width: inherit;
+    height: inherit;
     display: block;
     object-fit: contain;
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
 .dock-label {
@@ -111,15 +88,11 @@
     }
 }
 
-/* =========================
-   Social Dock: premium skin
-   ========================= */
-
 .dock-panel.social-dock {
     padding: 6px 12px 10px;
     border-radius: 16px;
     backdrop-filter: blur(8px) saturate(120%);
-    background: linear-gradient(170deg, rgba(40, 61, 75, .35), rgba(45, 95, 122, .25));
+    background: linear-gradient(170deg, rgba(198, 232, 255, 0.35), rgba(99, 200, 255, 0.25));
     border: 1px solid rgba(120, 200, 230, .35);
     box-shadow:
         inset 0 10px 30px rgba(0, 0, 0, .35),
@@ -134,7 +107,6 @@
         0 6px 24px rgba(0, 0, 0, .30);
 }
 
-/* subtle moving sheen */
 .dock-panel.social-dock::after {
     content: "";
     position: absolute;
@@ -169,7 +141,7 @@
 .dock-item.brand::before {
     content: "";
     position: absolute;
-    inset: -8px;
+    inset: 0;
     border-radius: 14px;
     background: radial-gradient(40% 50% at 50% 60%, var(--brand, #7dd3fc), transparent 70%);
     filter: blur(10px);
@@ -181,25 +153,22 @@
 
 .dock-item.brand:hover::before,
 .dock-item.brand:focus-visible::before {
-    opacity: .85;
-    transform: scale(1.02);
+    opacity: 1;
+    transform: scale(1.50);
 }
 
-/* Label picks up brand; first line is fallback for browsers without color-mix */
 .dock-item.brand .dock-label {
     background: var(--brand, #000);
     background: color-mix(in oklab, var(--brand, #000) 82%, #000);
     color: #fff;
 }
 
-/* Brand-colored focus ring */
 .dock-item.brand:focus-visible {
-    outline: 2px solid color-mix(in oklab, var(--brand, #8fd4ff) 70%, #fff);
+    outline: 2px solid color-mix(in oklab, var(--brand, #ffffff) 70%, #000000);
     outline-offset: 2px;
     border-radius: 12px;
 }
 
-/* Brand palettes */
 .brand-linkedin {
     --brand: #3a9cff;
 }
@@ -208,7 +177,6 @@
     --brand: #000000;
 }
 
-/* dark GitHub */
 .brand-instagram {
     --brand: #e046ff;
 }
@@ -217,11 +185,10 @@
     --brand: #ff375f;
 }
 
-/* Slightly punchier icon when active */
 .social-dock .dock-item:is(:hover, :focus-visible) img {
-    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--brand, #ffffff) 45%, #000));
+    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--brand, #ffffff) 60%, #000));
 }
 
 .light-mode .social-dock .dock-item:is(:hover, :focus-visible) img {
-    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--brand, #ffffff) 45%, #ffffff));
+    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--brand, #ffffff) 60%, #ffffff));
 }

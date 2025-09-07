@@ -35,11 +35,11 @@ export default function DockWidget() {
         <Dock
             items={items}
             className="social-dock"      // <- only the social dock gets this
-            panelHeight={70}
+            panelHeight={68}
             baseItemSize={50}
             magnification={70}
             distance={100}
-            spring={{ mass: 0.08, stiffness: 110, damping: 3.5 }} // slower + smoother
+            spring={{ mass: 0.15, stiffness: 110, damping: 5 }} // slower + smoother
         />
     );
 }
