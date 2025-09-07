@@ -126,6 +126,14 @@
         0 6px 24px rgba(0, 0, 0, .30);
 }
 
+.light-mode .dock-panel.social-dock {
+    background: linear-gradient(170deg, rgba(255, 255, 255, 0.455), rgba(255, 255, 255, 0.425));
+    border: 1px solid rgba(255, 255, 255, 0.107);
+    box-shadow:
+        inset 0 10px 20px rgba(37, 46, 46, 0.35),
+        0 6px 24px rgba(0, 0, 0, .30);
+}
+
 /* subtle moving sheen */
 .dock-panel.social-dock::after {
     content: "";
@@ -182,7 +190,6 @@
     background: var(--brand, #000);
     background: color-mix(in oklab, var(--brand, #000) 82%, #000);
     color: #fff;
-    border: 1px solid color-mix(in oklab, var(--brand, #fff) 40%, #000);
 }
 
 /* Brand-colored focus ring */
@@ -212,5 +219,9 @@
 
 /* Slightly punchier icon when active */
 .social-dock .dock-item:is(:hover, :focus-visible) img {
-    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--brand, #fff) 45%, #000));
+    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--brand, #ffffff) 45%, #000));
+}
+
+.light-mode .social-dock .dock-item:is(:hover, :focus-visible) img {
+    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--brand, #ffffff) 45%, #ffffff));
 }
