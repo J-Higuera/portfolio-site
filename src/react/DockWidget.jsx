@@ -39,7 +39,7 @@ export default function DockWidget() {
             baseItemSize={50}
             magnification={72}
             distance={150}
-            spring={{ mass: 0.3, stiffness: 170, damping: 6 }} // slower + smoother
+            spring={{ mass: 0.3, stiffness: 100, damping: 4 }} // slower + smoother
         />
     );
 }
