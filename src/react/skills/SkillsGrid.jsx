@@ -21,14 +21,15 @@ const ICONS = [
 ];
 
 const SPRING = { mass: 0.12, stiffness: 180, damping: 16 };
-const EFFECT_RADIUS = 50;
-const MAX_SCALE = 1.5;
+const EFFECT_RADIUS = 50;   // proximity radius in px
+const MAX_SCALE = 1.5;  // 1 = no scale, 1.5 = 50% bigger
+const TAP_SHOW_MS = 900;  // how long the tooltip stays after tap/click
 
 export default function SkillsGrid() {
     const px = useMotionValue(Infinity);
     const py = useMotionValue(Infinity);
 
-    // Reset pointer when tab/window changes to avoid “stuck hot zone”
+    // Reset pointer hot-spot on tab switches
     useEffect(() => {
         const reset = () => { px.set(Infinity); py.set(Infinity); };
         const onVis = () => { if (document.visibilityState !== 'visible') reset(); };
@@ -60,11 +61,27 @@ export default function SkillsGrid() {
 function Icon({ src, alt, label, px, py }) {
     const ref = useRef(null);
     const [hover, setHover] = useState(false);
-    const pointerDown = useRef(false);
+    const pressed = useRef(false);
+    const hideTimer = useRef(/** number | undefined */);
 
-    // Clear local hover on tab/window changes
+    // Proximity scale
+    const scale = useSpring(
+        useTransform([px, py], ([x, y]) => {
+            const el = ref.current;
+            if (!el || !isFinite(x) || !isFinite(y)) return 1;
+            const r = el.getBoundingClientRect();
+            const cx = r.left + r.width / 2;
+            const cy = r.top + r.height / 2;
+            const d = Math.hypot(x - cx, y - cy);
+            const t = Math.max(0, 1 - d / EFFECT_RADIUS); // 0..1
+            return 1 + t * (MAX_SCALE - 1);
+        }),
+        SPRING
+    );
+
+    // Safety: clear on tab/window changes
     useEffect(() => {
-        const clear = () => setHover(false);
+        const clear = () => { setHover(false); };
         window.addEventListener('blur', clear);
         window.addEventListener('focus', clear);
         document.addEventListener('visibilitychange', clear);
@@ -75,35 +92,42 @@ function Icon({ src, alt, label, px, py }) {
         };
     }, []);
 
-    const scale = useSpring(
-        useTransform([px, py], ([x, y]) => {
-            const el = ref.current;
-            if (!el || !isFinite(x) || !isFinite(y)) return 1;
-            const r = el.getBoundingClientRect();
-            const cx = r.left + r.width / 2;
-            const cy = r.top + r.height / 2;
-            const d = Math.hypot(x - cx, y - cy);
-            const t = Math.max(0, 1 - d / EFFECT_RADIUS);
-            return 1 + t * (MAX_SCALE - 1);
-        }),
-        SPRING
-    );
-
-    // Only show tooltip for true hover OR keyboard focus.
-    const handleFocus = () => {
-        // Focus from keyboard shows tooltip; mouse-focus shouldn’t.
-        if (ref.current?.matches(':focus-visible')) setHover(true);
+    // Helpers
+    const centerPointerOnSelf = () => {
+        const r = ref.current?.getBoundingClientRect();
+        if (!r) return;
+        px.set(r.left + r.width / 2);
+        py.set(r.top + r.height / 2);
+    };
+    const showTip = () => {
+        clearTimeout(hideTimer.current);
+        setHover(true);
+    };
+    const hideTip = (parkPointer = true) => {
+        setHover(false);
+        if (parkPointer) { px.set(Infinity); py.set(Infinity); }
     };
 
-    const handleClick = () => {
-        if (pointerDown.current) {
-            // Pointer click: clear everything so tooltip can’t stick.
-            setHover(false);
-            px.set(Infinity);      // park shared pointer so neighbors shrink
-            py.set(Infinity);
-            // blur on next frame so default click behavior isn't interrupted
-            requestAnimationFrame(() => ref.current?.blur());
-        }
+    // Pointer/tap lifecycle (mobile + desktop click)
+    const onPointerDown = () => {
+        pressed.current = true;
+        centerPointerOnSelf();
+        showTip();
+    };
+    const onPointerUp = () => {
+        pressed.current = false;
+        // keep it visible briefly so tap users can read it
+        clearTimeout(hideTimer.current);
+        hideTimer.current = setTimeout(() => hideTip(true), TAP_SHOW_MS);
+    };
+    const onPointerCancel = () => {
+        pressed.current = false;
+        hideTip(true);
+    };
+
+    // Keyboard focus: only show on true keyboard focus
+    const onFocus = () => {
+        if (ref.current?.matches(':focus-visible')) showTip();
     };
 
     return (
@@ -111,17 +135,16 @@ function Icon({ src, alt, label, px, py }) {
             className="sg-item"
             ref={ref}
             style={{ scale }}
-            // hover
+            // hover (desktop)
             onHoverStart={() => setHover(true)}
             onHoverEnd={() => setHover(false)}
-            // pointer lifecycle
-            onPointerDown={() => { pointerDown.current = true; }}
-            onPointerUp={() => { pointerDown.current = false; }}
-            onPointerCancel={() => { pointerDown.current = false; setHover(false); }}
-            onClick={handleClick}
-            // keyboard focus
-            onFocus={handleFocus}
-            onBlur={() => setHover(false)}
+            // tap/click (mobile & desktop)
+            onPointerDown={onPointerDown}
+            onPointerUp={onPointerUp}
+            onPointerCancel={onPointerCancel}
+            // keyboard
+            onFocus={onFocus}
+            onBlur={() => { clearTimeout(hideTimer.current); hideTip(false); }}
             tabIndex={0}
             aria-label={label}
         >

@@ -10,6 +10,8 @@
     justify-items: center;
     overflow: visible;
     z-index: 2;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .sg-item img {

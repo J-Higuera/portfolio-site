@@ -201,7 +201,7 @@
 
 /* Brand palettes */
 .brand-linkedin {
-    --brand: #0083bb;
+    --brand: #35c2ff;
 }
 
 .brand-github {
@@ -210,11 +210,11 @@
 
 /* dark GitHub */
 .brand-instagram {
-    --brand: #9700b5;
+    --brand: #e046ff;
 }
 
 .brand-youtube {
-    --brand: #a40021;
+    --brand: #ff375f;
 }
 
 /* Slightly punchier icon when active */
