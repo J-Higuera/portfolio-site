@@ -20,7 +20,7 @@
     .social-links1 ul {
         list-style: none;
         display: flex;
-        gap: 1rem;
+        gap: 2.8rem;
         background: linear-gradient(145deg, rgba(42, 73, 86, 0.95), rgb(37, 95, 117));
         border: 2px solid #5e94a4;
         margin: 0;

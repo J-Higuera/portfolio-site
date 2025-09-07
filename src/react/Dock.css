@@ -38,7 +38,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 15px;
+    border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.188);
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.778));
     cursor: pointer;
@@ -46,8 +46,9 @@
 }
 
 .light-mode .dock-item {
-    background-color: #ffffff64;
-    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.877));
+    background-color: #ffffff65;
+    border-radius: 14px;
+    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.548));
 }
 
 .dock-icon {
@@ -61,7 +62,7 @@
 .dock-icon img,
 .dock-icon svg {
     width: 100%;
-    border-radius: 8px;
+    border-radius: 10px;
     height: 100%;
     display: block;
     object-fit: contain;
