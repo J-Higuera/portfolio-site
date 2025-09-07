@@ -56,6 +56,14 @@
     place-items: center;
     background: transparent;
     will-change: transform;
+    opacity: 0;
+    filter: blur(3px) saturate(.9);
+    transition: opacity .35s ease, filter .45s ease;
+}
+
+.sg-item.show {
+    opacity: 1;
+    filter: blur(0) saturate(1);
 }
 
 .sg-item img {
@@ -63,5 +71,6 @@
     height: 100%;
     object-fit: contain;
     display: block;
+    filter: drop-shadow(7px 7px 4px rgba(0, 0, 0, .78));
     pointer-events: none;
 }
