@@ -409,6 +409,16 @@ html.loading {
     border: none;
 }
 
+.github-contrib-placeholder {
+    min-height: 220px;
+}
+
+.github-contrib-placeholder svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
 .github-contributions-widget h3 {
     font-size: 1.35rem;
     color: var(--primary);
@@ -634,10 +644,6 @@ footer a {
         padding-left: 27px;
         padding-top: 47px;
         padding-bottom: 40px;
-    }
-
-    #github-root {
-        display: none;
     }
 
     @keyframes fadeIn {
