@@ -62,6 +62,7 @@ function DockItem({ children, className = '', onClick, mouseX, spring, distance,
             onBlur={() => isHovered.set(0)}
             onClick={handleClick}
             onKeyDown={handleKeyDown}
+            whileTap={{ scale: 0.94 }}
             className={`dock-item ${className}`}
             tabIndex={0}
             role="button"

@@ -1,10 +1,13 @@
+/* =========================
+   Base Dock (shared)
+   ========================= */
+
 .social-links2 {
-    margin: 0 auto auto auto;
+    margin: 0 auto;
 }
 
 .dock-outer {
-    left: 50%;
-    bottom: 16px;
+    /* center in flow; positioning props removed */
     width: 100%;
     max-width: 100%;
     display: flex;
@@ -15,20 +18,25 @@
     position: relative;
     display: flex;
     align-items: flex-end;
-    width: fit-content;
     gap: 1.5rem;
     align-self: center;
-    background: linear-gradient(145deg, rgba(42, 73, 86, 0.95), rgb(37, 95, 117));
+    width: fit-content;
+
+    /* panel chrome */
+    background: linear-gradient(145deg, rgba(42, 73, 86, .95), rgb(37, 95, 117));
     border: 2px solid #5e94a4;
     box-shadow: inset 0 0 10px rgb(198, 198, 198);
     border-radius: 1rem;
-    padding: 0 0.5rem 0.5rem;
+    padding: 0 .5rem .5rem;
+
+    /* don’t clip grown children (labels/glows) */
+    overflow: visible;
 }
 
 .light-mode .dock-panel {
-    background: linear-gradient(170deg, rgb(158, 212, 223), rgba(240, 221, 246, 0.571), rgb(174, 214, 230));
-    box-shadow: 8px 7px 6px 5px rgba(0, 0, 0, 0.325);
-    border-radius: var(--radius);
+    background: linear-gradient(170deg, rgb(158, 212, 223), rgba(240, 221, 246, .571), rgb(174, 214, 230));
+    box-shadow: 8px 7px 6px 5px rgba(0, 0, 0, .325);
+    border-radius: var(--radius, 1rem);
     border: none;
 }
 
@@ -38,17 +46,18 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+
+    background: rgba(0, 0, 0, .188);
     border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.188);
-    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.778));
+    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, .778));
     cursor: pointer;
     outline: none;
 }
 
 .light-mode .dock-item {
-    background-color: #0000004a;
+    background: #0000004a;
     border-radius: 14px;
-    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.548));
+    filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, .548));
 }
 
 .dock-icon {
@@ -59,29 +68,149 @@
     justify-content: center;
 }
 
-.dock-icon img,
-.dock-icon svg {
+.dock-icon :is(img, svg) {
     width: 100%;
-    border-radius: 10px;
     height: 100%;
     display: block;
     object-fit: contain;
+    border-radius: 10px;
 }
 
 .dock-label {
     position: absolute;
     top: -1.2rem;
     left: 50%;
-    width: fit-content;
+    transform: translateX(-50%);
     white-space: pre;
+    width: max-content;
+
+    background: #000;
+    color: #fff;
     border-radius: 0.375rem;
-    background-color: #000000;
     padding: 0.125rem 0.5rem;
     font-size: 0.75rem;
-    color: #fff;
+    pointer-events: none;
+    /* never steal hover/focus */
 }
 
 .light-mode .dock-label {
-    background-color: aliceblue;
+    background: aliceblue;
     color: #242424;
+}
+
+/* a11y: visible keyboard focus */
+.dock-item:focus-visible {
+    outline: 2px solid #8fd4ff;
+    outline-offset: 2px;
+}
+
+/* motion-safety: tone down sheen/animations for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .dock-panel.social-dock::after {
+        animation: none;
+    }
+}
+
+/* =========================
+   Social Dock: premium skin
+   ========================= */
+
+.dock-panel.social-dock {
+    padding: 6px 12px 10px;
+    border-radius: 16px;
+    backdrop-filter: blur(8px) saturate(120%);
+    background: linear-gradient(170deg, rgba(40, 61, 75, .35), rgba(45, 95, 122, .25));
+    border: 1px solid rgba(120, 200, 230, .35);
+    box-shadow:
+        inset 0 10px 30px rgba(0, 0, 0, .35),
+        0 6px 24px rgba(0, 0, 0, .30);
+}
+
+/* subtle moving sheen */
+.dock-panel.social-dock::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    pointer-events: none;
+    background:
+        radial-gradient(120px 40px at var(--sheen-x, -20%) 0%, rgba(255, 255, 255, .18), rgba(255, 255, 255, 0) 60%);
+    mix-blend-mode: screen;
+    animation: dock-sheen 8s linear infinite;
+}
+
+@keyframes dock-sheen {
+    0% {
+        --sheen-x: -20%;
+    }
+
+    50% {
+        --sheen-x: 120%;
+    }
+
+    100% {
+        --sheen-x: -20%;
+    }
+}
+
+/* Brand halo per icon (variable-driven) */
+.dock-item.brand {
+    position: relative;
+}
+
+.dock-item.brand::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 14px;
+    background: radial-gradient(40% 50% at 50% 60%, var(--brand, #7dd3fc), transparent 70%);
+    filter: blur(10px);
+    opacity: 0;
+    transform: scale(.95);
+    transition: opacity .25s ease, transform .25s ease;
+    z-index: -1;
+}
+
+.dock-item.brand:hover::before,
+.dock-item.brand:focus-visible::before {
+    opacity: .85;
+    transform: scale(1.02);
+}
+
+/* Label picks up brand; first line is fallback for browsers without color-mix */
+.dock-item.brand .dock-label {
+    background: var(--brand, #000);
+    background: color-mix(in oklab, var(--brand, #000) 82%, #000);
+    color: #fff;
+    border: 1px solid color-mix(in oklab, var(--brand, #fff) 40%, #000);
+}
+
+/* Brand-colored focus ring */
+.dock-item.brand:focus-visible {
+    outline: 2px solid color-mix(in oklab, var(--brand, #8fd4ff) 70%, #fff);
+    outline-offset: 2px;
+    border-radius: 12px;
+}
+
+/* Brand palettes */
+.brand-linkedin {
+    --brand: #0083bb;
+}
+
+.brand-github {
+    --brand: #000000;
+}
+
+/* dark GitHub */
+.brand-instagram {
+    --brand: #9700b5;
+}
+
+.brand-youtube {
+    --brand: #a40021;
+}
+
+/* Slightly punchier icon when active */
+.social-dock .dock-item:is(:hover, :focus-visible) img {
+    filter: drop-shadow(0 4px 10px color-mix(in oklab, var(--brand, #fff) 45%, #000));
 }
