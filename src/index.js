@@ -36,27 +36,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     type();
-
-    // === Mobile Skills Animation ===
-    const mobileSkillsSection = document.querySelector(".skills1.mobile-only");
-    const mobileIcons = mobileSkillsSection?.querySelectorAll(".skills-grid img") || [];
-
-    if (mobileSkillsSection) {
-        const mobileObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    mobileSkillsSection.classList.add("animate");
-                    mobileIcons.forEach((icon) => icon.classList.add("show"));
-                } else {
-                    mobileSkillsSection.classList.remove("animate");
-                    mobileIcons.forEach((icon) => icon.classList.remove("show"));
-                }
-            });
-        }, { threshold: 0.3 });
-
-        mobileObserver.observe(mobileSkillsSection);
-    }
-
     // === Desktop Conveyor Belt Animation ===
     const wrapper = document.querySelector(".skills-wrapper");
     const track = document.querySelector(".skills-track");
