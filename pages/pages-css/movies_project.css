@@ -1,7 +1,15 @@
 /* Movie Assistant Project Showcase */
+html,
+body {
+    height: 100%;
+}
+
 body {
     margin: 0;
     padding: 0;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
     border: none;
     background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
 }
@@ -157,6 +165,7 @@ body {
 
 /* Footer section */
 footer {
+    margin-top: auto;
     width: 100%;
     min-width: 100%;
     background: linear-gradient(to top, #000000a7, #00000091, #00000081 100%);
