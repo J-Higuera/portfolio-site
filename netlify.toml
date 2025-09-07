@@ -1,0 +1,35 @@
+# netlify.toml
+[build]
+  command = "vite build"          # or your actual build command
+  publish = "dist"                # your Vite output dir
+
+# Security headers for everything
+[[headers]]
+  for = "/*"
+  [headers.values]
+  # CSP: only load your own files + Google Fonts
+  Content-Security-Policy = """
+    default-src 'self';
+    base-uri 'self';
+    object-src 'none';
+    form-action 'self';
+    img-src 'self' data:;
+    font-src 'self' https://fonts.gstatic.com;
+    style-src 'self' https://fonts.googleapis.com 'self';
+    script-src 'self';
+    connect-src 'self';
+    frame-ancestors 'none';
+    upgrade-insecure-requests
+  """
+
+  # Core hardening
+  Referrer-Policy = "strict-origin-when-cross-origin"
+  X-Content-Type-Options = "nosniff"
+  X-Frame-Options = "DENY"                 # belt + suspenders with frame-ancestors
+  Cross-Origin-Opener-Policy = "same-origin"
+
+  # Lock down powerful APIs (adjust if you actually need any)
+  Permissions-Policy = "accelerometer=(), autoplay=(), camera=(), clipboard-read=(), clipboard-write=(), display-capture=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=(), browsing-topics=()"
+
+  # Enforce HTTPS for a year (enable preload only if you know what you're doing)
+  Strict-Transport-Security = "max-age=31536000; includeSubDomains"
