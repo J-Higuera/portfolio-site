@@ -1,7 +1,7 @@
 // src/react/skills/SkillsGrid.jsx
 'use client';
 
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import './SkillsGrid.css';
 
@@ -28,6 +28,20 @@ export default function SkillsGrid() {
     const px = useMotionValue(Infinity);
     const py = useMotionValue(Infinity);
 
+    // Reset pointer when tab/window changes to avoid “stuck hot zone”
+    useEffect(() => {
+        const reset = () => { px.set(Infinity); py.set(Infinity); };
+        const onVis = () => { if (document.visibilityState !== 'visible') reset(); };
+        window.addEventListener('blur', reset);
+        window.addEventListener('focus', reset);
+        document.addEventListener('visibilitychange', onVis);
+        return () => {
+            window.removeEventListener('blur', reset);
+            window.removeEventListener('focus', reset);
+            document.removeEventListener('visibilitychange', onVis);
+        };
+    }, [px, py]);
+
     return (
         <div
             className="sg-grid"
@@ -46,6 +60,20 @@ export default function SkillsGrid() {
 function Icon({ src, alt, label, px, py }) {
     const ref = useRef(null);
     const [hover, setHover] = useState(false);
+    const pointerDown = useRef(false);
+
+    // Clear local hover on tab/window changes
+    useEffect(() => {
+        const clear = () => setHover(false);
+        window.addEventListener('blur', clear);
+        window.addEventListener('focus', clear);
+        document.addEventListener('visibilitychange', clear);
+        return () => {
+            window.removeEventListener('blur', clear);
+            window.removeEventListener('focus', clear);
+            document.removeEventListener('visibilitychange', clear);
+        };
+    }, []);
 
     const scale = useSpring(
         useTransform([px, py], ([x, y]) => {
@@ -61,21 +89,44 @@ function Icon({ src, alt, label, px, py }) {
         SPRING
     );
 
+    // Only show tooltip for true hover OR keyboard focus.
+    const handleFocus = () => {
+        // Focus from keyboard shows tooltip; mouse-focus shouldn’t.
+        if (ref.current?.matches(':focus-visible')) setHover(true);
+    };
+
+    const handleClick = () => {
+        if (pointerDown.current) {
+            // Pointer click: clear everything so tooltip can’t stick.
+            setHover(false);
+            px.set(Infinity);      // park shared pointer so neighbors shrink
+            py.set(Infinity);
+            // blur on next frame so default click behavior isn't interrupted
+            requestAnimationFrame(() => ref.current?.blur());
+        }
+    };
+
     return (
         <motion.div
             className="sg-item"
             ref={ref}
             style={{ scale }}
+            // hover
             onHoverStart={() => setHover(true)}
             onHoverEnd={() => setHover(false)}
-            onFocus={() => setHover(true)}
+            // pointer lifecycle
+            onPointerDown={() => { pointerDown.current = true; }}
+            onPointerUp={() => { pointerDown.current = false; }}
+            onPointerCancel={() => { pointerDown.current = false; setHover(false); }}
+            onClick={handleClick}
+            // keyboard focus
+            onFocus={handleFocus}
             onBlur={() => setHover(false)}
             tabIndex={0}
             aria-label={label}
         >
             <img src={src} alt={alt} loading="lazy" decoding="async" />
 
-            {/* Tooltip */}
             <AnimatePresence>
                 {hover && (
                     <motion.div
