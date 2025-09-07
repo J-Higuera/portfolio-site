@@ -636,6 +636,10 @@ footer a {
         padding-bottom: 40px;
     }
 
+    #github-root {
+        display: none;
+    }
+
     @keyframes fadeIn {
         from {
             opacity: 0;
