@@ -1,0 +1,65 @@
+/* src/react/skills/SkillsGrid.css */
+
+/* Keep your original grid feel: 4 per row on mobile-ish widths */
+.sg-grid {
+    --icon-size: 60px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
+    padding: 10px;
+    gap: 20px 20px;
+    justify-items: center;
+    overflow: visible;
+    z-index: 2;
+}
+
+.sg-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+    filter: drop-shadow(7px 7px 4px rgba(0, 0, 0, 0.778));
+}
+
+.sg-tip {
+    position: absolute;
+    top: -0.7rem;
+    transform: translateX(-50%);
+    padding: 0.125rem 0.5rem;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    background: #000;
+    color: #fff;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 3;
+    /* don’t steal hover from icon */
+}
+
+.light-mode .sg-tip {
+    background: aliceblue;
+    color: #242424;
+}
+
+@media (max-width: 600px) {
+    .sg-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+
+.sg-item {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    display: grid;
+    place-items: center;
+    background: transparent;
+    will-change: transform;
+}
+
+.sg-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+}
