@@ -39,9 +39,9 @@
 
     .light-mode .social-links3 ul {
         box-shadow: none;
-        background: rgba(255, 255, 255, 0.258);
+        background: linear-gradient(170deg, rgb(158, 212, 223), rgba(240, 221, 246, 0.571), rgb(174, 214, 230));
         border: none;
-        box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.89);
+        box-shadow: 3px 2px 7px rgba(0, 0, 0, 0.89);
 
     }
 

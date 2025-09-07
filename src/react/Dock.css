@@ -26,7 +26,7 @@
 }
 
 .light-mode .dock-panel {
-    background: linear-gradient(170deg, rgb(158, 212, 223), rgba(186, 156, 194, 0.571), rgb(174, 214, 230));
+    background: linear-gradient(170deg, rgb(158, 212, 223), rgba(240, 221, 246, 0.571), rgb(174, 214, 230));
     box-shadow: 8px 7px 6px 5px rgba(0, 0, 0, 0.325);
     border-radius: var(--radius);
     border: none;
@@ -46,7 +46,7 @@
 }
 
 .light-mode .dock-item {
-    background-color: #ffffff65;
+    background-color: #0000004a;
     border-radius: 14px;
     filter: drop-shadow(8px 8px 4px rgba(0, 0, 0, 0.548));
 }
