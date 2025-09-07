@@ -16,6 +16,41 @@
     gap: 2rem;
 }
 
+.social-dock .dock-item {
+    max-width: 64px;
+    max-height: 64px;
+    overflow: visible;
+}
+
+@media (max-width: 900px) {
+    .social-dock .dock-item {
+        max-width: 56px;
+        max-height: 56px;
+    }
+}
+
+@media (max-width: 600px) {
+    .social-dock .dock-item {
+        max-width: 48px;
+        max-height: 48px;
+    }
+}
+
+.social-dock .dock-icon img,
+.social-dock .dock-icon svg {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+}
+
+@media (max-width: 600px) {
+    .social-dock.dock-panel {
+        padding: 4px 8px;
+        gap: 10px;
+    }
+}
+
+
 .light-mode .dock-panel {
     background: linear-gradient(170deg, rgb(158, 212, 223), rgba(240, 221, 246, .571), rgb(174, 214, 230));
     box-shadow: 8px 7px 6px 5px rgba(0, 0, 0, .325);
