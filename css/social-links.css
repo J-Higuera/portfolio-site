@@ -22,7 +22,7 @@
     .social-links3 ul {
         list-style: none;
         display: flex;
-        gap: 48px;
+        gap: 2.3rem;
         backdrop-filter: blur(8px) saturate(120%);
         background: linear-gradient(170deg, rgba(198, 232, 255, 0.35), rgba(99, 200, 255, 0.25));
         border: 1px solid rgba(120, 200, 230, .35);
