@@ -1,8 +1,5 @@
 /* Movie Assistant Project Showcase */
-html,
-body {
-    height: 100%;
-}
+
 
 body {
     margin: 0;
@@ -61,7 +58,7 @@ body {
 
 .project-link {
     display: inline-block;
-    margin: 0 10px;
+    margin: 14px 10px;
     padding: 10px 22px;
     border-radius: 6px;
     text-decoration: none;
@@ -73,7 +70,7 @@ body {
 }
 
 .project-link:hover {
-    background-color: rgba(0, 255, 170, 0.15);
+    background-color: rgba(30, 222, 158, 0.15);
     border: 1.5px solid rgba(0, 255, 170, 0.5);
     color: #ffffff;
     box-shadow: 0 2px 8px rgba(0, 255, 170, 0.25);
@@ -106,10 +103,8 @@ body {
 }
 
 .tech-stack {
-    display: flex;
-    flex-direction: column;
     align-items: center;
-    margin: 28px 0 0 0;
+    margin: 0 0 0 0;
     padding: 0 8px;
 }
 
