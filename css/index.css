@@ -410,14 +410,15 @@ html.loading {
 }
 
 .github-contrib-placeholder {
-    min-height: 220px;
+    min-height: 100%;
 }
 
 .github-contrib-placeholder svg {
     display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
 }
+
 
 .github-contributions-widget h3 {
     font-size: 1.35rem;
