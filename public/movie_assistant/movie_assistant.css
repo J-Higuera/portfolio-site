@@ -4,6 +4,11 @@
     margin: 0;
 }
 
+html {
+    background-color: #202020;
+    max-width: 100vw;
+    scroll-behavior: auto;
+}
 
 body {
     background-blend-mode: darken;
@@ -34,6 +39,26 @@ header {
     text-align: center;
     color: rgb(180, 180, 180);
     flex-shrink: 0;
+}
+
+::-webkit-scrollbar {
+    width: 7px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1a1a1afd;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00ccff9c;
+}
+
+html ::-webkit-scrollbar-thumb {
+    background-color: rgba(188, 188, 188, 0.7);
 }
 
 .container {
