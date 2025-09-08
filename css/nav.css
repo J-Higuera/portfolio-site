@@ -227,7 +227,6 @@ nav.sticky-nav.visible-toggle {
         display: none;
     }
 
-    /* TOP BAR */
     .mobile-top-bar {
         display: flex;
         justify-content: space-between;

@@ -44,22 +44,6 @@ body {
 
 }
 
-/*body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.361), rgba(0, 0, 0, 0.638)), url(/images/body/hd1.jpg);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-    z-index: -1;
-}
-
-.light-mode::before {
-    background: linear-gradient(rgba(0, 0, 0, 0.158), rgba(0, 0, 0, 0.058)), url(/images/body/bw3.png);
-    background-size: cover;
-}*/
-
 header {
     height: 100px;
     display: flex;
@@ -222,14 +206,6 @@ html.loading {
 }
 
 /* Achievements section */
-
-/*.home-image {
-    background: url(/images/body/black.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}*/
 
 .grid-wrapper {
     padding-right: 143px;
@@ -561,12 +537,10 @@ footer a {
 
 .light-mode .hero h1 {
     color: hsl(0, 0%, 0%);
-    /* Optional overrides if needed for system light + site light */
 }
 
 .light-mode .hero h2 {
     color: hsl(0, 0%, 0%);
-    /* Optional overrides if needed for system light + site light */
 }
 
 .light-mode .cursor {
@@ -726,7 +700,6 @@ footer a {
         display: block;
     }
 
-    /* section container + title (keep) */
     .skills1 {
         display: flex;
         flex-direction: column;
@@ -737,7 +710,6 @@ footer a {
         background: radial-gradient(circle at top left, #2f2f2f 0%, #272833 30%, #212121 50%, #1c1c1c 75%, #222526 100%);
         transition: box-shadow .6s ease, border .6s ease;
         position: relative;
-        /* helps with z-index layering */
     }
 
     .light-mode .skills1 {
@@ -761,9 +733,7 @@ footer a {
         text-align: center;
         position: relative;
         z-index: 0;
-        /* title under tooltips */
         pointer-events: none;
-        /* avoid stealing hover */
     }
 
     .skills1.animate h2 {
@@ -924,12 +894,10 @@ footer a {
 
     .light-mode .hero h1 {
         color: hsl(0, 0%, 0%);
-        /* Optional overrides if needed for system light + site light */
     }
 
     .light-mode .hero h2 {
         color: hsl(0, 0%, 0%);
-        /* Optional overrides if needed for system light + site light */
     }
 
     .light-mode .cursor {

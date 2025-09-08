@@ -1,11 +1,6 @@
 .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    /*background: url(../images/body/1470.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;*/
     gap: 30px;
     padding-right: 100px;
     padding-left: 100px;
@@ -13,7 +8,6 @@
     padding-bottom: 47px;
     display: grid;
     align-items: stretch;
-    /* ensures all cards expand fully */
     z-index: 999;
 }
 
@@ -130,7 +124,6 @@
     min-width: 0;
     margin-bottom: 4px;
     height: 28px;
-    /* Ensures consistent height */
 }
 
 .tech-stack-prev img {
@@ -149,15 +142,6 @@
     font-weight: 500;
     white-space: nowrap;
 }
-
-/*
-.light-mode .projects-grid {
-    background: url(../images/body/glitch.jpg);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-}*/
 
 .light-mode .project-card {
     background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
@@ -233,24 +217,11 @@
 @media (max-width: 620px) {
 
     .projects-grid {
-        /*background-image: linear-gradient(rgba(0, 0, 0, 0.505), rgba(0, 0, 0, 0.475)), url(/images/body/ab5.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed; */
         padding-right: 15px;
         padding-left: 15px;
         padding-top: 40px;
         padding-bottom: 40px;
     }
-
-    /*.light-mode .projects-grid {
-        background-image: linear-gradient(rgba(0, 0, 0, 0.359), rgba(0, 0, 0, 0.18)), url(/images/body/ab2.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-        background-attachment: fixed;
-    } */
 
     .project-card:hover img {
         transform: none;
