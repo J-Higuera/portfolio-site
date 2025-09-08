@@ -67,7 +67,6 @@
     padding: 0.125rem 0.5rem;
     font-size: 0.75rem;
     pointer-events: none;
-    /* never steal hover/focus */
 }
 
 .light-mode .dock-label {
@@ -75,13 +74,11 @@
     color: #242424;
 }
 
-/* a11y: visible keyboard focus */
 .dock-item:focus-visible {
     outline: 2px solid #8fd4ff;
     outline-offset: 2px;
 }
 
-/* motion-safety: tone down sheen/animations for reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .dock-panel.social-dock::after {
         animation: none;
@@ -133,7 +130,6 @@
     }
 }
 
-/* Brand halo per icon (variable-driven) */
 .dock-item.brand {
     position: relative;
 }
