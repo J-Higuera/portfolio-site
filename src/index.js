@@ -1,4 +1,3 @@
-
 //======================== Hero Text Animation ==================================
 // === Hero Text Typewriter Animation ===
 document.addEventListener("DOMContentLoaded", () => {
@@ -12,11 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function type() {
         const word = phrases[currentPhrase];
 
-        // Update only the hero-text span
         if (!isDeleting) {
             textElement.textContent = word.substring(0, currentLetter + 1);
             currentLetter++;
-
             if (currentLetter === word.length) {
                 isDeleting = true;
                 setTimeout(type, 1500);
@@ -25,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         } else {
             textElement.textContent = word.substring(0, currentLetter - 1);
             currentLetter--;
-
             if (currentLetter === 0) {
                 isDeleting = false;
                 currentPhrase = (currentPhrase + 1) % phrases.length;
@@ -36,154 +32,179 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     type();
+
     // === Desktop Conveyor Belt Animation ===
     const wrapper = document.querySelector(".skills-wrapper");
     const track = document.querySelector(".skills-track");
-    if (!wrapper || !track) return;
 
-    let hasStarted = false;
+    if (wrapper && track) {
+        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const icons = wrapper.querySelectorAll(".skills-grid img");
 
-    const desktopObserver = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting && !hasStarted) {
+        let inView = false, magnifying = false, rafId = null;
+
+        // Ensure animation exists but starts paused
+        if (!prefersReduced) {
+            const cs = getComputedStyle(track);
+            if (!cs.animationName || cs.animationName === "none") {
                 track.style.animation = "conveyor 45s linear infinite";
-                hasStarted = true;
-                const skillsSection = wrapper.closest('.skills');
-                if (skillsSection) {
-                    skillsSection.classList.add('active');
-                }
             }
-        });
-    }, {
-        threshold: 0.2
-    });
-
-    desktopObserver.observe(wrapper);
-
-    const icons = wrapper.querySelectorAll(".skills-grid img");
-    let isMagnifying = false;
-
-    const magnify = () => {
-        if (window.innerWidth < 900) {
-            isMagnifying = false;
-            return;
+            track.style.animationPlayState = "paused";
+        } else {
+            track.style.animation = "none";
         }
 
-        const wrapRect = wrapper.getBoundingClientRect();
-        const centerX = wrapRect.left + wrapRect.width / 2 + 40;
+        const setConveyorRunning = (run) => {
+            if (prefersReduced) return;
+            track.style.animationPlayState = run ? "running" : "paused";
+            const skillsSection = wrapper.closest(".skills");
+            if (skillsSection) skillsSection.classList.toggle("active", run);
+        };
 
-        icons.forEach(icon => {
-            const rect = icon.getBoundingClientRect();
-            const iconCenter = rect.left + rect.width / 2;
-            const distance = Math.abs(centerX - iconCenter);
-            const maxDistance = wrapRect.width / 3;
-
-            let scale = 1;
-            if (distance < maxDistance) {
-                scale = 1 + (1 - distance / maxDistance) * 0.22;
-            }
-            icon.style.transform = `scale(${scale})`;
-        });
-
-        if (isMagnifying) {
-            requestAnimationFrame(magnify);
-        }
-    };
-
-    const checkMagnify = () => {
-        if (window.innerWidth >= 900 && !isMagnifying) {
-            isMagnifying = true;
-            magnify();
-        } else if (window.innerWidth < 900 && isMagnifying) {
-            isMagnifying = false;
+        const resetIcons = () => {
             icons.forEach(icon => {
                 icon.style.transform = "scale(1)";
-                icon.style.filter = "drop-shadow(0 0 0.6px rgba(255, 255, 255, 0)) drop-shadow(0 0 2px rgba(255, 255, 255, 0))";
+                icon.style.filter = "drop-shadow(0 0 0.6px rgba(255,255,255,0)) drop-shadow(0 0 2px rgba(255,255,255,0))";
             });
-        }
-    };
+        };
 
-    checkMagnify();
-    window.addEventListener("resize", checkMagnify);
-});
-// === View degree/certification ===
-const images = document.querySelectorAll(".certificate-row img");
-let isAnimating = false;
+        const magnifyStep = () => {
+            if (!magnifying || !inView) return;
 
-images.forEach((img) => {
-    img.addEventListener("click", () => {
-        if (document.querySelector(".zoom-backdrop") || isAnimating) return;
-        isAnimating = true;
+            const wrapRect = wrapper.getBoundingClientRect();
+            const centerX = wrapRect.left + wrapRect.width / 2 + 40;
+            const maxDistance = wrapRect.width / 3;
 
-        const rect = img.getBoundingClientRect(); // get actual size
-        const computed = getComputedStyle(img);
-
-        // Backdrop
-        const backdrop = document.createElement("div");
-        backdrop.classList.add("zoom-backdrop");
-        document.body.appendChild(backdrop);
-
-        // Placeholder
-        const placeholder = document.createElement("div");
-        ["display", "verticalAlign", "marginTop", "marginRight", "marginBottom", "marginLeft"]
-            .forEach(prop => {
-                placeholder.style[prop] = computed[prop];
+            icons.forEach(icon => {
+                const r = icon.getBoundingClientRect();
+                const iconCenter = r.left + r.width / 2;
+                const d = Math.abs(centerX - iconCenter);
+                const scale = d < maxDistance ? 1 + (1 - d / maxDistance) * 0.22 : 1;
+                icon.style.transform = `scale(${scale})`;
             });
 
-        // NEW: lock width/height so text doesn’t move
-        placeholder.style.width = rect.width + "px";
-        placeholder.style.height = rect.height + "px";
-        placeholder.style.flex = `0 0 ${rect.width}px`; // fixed flex-basis
-        placeholder.style.flexShrink = "0";
+            rafId = requestAnimationFrame(magnifyStep);
+        };
 
-        // Insert placeholder, move image to <body>
-        img.parentNode.insertBefore(placeholder, img);
-        document.body.appendChild(img);
+        const startMagnify = () => {
+            if (magnifying || prefersReduced || window.innerWidth < 900) return;
+            magnifying = true;
+            rafId = requestAnimationFrame(magnifyStep);
+        };
 
-        // Zoom styles
-        img.classList.add("zoomed-real");
-        img.style.position = "fixed";
-        img.style.top = "50%";
-        img.style.left = "50%";
-        img.style.transform = "translate(-50%, -50%)";
-        img.style.maxWidth = "90vw";
-        img.style.maxHeight = "90vh";
-        img.style.width = "auto";
-        img.style.height = "auto";
-        img.style.zIndex = "1001";
-        img.style.transition = "opacity 0.8s ease";
-        img.style.opacity = "0";
+        const stopMagnify = () => {
+            magnifying = false;
+            if (rafId) cancelAnimationFrame(rafId);
+            rafId = null;
+            resetIcons();
+        };
 
-        requestAnimationFrame(() => {
-            backdrop.classList.add("show");
-            img.style.opacity = "1";
-            setTimeout(() => isAnimating = false, 800);
+        const observer = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+                if (entry.target !== wrapper) continue;
+                inView = entry.isIntersecting && entry.intersectionRatio >= 0.2;
+                setConveyorRunning(inView);
+                if (inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
+            }
+        }, { threshold: [0, 0.2, 0.5, 1] });
+        observer.observe(wrapper);
+
+        // rAF-throttled resize
+        let resizeRaf = null;
+        const onResize = () => {
+            if (resizeRaf) return;
+            resizeRaf = requestAnimationFrame(() => {
+                resizeRaf = null;
+                if (!inView) { stopMagnify(); return; }
+                if (window.innerWidth >= 900) startMagnify(); else stopMagnify();
+            });
+        };
+        window.addEventListener("resize", onResize, { passive: true });
+
+        // Pause on tab hide
+        document.addEventListener("visibilitychange", () => {
+            const visible = document.visibilityState === "visible";
+            setConveyorRunning(visible && inView);
+            if (visible && inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
         });
+    }
 
-        // Close on backdrop click
-        backdrop.addEventListener("click", () => {
-            if (isAnimating) return;
+    // === View degree/certification ===
+    const images = document.querySelectorAll(".certificate-row img");
+    let isAnimating = false;
+
+    images.forEach((img) => {
+        img.addEventListener("click", () => {
+            if (document.querySelector(".zoom-backdrop") || isAnimating) return;
             isAnimating = true;
 
-            img.style.transition = "opacity 0.6s ease";
+            const rect = img.getBoundingClientRect();
+            const computed = getComputedStyle(img);
+
+            // Backdrop
+            const backdrop = document.createElement("div");
+            backdrop.classList.add("zoom-backdrop");
+            document.body.appendChild(backdrop);
+
+            // Placeholder
+            const placeholder = document.createElement("div");
+            ["display", "verticalAlign", "marginTop", "marginRight", "marginBottom", "marginLeft"]
+                .forEach(prop => { placeholder.style[prop] = computed[prop]; });
+
+            // Lock size so layout doesn’t jump
+            placeholder.style.width = rect.width + "px";
+            placeholder.style.height = rect.height + "px";
+            placeholder.style.flex = `0 0 ${rect.width}px`;
+            placeholder.style.flexShrink = "0";
+
+            // Insert placeholder, move image to <body>
+            img.parentNode.insertBefore(placeholder, img);
+            document.body.appendChild(img);
+
+            // Zoom styles
+            img.classList.add("zoomed-real");
+            img.style.position = "fixed";
+            img.style.top = "50%";
+            img.style.left = "50%";
+            img.style.transform = "translate(-50%, -50%)";
+            img.style.maxWidth = "90vw";
+            img.style.maxHeight = "90vh";
+            img.style.width = "auto";
+            img.style.height = "auto";
+            img.style.zIndex = "1001";
+            img.style.transition = "opacity 0.8s ease";
             img.style.opacity = "0";
-            backdrop.classList.remove("show");
 
-            setTimeout(() => {
-                img.removeAttribute("style");
-                img.classList.remove("zoomed-real");
-                placeholder.replaceWith(img);
+            requestAnimationFrame(() => {
+                backdrop.classList.add("show");
+                img.style.opacity = "1";
+                setTimeout(() => isAnimating = false, 800);
+            });
+
+            // Close on backdrop click
+            backdrop.addEventListener("click", () => {
+                if (isAnimating) return;
+                isAnimating = true;
+
+                img.style.transition = "opacity 0.6s ease";
                 img.style.opacity = "0";
+                backdrop.classList.remove("show");
 
-                requestAnimationFrame(() => {
-                    img.style.transition = "opacity 0.6s ease";
-                    img.style.opacity = "1";
-                });
+                setTimeout(() => {
+                    img.removeAttribute("style");
+                    img.classList.remove("zoomed-real");
+                    placeholder.replaceWith(img);
+                    img.style.opacity = "0";
 
-                backdrop.remove();
-                setTimeout(() => isAnimating = false, 600);
-            }, 600);
+                    requestAnimationFrame(() => {
+                        img.style.transition = "opacity 0.6s ease";
+                        img.style.opacity = "1";
+                    });
+
+                    backdrop.remove();
+                    setTimeout(() => isAnimating = false, 600);
+                }, 600);
+            });
         });
     });
-});
-
+}); // <<< this was missing
