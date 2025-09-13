@@ -333,9 +333,16 @@
     }
 
     .rail-card>h4 {
-        font: 800 .75rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+        font: 800 .65rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+        text-align: center;
         word-break: break-all;
         letter-spacing: .01em;
+        top: .4rem;
+        left: 0;
+        z-index: 2;
+        margin: 0;
+        word-break: keep-all;
+        padding: .3rem .4rem;
     }
 
     .rail-card>p {
