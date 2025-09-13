@@ -233,8 +233,9 @@
     background: #0a0f14;
     transition: flex .25s ease, transform .25s ease, box-shadow .25s ease;
     display: flex;
+    justify-content: flex-start;
+    align-items: center;
     flex-direction: column;
-    justify-content: flex-end;
 }
 
 .hobbies-rail {
@@ -275,12 +276,13 @@
 }
 
 .rail-card>h4 {
-    position: absolute;
-    top: .7rem;
-    left: .7rem;
+    position: relative;
+    top: 0;
+    left: 0;
+    align-self: self-start;
     z-index: 2;
     margin: 0;
-    padding: .22rem .5rem;
+    padding: .5rem .4rem;
     border-radius: 8px;
     font: 800 .95rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
     color: hsl(var(--accent, 178 100% 46%));
@@ -346,7 +348,7 @@
     }
 
     .rail-card>p {
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .hobbies-rail .rail-card:hover,
