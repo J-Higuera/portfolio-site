@@ -231,7 +231,7 @@
     isolation: isolate;
     border: 1px solid hsl(var(--accent, 178 100% 46%) / .18);
     background: #0a0f14;
-    transition: flex .25s ease, transform .25s ease, box-shadow .25s ease;
+    transition: flex .55s ease, transform .55s ease, box-shadow .55s ease;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -270,7 +270,7 @@
     position: absolute;
     inset: 0;
     background:
-        linear-gradient(to top, rgba(0, 0, 0, .55), rgba(0, 0, 0, .05));
+        linear-gradient(to top, rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.097));
     z-index: 1;
     pointer-events: none;
 }
@@ -307,7 +307,7 @@
     transform: scale(.98);
     background: rgba(0, 15, 20, .58);
     margin: 0;
-    transition: opacity .25s ease, transform .25s ease;
+    transition: opacity .55s ease, transform .55s ease;
 }
 
 .rail-card:is(:hover, :focus-within)>img {
@@ -339,12 +339,12 @@
         text-align: center;
         word-break: break-all;
         letter-spacing: .01em;
-        top: .4rem;
+        top: 0;
         left: 0;
         z-index: 2;
         margin: 0;
         word-break: keep-all;
-        padding: .3rem .4rem;
+        padding: .6rem .4rem;
     }
 
     .rail-card>p {
