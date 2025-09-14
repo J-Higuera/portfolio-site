@@ -23,7 +23,7 @@
     margin: 0.5rem 0;
     box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
     background: linear-gradient(145deg, rgba(21, 26, 38, 0.95), rgb(37, 95, 117));
-    border: 2px solid rgba(0, 255, 247, 0.35);
+    border: 2px solid rgba(69, 159, 156, 0.35);
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
@@ -231,7 +231,7 @@
     isolation: isolate;
     border: 1px solid hsl(var(--accent, 178 100% 46%) / .18);
     background: #0a0f14;
-    transition: flex .55s ease, transform .55s ease, box-shadow .55s ease;
+    transition: flex .75s ease, transform .75s ease, box-shadow .75s ease;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -262,7 +262,7 @@
     height: 100%;
     object-fit: cover;
     filter: saturate(1.05) contrast(.98);
-    transition: transform .5s ease, filter .5s ease;
+    transition: transform .75s ease, filter .75s ease;
 }
 
 .rail-card::after {
@@ -309,13 +309,9 @@
     transform: scale(.98);
     background: rgba(0, 15, 20, .58);
     margin: 0;
-    transition: opacity .55s ease, transform .55s ease;
+    transition: opacity 2.75s ease, transform .75s ease;
 }
 
-.rail-card:is(:hover, :focus-within)>img {
-    transform: scale(1.04);
-    filter: saturate(1.12) contrast(1.02);
-}
 
 .rail-card:is(:hover, :focus-within)>p {
     opacity: 1;
