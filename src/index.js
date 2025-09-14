@@ -129,6 +129,93 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    /* =================== Hobbies rail: mobile overlay behavior =================== */
+    (() => {
+        const WIRED = new WeakSet();                         // prevent duplicate bindings
+        const mq = window.matchMedia('(max-width: 720px)');
+        function wireRail(rail) {
+            if (!rail || WIRED.has(rail)) return;
+            WIRED.add(rail);
+            // ensure single overlay element (for outside click + dim)
+            let overlay = rail.querySelector('.rail-overlay');
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'rail-overlay';
+                rail.appendChild(overlay);
+            }
+            const closeAll = () => {
+                rail.classList.remove('has-open');
+                rail.querySelectorAll('.is-open').forEach(el => {
+                    el.classList.remove('is-open');
+                    el.style.removeProperty('--open-top');
+                });
+            };
+            // collapse when clicking the dim veil
+            const onOverlayClick = () => { if (mq.matches) closeAll(); };
+            overlay.addEventListener('click', onOverlayClick);
+
+            rail.querySelectorAll('.rail-card').forEach(card => {
+                const openAtSameRow = () => {
+                    const railRect = rail.getBoundingClientRect();
+                    const cardRect = card.getBoundingClientRect();
+                    card.style.setProperty('--open-top', `${cardRect.top - railRect.top}px`);
+                };
+                const activate = (e) => {
+                    if (!mq.matches) return;                // only on mobile
+                    if (e.target.closest('a')) return;      // allow links inside
+                    const isOpen = card.classList.contains('is-open');
+                    closeAll();
+                    if (!isOpen) {
+                        openAtSameRow();                      // pin to current row
+                        rail.classList.add('has-open');
+                        card.classList.add('is-open');
+                    }
+                };
+                card.addEventListener('click', activate);
+                card.addEventListener('keydown', (e) => {
+                    if (!mq.matches) return;
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(e); }
+                    if (e.key === 'Escape') { closeAll(); card.blur(); }
+                });
+            });
+            // keep the overlay card pinned on rotate/resize; clear when exiting mobile
+            const onResize = () => {
+                if (!mq.matches) { closeAll(); return; }
+                const open = rail.querySelector('.rail-card.is-open');
+                if (open) {
+                    const railRect = rail.getBoundingClientRect();
+                    const cardRect = open.getBoundingClientRect();
+                    open.style.setProperty('--open-top', `${cardRect.top - railRect.top}px`);
+                }
+            };
+            window.addEventListener('resize', onResize);
+            // click anywhere outside the rail to collapse
+            const onDocClick = (e) => {
+                if (!mq.matches) return;
+                if (rail.contains(e.target)) return;
+                closeAll();
+            };
+            document.addEventListener('click', onDocClick, { capture: true });
+            // optional: a simple teardown if you ever remove the rail dynamically
+            rail.addEventListener('raildestroy', () => {
+                overlay.removeEventListener('click', onOverlayClick);
+                window.removeEventListener('resize', onResize);
+                document.removeEventListener('click', onDocClick, { capture: true });
+            });
+        }
+        function initHobbiesRail(root = document) {
+            root.querySelectorAll('.hobbies-rail').forEach(wireRail);
+        }
+        // auto-init once the DOM is ready, regardless of where this file is loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => initHobbiesRail());
+        } else {
+            initHobbiesRail();
+        }
+        // optional: expose for re-initializing after dynamic inserts
+        window.initHobbiesRail = initHobbiesRail;
+    })();
+
     // === View degree/certification ===
     const images = document.querySelectorAll(".certificate-row img");
     let isAnimating = false;
