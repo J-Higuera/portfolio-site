@@ -272,51 +272,56 @@
                 </div>
                 <div class="about-hobbies-mobile">
                     <h3>Hobbies</h3>
+
                     <section class="hobbies-rail" aria-label="Hobbies">
-                        <article class="rail-card" style="--accent: 178 100% 46%">
+                        <article class="rail-card" data-hobby="reading" tabindex="0" style="--accent: 178 100% 46%">
                             <img src="/images/body/reading-dark.png" alt="Reading at home" loading="lazy">
                             <h4>📚Reading</h4>
-                            <p>“Exploring the future, one page at a time.”
-                                I enjoy diving into books and articles about new technologies, inventions,
-                                cybersecurity,
-                                and programming languages. Reading fuels both my technical growth and imagination,
-                                letting
-                                me see how innovations come together and where they might lead next.</p>
+                            <p>“Exploring the future, one page at a time.” I enjoy diving into books and articles about
+                                new
+                                technologies, inventions, cybersecurity, and programming languages. Reading fuels both
+                                my technical
+                                growth and imagination, letting me see how innovations come together and where they
+                                might lead next.</p>
                             <a class="hit" href="#reading" aria-label="More about Reading"></a>
                         </article>
-                        <article class="rail-card" style="--accent: 268 100% 60%">
+
+                        <article class="rail-card" data-hobby="gaming" tabindex="0" style="--accent: 268 100% 60%">
                             <img src="/images/body/movie-night.png" alt="Gaming and movies" loading="lazy">
                             <h4>🎮Gaming & Movies</h4>
-                            <p>“Stories that teach, worlds that inspire.”
-                                I love historical films because they give me a deeper appreciation of how people lived
-                                and
-                                evolved across different eras. I’m also drawn to fantasy for its creative freedom, and
-                                to
-                                sci-fi for the way it often feels like a preview of possible futures. Together, these
-                                genres
-                                spark my imagination and broaden my understanding of human experience and possibility.
-                            </p>
+                            <p>“Stories that teach, worlds that inspire.” I love historical films because they give me a
+                                deeper
+                                appreciation of how people lived and evolved across different eras. I’m also drawn to
+                                fantasy for its
+                                creative freedom, and to sci-fi for the way it often feels like a preview of possible
+                                futures. Together,
+                                these genres spark my imagination and broaden my understanding of human experience and
+                                possibility.</p>
                             <a class="hit" href="#gaming" aria-label="More about Gaming & Movies"></a>
                         </article>
-                        <article class="rail-card" style="--accent: 28 100% 55%">
+
+                        <article class="rail-card" data-hobby="art" tabindex="0" style="--accent: 28 100% 55%">
                             <img src="/images/body/hiking-noon.png" alt="Photography and digital art" loading="lazy">
                             <h4>🎨Digital Art</h4>
-                            <p>“Creativity across time and mediums.”
-                                From modern art to old historic masterpieces, I’m inspired by the ways humans express
-                                themselves visually. Digital art lets me experiment with color, lighting, and design
+                            <p>“Creativity across time and mediums.” From modern art to old historic masterpieces, I’m
+                                inspired by the
+                                ways humans express themselves visually. Digital art lets me experiment with color,
+                                lighting, and design
                                 techniques, while studying traditional art teaches me new ways to approach creativity
-                                and
-                                appreciate beauty across cultures and time.</p>
+                                and appreciate
+                                beauty across cultures and time.</p>
                             <a class="hit" href="#photo" aria-label="More about Photography & Digital Art"></a>
                         </article>
-                        <article class="rail-card" style="--accent: 140 70% 55%">
+
+                        <article class="rail-card" data-hobby="outdoors" tabindex="0" style="--accent: 140 70% 55%">
                             <img src="/images/body/hiking-day.png" alt="Hiking and outdoor adventures" loading="lazy">
                             <h4>🥾Outdoors</h4>
-                            <p>“Movement, mystery, and discovery.”
-                                For me, being outdoors means freedom to explore and push beyond familiar boundaries.
-                                Hiking,
-                                skateboarding, working out, and walking all give me a sense of progress and vitality.
-                                There’s always a thrill in wondering what lies beyond the next ridge or turn, and that
+                            <p>“Movement, mystery, and discovery.” For me, being outdoors means freedom to explore and
+                                push beyond
+                                familiar boundaries. Hiking, skateboarding, working out, and walking all give me a sense
+                                of progress and
+                                vitality. There’s always a thrill in wondering what lies beyond the next ridge or turn,
+                                and that
                                 curiosity makes every adventure feel fresh.</p>
                             <a class="hit" href="#hiking" aria-label="More about Hiking & Outdoor Adventures"></a>
                         </article>
@@ -551,6 +556,40 @@
     <footer>
         <p>© Made by Juan Higuera. Portfolio 2025.</p>
     </footer>
+    <script>
+        (function () {
+            const mq = window.matchMedia('(max-width: 720px)');
+            const rail = document.querySelector('.hobbies-rail');
+            if (!rail) return;
+
+            function closeAll() {
+                rail.querySelectorAll('.is-open').forEach(el => el.classList.remove('is-open'));
+            }
+
+            rail.querySelectorAll('.rail-card').forEach(card => {
+                const activate = (e) => {
+                    if (!mq.matches) return;               // only act on mobile
+                    if (e.target.closest('a')) return;     // allow links inside to work normally
+                    const wasOpen = card.classList.contains('is-open');
+                    closeAll();
+                    if (!wasOpen) card.classList.add('is-open');
+                };
+
+                // tap / click
+                card.addEventListener('click', activate);
+
+                // keyboard accessibility
+                card.addEventListener('keydown', (e) => {
+                    if (!mq.matches) return;
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(e); }
+                    if (e.key === 'Escape') { closeAll(); card.blur(); }
+                });
+            });
+
+            // if user rotates / resizes out of mobile, clear open state
+            window.addEventListener('resize', () => { if (!mq.matches) closeAll(); });
+        })();
+    </script>
     <script type="module" src="/src/main.js"></script>
 </body>
 
