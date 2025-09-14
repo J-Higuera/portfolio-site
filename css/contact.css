@@ -63,7 +63,10 @@
 }
 
 .contact-card {
-    background: var(--card-gradient);
+    background: linear-gradient(145deg,
+            rgba(234, 255, 196, 0.158),
+            rgba(45, 84, 173, 0.22),
+            rgba(46, 82, 89, 0.658));
     border-radius: var(--radius);
     box-shadow: var(--shadow);
     border: var(--border);
@@ -118,6 +121,84 @@
 .light-mode .contact-info a {
     color: #097381;
 }
+
+form {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    display: grid;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.field {
+    position: relative;
+}
+
+.field input,
+.field textarea {
+    width: 100%;
+    padding: 1rem;
+    resize: none;
+    border-radius: 12px;
+    border: 1px solid #e4e4e4;
+    background: rgba(0, 0, 0, 0.131);
+    color: #c4c4c4;
+    font-size: 1rem;
+}
+
+.field input:focus,
+.field textarea:focus {
+    border-color: #4d4d4d;
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(165, 208, 255, 0.882);
+}
+
+label {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    font-size: 0.9rem;
+    color: #aaa;
+    pointer-events: none;
+    transition: 0.2s ease;
+}
+
+input:focus+label,
+input:not(:placeholder-shown)+label,
+textarea:focus+label,
+textarea:not(:placeholder-shown)+label {
+    top: -0.6rem;
+    left: 0.8rem;
+    font-size: 0.75rem;
+    color: #4fd6ff;
+    background: #0b0f17;
+    padding: 0 0.3rem;
+    border-radius: 4px;
+}
+
+button {
+    background: linear-gradient(90deg, #0091ff, #00319b);
+    color: #0b0f17;
+    font-weight: bold;
+    padding: 1rem 1rem;
+    margin-right: 75px;
+    margin-left: 75px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+button:hover {
+    filter: brightness(1.3);
+    transform: scale(1.03);
+}
+
+button:active {
+    transform: translateY(1px);
+}
+
 
 @media (max-width: 1220px) {
     .contact-grid {

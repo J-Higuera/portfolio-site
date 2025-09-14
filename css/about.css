@@ -22,12 +22,17 @@
     padding: 1.5rem 1.2rem;
     margin: 0.5rem 0;
     box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
-    background: linear-gradient(145deg, rgba(21, 26, 38, 0.95), rgb(37, 95, 117));
-    border: 2px solid rgba(69, 159, 156, 0.35);
+    background: linear-gradient(145deg,
+            rgba(234, 255, 196, 0.158),
+            rgba(45, 84, 173, 0.22),
+            rgba(46, 82, 89, 0.658));
+    border: 2px solid #7d7d7d;
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
 }
+
+
 
 .light-mode .about-card {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.444), 6px 2px 6px rgba(0, 0, 0, 0.191);
@@ -207,6 +212,16 @@
 
 .about-hobbies {
     background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+    flex: 1 1 280px;
+    min-width: 200px;
+    max-width: 100%;
+    padding: 1.5rem 1.2rem;
+    margin: 0.5rem 0;
+    box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
+    border: 2px solid #7d7d7d;
+    border-radius: var(--radius);
+    color: var(--text-bright);
+    font-family: var(--font-main);
 }
 
 .about-hobbies h3 {
@@ -225,7 +240,7 @@
 
 .rail-card {
     position: relative;
-    min-height: 190px;
+    min-height: 220px;
     border-radius: 14px;
     overflow: hidden;
     isolation: isolate;
@@ -331,7 +346,7 @@
     }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 720px) {
     .hobbies-rail {
         gap: 0.3rem;
     }
@@ -582,6 +597,7 @@
         padding: 1.2rem 0.7rem;
         flex: 1 1 auto;
         box-shadow: none;
+        background: linear-gradient(145deg, rgba(21, 26, 38, 0.95), rgb(37, 95, 117));
     }
 
     .about-card h3 {
@@ -601,6 +617,26 @@
         display: none;
     }
 
+    .about-hobbies-mobile {
+        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+        flex: 1 1 20px;
+        min-width: 200px;
+        max-width: 100%;
+        padding: 1rem 0;
+        box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
+        border: 2px solid #7d7d7d;
+        border-radius: var(--radius);
+        color: var(--text-bright);
+        font-family: var(--font-main);
+    }
+
+    .about-hobbies-mobile h3 {
+        text-align: center;
+        padding: 10px;
+        color: var(--text-bright);
+        font-family: var(--font-main);
+    }
+
     .profile-photo-mobile {
         display: flex;
         flex-direction: column;
@@ -611,7 +647,6 @@
         background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         gap: 1.2rem;
         text-align: center;
-        padding-bottom: 10px;
     }
 
     .profile-photo-mobile p {
