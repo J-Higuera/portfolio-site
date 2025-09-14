@@ -129,92 +129,140 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* =================== Hobbies rail: mobile overlay behavior =================== */
+    /* ============== Mobile Hobbies: Snap Carousel — Tap-to-Reveal ============== */
     (() => {
-        const WIRED = new WeakSet();                         // prevent duplicate bindings
-        const mq = window.matchMedia('(max-width: 720px)');
-        function wireRail(rail) {
-            if (!rail || WIRED.has(rail)) return;
-            WIRED.add(rail);
-            // ensure single overlay element (for outside click + dim)
-            let overlay = rail.querySelector('.rail-overlay');
-            if (!overlay) {
-                overlay = document.createElement('div');
-                overlay.className = 'rail-overlay';
-                rail.appendChild(overlay);
-            }
-            const closeAll = () => {
-                rail.classList.remove('has-open');
-                rail.querySelectorAll('.is-open').forEach(el => {
-                    el.classList.remove('is-open');
-                    el.style.removeProperty('--open-top');
-                });
-            };
-            // collapse when clicking the dim veil
-            const onOverlayClick = () => { if (mq.matches) closeAll(); };
-            overlay.addEventListener('click', onOverlayClick);
+        const rail = document.querySelector('.about-hobbies-mobile .hobbies-rail[data-carousel]');
+        const dotsWrap = document.querySelector('.about-hobbies-mobile .hobby-dots');
+        if (!rail || !dotsWrap) return;
 
-            rail.querySelectorAll('.rail-card').forEach(card => {
-                const openAtSameRow = () => {
-                    const railRect = rail.getBoundingClientRect();
-                    const cardRect = card.getBoundingClientRect();
-                    card.style.setProperty('--open-top', `${cardRect.top - railRect.top}px`);
-                };
-                const activate = (e) => {
-                    if (!mq.matches) return;                // only on mobile
-                    if (e.target.closest('a')) return;      // allow links inside
-                    const isOpen = card.classList.contains('is-open');
-                    closeAll();
-                    if (!isOpen) {
-                        openAtSameRow();                      // pin to current row
-                        rail.classList.add('has-open');
-                        card.classList.add('is-open');
-                    }
-                };
-                card.addEventListener('click', activate);
-                card.addEventListener('keydown', (e) => {
-                    if (!mq.matches) return;
-                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(e); }
-                    if (e.key === 'Escape') { closeAll(); card.blur(); }
-                });
+        const cards = Array.from(rail.querySelectorAll('.rail-card'));
+        if (!cards.length) return;
+
+        // Build dots
+        dotsWrap.innerHTML = cards.map((_, i) =>
+            `<button type="button" aria-label="Go to hobby ${i + 1}"></button>`).join('');
+        const dots = Array.from(dotsWrap.children);
+
+        const centerOf = (el) => el.offsetLeft + el.offsetWidth / 2;
+
+        let activeIdx = 0;
+
+        const snapTo = (i, smooth = true) => {
+            const card = cards[i];
+            const left = card.offsetLeft - (rail.clientWidth - card.offsetWidth) / 2;
+            rail.scrollTo({ left, behavior: smooth ? 'smooth' : 'auto' });
+        };
+
+        const setActive = (idx) => {
+            activeIdx = idx;
+            dots.forEach((d, i) => d.classList.toggle('is-active', i === activeIdx));
+        };
+
+        const nearestIndex = () => {
+            const center = rail.scrollLeft + rail.clientWidth / 2;
+            let idx = 0, best = Infinity;
+            cards.forEach((c, i) => {
+                const d = Math.abs(center - centerOf(c));
+                if (d < best) { best = d; idx = i; }
             });
-            // keep the overlay card pinned on rotate/resize; clear when exiting mobile
-            const onResize = () => {
-                if (!mq.matches) { closeAll(); return; }
-                const open = rail.querySelector('.rail-card.is-open');
-                if (open) {
-                    const railRect = rail.getBoundingClientRect();
-                    const cardRect = open.getBoundingClientRect();
-                    open.style.setProperty('--open-top', `${cardRect.top - railRect.top}px`);
+            return idx;
+        };
+
+        const hideAllText = () => cards.forEach(c => c.classList.remove('show-text'));
+
+        // Dots click → snap, keep text hidden
+        dots.forEach((d, i) => d.addEventListener('click', () => {
+            hideAllText();
+            snapTo(i);
+            setActive(i);
+        }));
+
+        // Track scroll to update active dot
+        let raf = null;
+        rail.addEventListener('scroll', () => {
+            if (raf) return;
+            raf = requestAnimationFrame(() => {
+                raf = null;
+                setActive(nearestIndex());
+            });
+        }, { passive: true });
+
+        // Touch handling: distinguish swipe vs tap
+        let touchStartX = 0, touchStartY = 0, touchStartT = 0, isTouching = false;
+
+        rail.addEventListener('touchstart', (e) => {
+            const t = e.touches[0];
+            touchStartX = t.clientX; touchStartY = t.clientY; touchStartT = performance.now();
+            isTouching = true;
+            hideAllText(); // prioritize image while swiping
+        }, { passive: true });
+
+        rail.addEventListener('touchend', () => {
+            isTouching = false;
+            // Let momentum settle then snap to nearest
+            setTimeout(() => snapTo(nearestIndex()), 80);
+        }, { passive: true });
+
+        // Click/tap on a card toggles text (ignore <a> clicks)
+        cards.forEach((card, i) => {
+            // Keyboard accessibility
+            card.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCard(i); }
+                if (e.key === 'Escape') { hideAllText(); card.blur(); }
+            });
+
+            const onClick = (e) => {
+                if (e.target.closest('a')) return;
+                // If it was a swipe, ignore the click
+                if (e.changedTouches && e.changedTouches[0]) {
+                    const t = e.changedTouches[0];
+                    const dx = Math.abs(t.clientX - touchStartX);
+                    const dy = Math.abs(t.clientY - touchStartY);
+                    const dt = performance.now() - touchStartT;
+                    if (dx > 10 || dy > 10 || dt > 400) return; // treat as swipe/long press
                 }
+                toggleCard(i);
             };
-            window.addEventListener('resize', onResize);
-            // click anywhere outside the rail to collapse
-            const onDocClick = (e) => {
-                if (!mq.matches) return;
-                if (rail.contains(e.target)) return;
-                closeAll();
-            };
-            document.addEventListener('click', onDocClick, { capture: true });
-            // optional: a simple teardown if you ever remove the rail dynamically
-            rail.addEventListener('raildestroy', () => {
-                overlay.removeEventListener('click', onOverlayClick);
-                window.removeEventListener('resize', onResize);
-                document.removeEventListener('click', onDocClick, { capture: true });
+
+            // Click for mouse, touchend for tap (after swipe detection)
+            card.addEventListener('click', onClick);
+            card.addEventListener('touchend', onClick);
+        });
+
+        function toggleCard(i) {
+            const card = cards[i];
+            const isOpen = card.classList.contains('show-text');
+            hideAllText();
+            if (!isOpen) {
+                setActive(i);
+                snapTo(i);           // center the tapped card
+                card.classList.add('show-text'); // show text + dim image (CSS)
+            }
+        }
+
+        // Click outside the rail collapses text
+        document.addEventListener('click', (e) => {
+            if (rail.contains(e.target)) return;
+            hideAllText();
+        }, { capture: true });
+
+        // Keep centered on resize/orientation, hide text
+        let resizeRaf = null;
+        window.addEventListener('resize', () => {
+            if (resizeRaf) return;
+            resizeRaf = requestAnimationFrame(() => {
+                resizeRaf = null;
+                hideAllText();
+                snapTo(activeIdx, false);
+                setActive(nearestIndex());
             });
-        }
-        function initHobbiesRail(root = document) {
-            root.querySelectorAll('.hobbies-rail').forEach(wireRail);
-        }
-        // auto-init once the DOM is ready, regardless of where this file is loaded
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => initHobbiesRail());
-        } else {
-            initHobbiesRail();
-        }
-        // optional: expose for re-initializing after dynamic inserts
-        window.initHobbiesRail = initHobbiesRail;
+        });
+
+        // Init
+        snapTo(0, false);
+        setActive(0);
     })();
+
 
     // === View degree/certification ===
     const images = document.querySelectorAll(".certificate-row img");
