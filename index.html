@@ -520,38 +520,39 @@
         <!-- contact section -->
         <div class="contact-grid">
             <section id="contact" class="contact-section">
-                <h2>Let's Connect</h2>
-                <p>You can reach out to me through the following methods:</p>
+                <h2>Let’s Connect</h2>
+
                 <ul class="contact-info contact-card">
                     <li>Email: <a href="mailto:juan.higuera2035@gmail.com">juan.higuera2035@gmail.com</a></li>
-                    <li>LinkedIn: <a href="https://www.linkedin.com/in/juan-higuera-104318337/"
-                            target="_blank">linkedin.com/Juan Higuera</a></li>
-                    <li>GitHub: <a href="https://github.com/J-Higuera" target="_blank">github.com/J-Higuera</a>
-                    </li>
-                    <form name="contact" method="POST" data-netlify="true" netlify-honeypot="company"
-                        action="/thank-you">
-                        <!-- Netlify needs this hidden input to identify the form -->
-                        <input type="hidden" name="form-name" value="contact" />
-
-                        <div class="field">
-                            <input id="sender_email" name="sender_email" type="email" required placeholder=" "
-                                autocomplete="email" />
-                            <label for="sender_email">Your email</label>
-                        </div>
-
-                        <div class="field">
-                            <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
-                            <label for="message">Your message</label>
-                        </div>
-
-                        <button class="btn" type="submit">
-                            <span class="btn-label">Send</span>
-                        </button>
-
-                    </form>
-
+                    <li>LinkedIn: <a href="https://www.linkedin.com/in/juan-higuera-104318337/" target="_blank"
+                            rel="noopener">linkedin.com/…</a></li>
+                    <li>GitHub: <a href="https://github.com/J-Higuera" target="_blank"
+                            rel="noopener">github.com/J-Higuera</a></li>
                 </ul>
+                <!-- put the form OUTSIDE the <ul> -->
+                <form name="contact" method="POST" data-netlify="true" netlify-honeypot="company" action="/thank-you">
+                    <input type="hidden" name="form-name" value="contact">
+
+                    <!-- Honeypot (hidden spam trap) -->
+                    <p class="hp" aria-hidden="true" style="position:absolute;left:-9999px;">
+                        <label>Don’t fill this out: <input name="company"></label>
+                    </p>
+
+                    <div class="field">
+                        <input id="sender_email" name="sender_email" type="email" required placeholder=" "
+                            autocomplete="email">
+                        <label for="sender_email">Your email</label>
+                    </div>
+
+                    <div class="field">
+                        <textarea id="message" name="message" rows="5" required placeholder=" "></textarea>
+                        <label for="message">Your message</label>
+                    </div>
+
+                    <button class="btn" type="submit"><span class="btn-label">Send</span></button>
+                </form>
             </section>
+
         </div>
     </main>
     <footer>

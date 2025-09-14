@@ -199,6 +199,23 @@ button:active {
     transform: translateY(1px);
 }
 
+/* Change autofill background + text color */
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #0b0f17 inset;
+    /* your desired bg color */
+    -webkit-text-fill-color: #e7eaf0;
+    /* your desired text color */
+    transition: background-color 5000s ease-in-out 0s;
+    /* stops flash */
+}
+
+/* Optional: also style on focus */
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #1c2535 inset;
+    -webkit-text-fill-color: #ffffff;
+}
 
 @media (max-width: 1220px) {
     .contact-grid {
