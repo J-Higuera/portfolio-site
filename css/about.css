@@ -246,7 +246,7 @@
     isolation: isolate;
     border: 1px solid hsl(var(--accent, 178 100% 46%) / .18);
     background: #0a0f14;
-    transition: flex .75s ease, transform .75s ease, box-shadow .75s ease;
+    transition: flex .25s ease, transform .25s ease, box-shadow .25s ease;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -277,7 +277,7 @@
     height: 100%;
     object-fit: cover;
     filter: saturate(1.05) contrast(.98);
-    transition: transform .75s ease, filter .75s ease;
+    transition: transform .25s ease, filter .25s ease;
 }
 
 .rail-card::after {

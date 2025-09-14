@@ -182,9 +182,9 @@ button {
     color: #0b0f17;
     font-weight: bold;
     padding: 1rem 1rem;
-    margin-right: 75px;
-    margin-left: 75px;
     border: none;
+    width: 80%;
+    justify-self: center;
     border-radius: 12px;
     cursor: pointer;
     transition: transform 0.1s ease, filter 0.2s ease;
