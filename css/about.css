@@ -324,7 +324,7 @@
     transform: scale(.98);
     background: rgba(0, 15, 20, .58);
     margin: 0;
-    transition: opacity 2.75s ease, transform .75s ease;
+    transition: opacity 1.25s ease, transform .25s ease;
 }
 
 
