@@ -129,7 +129,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* ============== Mobile Hobbies: Snap Carousel — Tap-to-Reveal ============== */
+    /* ===== Mobile Hobbies: Snap Carousel — Swipe + Tap-to-Reveal (stable) ===== */
     (() => {
         const rail = document.querySelector('.about-hobbies-mobile .hobbies-rail[data-carousel]');
         const dotsWrap = document.querySelector('.about-hobbies-mobile .hobby-dots');
@@ -146,16 +146,13 @@ document.addEventListener("DOMContentLoaded", () => {
         const centerOf = (el) => el.offsetLeft + el.offsetWidth / 2;
 
         let activeIdx = 0;
+        let raf = null;
+        let ignoreNextDocClick = false;   // <-- fixes "opens then instantly closes"
 
         const snapTo = (i, smooth = true) => {
             const card = cards[i];
             const left = card.offsetLeft - (rail.clientWidth - card.offsetWidth) / 2;
             rail.scrollTo({ left, behavior: smooth ? 'smooth' : 'auto' });
-        };
-
-        const setActive = (idx) => {
-            activeIdx = idx;
-            dots.forEach((d, i) => d.classList.toggle('is-active', i === activeIdx));
         };
 
         const nearestIndex = () => {
@@ -168,17 +165,21 @@ document.addEventListener("DOMContentLoaded", () => {
             return idx;
         };
 
+        const setActive = (idx) => {
+            activeIdx = idx;
+            dots.forEach((d, i) => d.classList.toggle('is-active', i === activeIdx));
+        };
+
         const hideAllText = () => cards.forEach(c => c.classList.remove('show-text'));
 
-        // Dots click → snap, keep text hidden
+        // Dots -> snap, keep text hidden
         dots.forEach((d, i) => d.addEventListener('click', () => {
             hideAllText();
             snapTo(i);
             setActive(i);
-        }));
+        }, { passive: true }));
 
-        // Track scroll to update active dot
-        let raf = null;
+        // rAF-coalesced scroll updates
         rail.addEventListener('scroll', () => {
             if (raf) return;
             raf = requestAnimationFrame(() => {
@@ -187,66 +188,84 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         }, { passive: true });
 
-        // Touch handling: distinguish swipe vs tap
-        let touchStartX = 0, touchStartY = 0, touchStartT = 0, isTouching = false;
+        // ----- Gesture handling (pointer events) -----
+        let startX = 0, startY = 0, startT = 0, moved = false;
 
-        rail.addEventListener('touchstart', (e) => {
-            const t = e.touches[0];
-            touchStartX = t.clientX; touchStartY = t.clientY; touchStartT = performance.now();
-            isTouching = true;
-            hideAllText(); // prioritize image while swiping
-        }, { passive: true });
+        const onPointerDown = (e) => {
+            if (e.pointerType === 'mouse' && e.button !== 0) return;
+            startX = e.clientX; startY = e.clientY; startT = performance.now(); moved = false;
+            hideAllText(); // keep the image clean during a swipe start
+        };
 
-        rail.addEventListener('touchend', () => {
-            isTouching = false;
-            // Let momentum settle then snap to nearest
-            setTimeout(() => snapTo(nearestIndex()), 80);
-        }, { passive: true });
+        const onPointerMove = (e) => {
+            if (e.pressure === 0) return; // not active
+            const dx = Math.abs(e.clientX - startX);
+            const dy = Math.abs(e.clientY - startY);
+            if (dx > 5 || dy > 5) moved = true; // classify as a move (swipe)
+        };
 
-        // Click/tap on a card toggles text (ignore <a> clicks)
-        cards.forEach((card, i) => {
-            // Keyboard accessibility
-            card.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleCard(i); }
-                if (e.key === 'Escape') { hideAllText(); card.blur(); }
-            });
+        const onPointerUp = (e) => {
+            // classify gesture
+            const dx = Math.abs(e.clientX - startX);
+            const dy = Math.abs(e.clientY - startY);
+            const dt = performance.now() - startT;
 
-            const onClick = (e) => {
-                if (e.target.closest('a')) return;
-                // If it was a swipe, ignore the click
-                if (e.changedTouches && e.changedTouches[0]) {
-                    const t = e.changedTouches[0];
-                    const dx = Math.abs(t.clientX - touchStartX);
-                    const dy = Math.abs(t.clientY - touchStartY);
-                    const dt = performance.now() - touchStartT;
-                    if (dx > 10 || dy > 10 || dt > 400) return; // treat as swipe/long press
-                }
-                toggleCard(i);
-            };
+            const TAP_MAX_MOVE = 10;
+            const TAP_MAX_TIME = 300;
 
-            // Click for mouse, touchend for tap (after swipe detection)
-            card.addEventListener('click', onClick);
-            card.addEventListener('touchend', onClick);
-        });
+            const isTap = dx < TAP_MAX_MOVE && dy < TAP_MAX_MOVE && dt < TAP_MAX_TIME;
 
-        function toggleCard(i) {
-            const card = cards[i];
+            // Vertical swipe? don't force snap; let the page scroll naturally.
+            if (!isTap && dy > dx) return;
+
+            // Horizontal swipe end: snap to nearest card
+            if (!isTap && dx >= dy) {
+                snapTo(nearestIndex());
+                return;
+            }
+            // Tap: toggle text on the centered card
+            const idx = nearestIndex();
+            const card = cards[idx];
             const isOpen = card.classList.contains('show-text');
             hideAllText();
             if (!isOpen) {
-                setActive(i);
-                snapTo(i);           // center the tapped card
-                card.classList.add('show-text'); // show text + dim image (CSS)
+                snapTo(idx);                        // ensure centered
+                card.classList.add('show-text');    // CSS shows text + dims
+                setActive(idx);
+                ignoreNextDocClick = true;          // prevent the global click from closing it immediately
+                setTimeout(() => { ignoreNextDocClick = false; }, 0);
             }
-        }
+        };
 
-        // Click outside the rail collapses text
+        rail.addEventListener('pointerdown', onPointerDown, { passive: true });
+        rail.addEventListener('pointermove', onPointerMove, { passive: true });
+        rail.addEventListener('pointerup', onPointerUp, { passive: true });
+        rail.addEventListener('pointercancel', () => { moved = false; }, { passive: true });
+
+        // Click on a specific card (mouse users) -> toggle text
+        cards.forEach((card, i) => {
+            card.addEventListener('click', (e) => {
+                if (e.target.closest('a')) return;
+                const isOpen = card.classList.contains('show-text');
+                hideAllText();
+                if (!isOpen) {
+                    snapTo(i);
+                    card.classList.add('show-text');
+                    setActive(i);
+                    ignoreNextDocClick = true;
+                    setTimeout(() => { ignoreNextDocClick = false; }, 0);
+                }
+            });
+        });
+
+        // Outside click collapses, but ignore the click that just opened
         document.addEventListener('click', (e) => {
+            if (ignoreNextDocClick) return;
             if (rail.contains(e.target)) return;
             hideAllText();
-        }, { capture: true });
+        });
 
-        // Keep centered on resize/orientation, hide text
+        // Resize/orientation: keep centered and close text
         let resizeRaf = null;
         window.addEventListener('resize', () => {
             if (resizeRaf) return;
@@ -262,7 +281,6 @@ document.addEventListener("DOMContentLoaded", () => {
         snapTo(0, false);
         setActive(0);
     })();
-
 
     // === View degree/certification ===
     const images = document.querySelectorAll(".certificate-row img");

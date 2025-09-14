@@ -519,6 +519,23 @@
         transform: none;
         box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
     }
+
+    .about-hobbies-mobile .hobbies-rail[data-carousel] {
+        touch-action: pan-x pan-y;
+        will-change: scroll-position;
+    }
+
+    /* while text panel is open, let the user scroll INSIDE the text vertically */
+    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card.show-text>p {
+        overscroll-behavior: contain;
+        /* prevent bouncing the page while reading */
+    }
+
+    /* minor GPU hint to keep the card composited during fade */
+    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card {
+        backface-visibility: hidden;
+        transform: translateZ(0);
+    }
 }
 
 /* Reduced motion */
@@ -527,7 +544,6 @@
         scroll-behavior: auto;
     }
 }
-
 
 @media (prefers-reduced-motion: reduce) {
     .hobbies-rail .rail-card {
