@@ -381,7 +381,8 @@
 
     .rail-card>p {
         font-size: 0.7rem;
-        transition: opacity 1s ease, transform .15s ease;
+        transition: opacity 1s ease;
+        transform: none;
     }
 
     .hobbies-rail .rail-card:hover,
