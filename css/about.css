@@ -364,7 +364,7 @@
     .hobbies-rail .rail-card:hover,
     .hobbies-rail .rail-card:focus-within {
         transform: scale(1.01);
-        flex: 10000 1 0;
+        flex: 50 1 0;
     }
 
     .rail-card>p {
