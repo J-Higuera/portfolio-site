@@ -227,6 +227,7 @@
 .about-hobbies h3 {
     color: #acc6c9;
     text-align: center;
+    padding-bottom: 25px;
 }
 
 .hobbies-rail {
@@ -294,7 +295,6 @@
     position: relative;
     top: 0;
     left: 0;
-    align-self: self-start;
     text-align: center;
     word-break: keep-all;
     z-index: 2;
@@ -645,7 +645,8 @@
 
     .about-hobbies-mobile h3 {
         text-align: center;
-        padding: 10px;
+        padding: 0;
+        padding-bottom: 15px;
         color: var(--text-bright);
         font-family: var(--font-main);
     }
