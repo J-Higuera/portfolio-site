@@ -356,192 +356,56 @@
     }
 }
 
-/* =================== Mobile Hobbies: Snap Carousel (≤720px) =================== */
 @media (max-width: 720px) {
     .about-hobbies-mobile {
-        --card-w: 86vw;
-        --card-h: 188px;
+        --tile-h: 150px;
     }
 
-    .about-hobbies-mobile .hobbies-rail-wrap {
+    .hobbies-rail .rail-card:hover,
+    .hobbies-rail .rail-card:focus-within {
+        transform: scale(1.01);
+        flex: 10000 1 0;
+    }
+
+    .rail-card>p {
+        font-size: 0.8rem;
+    }
+
+
+    .rail-card {
+        min-height: 20px;
+    }
+
+    .about-hobbies-mobile .hobbies-rail {
         position: relative;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .25rem;
+        padding: 0 8px;
+        border-radius: 14px;
     }
 
-    .about-hobbies-mobile .hobbies-rail[data-carousel] {
-        display: flex;
-        gap: .75rem;
-        padding: 0 10px 8px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-
-    .about-hobbies-mobile .hobbies-rail[data-carousel]::-webkit-scrollbar {
-        display: none;
-    }
-
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card {
-        flex: 0 0 var(--card-w);
-        height: var(--card-h);
+    .about-hobbies-mobile .hobbies-rail .rail-card {
         position: relative;
+        height: var(--tile-h);
         border-radius: 14px;
         overflow: hidden;
-        scroll-snap-align: center;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
-    }
-
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card>img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        border-radius: inherit;
-    }
-
-    /* base veil + transition; stronger when text is showing */
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card::after {
-        content: "";
-        position: absolute;
-        inset: 0;
+        cursor: pointer;
         z-index: 1;
-        background: linear-gradient(to top, rgba(0, 0, 0, .45) 30%, rgba(0, 0, 0, .1) 65%);
-        transition: opacity .28s ease;
-        opacity: .85;
-        /* good default contrast */
     }
 
-    /* Only dim harder when text is revealed */
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card.show-text::after {
-        opacity: 1;
-        /* darker while reading */
-        background: linear-gradient(to top, rgba(0, 0, 0, .60) 15%, rgba(0, 0, 0, .18) 70%);
+    .about-hobbies-mobile .hobbies-rail .rail-card:hover,
+    .about-hobbies-mobile .hobbies-rail .rail-card:focus-within {
+        transform: none;
+        box-shadow: none;
     }
 
-    /* title pill */
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card>h4 {
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        z-index: 2;
-        font: 800 .82rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+    .about-hobbies-mobile .rail-card>h4 {
+        font: 800 .72rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+        padding: .5rem .45rem;
         background: rgba(0, 0, 0, .55);
-        color: hsl(var(--accent, 178 100% 46%));
-        padding: .45rem .6rem;
-        border-radius: 9px;
-        text-shadow: 0 1px 6px hsl(var(--accent)/.25);
-        margin: 0;
-    }
-
-    /* text panel — full bottom area, scroll if needed, fade-in on reveal */
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card>p {
-        position: absolute;
-        left: 12px;
-        right: 12px;
-        top: 56px;
-        bottom: 12px;
-        /* plenty of room */
+        border-radius: 8px;
         z-index: 2;
-        color: #e9f7fb;
-        text-align: center;
-        font-size: .86rem;
-        line-height: 1.28;
-        background: rgba(0, 0, 0, .42);
-        padding: .65rem .75rem;
-        border-radius: 10px;
-        overflow: auto;
-        /* never cut off; scroll if long */
-        -webkit-overflow-scrolling: touch;
-
-        opacity: 0;
-        transform: translateY(6px);
-        /* hidden by default */
-        transition: opacity .28s ease, transform .28s ease;
-        margin: 0;
-    }
-
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card.show-text>p {
-        opacity: 1;
-        transform: none;
-        /* fade + slide in */
-    }
-
-    /* edge fades to hint scroll */
-    .about-hobbies-mobile .hobbies-rail-wrap::before,
-    .about-hobbies-mobile .hobbies-rail-wrap::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        bottom: 8px;
-        width: 22px;
-        z-index: 3;
-        pointer-events: none;
-        background: linear-gradient(to right, #0b0f14 0%, transparent 100%);
-    }
-
-    .about-hobbies-mobile .hobbies-rail-wrap::before {
-        left: 0;
-    }
-
-    .about-hobbies-mobile .hobbies-rail-wrap::after {
-        right: 0;
-        transform: scaleX(-1);
-    }
-
-    /* dots — force small size and ignore global button styles */
-    .about-hobbies-mobile .hobby-dots {
-        display: flex;
-        justify-content: center;
-        gap: .34rem;
-        margin-top: .25rem;
-    }
-
-    .about-hobbies-mobile .hobby-dots>button {
-        all: unset;
-        /* nuke global button styles */
-        display: inline-block;
-        inline-size: 6px;
-        block-size: 6px;
-        /* true 6×6 dots */
-        border-radius: 50%;
-        background: #c7e8ff;
-        opacity: .30;
-        transition: opacity .2s;
-    }
-
-    .about-hobbies-mobile .hobby-dots>button.is-active {
-        opacity: 1;
-    }
-
-    /* safety: no hover theatrics on carousel cards */
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card:hover,
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card:focus-within {
-        transform: none;
-        box-shadow: 0 6px 16px rgba(0, 0, 0, .25);
-    }
-
-    .about-hobbies-mobile .hobbies-rail[data-carousel] {
-        touch-action: pan-x pan-y;
-        will-change: scroll-position;
-    }
-
-    /* while text panel is open, let the user scroll INSIDE the text vertically */
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card.show-text>p {
-        overscroll-behavior: contain;
-        /* prevent bouncing the page while reading */
-    }
-
-    /* minor GPU hint to keep the card composited during fade */
-    .about-hobbies-mobile .hobbies-rail[data-carousel] .rail-card {
-        backface-visibility: hidden;
-        transform: translateZ(0);
-    }
-}
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-    .about-hobbies-mobile .hobbies-rail[data-carousel] {
-        scroll-behavior: auto;
+        position: relative;
     }
 }
 
