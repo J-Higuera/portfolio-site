@@ -129,20 +129,92 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    document.querySelectorAll('.about-hobbies-mobile .rail-card')
-        .forEach(card => {
-            card.addEventListener('click', () => {
-                // if this card is already active, deactivate it
-                if (card.classList.contains('active')) {
-                    card.classList.remove('active');
-                } else {
-                    // remove active from others if you want only one open at a time
-                    document.querySelectorAll('.about-hobbies-mobile .rail-card')
-                        .forEach(c => c.classList.remove('active'));
-                    card.classList.add('active');
-                }
+    // ==== About section Hobbies Cards ============
+    (() => {
+        const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
+        if (!track) return;
+
+        const cards = [...track.querySelectorAll('.rail-card')];
+
+        let openId = null; // which card is currently shown in overlay
+
+        const lockScroll = (lock) => {
+            document.documentElement.classList.toggle('lock-scroll', lock);
+            document.body.classList.toggle('lock-scroll', lock);
+        };
+
+        const buildOverlay = (card) => {
+            // backdrop
+            const backdrop = document.createElement('div');
+            backdrop.className = 'hobby-backdrop';
+
+            // duplicate card content
+            const modal = document.createElement('div');
+            modal.className = 'hobby-overlay';
+            modal.setAttribute('data-hobby', card.dataset.hobby || '');
+
+            // clone essential bits
+            const img = card.querySelector('img')?.cloneNode(true);
+            const h4 = card.querySelector('h4')?.cloneNode(true);
+            const p = card.querySelector('p')?.cloneNode(true);
+
+            if (img) modal.appendChild(img);
+            if (h4) modal.appendChild(h4);
+            if (p) modal.appendChild(p);
+
+            // attach
+            document.body.append(backdrop, modal);
+
+            // fade in next frame
+            requestAnimationFrame(() => {
+                backdrop.classList.add('show');
+                modal.classList.add('show');
             });
+
+            // close interactions
+            const close = () => {
+                backdrop.classList.remove('show');
+                modal.classList.remove('show');
+                modal.addEventListener('transitionend', () => {
+                    backdrop.remove();
+                    modal.remove();
+                }, { once: true });
+                openId = null;
+                lockScroll(false);
+            };
+
+            // tap backdrop or modal itself to close
+            backdrop.addEventListener('click', close);
+            modal.addEventListener('click', close);
+
+            // esc to close
+            const onEsc = (e) => (e.key === 'Escape') && close();
+            document.addEventListener('keydown', onEsc, { once: true });
+
+            return close;
+        };
+
+        // tap small card
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.dataset.hobby || cards.indexOf(card);
+                // if the same one is open, close it
+                if (openId === id) {
+                    // find existing overlay and close by clicking backdrop
+                    document.querySelector('.hobby-backdrop')?.click();
+                    return;
+                }
+                // if another is open, close it first
+                if (openId != null) {
+                    document.querySelector('.hobby-backdrop')?.click();
+                }
+
+                lockScroll(true);
+                openId = id;
+                buildOverlay(card); // duplicate + fade-in
+            }, { passive: true });
         });
+    })();
 
     // === View degree/certification ===
     const images = document.querySelectorAll(".certificate-row img");
