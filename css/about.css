@@ -239,6 +239,14 @@
     align-items: stretch;
 }
 
+/* ===== Base layout (desktop-first) ===== */
+.hobbies-rail {
+    display: flex;
+    gap: 1rem;
+    padding: 0 12px;
+    align-items: stretch;
+}
+
 .rail-card {
     position: relative;
     min-height: 220px;
@@ -246,28 +254,12 @@
     overflow: hidden;
     isolation: isolate;
     background: #0a0f14;
-    transition: flex .55s ease, transform .55s ease, box-shadow .55s ease;
     display: flex;
     justify-content: flex-start;
     align-items: center;
     flex-direction: column;
-}
-
-.hobbies-rail {
-    display: flex;
-}
-
-.hobbies-rail .rail-card {
     flex: 1 1 0;
-}
-
-.hobbies-rail .rail-card:hover,
-.hobbies-rail .rail-card:focus-within {
-    flex: 2.2 1 0;
-}
-
-.hobbies-rail .rail-card:not(:hover):not(:focus-within) {
-    flex: 1 1 0;
+    transition: flex .55s ease, transform .55s ease, box-shadow .55s ease;
 }
 
 .rail-card>img {
@@ -284,22 +276,19 @@
     content: "";
     position: absolute;
     inset: 0;
-    background:
-        linear-gradient(to top, rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.097));
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.405), rgba(0, 0, 0, 0.097));
     z-index: 1;
     pointer-events: none;
 }
 
 .rail-card>h4 {
     position: relative;
-    top: 0;
-    left: 0;
-    text-align: center;
-    word-break: keep-all;
     z-index: 2;
     margin: 0;
     padding: .5rem .4rem;
     border-radius: 8px;
+    text-align: center;
+    word-break: keep-all;
     font: 800 .95rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
     color: hsl(var(--accent, 178 100% 46%));
     background: rgba(0, 0, 0, .4);
@@ -307,6 +296,7 @@
     text-shadow: 0 1px 6px hsl(var(--accent) / .25);
 }
 
+/* Detail text panel: hidden by default */
 .rail-card>p {
     position: absolute;
     inset: 0;
@@ -320,19 +310,34 @@
     opacity: 0;
     background: rgba(0, 15, 20, .58);
     margin: 0;
-    transition: opacity 1.25s ease, transform .25s ease;
-}
-
-.rail-card:is(:hover, :focus-within)>p {
-    opacity: 1;
+    transition: opacity .25s ease, transform .25s ease;
     transform: scale(1);
 }
 
-.rail-card:hover {
-    box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
+/* ===== Desktop/laptop hover (only on real pointers) ===== */
+@media (hover: hover) and (pointer: fine) {
+
+    .hobbies-rail .rail-card:hover,
+    .hobbies-rail .rail-card:focus-within {
+        flex: 2.2 1 0;
+    }
+
+    .hobbies-rail .rail-card:not(:hover):not(:focus-within) {
+        flex: 1 1 0;
+    }
+
+    .rail-card:is(:hover, :focus-within)>p {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .rail-card:hover {
+        box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
+    }
 }
 
-@media (max-width: 1200px) {
+/* Slightly stronger hover growth at medium widths (still only for hover devices) */
+@media (max-width: 1200px) and (hover: hover) and (pointer: fine) {
 
     .hobbies-rail .rail-card:hover,
     .hobbies-rail .rail-card:focus-within {
@@ -341,7 +346,10 @@
     }
 }
 
+/* ===== Reduced motion ===== */
 @media (prefers-reduced-motion: reduce) {
+
+    .rail-card,
     .rail-card>img {
         transition: none;
     }
@@ -350,35 +358,16 @@
         transform: none;
         transition: opacity .15s linear;
     }
-
-    .rail-card:is(:hover, :focus-within)>p {
-        opacity: 1;
-    }
 }
 
+/* ===== Mobile: tap-to-toggle with .active ===== */
 @media (max-width: 720px) {
     .about-hobbies-mobile {
         --tile-h: 150px;
     }
 
-    .hobbies-rail .rail-card:hover,
-    .hobbies-rail .rail-card:focus-within {
-        transform: scale(1.01);
-        flex: 50 1 0;
-    }
-
-    .rail-card>p {
-        font-size: 0.8rem;
-    }
-
-
-    .rail-card {
-        min-height: 20px;
-    }
-
+    /* Use grid on the mobile container only */
     .about-hobbies-mobile .hobbies-rail {
-        position: relative;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: .25rem;
         padding: 0 8px;
         border-radius: 14px;
@@ -391,14 +380,12 @@
         overflow: hidden;
         cursor: pointer;
         z-index: 1;
+        transition: flex .30s ease, transform .30s ease, box-shadow .30s ease, opacity .20s ease;
+        flex: 1 1 0;
+        min-height: 20px;
     }
 
-    .about-hobbies-mobile .hobbies-rail .rail-card:hover,
-    .about-hobbies-mobile .hobbies-rail .rail-card:focus-within {
-        transform: none;
-        box-shadow: none;
-    }
-
+    /* Mobile title size */
     .about-hobbies-mobile .rail-card>h4 {
         font: 800 .72rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
         padding: .5rem .45rem;
@@ -407,20 +394,39 @@
         z-index: 2;
         position: relative;
     }
-}
 
-@media (max-width: 720px) {
-    .about-hobbies-mobile .hobbies-rail .rail-card {
-        transition: flex 0.3s ease, transform 0.3s ease;
-        flex: 1 1 0;
+    /* Text size tweak on mobile */
+    .about-hobbies-mobile .rail-card>p {
+        font-size: .8rem;
     }
 
+    /* Disable hover/focus reveal on mobile to avoid sticky text */
+    .about-hobbies-mobile .hobbies-rail .rail-card:hover,
+    .about-hobbies-mobile .hobbies-rail .rail-card:focus-within {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .about-hobbies-mobile .hobbies-rail .rail-card:hover>p,
+    .about-hobbies-mobile .hobbies-rail .rail-card:focus-within>p {
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* The ONLY trigger to show details on mobile: .active */
     .about-hobbies-mobile .hobbies-rail .rail-card.active {
         flex: 50 1 0;
         transform: scale(1.01);
     }
+
+    .about-hobbies-mobile .hobbies-rail .rail-card.active>p {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
 }
 
+/* ===== Final reduced motion overrides (safe to repeat) ===== */
 @media (prefers-reduced-motion: reduce) {
     .hobbies-rail .rail-card {
         transition: none;
@@ -430,6 +436,7 @@
         transition: opacity .15s linear;
     }
 }
+
 
 @media (hover: hover) and (pointer: fine) {
     .resume-button:hover {
