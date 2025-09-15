@@ -129,6 +129,21 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    document.querySelectorAll('.about-hobbies-mobile .rail-card')
+        .forEach(card => {
+            card.addEventListener('click', () => {
+                // if this card is already active, deactivate it
+                if (card.classList.contains('active')) {
+                    card.classList.remove('active');
+                } else {
+                    // remove active from others if you want only one open at a time
+                    document.querySelectorAll('.about-hobbies-mobile .rail-card')
+                        .forEach(c => c.classList.remove('active'));
+                    card.classList.add('active');
+                }
+            });
+        });
+
     // === View degree/certification ===
     const images = document.querySelectorAll(".certificate-row img");
     let isAnimating = false;

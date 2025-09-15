@@ -409,6 +409,18 @@
     }
 }
 
+@media (max-width: 720px) {
+    .about-hobbies-mobile .hobbies-rail .rail-card {
+        transition: flex 0.3s ease, transform 0.3s ease;
+        flex: 1 1 0;
+    }
+
+    .about-hobbies-mobile .hobbies-rail .rail-card.active {
+        flex: 50 1 0;
+        transform: scale(1.01);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .hobbies-rail .rail-card {
         transition: none;
