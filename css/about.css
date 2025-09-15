@@ -354,11 +354,11 @@
 @media (max-width: 720px) {
     .about-hobbies-mobile {
         --thumb-h: 120px;
-        /* half of the old 66px */
-        --thumb-w: 100px;
-        /* half of the old 130px */
-        --thumb-frac: 100%;
-        /* half of 36% */
+        /* height of each thumbnail */
+        --thumb-w: 220px;
+        /* width cap (was invalid 'px') */
+        --thumb-frac: 60%;
+        /* % width on small screens */
         --gap: .6rem;
     }
 
@@ -379,13 +379,14 @@
         scroll-padding-inline: 12px;
         position: relative;
         scrollbar-width: none;
+        touch-action: pan-x;
     }
 
     .about-hobbies-mobile .hobbies-carousel .track::-webkit-scrollbar {
         height: 0;
     }
 
-    /* thumbnail cards (forced smaller size) */
+    /* thumbnail cards */
     .about-hobbies-mobile .hobbies-carousel .rail-card {
         flex: 0 0 min(var(--thumb-frac), var(--thumb-w));
         width: var(--thumb-w);
@@ -425,7 +426,7 @@
 
     .about-hobbies-mobile .hobbies-carousel .rail-card p {
         display: none;
-        /* hide text on tiny thumbnails */
+        /* hide text on thumbnails */
     }
 
     /* disable hover pop on mobile */

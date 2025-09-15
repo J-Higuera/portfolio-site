@@ -130,13 +130,18 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==== About section Hobbies Cards ============
+    // ==== About section Hobbies Cards (duplicate overlay; tap to close) ====
     (() => {
         const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
         if (!track) return;
 
         const cards = [...track.querySelectorAll('.rail-card')];
+        let openId = null; // currently open card id
 
-        let openId = null; // which card is currently shown in overlay
+        // prevent full-cover anchors from hijacking taps (if present)
+        track.querySelectorAll('.rail-card .hit').forEach(a => {
+            a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+        });
 
         const lockScroll = (lock) => {
             document.documentElement.classList.toggle('lock-scroll', lock);
@@ -144,11 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
         };
 
         const buildOverlay = (card) => {
-            // backdrop
             const backdrop = document.createElement('div');
             backdrop.className = 'hobby-backdrop';
 
-            // duplicate card content
             const modal = document.createElement('div');
             modal.className = 'hobby-overlay';
             modal.setAttribute('data-hobby', card.dataset.hobby || '');
@@ -162,16 +165,13 @@ document.addEventListener("DOMContentLoaded", () => {
             if (h4) modal.appendChild(h4);
             if (p) modal.appendChild(p);
 
-            // attach
             document.body.append(backdrop, modal);
 
-            // fade in next frame
             requestAnimationFrame(() => {
                 backdrop.classList.add('show');
                 modal.classList.add('show');
             });
 
-            // close interactions
             const close = () => {
                 backdrop.classList.remove('show');
                 modal.classList.remove('show');
@@ -183,11 +183,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 lockScroll(false);
             };
 
-            // tap backdrop or modal itself to close
             backdrop.addEventListener('click', close);
             modal.addEventListener('click', close);
-
-            // esc to close
             const onEsc = (e) => (e.key === 'Escape') && close();
             document.addEventListener('keydown', onEsc, { once: true });
 
@@ -198,9 +195,8 @@ document.addEventListener("DOMContentLoaded", () => {
         cards.forEach(card => {
             card.addEventListener('click', () => {
                 const id = card.dataset.hobby || cards.indexOf(card);
-                // if the same one is open, close it
+                // toggle behavior: if same one open, close
                 if (openId === id) {
-                    // find existing overlay and close by clicking backdrop
                     document.querySelector('.hobby-backdrop')?.click();
                     return;
                 }
@@ -211,9 +207,58 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 lockScroll(true);
                 openId = id;
-                buildOverlay(card); // duplicate + fade-in
+                buildOverlay(card);
             }, { passive: true });
         });
+    })();
+
+    // ========== Optional arrows module: safe to keep even if buttons are absent ==========
+    (() => {
+        const carousel = document.querySelector('.about-hobbies-mobile .hobbies-carousel');
+        if (!carousel) return;
+
+        const track = carousel.querySelector('.track');
+        const prevBtn = carousel.querySelector('.hc-nav.prev');
+        const nextBtn = carousel.querySelector('.hc-nav.next');
+
+        // If you don't have arrows in the DOM, bail out gracefully.
+        if (!prevBtn || !nextBtn) return;
+
+        const cards = Array.from(track.querySelectorAll('.rail-card'));
+
+        const getGap = () => {
+            const cs = getComputedStyle(track);
+            return parseFloat(cs.columnGap || cs.gap || 0) || 0;
+        };
+
+        const stepWidth = () => {
+            const first = cards[0];
+            if (!first) return 160;
+            const w = first.getBoundingClientRect().width;
+            return Math.round(w + getGap());
+        };
+
+        const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
+
+        const updateNav = () => {
+            const maxScroll = track.scrollWidth - track.clientWidth - 1;
+            const atStart = track.scrollLeft <= 1;
+            const atEnd = track.scrollLeft >= maxScroll;
+            prevBtn.toggleAttribute('disabled', atStart);
+            nextBtn.toggleAttribute('disabled', atEnd);
+        };
+
+        prevBtn.addEventListener('click', () => {
+            track.scrollTo({ left: clamp(track.scrollLeft - stepWidth(), 0, track.scrollWidth), behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+            track.scrollTo({ left: clamp(track.scrollLeft + stepWidth(), 0, track.scrollWidth), behavior: 'smooth' });
+        });
+
+        track.addEventListener('scroll', updateNav, { passive: true });
+        window.addEventListener('resize', updateNav);
+        new MutationObserver(updateNav).observe(track, { attributes: true, attributeFilter: ['class'] });
+        requestAnimationFrame(updateNav);
     })();
 
     // === View degree/certification ===
