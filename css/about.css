@@ -375,7 +375,7 @@
 
     .about-hobbies-mobile .hobbies-rail .rail-card {
         position: relative;
-        height: var(--tile-h);
+        height: 120px;
         border-radius: 14px;
         overflow: hidden;
         cursor: pointer;
@@ -660,12 +660,14 @@
     }
 
     .about-hobbies-mobile {
-        background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
         flex: 1 1 20px;
         min-width: 200px;
+        background: radial-gradient(circle at top left, #306c6c9f 0%, #27434f 30%, #275a56 50%, #1a3c55 75%, #3b7388 100%);
+        padding-bottom: 8px;
+        padding-top: 6px;
         max-width: 100%;
-        padding: 1rem 0;
-        box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
+        margin-left: 10px;
+        margin-right: 10px;
         border: 2px solid #7d7d7d;
         border-radius: var(--radius);
         color: var(--text-bright);
@@ -675,7 +677,8 @@
     .about-hobbies-mobile h3 {
         text-align: center;
         padding: 0;
-        padding-bottom: 15px;
+        padding-bottom: 10px;
+        padding-top: 0;
         color: var(--text-bright);
         font-family: var(--font-main);
     }
@@ -720,8 +723,8 @@
 
     .about-certificates2 {
         display: block;
-        margin-left: 15px;
-        margin-right: 15px;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
     .about-certificates2 h3 {
