@@ -259,7 +259,7 @@
     align-items: center;
     flex-direction: column;
     flex: 1 1 0;
-    transition: flex .55s ease, transform .55s ease, box-shadow .55s ease;
+    transition: flex .45s ease, transform .45s ease, box-shadow .45s ease;
 }
 
 .rail-card>img {
@@ -269,7 +269,7 @@
     height: 100%;
     object-fit: cover;
     filter: saturate(1.05) contrast(.98);
-    transition: transform .55s ease, filter .55s ease;
+    transition: transform .45s ease, filter .45s ease;
 }
 
 .rail-card::after {
@@ -310,7 +310,7 @@
     opacity: 0;
     background: rgba(0, 15, 20, .58);
     margin: 0;
-    transition: opacity .25s ease, transform .25s ease;
+    transition: opacity .45s ease, transform .45s ease;
     transform: scale(1);
 }
 
@@ -356,7 +356,7 @@
 
     .rail-card>p {
         transform: none;
-        transition: opacity .15s linear;
+        transition: opacity .45s linear;
     }
 }
 
@@ -380,7 +380,7 @@
         overflow: hidden;
         cursor: pointer;
         z-index: 1;
-        transition: flex .30s ease, transform .30s ease, box-shadow .30s ease, opacity .20s ease;
+        transition: flex .45s ease, transform .45s ease, box-shadow .45s ease, opacity .20s ease;
         flex: 1 1 0;
         min-height: 20px;
     }
@@ -433,7 +433,7 @@
     }
 
     .rail-card>p {
-        transition: opacity .15s linear;
+        transition: opacity .45s linear;
     }
 }
 
