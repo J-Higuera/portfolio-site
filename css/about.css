@@ -344,20 +344,32 @@
     }
 }
 
-/* When a card is 'active' because of a click, treat siblings like the non-hover state */
+/* Grow when clicked/tapped */
+.hobbies-rail .rail-card.active {
+    flex: 7 1 0;
+    /* was 1 0 — that’s why it didn’t grow */
+    box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
+}
+
+/* When a card is active via click, make siblings small */
 .hobbies-rail.has-active .rail-card {
     flex: 1 1 0;
+    /* all siblings */
 }
 
 .hobbies-rail.has-active .rail-card.active {
-    flex: 1 1 0;
+    flex: 7 1 0;
+    /* keep the active card big */
 }
 
-.rail-card>p {
+/* Show the text overlay only when active */
+.hobbies-rail .rail-card>p {
     pointer-events: none;
 }
 
 .hobbies-rail .rail-card.active>p {
+    opacity: 1;
+    transform: scale(1);
     pointer-events: auto;
 }
 
