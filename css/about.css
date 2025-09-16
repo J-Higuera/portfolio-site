@@ -305,6 +305,18 @@
     transform: scale(1);
 }
 
+/* Expand/reveal when .active (for click/tap) */
+.hobbies-rail .rail-card.active {
+    flex: 2.2 1 0;
+    box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
+}
+
+.hobbies-rail .rail-card.active>p {
+    opacity: 1;
+    transform: scale(1);
+}
+
+
 /* Desktop/laptop hover (pointer devices only) */
 @media (hover: hover) and (pointer: fine) {
 

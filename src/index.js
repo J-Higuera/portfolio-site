@@ -130,7 +130,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==== About section Hobbies Cards ============
-    // ==== About section Hobbies Cards (duplicate overlay; tap to close) ====
     (() => {
         const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
         if (!track) return;
@@ -212,55 +211,11 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     })();
 
-    // ========== Optional arrows module: safe to keep even if buttons are absent ==========
-    (() => {
-        const carousel = document.querySelector('.about-hobbies-mobile .hobbies-carousel');
-        if (!carousel) return;
-
-        const track = carousel.querySelector('.track');
-        const prevBtn = carousel.querySelector('.hc-nav.prev');
-        const nextBtn = carousel.querySelector('.hc-nav.next');
-
-        // If you don't have arrows in the DOM, bail out gracefully.
-        if (!prevBtn || !nextBtn) return;
-
-        const cards = Array.from(track.querySelectorAll('.rail-card'));
-
-        const getGap = () => {
-            const cs = getComputedStyle(track);
-            return parseFloat(cs.columnGap || cs.gap || 0) || 0;
-        };
-
-        const stepWidth = () => {
-            const first = cards[0];
-            if (!first) return 160;
-            const w = first.getBoundingClientRect().width;
-            return Math.round(w + getGap());
-        };
-
-        const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
-
-        const updateNav = () => {
-            const maxScroll = track.scrollWidth - track.clientWidth - 1;
-            const atStart = track.scrollLeft <= 1;
-            const atEnd = track.scrollLeft >= maxScroll;
-            prevBtn.toggleAttribute('disabled', atStart);
-            nextBtn.toggleAttribute('disabled', atEnd);
-        };
-
-        prevBtn.addEventListener('click', () => {
-            track.scrollTo({ left: clamp(track.scrollLeft - stepWidth(), 0, track.scrollWidth), behavior: 'smooth' });
+    document.querySelectorAll('.hobbies-rail .rail-card').forEach(card => {
+        card.addEventListener('click', () => {
+            card.classList.toggle('active');
         });
-        nextBtn.addEventListener('click', () => {
-            track.scrollTo({ left: clamp(track.scrollLeft + stepWidth(), 0, track.scrollWidth), behavior: 'smooth' });
-        });
-
-        track.addEventListener('scroll', updateNav, { passive: true });
-        window.addEventListener('resize', updateNav);
-        new MutationObserver(updateNav).observe(track, { attributes: true, attributeFilter: ['class'] });
-        requestAnimationFrame(updateNav);
-    })();
-
+    });
     // === View degree/certification ===
     const images = document.querySelectorAll(".certificate-row img");
     let isAnimating = false;
