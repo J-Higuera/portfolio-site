@@ -211,35 +211,57 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     })();
 
-    // ==== Desktop-only: click-to-expand for .hobbies-rail (no conflict with mobile) ====
+    // ==== Desktop: click-to-expand mirrors hover (no conflict with mobile) ====
     (() => {
-        const mql = window.matchMedia('(max-width: 720px)');
-        let controller;
+        const mql = window.matchMedia('(min-width: 721px)');
+        let aborter;
 
         const mount = () => {
-            controller?.abort();
-            controller = new AbortController();
-            const { signal } = controller;
+            // remove previous listeners on resize changes
+            aborter?.abort();
+            aborter = new AbortController();
+            const { signal } = aborter;
 
-            if (mql.matches) return; // skip on mobile
+            // only run on desktop
+            if (!mql.matches) return;
 
             document.querySelectorAll('.hobbies-rail').forEach(rail => {
+                // If this rail is the mobile one wrapped by .about-hobbies-mobile, skip it.
                 if (rail.closest('.about-hobbies-mobile')) return;
 
-                rail.querySelectorAll('.rail-card').forEach(card => {
-                    card.style.cursor = 'pointer';
-                    card.addEventListener('click', () => {
-                        // collapse others
-                        rail.querySelectorAll('.rail-card.active').forEach(c => {
-                            if (c !== card) c.classList.remove('active');
-                        });
-                        // toggle this one
-                        card.classList.toggle('active');
-                    }, { passive: true, signal });
-                });
+                rail.addEventListener('click', (e) => {
+                    const card = e.target.closest('.rail-card');
+
+                    // Clicked outside any card inside the rail -> close all
+                    if (!card) {
+                        rail.classList.remove('has-active');
+                        rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
+                        return;
+                    }
+
+                    // Toggle the clicked card; collapse the others
+                    const isActive = card.classList.contains('active');
+                    rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
+
+                    if (isActive) {
+                        // was open -> now close all
+                        rail.classList.remove('has-active');
+                    } else {
+                        card.classList.add('active');
+                        rail.classList.add('has-active');
+                    }
+                }, { signal });
+
+                // Close on ESC
+                document.addEventListener('keydown', (e) => {
+                    if (e.key !== 'Escape') return;
+                    rail.classList.remove('has-active');
+                    rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
+                }, { signal });
             });
         };
 
+        // run now and on breakpoint changes
         mount();
         mql.addEventListener('change', mount);
     })();

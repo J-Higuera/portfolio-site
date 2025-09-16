@@ -347,6 +347,29 @@
     }
 }
 
+/* When a card is 'active' because of a click, treat siblings like the non-hover state */
+.hobbies-rail.has-active .rail-card {
+    /* siblings */
+    flex: 1 1 0;
+}
+
+.hobbies-rail.has-active .rail-card.active {
+    /* the clicked one */
+    flex: 2.2 1 0;
+    /* same value as your hover */
+    box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
+}
+
+/* Make the overlay text allow clicks only when open */
+.rail-card>p {
+    pointer-events: none;
+}
+
+.hobbies-rail .rail-card.active>p {
+    pointer-events: auto;
+}
+
+
 @media (max-width: 1200px) and (hover: hover) and (pointer: fine) {
 
     .hobbies-rail .rail-card:hover,
