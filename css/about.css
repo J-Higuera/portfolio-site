@@ -305,7 +305,7 @@
     transform: scale(1);
 }
 
-/* Expand/reveal when .active (for click/tap) */
+/* keep your existing .active rules */
 .hobbies-rail .rail-card.active {
     flex: 2.2 1 0;
     box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
@@ -316,6 +316,14 @@
     transform: scale(1);
 }
 
+/* add this so taps aren’t blocked */
+.rail-card>p {
+    pointer-events: none;
+}
+
+.hobbies-rail .rail-card.active>p {
+    pointer-events: auto;
+}
 
 /* Desktop/laptop hover (pointer devices only) */
 @media (hover: hover) and (pointer: fine) {

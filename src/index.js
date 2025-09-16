@@ -211,11 +211,39 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     })();
 
-    document.querySelectorAll('.hobbies-rail .rail-card').forEach(card => {
-        card.addEventListener('click', () => {
-            card.classList.toggle('active');
-        });
-    });
+    // ==== Desktop-only: click-to-expand for .hobbies-rail (no conflict with mobile) ====
+    (() => {
+        const mql = window.matchMedia('(max-width: 720px)');
+        let controller;
+
+        const mount = () => {
+            controller?.abort();
+            controller = new AbortController();
+            const { signal } = controller;
+
+            if (mql.matches) return; // skip on mobile
+
+            document.querySelectorAll('.hobbies-rail').forEach(rail => {
+                if (rail.closest('.about-hobbies-mobile')) return;
+
+                rail.querySelectorAll('.rail-card').forEach(card => {
+                    card.style.cursor = 'pointer';
+                    card.addEventListener('click', () => {
+                        // collapse others
+                        rail.querySelectorAll('.rail-card.active').forEach(c => {
+                            if (c !== card) c.classList.remove('active');
+                        });
+                        // toggle this one
+                        card.classList.toggle('active');
+                    }, { passive: true, signal });
+                });
+            });
+        };
+
+        mount();
+        mql.addEventListener('change', mount);
+    })();
+
     // === View degree/certification ===
     const images = document.querySelectorAll(".certificate-row img");
     let isAnimating = false;
