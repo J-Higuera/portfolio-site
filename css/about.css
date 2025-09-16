@@ -371,6 +371,20 @@
     }
 }
 
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .rail-card,
+    .rail-card>img {
+        transition: none;
+    }
+
+    .rail-card>p {
+        transform: none;
+        transition: opacity .45s linear;
+    }
+}
+
 /* ===== MOBILE 720px: swipe carousel + duplicate overlay (fade only) ===== */
 @media (max-width: 720px) {
     .about-hobbies-mobile {
@@ -494,7 +508,9 @@
     .hobby-overlay h4 {
         position: relative;
         z-index: 2;
-        margin: .6rem;
+        width: 30%;
+        margin-top: .4rem;
+        left: .4rem;
         padding: .5rem .6rem;
         border-radius: 10px;
         background: rgba(0, 0, 0, .55);
