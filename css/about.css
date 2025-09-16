@@ -211,7 +211,7 @@
 }
 
 .about-hobbies {
-    background: radial-gradient(circle at top left, #222222 0%, #1c1d25 30%, #141414 50%, #000000 75%, #211e1e 100%);
+    background: #000000a8;
     flex: 1 1 280px;
     min-width: 200px;
     max-width: 100%;
@@ -745,14 +745,12 @@
     .about-hobbies-mobile {
         flex: 1 1 20px;
         min-width: 200px;
-        background: radial-gradient(circle at top left, #306c6c9f 0%, #27434f 30%, #275a56 50%, #1a3c55 75%, #3b7388 100%);
         padding-bottom: 8px;
-        padding-top: 6px;
-        max-width: 100%;
-        margin-left: 10px;
-        margin-right: 10px;
-        border: 2px solid #7d7d7d;
-        border-radius: var(--radius);
+        margin-left: -10px;
+        margin-right: -10px;
+        background: #000000a8;
+        border-bottom: 2px solid #7d7d7d;
+        border-top: 2px solid #7d7d7d;
         color: var(--text-bright);
         font-family: var(--font-main);
     }
@@ -760,8 +758,7 @@
     .about-hobbies-mobile h3 {
         text-align: center;
         padding: 0;
-        padding-bottom: 10px;
-        padding-top: 0;
+        margin-left: 12px;
         color: var(--text-bright);
         font-family: var(--font-main);
     }
