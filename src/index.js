@@ -1,8 +1,12 @@
-//======================== Hero Text Animation ==================================
-// === Hero Text Typewriter Animation ===
+/* ========================================================================== */
+/* 1) HERO TYPEWRITER                                                         */
+/* ========================================================================== */
 document.addEventListener("DOMContentLoaded", () => {
     const phrases = ["apps.", "games.", "websites.", "tools.", "systems."];
     const textElement = document.getElementById("hero-text");
+
+    // Guard so a missing #hero-text doesn't crash anything else.
+    if (!textElement) return;
 
     let currentPhrase = 0;
     let currentLetter = 0;
@@ -27,290 +31,293 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentPhrase = (currentPhrase + 1) % phrases.length;
             }
         }
-
         setTimeout(type, isDeleting ? 80 : 120);
     }
 
     type();
+});
 
-    // === Desktop Conveyor Belt Animation ===
+
+/* ========================================================================== */
+/* 2) SKILLS CONVEYOR + MAGNIFY (Desktop)                                     */
+/* ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
     const wrapper = document.querySelector(".skills-wrapper");
     const track = document.querySelector(".skills-track");
+    if (!wrapper || !track) return;
 
-    if (wrapper && track) {
-        const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        const icons = wrapper.querySelectorAll(".skills-grid img");
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const icons = wrapper.querySelectorAll(".skills-grid img");
 
-        let inView = false, magnifying = false, rafId = null;
+    let inView = false;
+    let magnifying = false;
+    let rafId = null;
 
-        // Ensure animation exists but starts paused
-        if (!prefersReduced) {
-            const cs = getComputedStyle(track);
-            if (!cs.animationName || cs.animationName === "none") {
-                track.style.animation = "conveyor 45s linear infinite";
-            }
-            track.style.animationPlayState = "paused";
-        } else {
-            track.style.animation = "none";
+    // Ensure animation exists but starts paused
+    if (!prefersReduced) {
+        const cs = getComputedStyle(track);
+        if (!cs.animationName || cs.animationName === "none") {
+            track.style.animation = "conveyor 45s linear infinite";
         }
-
-        const setConveyorRunning = (run) => {
-            if (prefersReduced) return;
-            track.style.animationPlayState = run ? "running" : "paused";
-            const skillsSection = wrapper.closest(".skills");
-            if (skillsSection) skillsSection.classList.toggle("active", run);
-        };
-
-        const resetIcons = () => {
-            icons.forEach(icon => {
-                icon.style.transform = "scale(1)";
-                icon.style.filter = "drop-shadow(0 0 0.6px rgba(255,255,255,0)) drop-shadow(0 0 2px rgba(255,255,255,0))";
-            });
-        };
-
-        const magnifyStep = () => {
-            if (!magnifying || !inView) return;
-
-            const wrapRect = wrapper.getBoundingClientRect();
-            const centerX = wrapRect.left + wrapRect.width / 2 + 40;
-            const maxDistance = wrapRect.width / 3;
-
-            icons.forEach(icon => {
-                const r = icon.getBoundingClientRect();
-                const iconCenter = r.left + r.width / 2;
-                const d = Math.abs(centerX - iconCenter);
-                const scale = d < maxDistance ? 1 + (1 - d / maxDistance) * 0.22 : 1;
-                icon.style.transform = `scale(${scale})`;
-            });
-
-            rafId = requestAnimationFrame(magnifyStep);
-        };
-
-        const startMagnify = () => {
-            if (magnifying || prefersReduced || window.innerWidth < 900) return;
-            magnifying = true;
-            rafId = requestAnimationFrame(magnifyStep);
-        };
-
-        const stopMagnify = () => {
-            magnifying = false;
-            if (rafId) cancelAnimationFrame(rafId);
-            rafId = null;
-            resetIcons();
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            for (const entry of entries) {
-                if (entry.target !== wrapper) continue;
-                inView = entry.isIntersecting && entry.intersectionRatio >= 0.2;
-                setConveyorRunning(inView);
-                if (inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
-            }
-        }, { threshold: [0, 0.2, 0.5, 1] });
-        observer.observe(wrapper);
-
-        // rAF-throttled resize
-        let resizeRaf = null;
-        const onResize = () => {
-            if (resizeRaf) return;
-            resizeRaf = requestAnimationFrame(() => {
-                resizeRaf = null;
-                if (!inView) { stopMagnify(); return; }
-                if (window.innerWidth >= 900) startMagnify(); else stopMagnify();
-            });
-        };
-        window.addEventListener("resize", onResize, { passive: true });
-
-        // Pause on tab hide
-        document.addEventListener("visibilitychange", () => {
-            const visible = document.visibilityState === "visible";
-            setConveyorRunning(visible && inView);
-            if (visible && inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
-        });
+        track.style.animationPlayState = "paused";
+    } else {
+        track.style.animation = "none";
     }
 
-    /* ╔══════════════════════════════════════════════════════════════════╗
-       ║ MODULE A — HOBBIES: Mobile overlay (carousel thumbnails → modal) ║
-       ╚══════════════════════════════════════════════════════════════════╝ */
-    // ==== About section Hobbies Cards (MOBILE OVERLAY — no blink) =================
-    (() => {
-        const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
-        if (!track) return;
+    const setConveyorRunning = (run) => {
+        if (prefersReduced) return;
+        track.style.animationPlayState = run ? "running" : "paused";
+        const skillsSection = wrapper.closest(".skills");
+        if (skillsSection) skillsSection.classList.toggle("active", run);
+    };
 
-        const cards = [...track.querySelectorAll('.rail-card')];
-        let openId = null;
+    const resetIcons = () => {
+        icons.forEach(icon => {
+            icon.style.transform = "scale(1)";
+            icon.style.filter = "drop-shadow(0 0 0.6px rgba(255,255,255,0)) drop-shadow(0 0 2px rgba(255,255,255,0))";
+        });
+    };
 
-        // Let taps through if you have .hit anchors on the cards.
-        track.querySelectorAll('.rail-card .hit').forEach(a => {
-            a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    const magnifyStep = () => {
+        if (!magnifying || !inView) return;
+
+        const wrapRect = wrapper.getBoundingClientRect();
+        const centerX = wrapRect.left + wrapRect.width / 2 + 40;
+        const maxDistance = wrapRect.width / 3;
+
+        icons.forEach(icon => {
+            const r = icon.getBoundingClientRect();
+            const iconCenter = r.left + r.width / 2;
+            const d = Math.abs(centerX - iconCenter);
+            const scale = d < maxDistance ? 1 + (1 - d / maxDistance) * 0.22 : 1;
+            icon.style.transform = `scale(${scale})`;
         });
 
-        // ---------- build once: backdrop + overlay shell ----------
-        const backdrop = document.createElement('div');
-        backdrop.className = 'hobby-backdrop';
+        rafId = requestAnimationFrame(magnifyStep);
+    };
 
-        const overlay = document.createElement('div');
-        overlay.className = 'hobby-overlay';
+    const startMagnify = () => {
+        if (magnifying || prefersReduced || window.innerWidth < 900) return;
+        magnifying = true;
+        rafId = requestAnimationFrame(magnifyStep);
+    };
 
-        // inner structure so text & image fade together
-        const oImg = new Image();
-        const oTitle = document.createElement('h4');
-        const oText = document.createElement('p');
+    const stopMagnify = () => {
+        magnifying = false;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+        resetIcons();
+    };
 
-        // keep these elements stable to avoid layout/paint thrash
-        overlay.append(oImg, oTitle, oText);
-        document.body.append(backdrop, overlay);
+    const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+            if (entry.target !== wrapper) continue;
+            inView = entry.isIntersecting && entry.intersectionRatio >= 0.2;
+            setConveyorRunning(inView);
+            if (inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
+        }
+    }, { threshold: [0, 0.2, 0.5, 1] });
+    observer.observe(wrapper);
 
-        // scroll lock helper (do after we start the fade to dodge a pre-fade reflow)
+    // rAF-throttled resize
+    let resizeRaf = null;
+    const onResize = () => {
+        if (resizeRaf) return;
+        resizeRaf = requestAnimationFrame(() => {
+            resizeRaf = null;
+            if (!inView) { stopMagnify(); return; }
+            if (window.innerWidth >= 900) startMagnify(); else stopMagnify();
+        });
+    };
+    window.addEventListener("resize", onResize, { passive: true });
+
+    // Pause on tab hide
+    document.addEventListener("visibilitychange", () => {
+        const visible = document.visibilityState === "visible";
+        setConveyorRunning(visible && inView);
+        if (visible && inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
+    });
+});
+
+
+/* ========================================================================== */
+/* 3) HOBBIES OVERLAY (Mobile): buildOverlay + click wiring                    */
+/*      - Instant overlay appearance                                           */
+/*      - Smooth inner content fade                                            */
+/*      - Self-contained (no external state required)                          */
+/* ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    // ---- Builder (self-contained) ----
+    const buildOverlay = (card) => {
+        // If another overlay is open, request it to close first
+        const existing = document.querySelector('.hobby-overlay');
+        if (existing) {
+            existing.dispatchEvent(new CustomEvent('request-close', { bubbles: true }));
+        }
+
+        // Helpers local to this function
         const lockScroll = (lock) => {
             document.documentElement.classList.toggle('lock-scroll', lock);
             document.body.classList.toggle('lock-scroll', lock);
         };
-
-        // ---------- predecode all thumbnail images in the background ----------
-        const decodedURL = new Map();   // card -> decoded URL string
-        const decodeURL = (url) => new Promise((res) => {
-            const i = new Image();
-            i.decoding = 'async';
-            i.loading = 'eager';
-            i.src = url;
-            (i.decode?.() || Promise.resolve()).catch(() => { }).finally(res);
-        });
-
-        cards.forEach(card => {
-            const img = card.querySelector('img');
-            if (!img) return;
-            const url = img.currentSrc || img.src;
-            if (!url || decodedURL.has(card)) return;
-            decodeURL(url).then(() => decodedURL.set(card, url));
-        });
-
-        // ---------- open/close ----------
-        const close = () => {
-            backdrop.classList.remove('show');
-            overlay.classList.remove('show');
-            overlay.addEventListener('transitionend', () => {
-                // clear content to keep memory low, but keep nodes mounted
-                oImg.removeAttribute('src');
-                oTitle.textContent = '';
-                oText.textContent = '';
-            }, { once: true });
-            openId = null;
-            lockScroll(false);
+        const cleanupOnTransitionEnd = (el, fn) => {
+            let done = false;
+            const finish = () => { if (done) return; done = true; fn(); };
+            el.addEventListener('transitionend', finish, { once: true });
+            // Fallback in case transitionend doesn’t fire (e.g., reduced motion)
+            setTimeout(finish, 350);
         };
 
-        backdrop.addEventListener('click', close);
-        overlay.addEventListener('click', close);
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+        // Backdrop
+        const backdrop = document.createElement('div');
+        backdrop.className = 'hobby-backdrop';
 
-        // small movement threshold so swipes don’t trigger taps
-        const MOVE_TOL = 10;
-        cards.forEach(card => {
-            let startX = 0, startY = 0, moved = false;
+        // Modal
+        const modal = document.createElement('div');
+        modal.className = 'hobby-overlay';
+        modal.setAttribute('data-hobby', card.dataset.hobby || '');
 
-            const onDown = (e) => {
-                moved = false;
-                const pt = e.touches?.[0] || e;
-                startX = pt.clientX; startY = pt.clientY;
-            };
-            const onMove = (e) => {
-                const pt = e.touches?.[0] || e;
-                if (Math.abs(pt.clientX - startX) > MOVE_TOL || Math.abs(pt.clientY - startY) > MOVE_TOL) moved = true;
-            };
-            const onUp = async () => {
-                if (moved) return;
-
-                const id = card.dataset.hobby || cards.indexOf(card);
-
-                // toggle off if same one
-                if (openId === id) { close(); return; }
-                if (openId != null) close();
-
-                // fill overlay content (title/text are cloned once into static nodes)
-                const srcImg = card.querySelector('img');
-                const title = card.querySelector('h4');
-                const text = card.querySelector('p');
-
-                oTitle.textContent = title ? title.textContent : '';
-                oText.textContent = text ? text.textContent : '';
-
-                // choose predecoded URL if we have it
-                const url = (srcImg && (decodedURL.get(card) || srcImg.currentSrc || srcImg.src)) || '';
-
-                // set image src first; if not decoded yet, wait up to ~50ms then show anyway
-                if (url) oImg.src = url;
-
-                // force initial styles to stick (opacity:0)
-                // eslint-disable-next-line no-unused-expressions
-                backdrop.offsetWidth; overlay.offsetWidth;
-
-                backdrop.classList.add('show');
-                overlay.classList.add('show');
-
-                // lock scroll right after we’ve kicked the fade, so no pre-fade jump
-                requestAnimationFrame(() => lockScroll(true));
-
-                // try to sync the image decode so the fade looks uniform
-                try {
-                    const controller = new AbortController();
-                    const timeout = setTimeout(() => controller.abort(), 50);
-                    await (oImg.decode?.() || Promise.resolve());
-                    clearTimeout(timeout);
-                } catch { /* ignore */ }
-
-                openId = id;
-            };
-
-            // Pointer events where available
-            if (window.PointerEvent) {
-                card.addEventListener('pointerdown', onDown, { passive: true });
-                card.addEventListener('pointermove', onMove, { passive: true });
-                card.addEventListener('pointerup', onUp, { passive: true });
-            } else {
-                card.addEventListener('touchstart', onDown, { passive: true });
-                card.addEventListener('touchmove', onMove, { passive: true });
-                card.addEventListener('touchend', onUp, { passive: true });
-                card.addEventListener('click', () => { if (!moved) onUp(); }, { passive: true });
-            }
-        });
-    })();
-
-    /* ╔══════════════════════════════════════════════════════════════════╗
-       ║ MODULE B — HOBBIES: Desktop/touch fallback (expand cards by tap) ║
-       ╚══════════════════════════════════════════════════════════════════╝ */
-    (function HobbiesDesktopClickFallback() {
-        // Scope to the desktop rail (NOT the mobile carousel).
-        const rail = document.querySelector('.hobbies-rail');
-        if (!rail) return;
-
-        // If the device actually supports hover with a fine pointer, we do nothing here.
-        const hasRealHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-        if (hasRealHover) {
-            // Safety: if something previously set .active, clear it to avoid “sticking”.
-            rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
-            return;
+        // Clone content (make image eager so it appears immediately)
+        const srcImg = card.querySelector('img');
+        if (srcImg) {
+            const img = srcImg.cloneNode(true);
+            img.removeAttribute('loading');
+            img.setAttribute('decoding', 'sync');
+            img.setAttribute('fetchpriority', 'high');
+            modal.appendChild(img);
         }
 
-        // Touch / no-hover fallback: clicking expands one card, tapping outside closes.
-        const cards = Array.from(rail.querySelectorAll('.rail-card'));
-        const clear = () => cards.forEach(c => c.classList.remove('active'));
+        // Content wrapper that does the smooth fade
+        const content = document.createElement('div');
+        content.className = 'hobby-content';
 
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                const wasActive = card.classList.contains('active');
-                clear();
-                if (!wasActive) card.classList.add('active'); // toggle on
-            }, { passive: true });
+        const h4 = card.querySelector('h4')?.cloneNode(true);
+        const p = card.querySelector('p')?.cloneNode(true);
+        if (h4) content.appendChild(h4);
+        if (p) content.appendChild(p);
+        modal.appendChild(content);
+
+        // Insert into DOM
+        document.body.append(backdrop, modal);
+
+        // Show instantly on first paint; re-enable transitions for closing
+        backdrop.style.transition = 'none';
+        modal.style.transition = 'none';
+
+        // Make visible immediately
+        backdrop.classList.add('show');
+        modal.classList.add('show');
+        // Kick off the content fade animation
+        content.classList.add('appear');
+
+        // Lock scroll after attaching elements
+        lockScroll(true);
+
+        // Next frame: restore transitions so closing fades out
+        requestAnimationFrame(() => {
+            backdrop.style.transition = '';
+            modal.style.transition = '';
         });
 
-        // Tap outside the rail to close
-        document.addEventListener('click', (e) => {
-            if (!rail.contains(e.target)) clear();
-        }, { passive: true });
-    })();
+        // Close logic
+        const close = () => {
+            if (!document.body.contains(modal)) return; // already cleaned up
+            backdrop.classList.remove('show');
+            modal.classList.remove('show');
 
-    // === View degree/certification ===
+            cleanupOnTransitionEnd(modal, () => {
+                backdrop.remove();
+                modal.remove();
+                lockScroll(false);
+            });
+        };
+
+        // Wire up closers
+        backdrop.addEventListener('click', close);
+        modal.addEventListener('request-close', close);
+        // Optional: tap anywhere on modal to close (remove if you want inner clicks inert)
+        modal.addEventListener('click', close);
+
+        // ESC to close
+        const onEsc = (e) => (e.key === 'Escape') && close();
+        document.addEventListener('keydown', onEsc, { once: true });
+
+        return close;
+    };
+
+    // ---- Mobile wiring: open overlay on tap ----
+    const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
+    if (!track) return;
+
+    // If you have .hit links inside cards, swallow navigation
+    track.querySelectorAll('.rail-card .hit').forEach(a => {
+        a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    });
+
+    const cards = Array.from(track.querySelectorAll('.rail-card'));
+    cards.forEach((card, idx) => {
+        card.addEventListener('click', () => {
+            // Toggle: if this card is already open, close it
+            const open = document.querySelector('.hobby-overlay');
+            if (open) {
+                const openId = open.getAttribute('data-hobby') || '';
+                const thisId = card.dataset.hobby || String(idx);
+                if (openId === thisId) {
+                    open.dispatchEvent(new CustomEvent('request-close', { bubbles: true }));
+                    return;
+                }
+                // Different one is open: close then open this
+                open.dispatchEvent(new CustomEvent('request-close', { bubbles: true }));
+                setTimeout(() => buildOverlay(card), 0);
+                return;
+            }
+            buildOverlay(card);
+        }, { passive: true });
+    });
+});
+
+
+/* ========================================================================== */
+/* 4) HOBBIES RAIL TOUCH FALLBACK (for no-hover devices on desktop rail)      */
+/*      - Click to expand a card within the rail (not the overlay)            */
+/* ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
+    const rail = document.querySelector('.hobbies-rail');
+    if (!rail) return;
+
+    // If we're on a real desktop pointer (hover + fine), rely on hover only.
+    const hasRealHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (hasRealHover) {
+        rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
+        return;
+    }
+
+    // Touch / no-hover devices: tap to toggle an active card in-rail
+    const cards = Array.from(rail.querySelectorAll('.rail-card'));
+    const clear = () => cards.forEach(c => c.classList.remove('active'));
+
+    cards.forEach(card => {
+        card.addEventListener('click', () => {
+            const wasActive = card.classList.contains('active');
+            clear();
+            if (!wasActive) card.classList.add('active');
+        }, { passive: true });
+    });
+
+    // Tap outside the rail to close
+    document.addEventListener('click', (e) => {
+        if (!rail.contains(e.target)) clear();
+    }, { passive: true });
+});
+
+
+/* ========================================================================== */
+/* 5) CERTIFICATE / DEGREE IMAGE ZOOM                                         */
+/* ========================================================================== */
+document.addEventListener("DOMContentLoaded", () => {
     const images = document.querySelectorAll(".certificate-row img");
+    if (!images.length) return;
+
     let isAnimating = false;
 
     images.forEach((img) => {
@@ -326,12 +333,10 @@ document.addEventListener("DOMContentLoaded", () => {
             backdrop.classList.add("zoom-backdrop");
             document.body.appendChild(backdrop);
 
-            // Placeholder
+            // Placeholder to prevent layout jump
             const placeholder = document.createElement("div");
             ["display", "verticalAlign", "marginTop", "marginRight", "marginBottom", "marginLeft"]
                 .forEach(prop => { placeholder.style[prop] = computed[prop]; });
-
-            // Lock size so layout doesn’t jump
             placeholder.style.width = rect.width + "px";
             placeholder.style.height = rect.height + "px";
             placeholder.style.flex = `0 0 ${rect.width}px`;
@@ -387,4 +392,4 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-}); // <<< this was missing
+});
