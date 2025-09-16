@@ -346,7 +346,7 @@
 
 /* When a card is 'active' because of a click, treat siblings like the non-hover state */
 .hobbies-rail.has-active .rail-card {
-    flex: 7 1 0;
+    flex: 1 1 0;
 }
 
 .hobbies-rail.has-active .rail-card.active {
@@ -360,6 +360,8 @@
 .hobbies-rail .rail-card.active>p {
     pointer-events: auto;
 }
+
+
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
