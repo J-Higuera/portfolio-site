@@ -140,127 +140,124 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// ========================================================================== 
-// 3) HOBBIES OVERLAY (Mobile): buildOverlay + click
-//      - Image is now inside .hobby-content so the FADE actually applies
-// ========================================================================== 
+// ==========================================================================
+// HOBBIES OVERLAY (Mobile): instant open, content-only fade-in,
+// panel/backdrop fade-out together (no black-square jump)
+// ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
-    // ---- Builder (self-contained) ----
+    // Build and show the overlay for a given card
     const buildOverlay = (card) => {
-        // If another overlay is open, request it to close first
-        const existing = document.querySelector('.hobby-overlay');
+        // Close any existing overlay first
+        const existing = document.querySelector(".hobby-overlay");
         if (existing) {
-            existing.dispatchEvent(new CustomEvent('request-close', { bubbles: true }));
+            existing.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
         }
 
-        // Helpers local to this function
+        // Helper: lock/unlock page scroll
         const lockScroll = (lock) => {
-            document.documentElement.classList.toggle('lock-scroll', lock);
-            document.body.classList.toggle('lock-scroll', lock);
-        };
-        const cleanupOnTransitionEnd = (el, fn) => {
-            let done = false;
-            const finish = () => { if (done) return; done = true; fn(); };
-            el.addEventListener('transitionend', finish, { once: true });
-            // Fallback in case transitionend doesn’t fire (e.g., reduced motion)
-            setTimeout(finish, 350);
+            document.documentElement.classList.toggle("lock-scroll", lock);
+            document.body.classList.toggle("lock-scroll", lock);
         };
 
-        // Backdrop
-        const backdrop = document.createElement('div');
-        backdrop.className = 'hobby-backdrop';
+        // Elements
+        const backdrop = document.createElement("div");
+        backdrop.className = "hobby-backdrop";
 
-        // Modal
-        const modal = document.createElement('div');
-        modal.className = 'hobby-overlay';
-        modal.setAttribute('data-hobby', card.dataset.hobby || '');
+        const modal = document.createElement("div");
+        modal.className = "hobby-overlay";
+        modal.setAttribute("data-hobby", card.dataset.hobby || "");
 
-        // Content wrapper that does the smooth fade (IMAGE MOVED INSIDE HERE)
-        const content = document.createElement('div');
-        content.className = 'hobby-content';
+        // Content wrapper that will fade IN (opacity only)
+        const content = document.createElement("div");
+        content.className = "hobby-content";
 
-        // Clone content (make image eager so it appears immediately, but it will fade with content)
-        const srcImg = card.querySelector('img');
+        // Clone image + text into content (so they fade together)
+        const srcImg = card.querySelector("img");
         if (srcImg) {
             const img = srcImg.cloneNode(true);
-            img.removeAttribute('loading');
-            img.setAttribute('decoding', 'sync');
-            img.setAttribute('fetchpriority', 'high');
-            content.appendChild(img);                 // << was modal.appendChild(img)
+            img.removeAttribute("loading");
+            img.setAttribute("decoding", "sync");
+            img.setAttribute("fetchpriority", "high");
+            content.appendChild(img);
         }
-
-        const h4 = card.querySelector('h4')?.cloneNode(true);
-        const p = card.querySelector('p')?.cloneNode(true);
+        const h4 = card.querySelector("h4")?.cloneNode(true);
+        const p = card.querySelector("p")?.cloneNode(true);
         if (h4) content.appendChild(h4);
         if (p) content.appendChild(p);
 
         modal.appendChild(content);
         document.body.append(backdrop, modal);
 
-        // Instant show for backdrop/overlay; content handles the visible fade
-        backdrop.style.transition = 'none';
-        modal.style.transition = 'none';
-        backdrop.classList.add('show');
-        modal.classList.add('show');
+        // Instant show for backdrop/overlay (disable their transitions for 1 paint)
+        backdrop.style.transition = "none";
+        modal.style.transition = "none";
 
-        // Kick off the content fade animation (affects image + text now)
-        content.classList.add('appear');
-
-        // Lock scroll after attaching elements
+        // Show: panel/backdrop visible; content will animate in
+        backdrop.classList.add("show");
+        modal.classList.add("show");
+        content.classList.add("appear"); // CSS keyframes control fade-in timing
         lockScroll(true);
 
-        // Next frame: restore transitions so closing fades out
+        // Re-enable transitions so closing fades out smoothly
         requestAnimationFrame(() => {
-            backdrop.style.transition = '';
-            modal.style.transition = '';
+            backdrop.style.transition = "";
+            modal.style.transition = "";
         });
 
-        // Close logic
+        // Close handler: ONLY fade out panel/backdrop by removing .show
         const close = () => {
-            if (!document.body.contains(modal)) return; // already cleaned up
-            backdrop.classList.remove('show');
-            modal.classList.remove('show');
+            if (!document.body.contains(modal)) return; // already removed
+            backdrop.classList.remove("show");
+            modal.classList.remove("show");
 
-            cleanupOnTransitionEnd(modal, () => {
+            // When the overlay's opacity transition ends, remove nodes & unlock scroll
+            const onEnd = () => {
                 backdrop.remove();
                 modal.remove();
                 lockScroll(false);
-            });
+            };
+            // Use transitionend with a safety timeout
+            let done = false;
+            const finish = () => { if (done) return; done = true; onEnd(); };
+            modal.addEventListener("transitionend", finish, { once: true });
+            setTimeout(finish, 800); // fallback if transitionend doesn’t fire
         };
 
-        // Wire up closers
-        backdrop.addEventListener('click', close);
-        modal.addEventListener('request-close', close);
-        // Optional: tap anywhere on modal to close (remove if you want inner clicks inert)
-        modal.addEventListener('click', close);
+        // Wire closers
+        backdrop.addEventListener("click", close);
+        modal.addEventListener("request-close", close);
+        // If you want clicks inside to NOT close, comment the next line:
+        modal.addEventListener("click", close);
 
         // ESC to close
-        const onEsc = (e) => (e.key === 'Escape') && close();
-        document.addEventListener('keydown', onEsc, { once: true });
+        const onEsc = (e) => (e.key === "Escape") && close();
+        document.addEventListener("keydown", onEsc, { once: true });
 
         return close;
     };
 
-    // ---- Mobile wiring: open overlay on tap ----
-    const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
+    // ---- Mobile wiring: open overlay on tap of a card ----
+    const track = document.querySelector(".about-hobbies-mobile .hobbies-carousel .track");
     if (!track) return;
 
-    track.querySelectorAll('.rail-card .hit').forEach(a => {
-        a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    // If you use .hit anchors inside cards, prevent navigation
+    track.querySelectorAll(".rail-card .hit").forEach(a => {
+        a.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
     });
 
-    const cards = Array.from(track.querySelectorAll('.rail-card'));
+    const cards = Array.from(track.querySelectorAll(".rail-card"));
     cards.forEach((card, idx) => {
-        card.addEventListener('click', () => {
-            const open = document.querySelector('.hobby-overlay');
+        card.addEventListener("click", () => {
+            const open = document.querySelector(".hobby-overlay");
             if (open) {
-                const openId = open.getAttribute('data-hobby') || '';
+                const openId = open.getAttribute("data-hobby") || "";
                 const thisId = card.dataset.hobby || String(idx);
                 if (openId === thisId) {
-                    open.dispatchEvent(new CustomEvent('request-close', { bubbles: true }));
+                    open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
                     return;
                 }
-                open.dispatchEvent(new CustomEvent('request-close', { bubbles: true }));
+                open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
+                // Let the old one start closing before opening the new one
                 setTimeout(() => buildOverlay(card), 0);
                 return;
             }

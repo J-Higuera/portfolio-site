@@ -472,74 +472,72 @@
         transform: none;
     }
 
+    /* Backdrop & panel fade smoothly using opacity only — no visibility toggles */
     .hobby-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, 0.601);
+        background: rgba(0, 0, 0, .65);
         opacity: 0;
-        visibility: hidden;
+        /* hidden but still present */
         pointer-events: none;
+        /* don't block clicks when hidden */
         transition: opacity 1s ease;
-        will-change: opacity;
+        /* fade in/out duration */
         z-index: 1001;
     }
 
     .hobby-backdrop.show {
         opacity: 1;
-        visibility: visible;
+        /* fade in */
         pointer-events: auto;
+        /* clickable only when visible */
     }
 
-    /* Overlay panel: slow fade (in & out) */
     .hobby-overlay {
         position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        /* panel positioning only; no animated transform */
+        /* positioning only */
         width: min(92vw, 560px);
         height: min(70vh, 560px);
         border-radius: 18px;
         overflow: hidden;
         background: #0a0f14;
-        /* base behind the image */
         box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
         opacity: 0;
-        /* start hidden */
-        transition: opacity .45s ease;
-        /* fade in/out */
+        /* hidden but present */
+        pointer-events: none;
+        /* don't trap clicks when hidden */
+        transition: opacity 1s ease;
+        /* fade in/out duration */
         z-index: 1002;
-        contain: paint;
     }
 
     .hobby-overlay.show {
         opacity: 1;
+        /* fade in */
+        pointer-events: auto;
     }
 
-    /* Content wrapper fills the panel and fades (NO transform) */
+    /* Content fades IN only (keep this as you had it) */
     .hobby-content {
         position: absolute;
         inset: 0;
         opacity: 0;
-        /* start hidden */
         display: grid;
-        /* center the main text */
         place-items: center;
-        /* vertical + horizontal center */
         will-change: opacity;
     }
 
-    /* Dim layer to restore the original “transparent dark” look */
     .hobby-content::before {
         content: "";
         position: absolute;
         inset: 0;
         background: rgba(0, 15, 20, .58);
-        /* your original dim */
         z-index: 1;
     }
 
-    /* Image sits behind the dim layer */
     .hobby-content>img {
         position: absolute;
         inset: 0;
@@ -549,7 +547,6 @@
         z-index: 0;
     }
 
-    /* Heading at the top-left, above the dim */
     .hobby-content>h4 {
         position: absolute;
         top: .4rem;
@@ -562,7 +559,6 @@
         margin: 0;
     }
 
-    /* Main paragraph centered, above the dim */
     .hobby-content>p {
         position: relative;
         z-index: 2;
@@ -573,10 +569,8 @@
         text-align: center;
     }
 
-    /* Fade-in for content (opacity only) */
     .hobby-content.appear {
-        animation: hobbyContentFade .45s ease-in-out forwards;
-        /* tweak duration here */
+        animation: hobbyContentFade 1s ease forwards;
     }
 
     @keyframes hobbyContentFade {
@@ -589,19 +583,9 @@
         }
     }
 
-    /* Smooth fade-out without jump:
-     when the panel loses .show, content also fades to 0 via transition */
-    .hobby-overlay:not(.show) .hobby-content {
-        animation: none;
-        /* stop any running fade-in */
-        transition: opacity .45s ease;
-        /* fade OUT */
-        opacity: 0;
-    }
+    /* IMPORTANT: do NOT fade content on close. Remove any
+   .hobby-overlay:not(.show) .hobby-content { opacity: 0; ... } rules */
 
-    .lock-scroll {
-        overflow: hidden !important;
-    }
 }
 
 
