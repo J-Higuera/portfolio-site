@@ -132,101 +132,79 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ╔══════════════════════════════════════════════════════════════════╗
        ║ MODULE A — HOBBIES: Mobile overlay (carousel thumbnails → modal) ║
        ╚══════════════════════════════════════════════════════════════════╝ */
-    (function HobbiesMobileOverlay() {
+    // ==== About section Hobbies Cards (MOBILE OVERLAY — no blink) =================
+    (() => {
         const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
         if (!track) return;
 
         const cards = [...track.querySelectorAll('.rail-card')];
-        let openId = null;                         // which overlay (if any) is open
-        const MOVE_TOL = 10;                         // px: tolerance to treat as swipe
+        let openId = null;
 
         // Let taps through if you have .hit anchors on the cards.
         track.querySelectorAll('.rail-card .hit').forEach(a => {
             a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
         });
 
+        // ---------- build once: backdrop + overlay shell ----------
+        const backdrop = document.createElement('div');
+        backdrop.className = 'hobby-backdrop';
+
+        const overlay = document.createElement('div');
+        overlay.className = 'hobby-overlay';
+
+        // inner structure so text & image fade together
+        const oImg = new Image();
+        const oTitle = document.createElement('h4');
+        const oText = document.createElement('p');
+
+        // keep these elements stable to avoid layout/paint thrash
+        overlay.append(oImg, oTitle, oText);
+        document.body.append(backdrop, overlay);
+
+        // scroll lock helper (do after we start the fade to dodge a pre-fade reflow)
         const lockScroll = (lock) => {
             document.documentElement.classList.toggle('lock-scroll', lock);
             document.body.classList.toggle('lock-scroll', lock);
         };
 
-        /* ---- Predecode: warm up all card images once (background) ---- */
-        const decodedSrc = new Map(); // card -> url string
+        // ---------- predecode all thumbnail images in the background ----------
+        const decodedURL = new Map();   // card -> decoded URL string
+        const decodeURL = (url) => new Promise((res) => {
+            const i = new Image();
+            i.decoding = 'async';
+            i.loading = 'eager';
+            i.src = url;
+            (i.decode?.() || Promise.resolve()).catch(() => { }).finally(res);
+        });
+
         cards.forEach(card => {
             const img = card.querySelector('img');
             if (!img) return;
             const url = img.currentSrc || img.src;
-            if (!url || decodedSrc.has(card)) return;
-
-            const pre = new Image();
-            pre.decoding = 'async';
-            pre.loading = 'eager';
-            pre.fetchPriority = 'low'; // hint only
-            pre.src = url;
-            pre.decode?.().catch(() => { }).finally(() => {
-                decodedSrc.set(card, url);
-            });
+            if (!url || decodedURL.has(card)) return;
+            decodeURL(url).then(() => decodedURL.set(card, url));
         });
 
-        /* ---- Build + show overlay (duplicate content; fade in) ---- */
-        const buildOverlay = (card) => {
-            // Backdrop
-            const backdrop = document.createElement('div');
-            backdrop.className = 'hobby-backdrop';
-
-            // Modal
-            const modal = document.createElement('div');
-            modal.className = 'hobby-overlay';
-            modal.setAttribute('data-hobby', card.dataset.hobby || '');
-
-            // Image (use predecoded URL if we have it)
-            const srcImg = card.querySelector('img');
-            if (srcImg) {
-                const url = decodedSrc.get(card) || srcImg.currentSrc || srcImg.src;
-                const img = new Image();
-                img.src = url;
-                img.decoding = 'async';   // don’t block a frame
-                img.loading = 'eager';
-                img.fetchPriority = 'high';
-                modal.appendChild(img);
-            }
-
-            // Title + text
-            const h4 = card.querySelector('h4')?.cloneNode(true);
-            const p = card.querySelector('p')?.cloneNode(true);
-            if (h4) modal.appendChild(h4);
-            if (p) modal.appendChild(p);
-
-            // Attach to DOM
-            document.body.append(backdrop, modal);
-
-            // Commit initial styles (opacity:0), then flip to .show immediately
-            // so the fade begins in this same task.
-            // eslint-disable-next-line no-unused-expressions
-            backdrop.offsetWidth; modal.offsetWidth;
-            backdrop.classList.add('show');
-            modal.classList.add('show');
-
-            const close = () => {
-                backdrop.classList.remove('show');
-                modal.classList.remove('show');
-                modal.addEventListener('transitionend', () => {
-                    backdrop.remove();
-                    modal.remove();
-                }, { once: true });
-                openId = null;
-                lockScroll(false);
-            };
-
-            backdrop.addEventListener('click', close);
-            modal.addEventListener('click', close);
-            const onEsc = (e) => (e.key === 'Escape') && close();
-            document.addEventListener('keydown', onEsc, { once: true });
-
-            return close;
+        // ---------- open/close ----------
+        const close = () => {
+            backdrop.classList.remove('show');
+            overlay.classList.remove('show');
+            overlay.addEventListener('transitionend', () => {
+                // clear content to keep memory low, but keep nodes mounted
+                oImg.removeAttribute('src');
+                oTitle.textContent = '';
+                oText.textContent = '';
+            }, { once: true });
+            openId = null;
+            lockScroll(false);
         };
 
-        /* ---- Tap logic with small movement threshold ---- */
+        backdrop.addEventListener('click', close);
+        overlay.addEventListener('click', close);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') close(); });
+
+        // small movement threshold so swipes don’t trigger taps
+        const MOVE_TOL = 10;
         cards.forEach(card => {
             let startX = 0, startY = 0, moved = false;
 
@@ -235,32 +213,55 @@ document.addEventListener("DOMContentLoaded", () => {
                 const pt = e.touches?.[0] || e;
                 startX = pt.clientX; startY = pt.clientY;
             };
-
             const onMove = (e) => {
                 const pt = e.touches?.[0] || e;
-                if (Math.abs(pt.clientX - startX) > MOVE_TOL || Math.abs(pt.clientY - startY) > MOVE_TOL) {
-                    moved = true;
-                }
+                if (Math.abs(pt.clientX - startX) > MOVE_TOL || Math.abs(pt.clientY - startY) > MOVE_TOL) moved = true;
             };
+            const onUp = async () => {
+                if (moved) return;
 
-            const onUp = (e) => {
-                if (moved) return; // it was a swipe/scroll, not a tap
                 const id = card.dataset.hobby || cards.indexOf(card);
 
-                if (openId === id) {
-                    document.querySelector('.hobby-backdrop')?.click(); // close same one
-                    return;
-                }
-                if (openId != null) {
-                    document.querySelector('.hobby-backdrop')?.click(); // close previous
-                }
+                // toggle off if same one
+                if (openId === id) { close(); return; }
+                if (openId != null) close();
 
-                lockScroll(true);
+                // fill overlay content (title/text are cloned once into static nodes)
+                const srcImg = card.querySelector('img');
+                const title = card.querySelector('h4');
+                const text = card.querySelector('p');
+
+                oTitle.textContent = title ? title.textContent : '';
+                oText.textContent = text ? text.textContent : '';
+
+                // choose predecoded URL if we have it
+                const url = (srcImg && (decodedURL.get(card) || srcImg.currentSrc || srcImg.src)) || '';
+
+                // set image src first; if not decoded yet, wait up to ~50ms then show anyway
+                if (url) oImg.src = url;
+
+                // force initial styles to stick (opacity:0)
+                // eslint-disable-next-line no-unused-expressions
+                backdrop.offsetWidth; overlay.offsetWidth;
+
+                backdrop.classList.add('show');
+                overlay.classList.add('show');
+
+                // lock scroll right after we’ve kicked the fade, so no pre-fade jump
+                requestAnimationFrame(() => lockScroll(true));
+
+                // try to sync the image decode so the fade looks uniform
+                try {
+                    const controller = new AbortController();
+                    const timeout = setTimeout(() => controller.abort(), 50);
+                    await (oImg.decode?.() || Promise.resolve());
+                    clearTimeout(timeout);
+                } catch { /* ignore */ }
+
                 openId = id;
-                buildOverlay(card);
             };
 
-            // Pointer events where available; fallback to touch/click
+            // Pointer events where available
             if (window.PointerEvent) {
                 card.addEventListener('pointerdown', onDown, { passive: true });
                 card.addEventListener('pointermove', onMove, { passive: true });
@@ -269,12 +270,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.addEventListener('touchstart', onDown, { passive: true });
                 card.addEventListener('touchmove', onMove, { passive: true });
                 card.addEventListener('touchend', onUp, { passive: true });
-                // Desktop fallback
-                card.addEventListener('click', (e) => { moved ? e.preventDefault() : onUp(e); }, { passive: true });
+                card.addEventListener('click', () => { if (!moved) onUp(); }, { passive: true });
             }
         });
     })();
-
 
     /* ╔══════════════════════════════════════════════════════════════════╗
        ║ MODULE B — HOBBIES: Desktop/touch fallback (expand cards by tap) ║

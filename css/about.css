@@ -625,6 +625,102 @@
     }
 }
 
+@media (max-width: 720px) {
+
+    .hobby-backdrop,
+    .hobby-overlay,
+    .hobby-overlay img,
+    .hobby-overlay h4,
+    .hobby-overlay p {
+        will-change: opacity;
+    }
+
+    .hobby-backdrop {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, .45);
+        /* keep this off unless you *really* want it; it hurts perf on mobile */
+        /* backdrop-filter: blur(2px); */
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .18s ease;
+        z-index: 999;
+    }
+
+    .hobby-backdrop.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .hobby-overlay {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: min(92vw, 560px);
+        height: min(70vh, 560px);
+        border-radius: 18px;
+        overflow: hidden;
+        isolation: isolate;
+        background: #0a0f14;
+        box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity .18s ease;
+        z-index: 1000;
+    }
+
+    .hobby-overlay.show {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .hobby-overlay img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* ensure the image is ready to paint ASAP */
+        image-rendering: auto;
+    }
+
+    .hobby-overlay h4 {
+        position: relative;
+        z-index: 2;
+        display: inline-block;
+        margin-top: .4rem;
+        left: .4rem;
+        padding: .5rem .6rem;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, .55);
+        font: 800 .85rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+    }
+
+    .hobby-overlay p {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        margin: 0;
+        padding: 1.1rem;
+        color: #e9f7fb;
+        background: rgba(0, 15, 20, .58);
+        font-size: .96rem;
+        z-index: 2;
+    }
+
+    /* avoid pre-fade jump from scrollbars disappearing */
+    .lock-scroll {
+        overflow: hidden !important;
+    }
+}
+
+
 
 @media (hover: hover) and (pointer: fine) {
     .resume-button:hover {
