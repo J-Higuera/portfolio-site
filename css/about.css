@@ -391,7 +391,8 @@
         scroll-padding-inline: 12px;
         position: relative;
         scrollbar-width: none;
-        touch-action: pan-x;
+        touch-action: auto;
+        overscroll-behavior-inline: contain;
     }
 
     .about-hobbies-mobile .hobbies-carousel .track::-webkit-scrollbar {
