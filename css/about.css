@@ -327,7 +327,7 @@
 
     .hobbies-rail .rail-card:hover,
     .hobbies-rail .rail-card:focus-within {
-        flex: 7 1 0;
+        flex: 2.5 1 0;
     }
 
     .hobbies-rail .rail-card:not(:hover):not(:focus-within) {
@@ -344,25 +344,21 @@
     }
 }
 
-/* Grow when clicked/tapped */
+
+/* Tablet responsive for desktop cards*/
 .hobbies-rail .rail-card.active {
     flex: 7 1 0;
-    /* was 1 0 — that’s why it didn’t grow */
     box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
 }
 
-/* When a card is active via click, make siblings small */
 .hobbies-rail.has-active .rail-card {
     flex: 1 1 0;
-    /* all siblings */
 }
 
 .hobbies-rail.has-active .rail-card.active {
     flex: 7 1 0;
-    /* keep the active card big */
 }
 
-/* Show the text overlay only when active */
 .hobbies-rail .rail-card>p {
     pointer-events: none;
 }
@@ -386,6 +382,49 @@
     .rail-card>p {
         transform: none;
         transition: opacity .45s linear;
+    }
+}
+
+@media (max-width: 1400px) {
+
+    .hobbies-rail .rail-card:hover,
+    .hobbies-rail .rail-card:focus-within {
+        flex: 3.5 1 0;
+    }
+
+    .hobbies-rail .rail-card:not(:hover):not(:focus-within) {
+        flex: 1 1 0;
+    }
+
+    .rail-card:is(:hover, :focus-within)>p {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .rail-card:hover {
+        box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
+    }
+}
+
+
+@media (max-width: 1050px) {
+
+    .hobbies-rail .rail-card:hover,
+    .hobbies-rail .rail-card:focus-within {
+        flex: 10 1 0;
+    }
+
+    .hobbies-rail .rail-card:not(:hover):not(:focus-within) {
+        flex: 1 1 0;
+    }
+
+    .rail-card:is(:hover, :focus-within)>p {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .rail-card:hover {
+        box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
     }
 }
 
