@@ -141,19 +141,40 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 // ==========================================================================
-// HOBBIES OVERLAY (Mobile): instant open, content-only fade-in,
-// panel/backdrop fade-out together (no black-square jump)
+// HOBBIES OVERLAY (Mobile) — no image blink:
+// - Preload & decode all carousel images on DOM ready
+// - Overlay clones the exact chosen candidate (currentSrc) for instant paint
+// - Content fades in; panel/backdrop fade out together (no black-square jump)
 // ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
-    // Build and show the overlay for a given card
+    // --- 1) Preload & decode every hobby image so overlay paints instantly ---
+    const preloadHobbyImages = async () => {
+        const imgs = document.querySelectorAll(".about-hobbies-mobile .hobbies-carousel .rail-card img");
+        imgs.forEach((el) => {
+            // Pick the exact resource the browser already chose for this viewport
+            const url = el.currentSrc || el.src;
+            if (!url) return;
+
+            // Warm HTTP cache & decode into the image decode cache
+            const pre = new Image();
+            pre.src = url;
+            pre.decoding = "async";          // don't block main thread
+            pre.fetchPriority = "low";       // avoid competing with critical resources
+            // Fire and forget; decode resolves instantly if already decoded
+            pre.decode?.().catch(() => { });
+        });
+    };
+    preloadHobbyImages();
+
+    // --- 2) Builder: show overlay for a given card (no image delay/blink) ---
     const buildOverlay = (card) => {
-        // Close any existing overlay first
+        // Close any existing overlay first (so transitions don't overlap)
         const existing = document.querySelector(".hobby-overlay");
         if (existing) {
             existing.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
         }
 
-        // Helper: lock/unlock page scroll
+        // Helpers
         const lockScroll = (lock) => {
             document.documentElement.classList.toggle("lock-scroll", lock);
             document.body.classList.toggle("lock-scroll", lock);
@@ -167,19 +188,31 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.className = "hobby-overlay";
         modal.setAttribute("data-hobby", card.dataset.hobby || "");
 
-        // Content wrapper that will fade IN (opacity only)
         const content = document.createElement("div");
         content.className = "hobby-content";
 
-        // Clone image + text into content (so they fade together)
+        // --- Clone the exact same image candidate the card is currently displaying ---
         const srcImg = card.querySelector("img");
         if (srcImg) {
-            const img = srcImg.cloneNode(true);
-            img.removeAttribute("loading");
-            img.setAttribute("decoding", "sync");
-            img.setAttribute("fetchpriority", "high");
+            const img = document.createElement("img");
+
+            // Use the exact chosen resource to guarantee cache hit & avoid re-evaluation
+            const chosen = srcImg.currentSrc || srcImg.src;
+            img.src = chosen;
+
+            // Preserve attributes that might affect rendering
+            if (srcImg.referrerPolicy) img.referrerPolicy = srcImg.referrerPolicy;
+            if (srcImg.crossOrigin) img.crossOrigin = srcImg.crossOrigin;
+
+            // Prefer async decode to avoid blocking; we already pre-decoded above
+            img.decoding = "async";
+            img.fetchPriority = "high"; // now that we're opening overlay, prioritize this paint
+
+            // Append immediately — if decoded, it paints this frame; if not, the dim layer hides any micro-lag
             content.appendChild(img);
         }
+
+        // Title & text
         const h4 = card.querySelector("h4")?.cloneNode(true);
         const p = card.querySelector("p")?.cloneNode(true);
         if (h4) content.appendChild(h4);
@@ -192,10 +225,10 @@ document.addEventListener("DOMContentLoaded", () => {
         backdrop.style.transition = "none";
         modal.style.transition = "none";
 
-        // Show: panel/backdrop visible; content will animate in
+        // Show: panel/backdrop visible; content fades in (opacity only)
         backdrop.classList.add("show");
         modal.classList.add("show");
-        content.classList.add("appear"); // CSS keyframes control fade-in timing
+        content.classList.add("appear");
         lockScroll(true);
 
         // Re-enable transitions so closing fades out smoothly
@@ -210,23 +243,23 @@ document.addEventListener("DOMContentLoaded", () => {
             backdrop.classList.remove("show");
             modal.classList.remove("show");
 
-            // When the overlay's opacity transition ends, remove nodes & unlock scroll
-            const onEnd = () => {
+            // After overlay transition completes, cleanup
+            let done = false;
+            const finish = () => {
+                if (done) return;
+                done = true;
                 backdrop.remove();
                 modal.remove();
                 lockScroll(false);
             };
-            // Use transitionend with a safety timeout
-            let done = false;
-            const finish = () => { if (done) return; done = true; onEnd(); };
             modal.addEventListener("transitionend", finish, { once: true });
-            setTimeout(finish, 800); // fallback if transitionend doesn’t fire
+            setTimeout(finish, 1600); // safety: slightly > your overlay transition
         };
 
         // Wire closers
         backdrop.addEventListener("click", close);
         modal.addEventListener("request-close", close);
-        // If you want clicks inside to NOT close, comment the next line:
+        // Tap anywhere to close (remove this if you want interior clicks to do nothing)
         modal.addEventListener("click", close);
 
         // ESC to close
@@ -236,11 +269,11 @@ document.addEventListener("DOMContentLoaded", () => {
         return close;
     };
 
-    // ---- Mobile wiring: open overlay on tap of a card ----
+    // --- 3) Mobile wiring: open overlay on tap ---
     const track = document.querySelector(".about-hobbies-mobile .hobbies-carousel .track");
     if (!track) return;
 
-    // If you use .hit anchors inside cards, prevent navigation
+    // If you have .hit anchors inside cards, prevent navigation
     track.querySelectorAll(".rail-card .hit").forEach(a => {
         a.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
     });
@@ -257,7 +290,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     return;
                 }
                 open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
-                // Let the old one start closing before opening the new one
                 setTimeout(() => buildOverlay(card), 0);
                 return;
             }
@@ -265,6 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     });
 });
+
 
 // ========================================================================== 
 // 4) HOBBIES RAIL TOUCH FALLBACK (for no-hover devices on desktop rail)      
