@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==== About section Hobbies Cards ============
-    // ==== About section Hobbies Cards (mobile overlay, instant fade) ==========
+    // ==== About section Hobbies Cards (mobile overlay, instant + predecoded) ====
     (() => {
         const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
         if (!track) return;
@@ -148,6 +148,26 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.toggle('lock-scroll', lock);
         };
 
+        // ---- Predecode all card images once (background warm-up) ----
+        const decodedSrc = new Map(); // card -> url string
+        cards.forEach(card => {
+            const img = card.querySelector('img');
+            if (!img) return;
+            const url = img.currentSrc || img.src;
+            if (!url || decodedSrc.has(card)) return;
+
+            const pre = new Image();
+            pre.decoding = 'async';
+            pre.loading = 'eager';
+            // fetchPriority is a hint only; browsers may ignore it
+            pre.fetchPriority = 'low';
+            pre.src = url;
+            // Even if decode rejects, we still have a cached URL.
+            pre.decode?.().catch(() => { }).finally(() => {
+                decodedSrc.set(card, url);
+            });
+        });
+
         const buildOverlay = (card) => {
             // Backdrop
             const backdrop = document.createElement('div');
@@ -158,15 +178,19 @@ document.addEventListener("DOMContentLoaded", () => {
             modal.className = 'hobby-overlay';
             modal.setAttribute('data-hobby', card.dataset.hobby || '');
 
-            // Clone content (make image eager so it appears immediately)
+            // Image (use predecoded URL if we have it)
             const srcImg = card.querySelector('img');
             if (srcImg) {
-                const img = srcImg.cloneNode(true);
-                img.removeAttribute('loading');
-                img.setAttribute('decoding', 'sync');
-                img.setAttribute('fetchpriority', 'high');
+                const url = decodedSrc.get(card) || srcImg.currentSrc || srcImg.src;
+                const img = new Image();
+                img.src = url;
+                img.decoding = 'sync';
+                img.loading = 'eager';
+                img.fetchPriority = 'high';
                 modal.appendChild(img);
             }
+
+            // Title + text
             const h4 = card.querySelector('h4')?.cloneNode(true);
             const p = card.querySelector('p')?.cloneNode(true);
             if (h4) modal.appendChild(h4);
@@ -174,8 +198,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.body.append(backdrop, modal);
 
-            // Commit initial styles (opacity:0), then flip to .show in the same tick.
-            // This forces the transition to start immediately (no RAF needed).
+            // Commit initial style (opacity:0) and flip to .show immediately
+            // so the fade starts in the same task.
             // eslint-disable-next-line no-unused-expressions
             backdrop.offsetWidth; modal.offsetWidth;
             backdrop.classList.add('show');
@@ -200,27 +224,56 @@ document.addEventListener("DOMContentLoaded", () => {
             return close;
         };
 
-        // Tap a small card to open overlay
+        // ---- Open on pointerup with a small movement threshold ----
+        const MOVE_TOL = 10; // px: treat as a swipe if you move more than this
         cards.forEach(card => {
-            card.addEventListener('click', () => {
+            let startX = 0, startY = 0, moved = false;
+
+            const onDown = (e) => {
+                moved = false;
+                const pt = e.touches?.[0] || e;
+                startX = pt.clientX; startY = pt.clientY;
+            };
+
+            const onMove = (e) => {
+                const pt = e.touches?.[0] || e;
+                if (Math.abs(pt.clientX - startX) > MOVE_TOL || Math.abs(pt.clientY - startY) > MOVE_TOL) {
+                    moved = true;
+                }
+            };
+
+            const onUp = (e) => {
+                if (moved) return; // it was a swipe/scroll, not a tap
                 const id = card.dataset.hobby || cards.indexOf(card);
 
-                // If the same one is open, close by simulating a backdrop click.
                 if (openId === id) {
                     document.querySelector('.hobby-backdrop')?.click();
                     return;
                 }
-                // If another is open, close it first.
                 if (openId != null) {
                     document.querySelector('.hobby-backdrop')?.click();
                 }
 
                 lockScroll(true);
                 openId = id;
-                buildOverlay(card); // << overlays now fade in instantly
-            }, { passive: true });
+                buildOverlay(card);
+            };
+
+            // Use pointer events where available; fall back to touch/click.
+            if (window.PointerEvent) {
+                card.addEventListener('pointerdown', onDown, { passive: true });
+                card.addEventListener('pointermove', onMove, { passive: true });
+                card.addEventListener('pointerup', onUp, { passive: true });
+            } else {
+                card.addEventListener('touchstart', onDown, { passive: true });
+                card.addEventListener('touchmove', onMove, { passive: true });
+                card.addEventListener('touchend', onUp, { passive: true });
+                // Desktop fallback
+                card.addEventListener('click', (e) => { moved ? e.preventDefault() : onUp(e); }, { passive: true });
+            }
         });
     })();
+
 
     // === Hobbies rail: click fallback only when hover isn't available ===
     (() => {
