@@ -130,86 +130,65 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==== About section Hobbies Cards ============
-    (() => {
-        const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
-        if (!track) return;
+    const buildOverlay = (card) => {
+        // backdrop
+        const backdrop = document.createElement('div');
+        backdrop.className = 'hobby-backdrop';
 
-        const cards = [...track.querySelectorAll('.rail-card')];
-        let openId = null; // currently open card id
+        // modal
+        const modal = document.createElement('div');
+        modal.className = 'hobby-overlay';
+        modal.setAttribute('data-hobby', card.dataset.hobby || '');
 
-        // prevent full-cover anchors from hijacking taps (if present)
-        track.querySelectorAll('.rail-card .hit').forEach(a => {
-            a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
-        });
+        // clone essential bits, but ensure the image is eager
+        const srcImg = card.querySelector('img');
+        if (srcImg) {
+            const img = srcImg.cloneNode(true);
+            img.removeAttribute('loading');          // don't keep lazy
+            img.setAttribute('decoding', 'sync');    // decode ASAP
+            img.setAttribute('fetchpriority', 'high');
+            modal.appendChild(img);
+        }
+        const h4 = card.querySelector('h4')?.cloneNode(true);
+        const p = card.querySelector('p')?.cloneNode(true);
+        if (h4) modal.appendChild(h4);
+        if (p) modal.appendChild(p);
 
-        const lockScroll = (lock) => {
-            document.documentElement.classList.toggle('lock-scroll', lock);
-            document.body.classList.toggle('lock-scroll', lock);
+        document.body.append(backdrop, modal);
+
+        // Start transition in the SAME task (no RAF).
+        // Force a reflow so the initial opacity:0 is committed,
+        // then add .show and let CSS fade immediately.
+        // eslint-disable-next-line no-unused-expressions
+        backdrop.offsetWidth; modal.offsetWidth;
+
+        backdrop.classList.add('show');
+        modal.classList.add('show');
+
+        const close = () => {
+            backdrop.classList.remove('show');
+            modal.classList.remove('show');
+            modal.addEventListener('transitionend', () => {
+                backdrop.remove();
+                modal.remove();
+            }, { once: true });
+            openId = null;
+            lockScroll(false);
         };
 
-        const buildOverlay = (card) => {
-            const backdrop = document.createElement('div');
-            backdrop.className = 'hobby-backdrop';
+        backdrop.addEventListener('click', close);
+        modal.addEventListener('click', close);
+        const onEsc = (e) => (e.key === 'Escape') && close();
+        document.addEventListener('keydown', onEsc, { once: true });
 
-            const modal = document.createElement('div');
-            modal.className = 'hobby-overlay';
-            modal.setAttribute('data-hobby', card.dataset.hobby || '');
+        return close;
+    };
 
-            // clone essential bits
-            const img = card.querySelector('img')?.cloneNode(true);
-            const h4 = card.querySelector('h4')?.cloneNode(true);
-            const p = card.querySelector('p')?.cloneNode(true);
+    // where you open it:
+    lockScroll(true);
+    openId = id;
+    buildOverlay(card); // ← keep as-is; now fades immediately
 
-            if (img) modal.appendChild(img);
-            if (h4) modal.appendChild(h4);
-            if (p) modal.appendChild(p);
-
-            document.body.append(backdrop, modal);
-
-            requestAnimationFrame(() => {
-                backdrop.classList.add('show');
-                modal.classList.add('show');
-            });
-
-            const close = () => {
-                backdrop.classList.remove('show');
-                modal.classList.remove('show');
-                modal.addEventListener('transitionend', () => {
-                    backdrop.remove();
-                    modal.remove();
-                }, { once: true });
-                openId = null;
-                lockScroll(false);
-            };
-
-            backdrop.addEventListener('click', close);
-            modal.addEventListener('click', close);
-            const onEsc = (e) => (e.key === 'Escape') && close();
-            document.addEventListener('keydown', onEsc, { once: true });
-
-            return close;
-        };
-
-        // tap small card
-        cards.forEach(card => {
-            card.addEventListener('click', () => {
-                const id = card.dataset.hobby || cards.indexOf(card);
-                // toggle behavior: if same one open, close
-                if (openId === id) {
-                    document.querySelector('.hobby-backdrop')?.click();
-                    return;
-                }
-                // if another is open, close it first
-                if (openId != null) {
-                    document.querySelector('.hobby-backdrop')?.click();
-                }
-
-                lockScroll(true);
-                openId = id;
-                buildOverlay(card);
-            }, { passive: true });
-        });
-    })();
 
     // === Hobbies rail: click fallback only when hover isn't available ===
     (() => {

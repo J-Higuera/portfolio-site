@@ -470,20 +470,31 @@
         position: fixed;
         inset: 0;
         background: rgba(0, 0, 0, .45);
-        backdrop-filter: blur(2px);
+        backdrop-filter: none;
         opacity: 0;
-        transition: opacity .2s ease;
+        visibility: hidden;
+        /* new */
+        pointer-events: none;
+        transition: opacity .14s ease;
+        will-change: opacity;
         z-index: 999;
     }
 
-    .hobby-backdrop.show {
+    .hobby-backdrop.show,
+    .hobby-overlay.show {
         opacity: 1;
+        visibility: visible;
+        /* new */
+        pointer-events: auto;
+        /* new */
     }
+
 
     .hobby-overlay {
         position: fixed;
         top: 50%;
         left: 50%;
+        contain: paint;
         transform: translate(-50%, -50%);
         width: min(92vw, 560px);
         height: min(70vh, 560px);
@@ -495,10 +506,6 @@
         opacity: 0;
         transition: opacity .2s ease;
         z-index: 1000;
-    }
-
-    .hobby-overlay.show {
-        opacity: 1;
     }
 
     .hobby-overlay img {
