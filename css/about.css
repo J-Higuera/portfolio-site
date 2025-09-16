@@ -473,7 +473,6 @@
         backdrop-filter: none;
         opacity: 0;
         visibility: hidden;
-        /* new */
         pointer-events: none;
         transition: opacity .14s ease;
         will-change: opacity;
@@ -484,9 +483,7 @@
     .hobby-overlay.show {
         opacity: 1;
         visibility: visible;
-        /* new */
         pointer-events: auto;
-        /* new */
     }
 
 

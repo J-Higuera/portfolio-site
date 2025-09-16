@@ -130,65 +130,97 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ==== About section Hobbies Cards ============
-    const buildOverlay = (card) => {
-        // backdrop
-        const backdrop = document.createElement('div');
-        backdrop.className = 'hobby-backdrop';
+    // ==== About section Hobbies Cards (mobile overlay, instant fade) ==========
+    (() => {
+        const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
+        if (!track) return;
 
-        // modal
-        const modal = document.createElement('div');
-        modal.className = 'hobby-overlay';
-        modal.setAttribute('data-hobby', card.dataset.hobby || '');
+        const cards = [...track.querySelectorAll('.rail-card')];
+        let openId = null;
 
-        // clone essential bits, but ensure the image is eager
-        const srcImg = card.querySelector('img');
-        if (srcImg) {
-            const img = srcImg.cloneNode(true);
-            img.removeAttribute('loading');          // don't keep lazy
-            img.setAttribute('decoding', 'sync');    // decode ASAP
-            img.setAttribute('fetchpriority', 'high');
-            modal.appendChild(img);
-        }
-        const h4 = card.querySelector('h4')?.cloneNode(true);
-        const p = card.querySelector('p')?.cloneNode(true);
-        if (h4) modal.appendChild(h4);
-        if (p) modal.appendChild(p);
+        // Let taps through if you have .hit anchors on the cards.
+        track.querySelectorAll('.rail-card .hit').forEach(a => {
+            a.addEventListener('click', e => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+        });
 
-        document.body.append(backdrop, modal);
-
-        // Start transition in the SAME task (no RAF).
-        // Force a reflow so the initial opacity:0 is committed,
-        // then add .show and let CSS fade immediately.
-        // eslint-disable-next-line no-unused-expressions
-        backdrop.offsetWidth; modal.offsetWidth;
-
-        backdrop.classList.add('show');
-        modal.classList.add('show');
-
-        const close = () => {
-            backdrop.classList.remove('show');
-            modal.classList.remove('show');
-            modal.addEventListener('transitionend', () => {
-                backdrop.remove();
-                modal.remove();
-            }, { once: true });
-            openId = null;
-            lockScroll(false);
+        const lockScroll = (lock) => {
+            document.documentElement.classList.toggle('lock-scroll', lock);
+            document.body.classList.toggle('lock-scroll', lock);
         };
 
-        backdrop.addEventListener('click', close);
-        modal.addEventListener('click', close);
-        const onEsc = (e) => (e.key === 'Escape') && close();
-        document.addEventListener('keydown', onEsc, { once: true });
+        const buildOverlay = (card) => {
+            // Backdrop
+            const backdrop = document.createElement('div');
+            backdrop.className = 'hobby-backdrop';
 
-        return close;
-    };
+            // Modal
+            const modal = document.createElement('div');
+            modal.className = 'hobby-overlay';
+            modal.setAttribute('data-hobby', card.dataset.hobby || '');
 
-    // where you open it:
-    lockScroll(true);
-    openId = id;
-    buildOverlay(card); // ← keep as-is; now fades immediately
+            // Clone content (make image eager so it appears immediately)
+            const srcImg = card.querySelector('img');
+            if (srcImg) {
+                const img = srcImg.cloneNode(true);
+                img.removeAttribute('loading');
+                img.setAttribute('decoding', 'sync');
+                img.setAttribute('fetchpriority', 'high');
+                modal.appendChild(img);
+            }
+            const h4 = card.querySelector('h4')?.cloneNode(true);
+            const p = card.querySelector('p')?.cloneNode(true);
+            if (h4) modal.appendChild(h4);
+            if (p) modal.appendChild(p);
 
+            document.body.append(backdrop, modal);
+
+            // Commit initial styles (opacity:0), then flip to .show in the same tick.
+            // This forces the transition to start immediately (no RAF needed).
+            // eslint-disable-next-line no-unused-expressions
+            backdrop.offsetWidth; modal.offsetWidth;
+            backdrop.classList.add('show');
+            modal.classList.add('show');
+
+            const close = () => {
+                backdrop.classList.remove('show');
+                modal.classList.remove('show');
+                modal.addEventListener('transitionend', () => {
+                    backdrop.remove();
+                    modal.remove();
+                }, { once: true });
+                openId = null;
+                lockScroll(false);
+            };
+
+            backdrop.addEventListener('click', close);
+            modal.addEventListener('click', close);
+            const onEsc = (e) => (e.key === 'Escape') && close();
+            document.addEventListener('keydown', onEsc, { once: true });
+
+            return close;
+        };
+
+        // Tap a small card to open overlay
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const id = card.dataset.hobby || cards.indexOf(card);
+
+                // If the same one is open, close by simulating a backdrop click.
+                if (openId === id) {
+                    document.querySelector('.hobby-backdrop')?.click();
+                    return;
+                }
+                // If another is open, close it first.
+                if (openId != null) {
+                    document.querySelector('.hobby-backdrop')?.click();
+                }
+
+                lockScroll(true);
+                openId = id;
+                buildOverlay(card); // << overlays now fade in instantly
+            }, { passive: true });
+        });
+    })();
 
     // === Hobbies rail: click fallback only when hover isn't available ===
     (() => {
