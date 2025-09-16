@@ -129,14 +129,16 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // ==== About section Hobbies Cards ============
-    // ==== About section Hobbies Cards (mobile overlay, instant + predecoded) ====
-    (() => {
+    /* ╔══════════════════════════════════════════════════════════════════╗
+       ║ MODULE A — HOBBIES: Mobile overlay (carousel thumbnails → modal) ║
+       ╚══════════════════════════════════════════════════════════════════╝ */
+    (function HobbiesMobileOverlay() {
         const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
         if (!track) return;
 
         const cards = [...track.querySelectorAll('.rail-card')];
-        let openId = null;
+        let openId = null;                         // which overlay (if any) is open
+        const MOVE_TOL = 10;                         // px: tolerance to treat as swipe
 
         // Let taps through if you have .hit anchors on the cards.
         track.querySelectorAll('.rail-card .hit').forEach(a => {
@@ -148,7 +150,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.body.classList.toggle('lock-scroll', lock);
         };
 
-        // ---- Predecode all card images once (background warm-up) ----
+        /* ---- Predecode: warm up all card images once (background) ---- */
         const decodedSrc = new Map(); // card -> url string
         cards.forEach(card => {
             const img = card.querySelector('img');
@@ -159,15 +161,14 @@ document.addEventListener("DOMContentLoaded", () => {
             const pre = new Image();
             pre.decoding = 'async';
             pre.loading = 'eager';
-            // fetchPriority is a hint only; browsers may ignore it
-            pre.fetchPriority = 'low';
+            pre.fetchPriority = 'low'; // hint only
             pre.src = url;
-            // Even if decode rejects, we still have a cached URL.
             pre.decode?.().catch(() => { }).finally(() => {
                 decodedSrc.set(card, url);
             });
         });
 
+        /* ---- Build + show overlay (duplicate content; fade in) ---- */
         const buildOverlay = (card) => {
             // Backdrop
             const backdrop = document.createElement('div');
@@ -184,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const url = decodedSrc.get(card) || srcImg.currentSrc || srcImg.src;
                 const img = new Image();
                 img.src = url;
-                img.decoding = 'sync';
+                img.decoding = 'async';   // don’t block a frame
                 img.loading = 'eager';
                 img.fetchPriority = 'high';
                 modal.appendChild(img);
@@ -196,10 +197,11 @@ document.addEventListener("DOMContentLoaded", () => {
             if (h4) modal.appendChild(h4);
             if (p) modal.appendChild(p);
 
+            // Attach to DOM
             document.body.append(backdrop, modal);
 
-            // Commit initial style (opacity:0) and flip to .show immediately
-            // so the fade starts in the same task.
+            // Commit initial styles (opacity:0), then flip to .show immediately
+            // so the fade begins in this same task.
             // eslint-disable-next-line no-unused-expressions
             backdrop.offsetWidth; modal.offsetWidth;
             backdrop.classList.add('show');
@@ -224,8 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return close;
         };
 
-        // ---- Open on pointerup with a small movement threshold ----
-        const MOVE_TOL = 10; // px: treat as a swipe if you move more than this
+        /* ---- Tap logic with small movement threshold ---- */
         cards.forEach(card => {
             let startX = 0, startY = 0, moved = false;
 
@@ -247,11 +248,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 const id = card.dataset.hobby || cards.indexOf(card);
 
                 if (openId === id) {
-                    document.querySelector('.hobby-backdrop')?.click();
+                    document.querySelector('.hobby-backdrop')?.click(); // close same one
                     return;
                 }
                 if (openId != null) {
-                    document.querySelector('.hobby-backdrop')?.click();
+                    document.querySelector('.hobby-backdrop')?.click(); // close previous
                 }
 
                 lockScroll(true);
@@ -259,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 buildOverlay(card);
             };
 
-            // Use pointer events where available; fall back to touch/click.
+            // Pointer events where available; fallback to touch/click
             if (window.PointerEvent) {
                 card.addEventListener('pointerdown', onDown, { passive: true });
                 card.addEventListener('pointermove', onMove, { passive: true });
@@ -275,23 +276,23 @@ document.addEventListener("DOMContentLoaded", () => {
     })();
 
 
-    // === Hobbies rail: click fallback only when hover isn't available ===
-    (() => {
-        // Scope to your desktop rail. Adjust selector if needed.
+    /* ╔══════════════════════════════════════════════════════════════════╗
+       ║ MODULE B — HOBBIES: Desktop/touch fallback (expand cards by tap) ║
+       ╚══════════════════════════════════════════════════════════════════╝ */
+    (function HobbiesDesktopClickFallback() {
+        // Scope to the desktop rail (NOT the mobile carousel).
         const rail = document.querySelector('.hobbies-rail');
         if (!rail) return;
 
-        // Desktop with mouse: (hover: hover) && fine pointer
+        // If the device actually supports hover with a fine pointer, we do nothing here.
         const hasRealHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-
         if (hasRealHover) {
-            // On desktop we never toggle .active via click.
-            // If anything previously set .active, clear it to avoid "sticking".
+            // Safety: if something previously set .active, clear it to avoid “sticking”.
             rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
             return;
         }
 
-        // Fallback for touch / no-hover devices
+        // Touch / no-hover fallback: clicking expands one card, tapping outside closes.
         const cards = Array.from(rail.querySelectorAll('.rail-card'));
         const clear = () => cards.forEach(c => c.classList.remove('active'));
 
@@ -299,7 +300,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.addEventListener('click', () => {
                 const wasActive = card.classList.contains('active');
                 clear();
-                if (!wasActive) card.classList.add('active'); // open tapped card
+                if (!wasActive) card.classList.add('active'); // toggle on
             }, { passive: true });
         });
 
