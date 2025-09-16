@@ -211,59 +211,38 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     })();
 
-    // ==== Desktop: click-to-expand mirrors hover (no conflict with mobile) ====
+    // === Hobbies rail: click fallback only when hover isn't available ===
     (() => {
-        const mql = window.matchMedia('(min-width: 721px)');
-        let aborter;
+        // Scope to your desktop rail. Adjust selector if needed.
+        const rail = document.querySelector('.hobbies-rail');
+        if (!rail) return;
 
-        const mount = () => {
-            // remove previous listeners on resize changes
-            aborter?.abort();
-            aborter = new AbortController();
-            const { signal } = aborter;
+        // Desktop with mouse: (hover: hover) && fine pointer
+        const hasRealHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
-            // only run on desktop
-            if (!mql.matches) return;
+        if (hasRealHover) {
+            // On desktop we never toggle .active via click.
+            // If anything previously set .active, clear it to avoid "sticking".
+            rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
+            return;
+        }
 
-            document.querySelectorAll('.hobbies-rail').forEach(rail => {
-                // If this rail is the mobile one wrapped by .about-hobbies-mobile, skip it.
-                if (rail.closest('.about-hobbies-mobile')) return;
+        // Fallback for touch / no-hover devices
+        const cards = Array.from(rail.querySelectorAll('.rail-card'));
+        const clear = () => cards.forEach(c => c.classList.remove('active'));
 
-                rail.addEventListener('click', (e) => {
-                    const card = e.target.closest('.rail-card');
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                const wasActive = card.classList.contains('active');
+                clear();
+                if (!wasActive) card.classList.add('active'); // open tapped card
+            }, { passive: true });
+        });
 
-                    // Clicked outside any card inside the rail -> close all
-                    if (!card) {
-                        rail.classList.remove('has-active');
-                        rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
-                        return;
-                    }
-
-                    // Toggle the clicked card; collapse the others
-                    const isActive = card.classList.contains('active');
-                    rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
-
-                    if (isActive) {
-                        // was open -> now close all
-                        rail.classList.remove('has-active');
-                    } else {
-                        card.classList.add('active');
-                        rail.classList.add('has-active');
-                    }
-                }, { signal });
-
-                // Close on ESC
-                document.addEventListener('keydown', (e) => {
-                    if (e.key !== 'Escape') return;
-                    rail.classList.remove('has-active');
-                    rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
-                }, { signal });
-            });
-        };
-
-        // run now and on breakpoint changes
-        mount();
-        mql.addEventListener('change', mount);
+        // Tap outside the rail to close
+        document.addEventListener('click', (e) => {
+            if (!rail.contains(e.target)) clear();
+        }, { passive: true });
     })();
 
     // === View degree/certification ===
