@@ -140,12 +140,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* ========================================================================== */
-/* 3) HOBBIES OVERLAY (Mobile): buildOverlay + click wiring                    */
-/*      - Instant overlay appearance                                           */
-/*      - Smooth inner content fade                                            */
-/*      - Self-contained (no external state required)                          */
-/* ========================================================================== */
+// ========================================================================== 
+// 3) HOBBIES OVERLAY (Mobile): buildOverlay + click
+//      - Image is now inside .hobby-content so the FADE actually applies
+// ========================================================================== 
 document.addEventListener("DOMContentLoaded", () => {
     // ---- Builder (self-contained) ----
     const buildOverlay = (card) => {
@@ -177,37 +175,35 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.className = 'hobby-overlay';
         modal.setAttribute('data-hobby', card.dataset.hobby || '');
 
-        // Clone content (make image eager so it appears immediately)
+        // Content wrapper that does the smooth fade (IMAGE MOVED INSIDE HERE)
+        const content = document.createElement('div');
+        content.className = 'hobby-content';
+
+        // Clone content (make image eager so it appears immediately, but it will fade with content)
         const srcImg = card.querySelector('img');
         if (srcImg) {
             const img = srcImg.cloneNode(true);
             img.removeAttribute('loading');
             img.setAttribute('decoding', 'sync');
             img.setAttribute('fetchpriority', 'high');
-            modal.appendChild(img);
+            content.appendChild(img);                 // << was modal.appendChild(img)
         }
-
-        // Content wrapper that does the smooth fade
-        const content = document.createElement('div');
-        content.className = 'hobby-content';
 
         const h4 = card.querySelector('h4')?.cloneNode(true);
         const p = card.querySelector('p')?.cloneNode(true);
         if (h4) content.appendChild(h4);
         if (p) content.appendChild(p);
-        modal.appendChild(content);
 
-        // Insert into DOM
+        modal.appendChild(content);
         document.body.append(backdrop, modal);
 
-        // Show instantly on first paint; re-enable transitions for closing
+        // Instant show for backdrop/overlay; content handles the visible fade
         backdrop.style.transition = 'none';
         modal.style.transition = 'none';
-
-        // Make visible immediately
         backdrop.classList.add('show');
         modal.classList.add('show');
-        // Kick off the content fade animation
+
+        // Kick off the content fade animation (affects image + text now)
         content.classList.add('appear');
 
         // Lock scroll after attaching elements
@@ -249,7 +245,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const track = document.querySelector('.about-hobbies-mobile .hobbies-carousel .track');
     if (!track) return;
 
-    // If you have .hit links inside cards, swallow navigation
     track.querySelectorAll('.rail-card .hit').forEach(a => {
         a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
     });
@@ -257,7 +252,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const cards = Array.from(track.querySelectorAll('.rail-card'));
     cards.forEach((card, idx) => {
         card.addEventListener('click', () => {
-            // Toggle: if this card is already open, close it
             const open = document.querySelector('.hobby-overlay');
             if (open) {
                 const openId = open.getAttribute('data-hobby') || '';
@@ -266,7 +260,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     open.dispatchEvent(new CustomEvent('request-close', { bubbles: true }));
                     return;
                 }
-                // Different one is open: close then open this
                 open.dispatchEvent(new CustomEvent('request-close', { bubbles: true }));
                 setTimeout(() => buildOverlay(card), 0);
                 return;
@@ -276,11 +269,9 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
-/* ========================================================================== */
-/* 4) HOBBIES RAIL TOUCH FALLBACK (for no-hover devices on desktop rail)      */
-/*      - Click to expand a card within the rail (not the overlay)            */
-/* ========================================================================== */
+// ========================================================================== 
+// 4) HOBBIES RAIL TOUCH FALLBACK (for no-hover devices on desktop rail)      
+// ========================================================================== 
 document.addEventListener("DOMContentLoaded", () => {
     const rail = document.querySelector('.hobbies-rail');
     if (!rail) return;
@@ -311,9 +302,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-/* ========================================================================== */
-/* 5) CERTIFICATE / DEGREE IMAGE ZOOM                                         */
-/* ========================================================================== */
+// ========================================================================== 
+// 5) CERTIFICATE / DEGREE IMAGE ZOOM                                         
+// ========================================================================== 
 document.addEventListener("DOMContentLoaded", () => {
     const images = document.querySelectorAll(".certificate-row img");
     if (!images.length) return;

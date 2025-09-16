@@ -389,7 +389,7 @@
     }
 }
 
-/* ===== MOBILE 720px: swipe carousel + duplicate overlay (fade only) ===== */
+/* ===== MOBILE 720px: swipe carousel + overlay ===== */
 @media (max-width: 720px) {
     .about-hobbies-mobile {
         --thumb-h: 120px;
@@ -438,6 +438,7 @@
         cursor: pointer;
         transition: box-shadow .22s ease, filter .18s ease;
         z-index: 0;
+        touch-action: manipulation;
     }
 
     .about-hobbies-mobile .hobbies-carousel .rail-card img {
@@ -451,10 +452,6 @@
 
     .rail-card::after {
         background: none;
-    }
-
-    .about-hobbies-mobile .hobbies-carousel .rail-card {
-        touch-action: manipulation;
     }
 
     .about-hobbies-mobile .hobbies-carousel .rail-card h4 {
@@ -478,100 +475,108 @@
     .hobby-backdrop {
         position: fixed;
         inset: 0;
-        background: rgba(0, 0, 0, .45);
-        backdrop-filter: none;
+        background: rgba(0, 0, 0, 0.601);
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: opacity .14s ease;
+        transition: opacity 1s ease;
         will-change: opacity;
-        z-index: 999;
+        z-index: 1001;
     }
 
-    .hobby-backdrop.show,
-    .hobby-overlay.show {
+    .hobby-backdrop.show {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
     }
 
-
+    /* Overlay panel: slow fade (in & out) */
     .hobby-overlay {
         position: fixed;
         top: 50%;
         left: 50%;
-        contain: paint;
         transform: translate(-50%, -50%);
+        /* panel positioning only; no animated transform */
         width: min(92vw, 560px);
         height: min(70vh, 560px);
         border-radius: 18px;
         overflow: hidden;
-        isolation: isolate;
         background: #0a0f14;
+        /* base behind the image */
         box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
         opacity: 0;
-        transition: opacity .2s ease;
-        z-index: 1000;
+        /* start hidden */
+        transition: opacity .75s ease;
+        /* fade in/out */
+        z-index: 1002;
+        contain: paint;
     }
 
-    .rail-card>h4 {
-        align-self: flex-start;
+    .hobby-overlay.show {
+        opacity: 1;
     }
 
-    .hobby-overlay img {
+    /* Content wrapper fills the panel and fades (NO transform) */
+    .hobby-content {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        /* start hidden */
+        display: grid;
+        /* center the main text */
+        place-items: center;
+        /* vertical + horizontal center */
+        will-change: opacity;
+    }
+
+    /* Dim layer to restore the original “transparent dark” look */
+    .hobby-content::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 15, 20, .58);
+        /* your original dim */
+        z-index: 1;
+    }
+
+    /* Image sits behind the dim layer */
+    .hobby-content>img {
         position: absolute;
         inset: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        z-index: 0;
     }
 
-    .hobby-overlay h4 {
-        position: relative;
-        z-index: 2;
-        justify-self: flex-start;
-        display: inline-block;
-        margin-top: .4rem;
+    /* Heading at the top-left, above the dim */
+    .hobby-content>h4 {
+        position: absolute;
+        top: .4rem;
         left: .4rem;
         padding: .5rem .6rem;
         border-radius: 10px;
         background: rgba(0, 0, 0, .55);
         font: 800 .85rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+        z-index: 2;
+        margin: 0;
     }
 
-    .hobby-overlay p {
-        position: absolute;
-        inset: 0;
-        display: grid;
-        place-items: center;
+    /* Main paragraph centered, above the dim */
+    .hobby-content>p {
+        position: relative;
+        z-index: 2;
         margin: 0;
         padding: 1.1rem;
         color: #e9f7fb;
-        background: rgba(0, 15, 20, .58);
         font-size: .96rem;
-        z-index: 2;
+        text-align: center;
     }
 
-    .lock-scroll {
-        overflow: hidden !important;
-    }
-
-    /* Make overlay/backdrop snap in immediately; let content handle the pretty fade */
-    .about-hobbies-mobile .hobby-backdrop,
-    .about-hobbies-mobile .hobby-overlay {
-        transition: none;
-        /* instant on open (we re-enable for close in JS) */
-    }
-
-    /* Longer, smooth fade for the cloned text/content */
-    .about-hobbies-mobile .hobby-content {
-        opacity: 0;
-        will-change: opacity;
-    }
-
-    .about-hobbies-mobile .hobby-content.appear {
-        animation: hobbyContentFade 380ms ease forwards;
-        /* tweak duration to taste */
+    /* Fade-in for content (opacity only) */
+    .hobby-content.appear {
+        animation: hobbyContentFade 0.45s ease-in-out forwards;
+        /* tweak duration here */
     }
 
     @keyframes hobbyContentFade {
@@ -584,17 +589,19 @@
         }
     }
 
-    /* Keep your existing close transition timing for backdrop/overlay */
-    .about-hobbies-mobile .hobby-backdrop {
-        /* keep your existing styles; only ensure closing has a transition */
-        transition: opacity .18s ease;
+    /* Smooth fade-out without jump:
+     when the panel loses .show, content also fades to 0 via transition */
+    .hobby-overlay:not(.show) .hobby-content {
+        animation: none;
+        /* stop any running fade-in */
+        transition: opacity .45s ease;
+        /* fade OUT */
+        opacity: 0;
     }
 
-    .about-hobbies-mobile .hobby-overlay {
-        /* keep your existing styles; only ensure closing has a transition */
-        transition: opacity .18s ease;
+    .lock-scroll {
+        overflow: hidden !important;
     }
-
 }
 
 
