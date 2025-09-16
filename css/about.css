@@ -305,7 +305,7 @@
 }
 
 .hobbies-rail .rail-card.active {
-    flex: 2.2 1 0;
+    flex: 1 0;
     box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
 }
 
@@ -346,11 +346,11 @@
 
 /* When a card is 'active' because of a click, treat siblings like the non-hover state */
 .hobbies-rail.has-active .rail-card {
-    flex: 1 1 0;
+    flex: 7 1 0;
 }
 
 .hobbies-rail.has-active .rail-card.active {
-    flex: 6 1 0;
+    flex: 1 1 0;
 }
 
 .rail-card>p {
@@ -359,16 +359,6 @@
 
 .hobbies-rail .rail-card.active>p {
     pointer-events: auto;
-}
-
-
-@media (max-width: 1200px) and (hover: hover) and (pointer: fine) {
-
-    .hobbies-rail .rail-card:hover,
-    .hobbies-rail .rail-card:focus-within {
-        transform: scale(1.01);
-        flex: 7 1 0;
-    }
 }
 
 /* Reduced motion */
