@@ -327,7 +327,7 @@
 
     .hobbies-rail .rail-card:hover,
     .hobbies-rail .rail-card:focus-within {
-        flex: 2.2 1 0;
+        flex: 7 1 0;
     }
 
     .hobbies-rail .rail-card:not(:hover):not(:focus-within) {
@@ -508,7 +508,7 @@
     .hobby-overlay h4 {
         position: relative;
         z-index: 2;
-        width: 30%;
+        display: inline-block;
         margin-top: .4rem;
         left: .4rem;
         padding: .5rem .6rem;
