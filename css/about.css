@@ -506,7 +506,7 @@
         box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
         opacity: 0;
         /* start hidden */
-        transition: opacity .75s ease;
+        transition: opacity .45s ease;
         /* fade in/out */
         z-index: 1002;
         contain: paint;
@@ -575,7 +575,7 @@
 
     /* Fade-in for content (opacity only) */
     .hobby-content.appear {
-        animation: hobbyContentFade 0.45s ease-in-out forwards;
+        animation: hobbyContentFade .45s ease-in-out forwards;
         /* tweak duration here */
     }
 
