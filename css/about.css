@@ -355,9 +355,8 @@
 
 .hobbies-rail.has-active .rail-card.active {
     /* the clicked one */
-    flex: 2.2 1 0;
+    flex: 6 1 0;
     /* same value as your hover */
-    box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
 }
 
 /* Make the overlay text allow clicks only when open */
