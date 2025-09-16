@@ -230,7 +230,7 @@
     padding-bottom: 25px;
 }
 
-/* ========= HOBBIES RAIL (final) ========= */
+/* ========= HOBBIES RAIL ========= */
 .hobbies-rail {
     display: flex;
     gap: 1rem;
@@ -287,7 +287,6 @@
     text-shadow: 0 1px 6px hsl(var(--accent) / .25);
 }
 
-/* Detail text panel: hidden by default (desktop hover) */
 .rail-card>p {
     position: absolute;
     inset: 0;
@@ -305,7 +304,6 @@
     transform: scale(1);
 }
 
-/* keep your existing .active rules */
 .hobbies-rail .rail-card.active {
     flex: 2.2 1 0;
     box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
@@ -316,7 +314,6 @@
     transform: scale(1);
 }
 
-/* add this so taps aren’t blocked */
 .rail-card>p {
     pointer-events: none;
 }
@@ -349,17 +346,13 @@
 
 /* When a card is 'active' because of a click, treat siblings like the non-hover state */
 .hobbies-rail.has-active .rail-card {
-    /* siblings */
     flex: 1 1 0;
 }
 
 .hobbies-rail.has-active .rail-card.active {
-    /* the clicked one */
     flex: 6 1 0;
-    /* same value as your hover */
 }
 
-/* Make the overlay text allow clicks only when open */
 .rail-card>p {
     pointer-events: none;
 }
@@ -378,29 +371,12 @@
     }
 }
 
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-
-    .rail-card,
-    .rail-card>img {
-        transition: none;
-    }
-
-    .rail-card>p {
-        transform: none;
-        transition: opacity .45s linear;
-    }
-}
-
-/* ===== MOBILE ≤720px: swipe carousel + duplicate overlay (fade only) ===== */
+/* ===== MOBILE 720px: swipe carousel + duplicate overlay (fade only) ===== */
 @media (max-width: 720px) {
     .about-hobbies-mobile {
         --thumb-h: 120px;
-        /* height of each thumbnail */
         --thumb-w: 220px;
-        /* width cap (was invalid 'px') */
         --thumb-frac: 60%;
-        /* % width on small screens */
         --gap: .6rem;
     }
 
@@ -429,13 +405,10 @@
         height: 0;
     }
 
-    /* thumbnail cards */
     .about-hobbies-mobile .hobbies-carousel .rail-card {
         flex: 0 0 min(var(--thumb-frac), var(--thumb-w));
         width: var(--thumb-w);
-        /* hard width cap */
         height: var(--thumb-h);
-        /* hard height cap */
         min-height: var(--thumb-h);
         max-height: var(--thumb-h);
         position: relative;
@@ -469,15 +442,12 @@
 
     .about-hobbies-mobile .hobbies-carousel .rail-card p {
         display: none;
-        /* hide text on thumbnails */
     }
 
-    /* disable hover pop on mobile */
     .about-hobbies-mobile .hobbies-carousel .rail-card:where(:hover, :focus-visible):not(.active) {
         transform: none;
     }
 
-    /* Backdrop appears when overlay is open (created in JS) */
     .hobby-backdrop {
         position: fixed;
         inset: 0;
@@ -492,7 +462,6 @@
         opacity: 1;
     }
 
-    /* The duplicate overlay card */
     .hobby-overlay {
         position: fixed;
         top: 50%;
@@ -545,7 +514,6 @@
         z-index: 2;
     }
 
-    /* Lock body scroll while overlay is open */
     .lock-scroll {
         overflow: hidden !important;
     }
