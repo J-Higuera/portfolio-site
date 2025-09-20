@@ -1,9 +1,9 @@
 .about-section {
     position: relative;
-    padding-right: 170px;
-    padding-left: 170px;
-    padding-top: 47px;
-    padding-bottom: 47px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px 45px;
     overflow: hidden;
 }
 
@@ -222,6 +222,12 @@
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
+}
+
+.light-mode .about-hobbies {
+    background: #00000023;
+    border: 2px solid #e5e5e5b0;
+    box-shadow: none;
 }
 
 .about-hobbies h3 {
@@ -638,10 +644,7 @@
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 27px;
-        padding-left: 27px;
-        padding-top: 47px;
-        padding-bottom: 40px;
+        padding-bottom: 45px;
     }
 
     .profile-photo-desktop {
@@ -667,10 +670,7 @@
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 22px;
-        padding-left: 22px;
-        padding-top: 47px;
-        padding-bottom: 47px;
+        padding-bottom: 30px;
     }
 
     .profile-photo-desktop {
@@ -715,10 +715,7 @@
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 22px;
-        padding-left: 22px;
-        padding-top: 47px;
-        padding-bottom: 47px;
+        padding-bottom: 10px;
     }
 
     .profile-photo-desktop {
@@ -759,10 +756,7 @@
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 22px;
-        padding-left: 22px;
-        padding-top: 47px;
-        padding-bottom: 47px;
+        padding-bottom: 10px;
     }
 
     .profile-photo-desktop {
@@ -811,10 +805,10 @@
 
     .about-section {
         grid-template-columns: repeat(1, 1fr);
-        padding-right: 15px;
-        padding-left: 15px;
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-right: 8px;
+        padding-left: 8px;
+        padding-top: 0;
+        padding-bottom: 25px;
     }
 
     .photo-meta {

@@ -208,11 +208,11 @@ html.loading {
 /* Achievements section */
 
 .grid-wrapper {
-    padding-right: 143px;
-    padding-left: 143px;
-    padding-top: 17px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 20px 70px;
     gap: 20px;
-    padding-bottom: 37px;
 }
 
 .achievements {
@@ -231,7 +231,7 @@ html.loading {
 }
 
 .light-mode .achievements {
-    background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
+    background: rgba(0, 0, 0, 0.062);
     border: 2.5px solid rgba(201, 201, 201, 0.561);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.829);
     color: #bfbfbf;
@@ -604,10 +604,10 @@ footer a {
 @media (max-width: 1520px) {
 
     .grid-wrapper {
-        padding-right: 27px;
-        padding-left: 27px;
-        padding-top: 47px;
-        padding-bottom: 40px;
+        width: 100%;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 40px 20px 100px;
     }
 }
 
@@ -615,10 +615,10 @@ footer a {
 @media(max-width: 1200px) {
 
     .grid-wrapper {
-        padding-right: 27px;
-        padding-left: 27px;
-        padding-top: 47px;
-        padding-bottom: 40px;
+        width: 100%;
+        max-width: 1050px;
+        margin: 0 auto;
+        padding: 40px 20px 100px;
     }
 
     @keyframes fadeIn {
