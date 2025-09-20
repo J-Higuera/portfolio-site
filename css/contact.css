@@ -13,13 +13,7 @@
 .contact-section {
     padding: 20px;
     text-align: center;
-    background:
-        linear-gradient(rgba(0, 0, 0, 0.707), rgba(0, 0, 0, 0.375)),
-        /* dark overlay */
-        url(/images/body/emoji_dark.webp) no-repeat center center / cover;
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+    background: radial-gradient(circle at top left, #222222ad 0%, #1c1d25c9 30%, #141414c9 50%, #000000c4 75%, rgba(33, 30, 30, 0.774) 100%);
     border: 2.5px solid rgba(201, 201, 201, 0.561);
     margin-bottom: 200px;
     border-radius: 8px;
@@ -107,7 +101,7 @@
 }
 
 .contact-info a {
-    color: #0011ff;
+    color: #073550;
     text-decoration: none;
     transition: color 0.3s;
     font-size: large;
@@ -223,6 +217,22 @@ textarea:not(:placeholder-shown)+label {
 }
 
 button {
+    background: linear-gradient(145deg,
+            rgba(73, 121, 131, 0.474),
+            rgb(145, 162, 202),
+            rgba(43, 101, 112, 0.658));
+    color: #2e3b56;
+    font-weight: bold;
+    border: 2px solid rgb(154, 154, 154);
+    padding: 1rem 1rem;
+    width: 80%;
+    justify-self: center;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.1s ease, filter 0.2s ease;
+}
+
+.light-mode button {
     background: linear-gradient(90deg, #b8d0e2, #b8ceff);
     color: #2e3b56;
     font-weight: bold;
