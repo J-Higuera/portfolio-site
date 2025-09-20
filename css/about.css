@@ -261,7 +261,6 @@
     border-radius: 14px;
     overflow: hidden;
     isolation: isolate;
-    box-shadow: 0 0 12px 12px #ffffff1f;
     background: #0a0f14;
     display: flex;
     justify-content: flex-start;
