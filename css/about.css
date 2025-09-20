@@ -221,8 +221,8 @@
     padding: 1.5rem 1.2rem;
     margin: 0.5rem 0;
     box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
-    border: 2px solid #7d7d7d;
-    text-shadow: 0 2px 12px rgb(0, 0, 0);
+    text-shadow: 0 2px 12px rgb(75, 99, 102);
+    box-shadow: inset 0 1px 20px #b0e2ff9d;
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
@@ -249,7 +249,9 @@
 .hobbies-rail {
     display: flex;
     gap: 1rem;
-    padding: 0 12px;
+    padding: 12px 12px;
+    border-radius: 12px;
+    background-color: #28282800;
     align-items: stretch;
 }
 
@@ -259,6 +261,7 @@
     border-radius: 14px;
     overflow: hidden;
     isolation: isolate;
+    box-shadow: 0 0 12px 12px #ffffff1f;
     background: #0a0f14;
     display: flex;
     justify-content: flex-start;
