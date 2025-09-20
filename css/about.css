@@ -1,7 +1,7 @@
 .about-section {
     position: relative;
     width: 100%;
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 40px 20px 45px;
     overflow: hidden;
@@ -36,7 +36,10 @@
 
 .light-mode .about-card {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.444), 6px 2px 6px rgba(0, 0, 0, 0.191);
-    background: rgba(255, 255, 255, 0.258);
+    background: linear-gradient(145deg,
+            rgba(173, 233, 244, 0.474),
+            rgb(181, 199, 240),
+            rgba(173, 215, 223, 0.658));
     border: 2px solid rgba(255, 255, 255, 0.67);
 }
 
@@ -53,9 +56,9 @@
 }
 
 .light-mode .about-card h3 {
-    color: #24486e;
+    color: #ffffff;
     font-family: var(--font-mono);
-    text-shadow: 0 2px 12px rgb(255, 255, 255);
+    text-shadow: 0 2px 12px rgb(0, 0, 0);
 }
 
 .about-card ul {
@@ -219,6 +222,7 @@
     margin: 0.5rem 0;
     box-shadow: 0 8px 8px rgba(0, 200, 255, 0.2), 0 2px 6px rgba(0, 0, 0, 0.4);
     border: 2px solid #7d7d7d;
+    text-shadow: 0 2px 12px rgb(0, 0, 0);
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
@@ -234,6 +238,11 @@
     color: #acc6c9;
     text-align: center;
     padding-bottom: 25px;
+    font-size: 1.4rem;
+}
+
+.light-mode .about-hobbies h3 {
+    color: #d5f7ff;
 }
 
 /* ========= HOBBIES RAIL ========= */
