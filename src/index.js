@@ -1,8 +1,8 @@
-/* ========================================================================== */
-/* 1) HERO TYPEWRITER                                                         */
-/* ========================================================================== */
+//======================================================
+//              HERO TYPEWRITER 
+//=====================================================
 document.addEventListener("DOMContentLoaded", () => {
-    const phrases = ["apps.", "games.", "websites.", "tools.", "systems."];
+    const phrases = ["apps.", "games.", "websites.", "tools."];
     const textElement = document.getElementById("hero-text");
 
     // Guard so a missing #hero-text doesn't crash anything else.
@@ -36,116 +36,99 @@ document.addEventListener("DOMContentLoaded", () => {
 
     type();
 });
-
-
-/* ========================================================================== */
-/* 2) SKILLS CONVEYOR + MAGNIFY (Desktop)                                     */
-/* ========================================================================== */
+//=====================================
+//      Skills Conveyor belt
+//=====================================
 document.addEventListener("DOMContentLoaded", () => {
-    const wrapper = document.querySelector(".skills-wrapper");
-    const track = document.querySelector(".skills-track");
-    if (!wrapper || !track) return;
+    const sections = Array.from(document.querySelectorAll(".skills-wrapper"));
+    if (!sections.length) return;
 
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const icons = wrapper.querySelectorAll(".skills-grid img");
 
-    let inView = false;
-    let magnifying = false;
-    let rafId = null;
+    const initConveyor = (wrapper) => {
+        const track = wrapper.querySelector(".skills-track");
+        if (!track) return null;
 
-    // Ensure animation exists but starts paused
-    if (!prefersReduced) {
+        // If user prefers reduced motion, fully disable animation.
+        if (prefersReduced) {
+            track.style.animation = "none";
+            return { wrapper, track, running: false };
+        }
+
+        // Ensure there is an animation defined; keep it paused initially.
         const cs = getComputedStyle(track);
         if (!cs.animationName || cs.animationName === "none") {
-            track.style.animation = "conveyor 45s linear infinite";
+            // Fallback if CSS didn't assign it (duration is up to you).
+            track.style.animation = "conveyor 60s linear infinite";
         }
         track.style.animationPlayState = "paused";
-    } else {
-        track.style.animation = "none";
-    }
 
-    const setConveyorRunning = (run) => {
-        if (prefersReduced) return;
-        track.style.animationPlayState = run ? "running" : "paused";
-        const skillsSection = wrapper.closest(".skills");
+        return { wrapper, track, running: false };
+    };
+
+    const conveyors = sections
+        .map(initConveyor)
+        .filter(Boolean);
+
+    if (!conveyors.length) return;
+
+    const setRunning = (item, run) => {
+        if (prefersReduced || !item) return;
+        if (item.running === run) return;
+        item.running = run;
+        item.track.style.animationPlayState = run ? "running" : "paused";
+
+        const skillsSection = item.wrapper.closest(".skills");
         if (skillsSection) skillsSection.classList.toggle("active", run);
     };
 
-    const resetIcons = () => {
-        icons.forEach(icon => {
-            icon.style.transform = "scale(1)";
-            icon.style.filter = "drop-shadow(0 0 0.6px rgba(255,255,255,0)) drop-shadow(0 0 2px rgba(255,255,255,0))";
-        });
-    };
+    // Observe viewport visibility per conveyor
+    const observer = new IntersectionObserver(
+        (entries) => {
+            for (const entry of entries) {
+                const wrapper = entry.target;
+                const item = conveyors.find(c => c.wrapper === wrapper);
+                if (!item) continue;
 
-    const magnifyStep = () => {
-        if (!magnifying || !inView) return;
+                const inView = entry.isIntersecting && entry.intersectionRatio >= 0.2;
+                setRunning(item, inView);
+            }
+        },
+        { threshold: [0, 0.2, 0.5, 1] }
+    );
 
-        const wrapRect = wrapper.getBoundingClientRect();
-        const centerX = wrapRect.left + wrapRect.width / 2 + 40;
-        const maxDistance = wrapRect.width / 3;
+    conveyors.forEach(({ wrapper }) => observer.observe(wrapper));
 
-        icons.forEach(icon => {
-            const r = icon.getBoundingClientRect();
-            const iconCenter = r.left + r.width / 2;
-            const d = Math.abs(centerX - iconCenter);
-            const scale = d < maxDistance ? 1 + (1 - d / maxDistance) * 0.22 : 1;
-            icon.style.transform = `scale(${scale})`;
-        });
+    // Pause when tab is hidden
+    document.addEventListener("visibilitychange", () => {
+        const visible = document.visibilityState === "visible";
+        conveyors.forEach(item => setRunning(item, visible));
+    });
 
-        rafId = requestAnimationFrame(magnifyStep);
-    };
-
-    const startMagnify = () => {
-        if (magnifying || prefersReduced || window.innerWidth < 900) return;
-        magnifying = true;
-        rafId = requestAnimationFrame(magnifyStep);
-    };
-
-    const stopMagnify = () => {
-        magnifying = false;
-        if (rafId) cancelAnimationFrame(rafId);
-        rafId = null;
-        resetIcons();
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        for (const entry of entries) {
-            if (entry.target !== wrapper) continue;
-            inView = entry.isIntersecting && entry.intersectionRatio >= 0.2;
-            setConveyorRunning(inView);
-            if (inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
-        }
-    }, { threshold: [0, 0.2, 0.5, 1] });
-    observer.observe(wrapper);
-
-    // rAF-throttled resize
+    // Optional: re-evaluate on resize (e.g., media query switches)
     let resizeRaf = null;
     const onResize = () => {
         if (resizeRaf) return;
         resizeRaf = requestAnimationFrame(() => {
             resizeRaf = null;
-            if (!inView) { stopMagnify(); return; }
-            if (window.innerWidth >= 900) startMagnify(); else stopMagnify();
+            // If width drops below your desktop breakpoint, pausing avoids wasted cycles.
+            const isDesktop = window.matchMedia("(min-width: 1201px)").matches;
+            conveyors.forEach(item => setRunning(item, isDesktop && document.visibilityState === "visible"));
         });
     };
     window.addEventListener("resize", onResize, { passive: true });
 
-    // Pause on tab hide
-    document.addEventListener("visibilitychange", () => {
-        const visible = document.visibilityState === "visible";
-        setConveyorRunning(visible && inView);
-        if (visible && inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
-    });
+    // Cleanup for SPA navigations
+    const cleanup = () => {
+        observer.disconnect();
+        window.removeEventListener("resize", onResize);
+    };
+    window.addEventListener("pagehide", cleanup);
 });
 
-
-// ==========================================================================
-// HOBBIES OVERLAY (Mobile) — no image blink:
-// - Preload & decode all carousel images on DOM ready
-// - Overlay clones the exact chosen candidate (currentSrc) for instant paint
-// - Content fades in; panel/backdrop fade out together (no black-square jump)
-// ==========================================================================
+//============================================
+//         HOBBIES OVERLAY (Mobile) 
+//=============================================
 document.addEventListener("DOMContentLoaded", () => {
     // --- 1) Preload & decode every hobby image so overlay paints instantly ---
     const preloadHobbyImages = async () => {
@@ -297,11 +280,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }, { passive: true });
     });
 });
-
-
-// ========================================================================== 
-// 4) HOBBIES RAIL TOUCH FALLBACK (for no-hover devices on desktop rail)      
-// ========================================================================== 
+//===================================================================
+//HOBBIES RAIL TOUCH FALLBACK (for no-hover devices on desktop rail)  
+//===================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const rail = document.querySelector('.hobbies-rail');
     if (!rail) return;
@@ -332,9 +313,9 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
-// ========================================================================== 
+// ==========================================
 // 5) CERTIFICATE / DEGREE IMAGE ZOOM                                         
-// ========================================================================== 
+// =================================================
 document.addEventListener("DOMContentLoaded", () => {
     const row = document.querySelector(".certificate-row");
     if (!row) return;
