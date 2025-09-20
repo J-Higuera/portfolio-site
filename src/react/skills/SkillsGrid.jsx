@@ -1,8 +1,8 @@
 // src/react/skills/SkillsGrid.jsx
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { motion, useMotionValue, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useEffect, useLayoutEffect } from 'react';
+import { motion, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
 import './SkillsGrid.css';
 
 const ICONS = [
@@ -28,47 +28,87 @@ const TAP_SHOW_MS = 900;
 export default function SkillsGrid() {
     const gridRef = useRef(null);
 
-    // shared pointer position (Infinity = offscreen)
+    // pointer in grid-local coords
     const px = useMotionValue(Infinity);
     const py = useMotionValue(Infinity);
 
-    // IN-VIEW REVEAL (replaces your old index.js observer)
+    // map icon index -> ref
+    const iconRefs = useRef([]);
+    if (iconRefs.current.length !== ICONS.length) {
+        iconRefs.current = Array(ICONS.length).fill(null).map(() => ({ current: null }));
+    }
+
+    // cached icon centers (grid-local)
+    const centersRef = useRef([]); // [{cx, cy}]
+
+    const measure = () => {
+        const grid = gridRef.current;
+        if (!grid) return;
+        const g = grid.getBoundingClientRect();
+        centersRef.current = iconRefs.current.map(({ current: el }) => {
+            if (!el) return { cx: Infinity, cy: Infinity };
+            const r = el.getBoundingClientRect();
+            return { cx: r.left - g.left + r.width / 2, cy: r.top - g.top + r.height / 2 };
+        });
+    };
+
+    useLayoutEffect(() => {
+        measure();
+
+        const ro = new ResizeObserver(measure);
+        const grid = gridRef.current;
+        if (grid) ro.observe(grid);
+
+        const onScroll = () => measure();
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        const idle = 'requestIdleCallback' in window
+            ? window.requestIdleCallback(measure)
+            : setTimeout(measure, 50);
+
+        return () => {
+            ro.disconnect();
+            window.removeEventListener('scroll', onScroll);
+            'cancelIdleCallback' in window ? window.cancelIdleCallback(idle) : clearTimeout(idle);
+        };
+    }, []);
+
+    // in-view reveal
     useEffect(() => {
         const gridEl = gridRef.current;
         if (!gridEl) return;
 
-        // your section wrapper: .skills1.mobile-only
-        const section = gridEl.closest('.skills1');
+        const section = gridEl.closest('.skills1') || gridEl; // fallback to grid
         const items = () => Array.from(gridEl.querySelectorAll('.sg-item'));
 
         const enter = () => {
-            section?.classList.add('animate'); // background glow
+            section.classList.add('animate');
             items().forEach((el, i) => {
-                el.style.transitionDelay = `${i * 40}ms`; // stagger like before
+                el.style.transitionDelay = `${i * 40}ms`;
                 el.classList.add('show');
             });
         };
         const leave = () => {
-            section?.classList.remove('animate');
+            section.classList.remove('animate');
             items().forEach((el) => {
                 el.style.transitionDelay = '';
                 el.classList.remove('show');
             });
         };
 
-        const io = new IntersectionObserver(([entry]) => {
-            entry.isIntersecting ? enter() : leave();
-        }, { threshold: 0.3 });
+        const io = new IntersectionObserver(
+            ([entry]) => (entry.isIntersecting ? enter() : leave()),
+            { threshold: 0.3 }
+        );
 
         io.observe(gridEl);
-
         return () => {
             io.disconnect();
-            leave(); // clean up classes if unmounted
+            leave();
         };
     }, []);
 
-    // reset “hot spot” so tooltips don’t stick when tab/window changes
+    // reset hotspot on tab/window changes
     useEffect(() => {
         const reset = () => { px.set(Infinity); py.set(Infinity); };
         const onVis = () => { if (document.visibilityState !== 'visible') reset(); };
@@ -82,43 +122,76 @@ export default function SkillsGrid() {
         };
     }, [px, py]);
 
+    const onPointerMove = (e) => {
+        const grid = gridRef.current;
+        if (!grid) return;
+        const g = grid.getBoundingClientRect();
+        px.set(e.clientX - g.left);
+        py.set(e.clientY - g.top);
+    };
+    const onPointerLeave = () => {
+        px.set(Infinity);
+        py.set(Infinity);
+    };
+
     return (
         <div
             ref={gridRef}
             className="sg-grid"
-            onPointerMove={(e) => { px.set(e.clientX); py.set(e.clientY); }}
-            onPointerLeave={() => { px.set(Infinity); py.set(Infinity); }}
+            onPointerMove={onPointerMove}
+            onPointerLeave={onPointerLeave}
             aria-label="Technologies"
             role="group"
         >
             {ICONS.map(({ src, alt, label }, i) => (
-                <Icon key={i} src={src} alt={alt} label={label} px={px} py={py} />
+                <Icon
+                    key={i}
+                    refObj={iconRefs.current[i]}
+                    src={src}
+                    alt={alt}
+                    label={label}
+                    px={px}
+                    py={py}
+                    centersRef={centersRef}
+                    index={i}
+                />
             ))}
         </div>
     );
 }
 
-function Icon({ src, alt, label, px, py }) {
-    const ref = useRef(null);
+function Icon({ refObj, src, alt, label, px, py, centersRef, index }) {
     const [hover, setHover] = useState(false);
+    const scaleSpring = useSpring(1, SPRING);
 
-    const scale = useSpring(
-        useTransform([px, py], ([x, y]) => {
-            const el = ref.current;
-            if (!el || !isFinite(x) || !isFinite(y)) return 1;
-            const r = el.getBoundingClientRect();
-            const cx = r.left + r.width / 2;
-            const cy = r.top + r.height / 2;
-            const d = Math.hypot(x - cx, y - cy);
-            const t = Math.max(0, 1 - d / EFFECT_RADIUS);
-            return 1 + t * (MAX_SCALE - 1);
-        }),
-        SPRING
-    );
-
-    // mobile-friendly: click/tap shows tooltip briefly
+    // subscribe to pointer changes; no layout reads here
     useEffect(() => {
-        const el = ref.current;
+        const updateFromX = (x) => {
+            const c = centersRef.current[index];
+            if (!c) return;
+            const dx = x - c.cx;
+            const dy = py.get() - c.cy;
+            const d = Math.hypot(dx, dy);
+            const t = Math.max(0, 1 - d / EFFECT_RADIUS);
+            scaleSpring.set(1 + t * (MAX_SCALE - 1));
+        };
+        const updateFromY = (y) => {
+            const c = centersRef.current[index];
+            if (!c) return;
+            const dx = px.get() - c.cx;
+            const dy = y - c.cy;
+            const d = Math.hypot(dx, dy);
+            const t = Math.max(0, 1 - d / EFFECT_RADIUS);
+            scaleSpring.set(1 + t * (MAX_SCALE - 1));
+        };
+        const unsubX = px.on('change', updateFromX);
+        const unsubY = py.on('change', updateFromY);
+        return () => { unsubX(); unsubY(); };
+    }, [px, py, centersRef, index, scaleSpring]);
+
+    // tap-to-show tooltip (mobile)
+    useEffect(() => {
+        const el = refObj.current;
         if (!el) return;
         let t;
         const onClick = (e) => {
@@ -129,13 +202,13 @@ function Icon({ src, alt, label, px, py }) {
         };
         el.addEventListener('click', onClick);
         return () => { el.removeEventListener('click', onClick); clearTimeout(t); };
-    }, []);
+    }, [refObj]);
 
     return (
         <motion.div
             className="sg-item"
-            ref={ref}
-            style={{ scale }}
+            ref={refObj}
+            style={{ scale: scaleSpring, willChange: 'transform' }}
             onHoverStart={() => setHover(true)}
             onHoverEnd={() => setHover(false)}
             onFocus={() => setHover(true)}
@@ -143,8 +216,8 @@ function Icon({ src, alt, label, px, py }) {
             tabIndex={0}
             aria-label={label}
         >
-            <img src={src} alt={alt} loading="lazy" decoding="async" />
-
+            {/* explicit size prevents layout shift while SVG/IMG decodes */}
+            <img src={src} alt={alt} width="64" height="64" loading="lazy" decoding="async" />
             <AnimatePresence>
                 {hover && (
                     <motion.div
