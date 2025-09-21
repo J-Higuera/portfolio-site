@@ -714,6 +714,7 @@ footer a {
         bottom: 120%;
         left: 50%;
         transform: translateX(-50%) translateY(15px);
+        transition: opacity 0s ease, transform 0s ease;
         white-space: nowrap;
         font-size: 0.75rem;
         font-weight: bold;
