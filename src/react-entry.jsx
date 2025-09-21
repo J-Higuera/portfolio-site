@@ -1,6 +1,5 @@
 import { createRoot } from 'react-dom/client';
 import DockWidget from './react/DockWidget.jsx';
-import SkillsGrid from './react/skills/SkillsGrid.jsx';
 
 // helper: mount only when visible
 function mountOnVisible(rootId, loader, options = { rootMargin: '200px' }) {
