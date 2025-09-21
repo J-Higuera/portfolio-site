@@ -97,6 +97,21 @@ html.loading {
     --box-shadow-light: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
 }
 
+#hero-text {
+    white-space: nowrap;
+    text-align: left;
+}
+
+#hero-text::after {
+    content: "|";
+    display: inline-block;
+    /* participates in inline flow right after text */
+    margin-left: 2px;
+    font-weight: bold;
+    animation: blink 1s steps(1) infinite;
+    color: currentColor;
+}
+
 /* Header section */
 .hero {
     position: relative;
@@ -114,7 +129,7 @@ html.loading {
 
 
 .hero h1 {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     font-family: "Michroma", sans-serif;
     margin: 0;
     color: #bfbfbf;
@@ -127,7 +142,7 @@ html.loading {
 }
 
 .hero h2 {
-    font-size: 2.3rem;
+    font-size: 1.7rem;
     color: #bfbfbf;
     margin-top: 15px;
     animation: fadeIn 5s ease-in-out;
@@ -161,7 +176,7 @@ html.loading {
 }
 
 .type-sequence i {
-    font-size: 2.8rem;
+    font-size: 2.2rem;
     font-family: 'Times New Roman', Times, serif;
 }
 
@@ -649,29 +664,13 @@ footer a {
         }
     }
 
-    .container {
-        max-width: 100%;
-        margin: 0 auto;
-        margin-top: 0;
-        border-radius: 0;
-        margin-bottom: 0;
-        padding: 0;
-        background: none;
-        border-left: none;
-        border-right: none;
-        border-top: none;
-        border-bottom: none;
-        box-shadow: none;
-        backdrop-filter: none;
-    }
-
     .hero {
         padding-top: 190px;
         padding-bottom: 150px;
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
         margin: 0;
         color: #bfbfbf;
         display: block;
@@ -681,14 +680,14 @@ footer a {
     }
 
     .hero h2 {
-        font-size: 1.7rem;
+        font-size: 1.4rem;
         color: #bfbfbf;
         margin-top: 15px;
         animation: fadeIn 5s ease-in-out;
     }
 
     .type-sequence i {
-        font-size: 2.3rem;
+        font-size: 2rem;
     }
 
     .achievements {
@@ -894,7 +893,7 @@ footer a {
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 1.8rem;
         margin: 0;
         color: #bfbfbf;
         display: block;
@@ -906,12 +905,16 @@ footer a {
     }
 
     .hero h2 {
-        font-size: 1.7rem;
+        font-size: 1.2rem;
         color: #bfbfbf;
         margin-top: 15px;
         padding-right: 15px;
         padding-left: 15px;
         animation: fadeIn 5s ease-in-out;
+    }
+
+    .type-sequence i {
+        font-size: 1.7rem;
     }
 
     .container {

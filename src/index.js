@@ -4,9 +4,21 @@
 document.addEventListener("DOMContentLoaded", () => {
     const phrases = ["apps.", "games.", "websites.", "tools."];
     const textElement = document.getElementById("hero-text");
-
-    // Guard so a missing #hero-text doesn't crash anything else.
     if (!textElement) return;
+
+    // Fix the container width to the widest phrase so nothing else moves.
+    const measurer = document.createElement("span");
+    measurer.style.cssText =
+        "position:absolute;visibility:hidden;white-space:nowrap;font:inherit;";
+    document.body.appendChild(measurer);
+
+    let maxPx = 0;
+    for (const p of phrases) {
+        measurer.textContent = p;
+        maxPx = Math.max(maxPx, measurer.offsetWidth);
+    }
+    textElement.style.width = maxPx + "px";
+    document.body.removeChild(measurer);
 
     let currentPhrase = 0;
     let currentLetter = 0;
@@ -20,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
             currentLetter++;
             if (currentLetter === word.length) {
                 isDeleting = true;
-                setTimeout(type, 1500);
+                setTimeout(type, 1200);
                 return;
             }
         } else {
@@ -31,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 currentPhrase = (currentPhrase + 1) % phrases.length;
             }
         }
-        setTimeout(type, isDeleting ? 80 : 120);
+        setTimeout(type, isDeleting ? 80 : 110);
     }
 
     type();
