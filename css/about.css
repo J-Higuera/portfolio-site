@@ -280,7 +280,7 @@
 }
 
 .about-hobbies-desktop .hobbies-carousel .rail-card {
-    flex: 0 0 min(var(--thumb-frac), var(--thumb-w));
+    display: flex;
     width: var(--thumb-w);
     height: var(--thumb-h);
     min-height: var(--thumb-h);
