@@ -72,91 +72,180 @@ if (mobileSkillsSection) {
 //=====================================
 //      Skills Conveyor belt
 //=====================================
-document.addEventListener("DOMContentLoaded", () => {
-    const sections = Array.from(document.querySelectorAll(".skills-wrapper"));
-    if (!sections.length) return;
+document.addEventListener('DOMContentLoaded', () => {
+    const rail = document.querySelector('.about-hobbies .hobbies-rail');
+    if (!rail) return;
 
-    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-    const initConveyor = (wrapper) => {
-        const track = wrapper.querySelector(".skills-track");
-        if (!track) return null;
-
-        // If user prefers reduced motion, fully disable animation.
-        if (prefersReduced) {
-            track.style.animation = "none";
-            return { wrapper, track, running: false };
-        }
-
-        // Ensure there is an animation defined; keep it paused initially.
-        const cs = getComputedStyle(track);
-        if (!cs.animationName || cs.animationName === "none") {
-            // Fallback if CSS didn't assign it (duration is up to you).
-            track.style.animation = "conveyor 60s linear infinite";
-        }
-        track.style.animationPlayState = "paused";
-
-        return { wrapper, track, running: false };
-    };
-
-    const conveyors = sections
-        .map(initConveyor)
-        .filter(Boolean);
-
-    if (!conveyors.length) return;
-
-    const setRunning = (item, run) => {
-        if (prefersReduced || !item) return;
-        if (item.running === run) return;
-        item.running = run;
-        item.track.style.animationPlayState = run ? "running" : "paused";
-
-        const skillsSection = item.wrapper.closest(".skills");
-        if (skillsSection) skillsSection.classList.toggle("active", run);
-    };
-
-    // Observe viewport visibility per conveyor
-    const observer = new IntersectionObserver(
-        (entries) => {
-            for (const entry of entries) {
-                const wrapper = entry.target;
-                const item = conveyors.find(c => c.wrapper === wrapper);
-                if (!item) continue;
-
-                const inView = entry.isIntersecting && entry.intersectionRatio >= 0.2;
-                setRunning(item, inView);
-            }
-        },
-        { threshold: [0, 0.2, 0.5, 1] }
-    );
-
-    conveyors.forEach(({ wrapper }) => observer.observe(wrapper));
-
-    // Pause when tab is hidden
-    document.addEventListener("visibilitychange", () => {
-        const visible = document.visibilityState === "visible";
-        conveyors.forEach(item => setRunning(item, visible));
+    // Make whole card clickable; prevent inside .hit links from navigating
+    rail.querySelectorAll('.rail-card .hit').forEach(a => {
+        a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
     });
 
-    // Optional: re-evaluate on resize (e.g., media query switches)
-    let resizeRaf = null;
-    const onResize = () => {
-        if (resizeRaf) return;
-        resizeRaf = requestAnimationFrame(() => {
-            resizeRaf = null;
-            // If width drops below your desktop breakpoint, pausing avoids wasted cycles.
-            const isDesktop = window.matchMedia("(min-width: 1201px)").matches;
-            conveyors.forEach(item => setRunning(item, isDesktop && document.visibilityState === "visible"));
+    const cards = Array.from(rail.querySelectorAll('.rail-card'));
+    const clear = () => cards.forEach(c => c.classList.remove('active'));
+
+    // Click to expand
+    rail.addEventListener('click', (e) => {
+        const card = e.target.closest('.rail-card');
+        if (!card || !rail.contains(card)) return;
+        const was = card.classList.contains('active');
+        clear();
+        card.classList.toggle('active', !was);
+        rail.classList.toggle('has-active', rail.querySelector('.rail-card.active') !== null);
+    });
+
+    // Keyboard: Enter/Space toggles focused card; Esc clears
+    cards.forEach(c => c.tabIndex ||= 0);
+    rail.addEventListener('keydown', (e) => {
+        const card = e.target.closest('.rail-card');
+        if (!card) return;
+        if (e.code === 'Enter' || e.code === 'Space') {
+            e.preventDefault();
+            const was = card.classList.contains('active');
+            clear();
+            card.classList.toggle('active', !was);
+            rail.classList.toggle('has-active', rail.querySelector('.rail-card.active') !== null);
+        }
+        if (e.code === 'Escape') {
+            clear();
+            rail.classList.remove('has-active');
+        }
+    });
+
+    // Click outside to collapse
+    document.addEventListener('click', (e) => {
+        if (!rail.contains(e.target)) { clear(); rail.classList.remove('has-active'); }
+    });
+});
+
+//============================================
+//         HOBBIES OVERLAY (Desktop) 
+//=============================================
+document.addEventListener("DOMContentLoaded", () => {
+    // --- 1) Preload & decode every hobby image so overlay paints instantly ---
+    const preloadHobbyImages = () => {
+        const imgs = document.querySelectorAll(".about-hobbies-desktop .hobbies-carousel .rail-card img");
+        imgs.forEach((el) => {
+            const url = el.currentSrc || el.src;
+            if (!url) return;
+            const pre = new Image();
+            pre.src = url;
+            pre.decoding = "async";
+            pre.fetchPriority = "low";
+            pre.decode?.().catch(() => { });
         });
     };
-    window.addEventListener("resize", onResize, { passive: true });
+    preloadHobbyImages();
 
-    // Cleanup for SPA navigations
-    const cleanup = () => {
-        observer.disconnect();
-        window.removeEventListener("resize", onResize);
+    // --- 2) Builder: show overlay for a given card (no image delay/blink) ---
+    const buildOverlay = (card) => {
+        const existing = document.querySelector(".hobby-overlay");
+        if (existing) existing.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
+
+        const lockScroll = (lock) => {
+            document.documentElement.classList.toggle("lock-scroll", lock);
+            document.body.classList.toggle("lock-scroll", lock);
+        };
+
+        const backdrop = document.createElement("div");
+        backdrop.className = "hobby-backdrop";
+
+        const modal = document.createElement("div");
+        modal.className = "hobby-overlay";
+        modal.setAttribute("data-hobby", card.dataset.hobby || "");
+
+        const content = document.createElement("div");
+        content.className = "hobby-content";
+
+        const srcImg = card.querySelector("img");
+        if (srcImg) {
+            const img = document.createElement("img");
+            img.src = srcImg.currentSrc || srcImg.src;
+            if (srcImg.referrerPolicy) img.referrerPolicy = srcImg.referrerPolicy;
+            if (srcImg.crossOrigin) img.crossOrigin = srcImg.crossOrigin;
+            img.decoding = "async";
+            img.fetchPriority = "high";
+            content.appendChild(img);
+        }
+
+        const h4 = card.querySelector("h4")?.cloneNode(true);
+        const p = card.querySelector("p")?.cloneNode(true);
+        if (h4) content.appendChild(h4);
+        if (p) content.appendChild(p);
+
+        modal.appendChild(content);
+        document.body.append(backdrop, modal);
+
+        // show
+        backdrop.style.transition = "none";
+        modal.style.transition = "none";
+        backdrop.classList.add("show");
+        modal.classList.add("show");
+        content.classList.add("appear");
+        lockScroll(true);
+        requestAnimationFrame(() => { backdrop.style.transition = ""; modal.style.transition = ""; });
+
+        // close
+        const close = () => {
+            if (!document.body.contains(modal)) return;
+            backdrop.classList.remove("show");
+            modal.classList.remove("show");
+            let done = false;
+            const finish = () => {
+                if (done) return;
+                done = true;
+                backdrop.remove();
+                modal.remove();
+                lockScroll(false);
+            };
+            modal.addEventListener("transitionend", finish, { once: true });
+            setTimeout(finish, 1600);
+        };
+
+        backdrop.addEventListener("click", close);
+        modal.addEventListener("request-close", close);
+        modal.addEventListener("click", close);
+        const onEsc = (e) => (e.key === "Escape") && close();
+        document.addEventListener("keydown", onEsc, { once: true });
+
+        return close;
     };
-    window.addEventListener("pagehide", cleanup);
+
+    // --- 3) Desktop wiring: open overlay on click ---
+    const track = document.querySelector(".about-hobbies-desktop .hobbies-carousel .track");
+    if (!track) return;
+
+    // If you have .hit anchors inside cards, prevent navigation
+    track.querySelectorAll(".rail-card .hit").forEach(a => {
+        a.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    });
+
+    const cards = Array.from(track.querySelectorAll(".rail-card"));
+    cards.forEach((card, idx) => {
+        card.tabIndex ||= 0; // keyboard focus
+        card.addEventListener("click", () => {
+            const open = document.querySelector(".hobby-overlay");
+            if (open) {
+                const openId = open.getAttribute("data-hobby") || "";
+                const thisId = card.dataset.hobby || String(idx);
+                if (openId === thisId) {
+                    open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
+                    return;
+                }
+                open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
+                setTimeout(() => buildOverlay(card), 0);
+                return;
+            }
+            buildOverlay(card);
+        }, { passive: true });
+
+        card.addEventListener("keydown", (e) => {
+            if (e.code === "Enter" || e.code === "Space") {
+                e.preventDefault();
+                buildOverlay(card);
+            }
+        });
+    });
 });
 
 //============================================

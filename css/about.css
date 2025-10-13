@@ -213,9 +213,10 @@
     padding: 0;
 }
 
-.about-hobbies {
+
+
+.about-hobbies-desktop {
     background: #000000a8;
-    flex: 1 1 280px;
     min-width: 200px;
     max-width: 100%;
     padding: 1.5rem 1.2rem;
@@ -228,31 +229,81 @@
     font-family: var(--font-main);
 }
 
-.light-mode .about-hobbies {
+.light-mode .about-hobbies-desktop {
     background: #00000023;
     border: 2px solid #e5e5e5b0;
     box-shadow: none;
 }
 
-.about-hobbies h3 {
+.about-hobbies-desktop h3 {
     color: #acc6c9;
     text-align: center;
     padding-bottom: 25px;
     font-size: 1.4rem;
 }
 
-.light-mode .about-hobbies h3 {
+.light-mode .about-hobbies-desktop h3 {
     color: #d5f7ff;
 }
 
-/* ========= HOBBIES RAIL ========= */
-.hobbies-rail {
+.about-hobbies-desktop {
+    --thumb-h: 120px;
+    --thumb-w: 220px;
+    --thumb-frac: 60%;
+    --gap: .6rem;
+}
+
+.about-hobbies-desktop .hobbies-carousel {
+    position: relative;
+    overflow: visible;
+    padding: 0 .5rem;
+}
+
+.about-hobbies-desktop .hobbies-carousel .track {
     display: flex;
-    gap: 1rem;
-    padding: 12px 12px;
-    border-radius: 12px;
-    background-color: #28282800;
-    align-items: stretch;
+    justify-content: center;
+    gap: var(--gap);
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: .25rem;
+    scroll-padding-inline: 12px;
+    position: relative;
+    scrollbar-width: none;
+    touch-action: auto;
+    overscroll-behavior-inline: contain;
+}
+
+.about-hobbies-desktop .hobbies-carousel .track::-webkit-scrollbar {
+    height: 0;
+}
+
+.about-hobbies-desktop .hobbies-carousel .rail-card {
+    flex: 0 0 min(var(--thumb-frac), var(--thumb-w));
+    width: var(--thumb-w);
+    height: var(--thumb-h);
+    min-height: var(--thumb-h);
+    max-height: var(--thumb-h);
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    isolation: isolate;
+    background: #0a0f14;
+    scroll-snap-align: center;
+    cursor: pointer;
+    transition: box-shadow .22s ease, filter .18s ease;
+    z-index: 0;
+    touch-action: manipulation;
+}
+
+.about-hobbies-desktop .hobbies-carousel .rail-card img {
+    position: absolute;
+    inset: 0;
+    filter: brightness(1.0) saturate(1.0) contrast(1.0);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .rail-card {
@@ -289,161 +340,119 @@
     pointer-events: none;
 }
 
-.rail-card>h4 {
+.about-hobbies-desktop .hobbies-carousel .rail-card h4 {
+    position: relative;
+    z-index: 2;
+    margin: .2rem;
+    padding: .2rem .25rem;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, .55);
+    font: 800 .55rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+}
+
+.about-hobbies-desktop .hobbies-carousel .rail-card p {
+    display: none;
+}
+
+.about-hobbies-desktop .hobbies-carousel .rail-card:where(:hover, :focus-visible):not(.active) {
+    transform: none;
+}
+
+.hobby-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .65);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+    z-index: 1001;
+}
+
+.hobby-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hobby-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(92vw, 720px);
+    height: min(80vh, 640px);
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0a0f14;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+    z-index: 1002;
+}
+
+.hobby-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.hobby-content {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    animation: hobbyContentFade 1s ease forwards;
+}
+
+.hobby-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 15, 20, .58);
+    z-index: 1;
+}
+
+.hobby-content>img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hobby-content>h4 {
+    position: absolute;
+    top: .6rem;
+    left: .6rem;
+    margin: 0;
+    padding: .55rem .7rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .55);
+    font: 800 .95rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+    z-index: 2;
+}
+
+.hobby-content>p {
     position: relative;
     z-index: 2;
     margin: 0;
-    padding: .5rem .4rem;
-    border-radius: 8px;
-    text-align: center;
-    word-break: keep-all;
-    font: 800 .95rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
-    color: hsl(var(--accent, 178 100% 46%));
-    background: rgba(0, 0, 0, .4);
-    letter-spacing: .02em;
-    text-shadow: 0 1px 6px hsl(var(--accent) / .25);
-}
-
-.rail-card>p {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    display: grid;
-    place-items: center;
-    text-align: center;
-    padding: 1rem;
-    font-size: 1rem;
+    padding: 1.1rem;
     color: #e9f7fb;
-    opacity: 0;
-    background: rgba(0, 15, 20, .58);
-    margin: 0;
-    transition: opacity .45s ease, transform .45s ease;
-    transform: scale(1);
+    font-size: 1rem;
+    text-align: center;
 }
 
-.hobbies-rail .rail-card.active {
-    flex: 1 0;
-    box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
-}
-
-.hobbies-rail .rail-card.active>p {
-    opacity: 1;
-    transform: scale(1);
-}
-
-.rail-card>p {
-    pointer-events: none;
-}
-
-.hobbies-rail .rail-card.active>p {
-    pointer-events: auto;
-}
-
-/* Desktop/laptop hover (pointer devices only) */
-@media (hover: hover) and (pointer: fine) {
-
-    .hobbies-rail .rail-card:hover,
-    .hobbies-rail .rail-card:focus-within {
-        flex: 2.5 1 0;
+@keyframes hobbyContentFade {
+    from {
+        opacity: 0
     }
 
-    .hobbies-rail .rail-card:not(:hover):not(:focus-within) {
-        flex: 1 1 0;
-    }
-
-    .rail-card:is(:hover, :focus-within)>p {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .rail-card:hover {
-        box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
+    to {
+        opacity: 1
     }
 }
 
-
-/* Tablet responsive for desktop cards*/
-.hobbies-rail .rail-card.active {
-    flex: 7 1 0;
-    box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
-}
-
-.hobbies-rail.has-active .rail-card {
-    flex: 1 1 0;
-}
-
-.hobbies-rail.has-active .rail-card.active {
-    flex: 7 1 0;
-}
-
-.hobbies-rail .rail-card>p {
-    pointer-events: none;
-}
-
-.hobbies-rail .rail-card.active>p {
-    opacity: 1;
-    transform: scale(1);
-    pointer-events: auto;
-}
-
-
-
-/* Reduced motion */
-@media (prefers-reduced-motion: reduce) {
-
-    .rail-card,
-    .rail-card>img {
-        transition: none;
-    }
-
-    .rail-card>p {
-        transform: none;
-        transition: opacity .45s linear;
-    }
-}
-
-@media (max-width: 1400px) {
-
-    .hobbies-rail .rail-card:hover,
-    .hobbies-rail .rail-card:focus-within {
-        flex: 3.5 1 0;
-    }
-
-    .hobbies-rail .rail-card:not(:hover):not(:focus-within) {
-        flex: 1 1 0;
-    }
-
-    .rail-card:is(:hover, :focus-within)>p {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .rail-card:hover {
-        box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
-    }
-}
-
-
-@media (max-width: 1050px) {
-
-    .hobbies-rail .rail-card:hover,
-    .hobbies-rail .rail-card:focus-within {
-        flex: 10 1 0;
-    }
-
-    .hobbies-rail .rail-card:not(:hover):not(:focus-within) {
-        flex: 1 1 0;
-    }
-
-    .rail-card:is(:hover, :focus-within)>p {
-        opacity: 1;
-        transform: scale(1);
-    }
-
-    .rail-card:hover {
-        box-shadow: 0 12px 34px rgba(0, 0, 0, .35);
-    }
-}
 
 /* ===== MOBILE 720px: swipe carousel + overlay ===== */
 @media (max-width: 720px) {
