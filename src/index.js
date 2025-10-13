@@ -48,8 +48,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     type();
 });
-
-// === Mobile Skills Animation ===
+//==========================================
+//       Mobile Skills Animation 
+//==========================================
 const mobileSkillsSection = document.querySelector(".skills1.mobile-only");
 const mobileIcons = mobileSkillsSection?.querySelectorAll(".skills-grid img") || [];
 
@@ -72,49 +73,101 @@ if (mobileSkillsSection) {
 //=====================================
 //      Skills Conveyor belt
 //=====================================
-document.addEventListener('DOMContentLoaded', () => {
-    const rail = document.querySelector('.about-hobbies .hobbies-rail');
-    if (!rail) return;
+document.addEventListener("DOMContentLoaded", () => {
+    const wrapper = document.querySelector(".skills-wrapper");
+    const track = document.querySelector(".skills-track");
+    if (!wrapper || !track) return;
 
-    // Make whole card clickable; prevent inside .hit links from navigating
-    rail.querySelectorAll('.rail-card .hit').forEach(a => {
-        a.addEventListener('click', (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
-    });
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const icons = wrapper.querySelectorAll(".skills-grid img");
 
-    const cards = Array.from(rail.querySelectorAll('.rail-card'));
-    const clear = () => cards.forEach(c => c.classList.remove('active'));
+    let inView = false;
+    let magnifying = false;
+    let rafId = null;
 
-    // Click to expand
-    rail.addEventListener('click', (e) => {
-        const card = e.target.closest('.rail-card');
-        if (!card || !rail.contains(card)) return;
-        const was = card.classList.contains('active');
-        clear();
-        card.classList.toggle('active', !was);
-        rail.classList.toggle('has-active', rail.querySelector('.rail-card.active') !== null);
-    });
-
-    // Keyboard: Enter/Space toggles focused card; Esc clears
-    cards.forEach(c => c.tabIndex ||= 0);
-    rail.addEventListener('keydown', (e) => {
-        const card = e.target.closest('.rail-card');
-        if (!card) return;
-        if (e.code === 'Enter' || e.code === 'Space') {
-            e.preventDefault();
-            const was = card.classList.contains('active');
-            clear();
-            card.classList.toggle('active', !was);
-            rail.classList.toggle('has-active', rail.querySelector('.rail-card.active') !== null);
+    // Ensure animation exists but starts paused
+    if (!prefersReduced) {
+        const cs = getComputedStyle(track);
+        if (!cs.animationName || cs.animationName === "none") {
+            track.style.animation = "conveyor 45s linear infinite";
         }
-        if (e.code === 'Escape') {
-            clear();
-            rail.classList.remove('has-active');
-        }
-    });
+        track.style.animationPlayState = "paused";
+    } else {
+        track.style.animation = "none";
+    }
 
-    // Click outside to collapse
-    document.addEventListener('click', (e) => {
-        if (!rail.contains(e.target)) { clear(); rail.classList.remove('has-active'); }
+    const setConveyorRunning = (run) => {
+        if (prefersReduced) return;
+        track.style.animationPlayState = run ? "running" : "paused";
+        const skillsSection = wrapper.closest(".skills");
+        if (skillsSection) skillsSection.classList.toggle("active", run);
+    };
+
+    const resetIcons = () => {
+        icons.forEach(icon => {
+            icon.style.transform = "scale(1)";
+            icon.style.filter = "drop-shadow(0 0 0.6px rgba(255,255,255,0)) drop-shadow(0 0 2px rgba(255,255,255,0))";
+        });
+    };
+
+    const magnifyStep = () => {
+        if (!magnifying || !inView) return;
+
+        const wrapRect = wrapper.getBoundingClientRect();
+        const centerX = wrapRect.left + wrapRect.width / 2 + 40;
+        const maxDistance = wrapRect.width / 3;
+
+        icons.forEach(icon => {
+            const r = icon.getBoundingClientRect();
+            const iconCenter = r.left + r.width / 2;
+            const d = Math.abs(centerX - iconCenter);
+            const scale = d < maxDistance ? 1 + (1 - d / maxDistance) * 0.22 : 1;
+            icon.style.transform = `scale(${scale})`;
+        });
+
+        rafId = requestAnimationFrame(magnifyStep);
+    };
+
+    const startMagnify = () => {
+        if (magnifying || prefersReduced || window.innerWidth < 900) return;
+        magnifying = true;
+        rafId = requestAnimationFrame(magnifyStep);
+    };
+
+    const stopMagnify = () => {
+        magnifying = false;
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = null;
+        resetIcons();
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+            if (entry.target !== wrapper) continue;
+            inView = entry.isIntersecting && entry.intersectionRatio >= 0.2;
+            setConveyorRunning(inView);
+            if (inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
+        }
+    }, { threshold: [0, 0.2, 0.5, 1] });
+    observer.observe(wrapper);
+
+    // rAF-throttled resize
+    let resizeRaf = null;
+    const onResize = () => {
+        if (resizeRaf) return;
+        resizeRaf = requestAnimationFrame(() => {
+            resizeRaf = null;
+            if (!inView) { stopMagnify(); return; }
+            if (window.innerWidth >= 900) startMagnify(); else stopMagnify();
+        });
+    };
+    window.addEventListener("resize", onResize, { passive: true });
+
+    // Pause on tab hide
+    document.addEventListener("visibilitychange", () => {
+        const visible = document.visibilityState === "visible";
+        setConveyorRunning(visible && inView);
+        if (visible && inView && window.innerWidth >= 900) startMagnify(); else stopMagnify();
     });
 });
 
