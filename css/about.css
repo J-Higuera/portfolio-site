@@ -456,6 +456,10 @@
 
 /* ===== MOBILE 720px: swipe carousel + overlay ===== */
 @media (max-width: 720px) {
+
+    .about-hobbies-desktop {
+        display: none;
+    }
     .about-hobbies-mobile {
         --thumb-h: 120px;
         --thumb-w: 220px;
