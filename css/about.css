@@ -898,11 +898,34 @@
         margin-left: -10px;
         margin-right: -10px;
         background: #000000a8;
-        border-bottom: 2px solid #7d7d7d;
-        border-top: 2px solid #7d7d7d;
         color: var(--text-bright);
         font-family: var(--font-main);
+        position: relative;
+        overflow: hidden;
     }
+
+    /* Fade layers */
+    .about-hobbies-mobile::before,
+    .about-hobbies-mobile::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 20px;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .about-hobbies-mobile::before {
+        top: 0;
+        background: linear-gradient(to bottom, #000000a8, transparent);
+    }
+
+    .about-hobbies-mobile::after {
+        bottom: 0;
+        background: linear-gradient(to top, #000000a8, transparent);
+    }
+
 
     .about-hobbies-mobile h3 {
         text-align: center;
