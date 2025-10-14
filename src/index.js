@@ -175,30 +175,48 @@ document.addEventListener("DOMContentLoaded", () => {
 //         HOBBIES OVERLAY (Desktop) 
 //=============================================
 document.addEventListener("DOMContentLoaded", () => {
-
     const track = document.querySelector(".about-hobbies-desktop .hobbies-carousel .track");
     if (!track) return;
 
-    // Make all card images non-draggable so dragging the ghost image never steals the click
-    track.querySelectorAll(".rail-card img").forEach(img => {
-        img.setAttribute("draggable", "false");
-    });
+    // Tunables
+    const desktop = matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const EPS = 1;     // epsilon for overflow checks
+    const SPEED = 0.40;  // lower = slower wheel movement
+    const EASE = 0.18;  // easing factor (0.12–0.25 good)
+    const JITTERPX = 6;     // click-vs-scroll pointer jitter tolerance
 
-    const preloadHobbyImages = () => {
-        const imgs = track.querySelectorAll(".rail-card img");
-        for (const el of imgs) {
+
+    // Helpers / state
+    let target = track.scrollLeft;
+    let raf = null;
+
+    const hasOverflow = () => (track.scrollWidth - track.clientWidth) > EPS;
+
+    const step = () => {
+        const diff = target - track.scrollLeft;
+        if (Math.abs(diff) < 0.4) { track.scrollLeft = target; raf = null; return; }
+        track.scrollLeft += diff * EASE;
+        raf = requestAnimationFrame(step);
+    };
+    const schedule = () => { if (!raf) raf = requestAnimationFrame(step); };
+
+    // Make images non-draggable + idle preload
+    track.querySelectorAll(".rail-card img").forEach(img => img.setAttribute("draggable", "false"));
+
+    const preload = () => {
+        track.querySelectorAll(".rail-card img").forEach(el => {
             const url = el.currentSrc || el.src;
-            if (!url) continue;
+            if (!url) return;
             const pre = new Image();
             pre.src = url;
             pre.decoding = "async";
             pre.fetchPriority = "low";
             pre.decode?.().catch(() => { });
-        }
+        });
     };
-    // Use idle time if available to stay off the critical path
-    (window.requestIdleCallback || ((cb) => setTimeout(cb, 1)))(preloadHobbyImages);
+    (window.requestIdleCallback || ((cb) => setTimeout(cb, 1)))(preload);
 
+    // Overlay (click-to-zoom)
     const buildOverlay = (card) => {
         const existing = document.querySelector(".hobby-overlay");
         if (existing) existing.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
@@ -218,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const content = document.createElement("div");
         content.className = "hobby-content";
 
-        // clone the currently used image resource to guarantee cache hit
         const srcImg = card.querySelector("img");
         if (srcImg) {
             const img = document.createElement("img");
@@ -238,7 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(content);
         document.body.append(backdrop, modal);
 
-        // Show (disable transitions for 1 frame to avoid initial fade-in delay)
         backdrop.style.transition = "none";
         modal.style.transition = "none";
         backdrop.classList.add("show");
@@ -260,7 +276,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 lockScroll(false);
             };
             modal.addEventListener("transitionend", finish, { once: true });
-            setTimeout(finish, 1600); // safety timeout
+            setTimeout(finish, 1600);
         };
 
         backdrop.addEventListener("click", close);
@@ -268,59 +284,99 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.addEventListener("click", close);
         const onEsc = (e) => (e.key === "Escape") && close();
         document.addEventListener("keydown", onEsc, { once: true });
-
-        return close;
     };
 
-    const cards = Array.from(track.querySelectorAll(".rail-card"));
-    cards.forEach((card) => { card.tabIndex ||= 0; });
+    // focusable cards
+    track.querySelectorAll(".rail-card").forEach(c => { c.tabIndex ||= 0; });
 
-    const desktop = matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const WHEEL_SPEED = 0.45; // lower = slower; tune 0.25–0.55
+    // Fit detection → center when no overflow
+    // (we NEVER change overflow-x: auto; CSS just centers via .no-scroll)
+    const updateMode = () => {
+        const overflow = hasOverflow();
+        track.classList.toggle("no-scroll", !overflow);
+        target = Math.min(Math.max(0, target), Math.max(0, track.scrollWidth - track.clientWidth));
+    };
 
+    const ro = new ResizeObserver(() => {
+        cancelAnimationFrame(updateMode._raf || 0);
+        updateMode._raf = requestAnimationFrame(updateMode);
+    });
+    ro.observe(track);
+
+    track.querySelectorAll("img").forEach(img => {
+        const bump = () => requestAnimationFrame(updateMode);
+        if (!img.complete) {
+            img.addEventListener("load", bump, { once: true });
+            img.addEventListener("error", bump, { once: true });
+        }
+    });
+
+    if (document.fonts?.ready) document.fonts.ready.then(() => requestAnimationFrame(updateMode));
+    window.addEventListener("resize", () => requestAnimationFrame(updateMode), { passive: true });
+    window.addEventListener("load", updateMode);
+    updateMode();
+
+    // Smart wheel: ALWAYS drive the rail when overflow exists.
+    // Only let page scroll at edges in the intended direction.
     if (desktop) {
         track.addEventListener("wheel", (e) => {
-            const dx = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
-            if (dx === 0) return;
-            e.preventDefault(); // prevent native jumpiness
-            track.scrollLeft += dx * WHEEL_SPEED;
+            const overflow = track.scrollWidth - track.clientWidth;
+            if (overflow <= EPS) return; // everything fits → page scroll
+
+            // Pick dominant axis (this makes classic mouse Y scroll drive X)
+            const absX = Math.abs(e.deltaX), absY = Math.abs(e.deltaY);
+            const raw = absX >= absY ? e.deltaX : e.deltaY;
+            if (raw === 0) return;
+
+            const max = overflow;
+            const atStart = track.scrollLeft <= 0;
+            const atEnd = track.scrollLeft >= max - 1;
+
+            // At edges in the wheel direction? let page scroll
+            if ((raw < 0 && atStart) || (raw > 0 && atEnd)) return;
+
+            // We handle horizontal scrolling
+            e.preventDefault();
+            target = Math.min(max, Math.max(0, track.scrollLeft + raw * SPEED));
+            schedule();
         }, { passive: false });
+
+        // Keep target in sync with native horizontal scroll (e.g., trackpad)
+        track.addEventListener("scroll", () => { if (!raf) target = track.scrollLeft; }, { passive: true });
     }
 
-    let pointerDown = false;
-    let moved = false;
-    let startX = 0;
-    let scrolledSinceDown = false;
+    // Click vs scroll guard + click-to-zoom
+    let pointerDown = false, moved = false, downX = 0, downLeft = 0, justScrolled = false, scrollTimer;
 
     track.addEventListener("pointerdown", (e) => {
         pointerDown = true;
         moved = false;
-        scrolledSinceDown = false;
-        startX = e.clientX;
+        downX = e.clientX;
+        downLeft = track.scrollLeft;
     }, { passive: true });
 
     track.addEventListener("pointermove", (e) => {
         if (!pointerDown) return;
-        if (Math.abs(e.clientX - startX) > 6) moved = true; // jitter tolerance
+        if (Math.abs(e.clientX - downX) > JITTERPX) moved = true;
     }, { passive: true });
 
-    track.addEventListener("pointerup", () => { pointerDown = false; }, { passive: true });
-    track.addEventListener("pointercancel", () => { pointerDown = false; }, { passive: true });
+    const clearPointer = () => { pointerDown = false; };
+    track.addEventListener("pointerup", clearPointer, { passive: true });
+    track.addEventListener("pointercancel", clearPointer, { passive: true });
 
     track.addEventListener("scroll", () => {
-        if (pointerDown) scrolledSinceDown = true;
-    });
+        justScrolled = true;
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => { justScrolled = false; }, 140);
+    }, { passive: true });
 
     track.addEventListener("click", (e) => {
-        // Ignore clicks on explicit "hit" links inside cards
-        const hit = e.target.closest(".rail-card .hit");
-        if (hit) { e.preventDefault(); e.stopPropagation(); return; }
-
+        if (e.target.closest(".rail-card .hit")) { e.preventDefault(); e.stopPropagation(); return; }
         const card = e.target.closest(".rail-card");
         if (!card) return;
 
-        // If the click followed a scroll gesture, do nothing
-        if (moved || scrolledSinceDown) return;
+        const scrolledDuringClick = Math.abs(track.scrollLeft - downLeft) > 1;
+        if (moved || scrolledDuringClick || justScrolled) return;
 
         buildOverlay(card);
     });
@@ -334,45 +390,48 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-
 //============================================
 //         HOBBIES OVERLAY (Mobile) 
 //=============================================
 document.addEventListener("DOMContentLoaded", () => {
-    // --- 1) Preload & decode every hobby image so overlay paints instantly ---
-    const preloadHobbyImages = async () => {
-        const imgs = document.querySelectorAll(".about-hobbies-mobile .hobbies-carousel .rail-card img");
-        imgs.forEach((el) => {
-            // Pick the exact resource the browser already chose for this viewport
+    const track = document.querySelector(".about-hobbies-mobile .hobbies-carousel .track");
+    if (!track) return;
+
+    // ==============================
+    // Tunables
+    // ==============================
+    const EPS = 1;           // overflow epsilon
+    const JITTER = 6;        // tap vs swipe tolerance (px)
+    const AXIS_LOCK = 1.1;   // require dx > dy*AXIS_LOCK to treat as horizontal pan
+
+    // ==============================
+    // Setup: non-draggable images + idle preload
+    // ==============================
+    track.querySelectorAll(".rail-card img").forEach(img => img.setAttribute("draggable", "false"));
+    (window.requestIdleCallback || ((cb) => setTimeout(cb, 1)))(() => {
+        track.querySelectorAll(".rail-card img").forEach(el => {
             const url = el.currentSrc || el.src;
             if (!url) return;
-
-            // Warm HTTP cache & decode into the image decode cache
             const pre = new Image();
             pre.src = url;
-            pre.decoding = "async";          // don't block main thread
-            pre.fetchPriority = "low";       // avoid competing with critical resources
-            // Fire and forget; decode resolves instantly if already decoded
+            pre.decoding = "async";
+            pre.fetchPriority = "low";
             pre.decode?.().catch(() => { });
         });
-    };
-    preloadHobbyImages();
+    });
 
-    // --- 2) Builder: show overlay for a given card (no image delay/blink) ---
+    // ==============================
+    // 1) Overlay (tap-to-zoom)
+    // ==============================
     const buildOverlay = (card) => {
-        // Close any existing overlay first (so transitions don't overlap)
         const existing = document.querySelector(".hobby-overlay");
-        if (existing) {
-            existing.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
-        }
+        if (existing) existing.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
 
-        // Helpers
         const lockScroll = (lock) => {
             document.documentElement.classList.toggle("lock-scroll", lock);
             document.body.classList.toggle("lock-scroll", lock);
         };
 
-        // Elements
         const backdrop = document.createElement("div");
         backdrop.className = "hobby-backdrop";
 
@@ -383,28 +442,17 @@ document.addEventListener("DOMContentLoaded", () => {
         const content = document.createElement("div");
         content.className = "hobby-content";
 
-        // --- Clone the exact same image candidate the card is currently displaying ---
         const srcImg = card.querySelector("img");
         if (srcImg) {
             const img = document.createElement("img");
-
-            // Use the exact chosen resource to guarantee cache hit & avoid re-evaluation
-            const chosen = srcImg.currentSrc || srcImg.src;
-            img.src = chosen;
-
-            // Preserve attributes that might affect rendering
+            img.src = srcImg.currentSrc || srcImg.src;
             if (srcImg.referrerPolicy) img.referrerPolicy = srcImg.referrerPolicy;
             if (srcImg.crossOrigin) img.crossOrigin = srcImg.crossOrigin;
-
-            // Prefer async decode to avoid blocking; we already pre-decoded above
             img.decoding = "async";
-            img.fetchPriority = "high"; // now that we're opening overlay, prioritize this paint
-
-            // Append immediately — if decoded, it paints this frame; if not, the dim layer hides any micro-lag
+            img.fetchPriority = "high";
             content.appendChild(img);
         }
 
-        // Title & text
         const h4 = card.querySelector("h4")?.cloneNode(true);
         const p = card.querySelector("p")?.cloneNode(true);
         if (h4) content.appendChild(h4);
@@ -413,29 +461,19 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(content);
         document.body.append(backdrop, modal);
 
-        // Instant show for backdrop/overlay (disable their transitions for 1 paint)
+        // show
         backdrop.style.transition = "none";
         modal.style.transition = "none";
-
-        // Show: panel/backdrop visible; content fades in (opacity only)
         backdrop.classList.add("show");
         modal.classList.add("show");
         content.classList.add("appear");
         lockScroll(true);
+        requestAnimationFrame(() => { backdrop.style.transition = ""; modal.style.transition = ""; });
 
-        // Re-enable transitions so closing fades out smoothly
-        requestAnimationFrame(() => {
-            backdrop.style.transition = "";
-            modal.style.transition = "";
-        });
-
-        // Close handler: ONLY fade out panel/backdrop by removing .show
         const close = () => {
-            if (!document.body.contains(modal)) return; // already removed
+            if (!document.body.contains(modal)) return;
             backdrop.classList.remove("show");
             modal.classList.remove("show");
-
-            // After overlay transition completes, cleanup
             let done = false;
             const finish = () => {
                 if (done) return;
@@ -445,82 +483,125 @@ document.addEventListener("DOMContentLoaded", () => {
                 lockScroll(false);
             };
             modal.addEventListener("transitionend", finish, { once: true });
-            setTimeout(finish, 1600); // safety: slightly > your overlay transition
+            setTimeout(finish, 1600);
         };
 
-        // Wire closers
         backdrop.addEventListener("click", close);
         modal.addEventListener("request-close", close);
-        // Tap anywhere to close (remove this if you want interior clicks to do nothing)
         modal.addEventListener("click", close);
-
-        // ESC to close
         const onEsc = (e) => (e.key === "Escape") && close();
         document.addEventListener("keydown", onEsc, { once: true });
-
-        return close;
     };
 
-    // --- 3) Mobile wiring: open overlay on tap ---
-    const track = document.querySelector(".about-hobbies-mobile .hobbies-carousel .track");
-    if (!track) return;
+    // ==============================
+    // 2) Fit detection → “no-scroll” when all items fit (never disable overflow-x)
+    // ==============================
+    const hasOverflow = () => (track.scrollWidth - track.clientWidth) > EPS;
+    const updateMode = () => {
+        track.classList.toggle("no-scroll", !hasOverflow());
+    };
 
-    // If you have .hit anchors inside cards, prevent navigation
-    track.querySelectorAll(".rail-card .hit").forEach(a => {
-        a.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    const ro = new ResizeObserver(() => {
+        cancelAnimationFrame(updateMode._raf || 0);
+        updateMode._raf = requestAnimationFrame(updateMode);
+    });
+    ro.observe(track);
+
+    const mo = new MutationObserver(() => requestAnimationFrame(updateMode));
+    mo.observe(track, { childList: true, subtree: true, attributes: true, attributeFilter: ["style", "class"] });
+
+    track.querySelectorAll("img").forEach(img => {
+        const bump = () => requestAnimationFrame(updateMode);
+        if (!img.complete) {
+            img.addEventListener("load", bump, { once: true });
+            img.addEventListener("error", bump, { once: true });
+        }
     });
 
-    const cards = Array.from(track.querySelectorAll(".rail-card"));
-    cards.forEach((card, idx) => {
-        card.addEventListener("click", () => {
-            const open = document.querySelector(".hobby-overlay");
-            if (open) {
-                const openId = open.getAttribute("data-hobby") || "";
-                const thisId = card.dataset.hobby || String(idx);
-                if (openId === thisId) {
-                    open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
-                    return;
-                }
-                open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
-                setTimeout(() => buildOverlay(card), 0);
+    if (document.fonts?.ready) document.fonts.ready.then(() => requestAnimationFrame(updateMode));
+    window.addEventListener("resize", () => requestAnimationFrame(updateMode), { passive: true });
+    window.addEventListener("load", updateMode);
+    updateMode();
+
+    // ==============================
+    // 3) Smart touch-pan (like desktop wheel)
+    //    - Only when rail overflows
+    //    - Horizontal intent after small lock threshold
+    //    - Lets page scroll at edges
+    // ==============================
+    let panning = false;
+    let startX = 0, startY = 0, startLeft = 0;
+    let moved = false;                 // for tap-vs-swipe guard
+    let justScrolled = false, tGuard;  // small guard after scroll
+
+    // Use pointer events (covers touch+pen). We don’t preventDefault on down; we decide in move.
+    track.addEventListener("pointerdown", (e) => {
+        if (e.pointerType !== "touch" && e.pointerType !== "pen") return; // mobile only
+        if (!hasOverflow()) return; // nothing to pan
+        panning = false;
+        moved = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        startLeft = track.scrollLeft;
+    }, { passive: true });
+
+    track.addEventListener("pointermove", (e) => {
+        if (e.pointerType !== "touch" && e.pointerType !== "pen") return;
+        // If we never got a pointerdown (edge cases), ignore
+        if (startX === undefined) return;
+
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+
+        // Decide when to lock to horizontal pan
+        if (!panning) {
+            if (Math.abs(dx) < JITTER && Math.abs(dy) < JITTER) return; // still jitter
+            if (Math.abs(dx) > Math.abs(dy) * AXIS_LOCK) {
+                // horizontal intent → start panning
+                panning = true;
+            } else {
+                // mostly vertical → let page scroll; bail out
                 return;
             }
-            buildOverlay(card);
-        }, { passive: true });
-    });
-});
-//===================================================================
-//HOBBIES RAIL TOUCH FALLBACK (for no-hover devices on desktop rail)  
-//===================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    const rail = document.querySelector('.hobbies-rail');
-    if (!rail) return;
+        }
 
-    // If we're on a real desktop pointer (hover + fine), rely on hover only.
-    const hasRealHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
-    if (hasRealHover) {
-        rail.querySelectorAll('.rail-card.active').forEach(c => c.classList.remove('active'));
-        return;
-    }
+        // We are panning horizontally. Prevent vertical page scroll while panning.
+        e.preventDefault();
 
-    // Touch / no-hover devices: tap to toggle an active card in-rail
-    const cards = Array.from(rail.querySelectorAll('.rail-card'));
-    const clear = () => cards.forEach(c => c.classList.remove('active'));
+        // Edge release: if you try to pan past the edges, stop panning so the page can move
+        const max = track.scrollWidth - track.clientWidth;
+        const nextLeft = startLeft - dx; // inverse because dragging right should reveal left content
+        const atStart = track.scrollLeft <= 0 && nextLeft < 0;
+        const atEnd = track.scrollLeft >= max && nextLeft > max;
 
-    cards.forEach(card => {
-        card.addEventListener('click', () => {
-            const wasActive = card.classList.contains('active');
-            clear();
-            if (!wasActive) card.classList.add('active');
-        }, { passive: true });
-    });
+        if (atStart || atEnd) return; // allow page to scroll instead
 
-    // Tap outside the rail to close
-    document.addEventListener('click', (e) => {
-        if (!rail.contains(e.target)) clear();
+        moved = true;
+        track.scrollLeft = Math.min(max, Math.max(0, nextLeft));
+    }, { passive: false });
+
+    const clearPan = () => { panning = false; startX = startY = undefined; };
+    track.addEventListener("pointerup", clearPan, { passive: true });
+    track.addEventListener("pointercancel", clearPan, { passive: true });
+
+    // Guard clicks that follow a scroll (inertia)
+    track.addEventListener("scroll", () => {
+        justScrolled = true;
+        clearTimeout(tGuard);
+        tGuard = setTimeout(() => { justScrolled = false; }, 140);
     }, { passive: true });
-});
 
+    // ==============================
+    // 4) Tap to zoom (delegated), with swipe guard
+    // ==============================
+    track.addEventListener("click", (e) => {
+        if (e.target.closest(".rail-card .hit")) { e.preventDefault(); e.stopPropagation(); return; }
+        const card = e.target.closest(".rail-card");
+        if (!card) return;
+        if (moved || justScrolled) return; // treat as scroll, not a tap
+        buildOverlay(card);
+    }, { passive: false });
+});
 
 // ==========================================
 // 5) CERTIFICATE / DEGREE IMAGE ZOOM                                         
