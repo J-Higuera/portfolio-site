@@ -559,8 +559,8 @@
 
     @supports (mask-image: linear-gradient(rgb(0, 0, 0), black)) {
         .about-hobbies-mobile .hobbies-carousel {
-            -webkit-mask-image: linear-gradient(to right, transparent 0, black 28px, rgb(0, 0, 0) calc(80% - 78px), transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.54) 78px, rgb(0, 0, 0) calc(80% - 78px), transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0, black 28px, rgb(0, 0, 0) calc(83% - 25px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.54) 28px, rgb(0, 0, 0) calc(85% - 25px), transparent 100%);
         }
     }
 
