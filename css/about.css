@@ -213,8 +213,6 @@
     padding: 0;
 }
 
-
-
 .about-hobbies-desktop {
     background: #000000a8;
     min-width: 200px;
@@ -227,6 +225,9 @@
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
+    --thumb-w: 240px;
+    --thumb-h: 150px;
+    --gap: .8rem;
 }
 
 .light-mode .about-hobbies-desktop {
@@ -259,51 +260,61 @@
     padding: 0 .5rem;
 }
 
-.about-hobbies-desktop .hobbies-carousel .track {
-    display: flex;
-    justify-content: center;
-    gap: var(--gap);
-    overflow-x: auto;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: .25rem;
-    scroll-padding-inline: 12px;
-    position: relative;
-    scrollbar-width: none;
-    touch-action: auto;
-    overscroll-behavior-inline: contain;
-}
-
 .about-hobbies-desktop .hobbies-carousel .track::-webkit-scrollbar {
     height: 0;
 }
 
 .about-hobbies-desktop .hobbies-carousel .rail-card {
-    display: flex;
+    flex: 0 0 var(--thumb-w);
+    /* <- THE IMPORTANT PART */
     width: var(--thumb-w);
     height: var(--thumb-h);
     min-height: var(--thumb-h);
     max-height: var(--thumb-h);
-    position: relative;
-    border-radius: 8px;
-    overflow: hidden;
-    isolation: isolate;
-    background: #0a0f14;
     scroll-snap-align: center;
-    cursor: pointer;
-    transition: box-shadow .22s ease, filter .18s ease;
-    z-index: 0;
-    touch-action: manipulation;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0a0f14;
+}
+
+/* Fixed card size (tweak to taste) */
+.about-hobbies-desktop {
+    --thumb-w: 240px;
+    --thumb-h: 150px;
+    --gap: .8rem;
+}
+
+.about-hobbies-desktop .hobbies-carousel .track {
+    display: flex;
+    gap: var(--gap);
+    justify-content: flex-start;
+    overflow-x: auto;
+    /* we keep overflow so content can move */
+    overflow-y: hidden;
+    scroll-snap-type: none;
+    /* <- allow stopping halfway */
+    -webkit-overflow-scrolling: auto;
+    scrollbar-width: none;
+    cursor: grab;
+    /* visual affordance for drag */
+    user-select: none;
+    /* avoid text selection while dragging */
 }
 
 .about-hobbies-desktop .hobbies-carousel .rail-card img {
     position: absolute;
     inset: 0;
-    filter: brightness(1.0) saturate(1.0) contrast(1.0);
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+
+@supports (mask-image: linear-gradient(black, black)) {
+    .about-hobbies-desktop .hobbies-carousel {
+        -webkit-mask-image: linear-gradient(to right, transparent 0, black 28px, black calc(100% - 28px), transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, black 28px, black calc(100% - 28px), transparent 100%);
+    }
 }
 
 .rail-card {
@@ -319,16 +330,6 @@
     flex-direction: column;
     flex: 1 1 0;
     transition: flex .45s ease, transform .45s ease, box-shadow .45s ease;
-}
-
-.rail-card>img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    filter: saturate(1.05) contrast(.98);
-    transition: transform .45s ease, filter .45s ease;
 }
 
 .rail-card::after {
@@ -453,13 +454,13 @@
     }
 }
 
-
 /* ===== MOBILE 720px: swipe carousel + overlay ===== */
 @media (max-width: 720px) {
 
     .about-hobbies-desktop {
         display: none;
     }
+
     .about-hobbies-mobile {
         --thumb-h: 120px;
         --thumb-w: 220px;
@@ -540,6 +541,14 @@
     .about-hobbies-mobile .hobbies-carousel .rail-card:where(:hover, :focus-visible):not(.active) {
         transform: none;
     }
+
+    @supports (mask-image: linear-gradient(rgb(0, 0, 0), black)) {
+        .about-hobbies-mobile .hobbies-carousel {
+            -webkit-mask-image: linear-gradient(to right, transparent 0, black 28px, rgb(0, 0, 0) calc(80% - 78px), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.54) 78px, rgb(0, 0, 0) calc(80% - 78px), transparent 100%);
+        }
+    }
+
 
     /* Backdrop & panel fade smoothly using opacity only — no visibility toggles */
     .hobby-backdrop {

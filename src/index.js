@@ -175,22 +175,30 @@ document.addEventListener("DOMContentLoaded", () => {
 //         HOBBIES OVERLAY (Desktop) 
 //=============================================
 document.addEventListener("DOMContentLoaded", () => {
-    // --- 1) Preload & decode every hobby image so overlay paints instantly ---
+
+    const track = document.querySelector(".about-hobbies-desktop .hobbies-carousel .track");
+    if (!track) return;
+
+    // Make all card images non-draggable so dragging the ghost image never steals the click
+    track.querySelectorAll(".rail-card img").forEach(img => {
+        img.setAttribute("draggable", "false");
+    });
+
     const preloadHobbyImages = () => {
-        const imgs = document.querySelectorAll(".about-hobbies-desktop .hobbies-carousel .rail-card img");
-        imgs.forEach((el) => {
+        const imgs = track.querySelectorAll(".rail-card img");
+        for (const el of imgs) {
             const url = el.currentSrc || el.src;
-            if (!url) return;
+            if (!url) continue;
             const pre = new Image();
             pre.src = url;
             pre.decoding = "async";
             pre.fetchPriority = "low";
             pre.decode?.().catch(() => { });
-        });
+        }
     };
-    preloadHobbyImages();
+    // Use idle time if available to stay off the critical path
+    (window.requestIdleCallback || ((cb) => setTimeout(cb, 1)))(preloadHobbyImages);
 
-    // --- 2) Builder: show overlay for a given card (no image delay/blink) ---
     const buildOverlay = (card) => {
         const existing = document.querySelector(".hobby-overlay");
         if (existing) existing.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
@@ -210,6 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const content = document.createElement("div");
         content.className = "hobby-content";
 
+        // clone the currently used image resource to guarantee cache hit
         const srcImg = card.querySelector("img");
         if (srcImg) {
             const img = document.createElement("img");
@@ -229,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(content);
         document.body.append(backdrop, modal);
 
-        // show
+        // Show (disable transitions for 1 frame to avoid initial fade-in delay)
         backdrop.style.transition = "none";
         modal.style.transition = "none";
         backdrop.classList.add("show");
@@ -238,7 +247,6 @@ document.addEventListener("DOMContentLoaded", () => {
         lockScroll(true);
         requestAnimationFrame(() => { backdrop.style.transition = ""; modal.style.transition = ""; });
 
-        // close
         const close = () => {
             if (!document.body.contains(modal)) return;
             backdrop.classList.remove("show");
@@ -252,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 lockScroll(false);
             };
             modal.addEventListener("transitionend", finish, { once: true });
-            setTimeout(finish, 1600);
+            setTimeout(finish, 1600); // safety timeout
         };
 
         backdrop.addEventListener("click", close);
@@ -264,42 +272,68 @@ document.addEventListener("DOMContentLoaded", () => {
         return close;
     };
 
-    // --- 3) Desktop wiring: open overlay on click ---
-    const track = document.querySelector(".about-hobbies-desktop .hobbies-carousel .track");
-    if (!track) return;
+    const cards = Array.from(track.querySelectorAll(".rail-card"));
+    cards.forEach((card) => { card.tabIndex ||= 0; });
 
-    // If you have .hit anchors inside cards, prevent navigation
-    track.querySelectorAll(".rail-card .hit").forEach(a => {
-        a.addEventListener("click", (e) => { e.preventDefault(); e.stopPropagation(); }, { passive: false });
+    const desktop = matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const WHEEL_SPEED = 0.45; // lower = slower; tune 0.25–0.55
+
+    if (desktop) {
+        track.addEventListener("wheel", (e) => {
+            const dx = Math.abs(e.deltaX) >= Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+            if (dx === 0) return;
+            e.preventDefault(); // prevent native jumpiness
+            track.scrollLeft += dx * WHEEL_SPEED;
+        }, { passive: false });
+    }
+
+    let pointerDown = false;
+    let moved = false;
+    let startX = 0;
+    let scrolledSinceDown = false;
+
+    track.addEventListener("pointerdown", (e) => {
+        pointerDown = true;
+        moved = false;
+        scrolledSinceDown = false;
+        startX = e.clientX;
+    }, { passive: true });
+
+    track.addEventListener("pointermove", (e) => {
+        if (!pointerDown) return;
+        if (Math.abs(e.clientX - startX) > 6) moved = true; // jitter tolerance
+    }, { passive: true });
+
+    track.addEventListener("pointerup", () => { pointerDown = false; }, { passive: true });
+    track.addEventListener("pointercancel", () => { pointerDown = false; }, { passive: true });
+
+    track.addEventListener("scroll", () => {
+        if (pointerDown) scrolledSinceDown = true;
     });
 
-    const cards = Array.from(track.querySelectorAll(".rail-card"));
-    cards.forEach((card, idx) => {
-        card.tabIndex ||= 0; // keyboard focus
-        card.addEventListener("click", () => {
-            const open = document.querySelector(".hobby-overlay");
-            if (open) {
-                const openId = open.getAttribute("data-hobby") || "";
-                const thisId = card.dataset.hobby || String(idx);
-                if (openId === thisId) {
-                    open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
-                    return;
-                }
-                open.dispatchEvent(new CustomEvent("request-close", { bubbles: true }));
-                setTimeout(() => buildOverlay(card), 0);
-                return;
-            }
-            buildOverlay(card);
-        }, { passive: true });
+    track.addEventListener("click", (e) => {
+        // Ignore clicks on explicit "hit" links inside cards
+        const hit = e.target.closest(".rail-card .hit");
+        if (hit) { e.preventDefault(); e.stopPropagation(); return; }
 
-        card.addEventListener("keydown", (e) => {
-            if (e.code === "Enter" || e.code === "Space") {
-                e.preventDefault();
-                buildOverlay(card);
-            }
-        });
+        const card = e.target.closest(".rail-card");
+        if (!card) return;
+
+        // If the click followed a scroll gesture, do nothing
+        if (moved || scrolledSinceDown) return;
+
+        buildOverlay(card);
+    });
+
+    track.addEventListener("keydown", (e) => {
+        if (e.code !== "Enter" && e.code !== "Space") return;
+        const card = e.target.closest(".rail-card");
+        if (!card) return;
+        e.preventDefault();
+        buildOverlay(card);
     });
 });
+
 
 //============================================
 //         HOBBIES OVERLAY (Mobile) 
