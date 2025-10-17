@@ -224,12 +224,17 @@
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
-
     /* thumb sizing + spacing */
     --thumb-w: 240px;
-    --thumb-h: 150px;
+    --thumb-h: 220px;
     --thumb-frac: 60%;
     --gap: .9rem;
+}
+
+.about-hobbies-dekstop .hobbies-carousel {
+    position: relative;
+    overflow: visible;
+    padding: 0 .5rem;
 }
 
 .light-mode .about-hobbies-desktop {
@@ -261,7 +266,6 @@
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     cursor: auto;
-    /* track itself is not the “button”; cards are */
     user-select: none;
 }
 
@@ -301,7 +305,6 @@
     overflow: hidden;
     background: #0a0f14;
     scroll-snap-align: center;
-
     /* the “button” for zoom */
     cursor: pointer;
 }
@@ -330,12 +333,7 @@
 }
 
 .rail-card::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, .405), rgba(0, 0, 0, .097));
-    z-index: 1;
-    pointer-events: none;
+    background: none;
 }
 
 .about-hobbies-desktop .hobbies-carousel .rail-card h4 {
