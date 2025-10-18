@@ -181,8 +181,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Tunables
     const desktop = matchMedia("(hover: hover) and (pointer: fine)").matches;
     const EPS = 1;     // epsilon for overflow checks
-    const SPEED = 1.35;  // lower = slower wheel movement
-    const EASE = 0.45;  // easing factor (0.12–0.25 good)
+    const SPEED = 1.25;  // lower = slower wheel movement
+    const EASE = 0.15;  // easing factor (0.12–0.25 good)
     const JITTERPX = 6;     // click-vs-scroll pointer jitter tolerance
 
 
