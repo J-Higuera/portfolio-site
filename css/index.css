@@ -98,6 +98,7 @@ html.loading {
 }
 
 #hero-text {
+    display: inline-block;
     white-space: nowrap;
     text-align: left;
 }
@@ -683,6 +684,8 @@ footer a {
         font-size: 1.4rem;
         color: #bfbfbf;
         margin-top: 15px;
+        padding-right: 0;
+        padding-left: 0;
         animation: fadeIn 5s ease-in-out;
     }
 
@@ -882,10 +885,10 @@ footer a {
         width: 100%;
         z-index: 1;
         height: auto;
-        padding-top: 120px;
-        padding-bottom: 80px;
-        padding-right: 15px;
-        padding-left: 15px;
+        padding-top: 100px;
+        padding-bottom: 30px;
+        padding-right: 4px;
+        padding-left: 4px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -893,28 +896,28 @@ footer a {
     }
 
     .hero h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         margin: 0;
         color: #bfbfbf;
         display: block;
         text-align: center;
+        padding-right: 2px;
+        padding-left: 2px;
         width: 100%;
-        padding-left: 0;
-        padding-right: 0;
         animation: fadeIn 4s ease-in-out;
     }
 
     .hero h2 {
         font-size: 1.2rem;
         color: #bfbfbf;
+        padding-right: 0;
+        padding-left: 0;
         margin-top: 15px;
-        padding-right: 15px;
-        padding-left: 15px;
         animation: fadeIn 5s ease-in-out;
     }
 
     .type-sequence i {
-        font-size: 1.7rem;
+        font-size: 1.6rem;
     }
 
     .container {
