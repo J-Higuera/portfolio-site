@@ -84,7 +84,6 @@
     display: none;
 }
 
-
 .profile-photo-desktop {
     display: flex;
     flex-wrap: wrap;
@@ -131,7 +130,7 @@
 }
 
 .photo-card p {
-    padding: 12px;
+    padding: 22px;
 }
 
 .photo-card img {
@@ -170,11 +169,18 @@
     gap: 1rem;
 }
 
-.photo-meta {
+.photo-meta-mobile {
+    display: none;
+}
+
+
+.photo-meta-desktop {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: flex-start;
+    padding-top: 16px;
+    gap: 10px;
     font-size: 1rem;
 }
 
@@ -183,19 +189,51 @@
     font-weight: bold;
     margin-bottom: 0.4rem;
     align-self: center;
+    padding-right: 10px;
 }
 
 .light-mode .username {
     color: #000000;
 }
 
-.resume-button {
+.resume-button-desktop {
     color: #00b3ff;
     font-weight: bold;
     text-decoration: none;
     text-align: center;
     transition: color 0.3s;
 }
+
+.resume-button-desktop button {
+    color: #00d0ff;
+    background-color: #111111;
+    font-weight: bold;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 6px;
+    padding: 2px;
+    cursor: pointer;
+    box-shadow: 1px 0px 14px rgba(34, 155, 0, 0.4);
+    transition: transform .20s ease-in-out;
+}
+
+.resume-button-desktop span {
+    padding-right: 6px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .resume-button-desktop button:hover {
+        color: #99ff00;
+        background-color: #000000;
+        transform: scale(1.2);
+    }
+
+    .resume-button-desktop button:active {
+        transform: scale(0.4);
+        transition: transform .10s ease-in-out;
+    }
+}
+
 
 .photo-card img.download-icon {
     width: 20px;
@@ -459,230 +497,259 @@
         display: none;
     }
 
-    .about-hobbies-mobile {
-        --thumb-h: 120px;
-        --thumb-w: 220px;
-        --thumb-frac: 60%;
-        --gap: .6rem;
+    .photo-meta-mobile {
+        display: flex;
     }
 
-    .about-hobbies-mobile .hobbies-carousel {
-        position: relative;
-        overflow: visible;
-        padding: 0 .5rem;
+    .photo-meta-mobile {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        font-size: 1rem;
+        gap: 6px;
     }
 
-    /* KEY CHANGES:
+
+    .resume-button {
+        color: #00b3ff;
+        font-weight: bold;
+        text-decoration: none;
+        text-align: center;
+        transition: color 0.3s;
+    }
+
+    .resume-button button {
+        color: #009dff;
+        background-color: #111111;
+        font-weight: bold;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 6px;
+        padding: 2px;
+        cursor: pointer;
+        box-shadow: 1px 0px 14px rgba(34, 155, 0, 0.4);
+        transition: transform .20s ease-in-out;
+    }
+
+    .resume-button span {
+        padding-right: 6px;
+    }
+
+}
+
+.about-hobbies-mobile {
+    --thumb-h: 120px;
+    --thumb-w: 220px;
+    --thumb-frac: 60%;
+    --gap: .6rem;
+}
+
+.about-hobbies-mobile .hobbies-carousel {
+    position: relative;
+    overflow: visible;
+    padding: 0 .5rem;
+}
+
+/* KEY CHANGES:
    - overflow-y: hidden (like desktop)
    - scroll-snap-type: none (remove snap fights)
    - allow scroll chaining by REMOVING overscroll-behavior-inline: contain
    - set touch-action to allow both pans; JS decides when to preventDefault */
-    .about-hobbies-mobile .hobbies-carousel .track {
-        display: flex;
-        gap: var(--gap);
-        overflow-x: auto;
-        overflow-y: hidden;
-        /* was visible */
-        scroll-snap-type: none;
-        /* was x mandatory */
-        -webkit-overflow-scrolling: touch;
-        padding-bottom: .25rem;
-        scroll-padding-inline: 12px;
-        position: relative;
-        scrollbar-width: none;
-        touch-action: pan-x pan-y;
-        /* allow both; JS locks when needed */
-        /* overscroll-behavior-inline: contain;  <-- REMOVE this to allow page scroll at edges */
+.about-hobbies-mobile .hobbies-carousel .track {
+    display: flex;
+    gap: var(--gap);
+    overflow-x: auto;
+    overflow-y: hidden;
+    /* was visible */
+    scroll-snap-type: none;
+    /* was x mandatory */
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: .25rem;
+    scroll-padding-inline: 12px;
+    position: relative;
+    scrollbar-width: none;
+    touch-action: pan-x pan-y;
+    /* allow both; JS locks when needed */
+    /* overscroll-behavior-inline: contain;  <-- REMOVE this to allow page scroll at edges */
+}
+
+.about-hobbies-mobile .hobbies-carousel .track::-webkit-scrollbar {
+    height: 0;
+}
+
+/* When everything fits, just center (same idea as desktop) */
+.about-hobbies-mobile .hobbies-carousel .track.no-scroll {
+    justify-content: center;
+}
+
+.about-hobbies-mobile .hobbies-carousel .rail-card {
+    flex: 0 0 min(var(--thumb-frac), var(--thumb-w));
+    width: var(--thumb-w);
+    height: var(--thumb-h);
+    min-height: var(--thumb-h);
+    max-height: var(--thumb-h);
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    isolation: isolate;
+    background: #0a0f14;
+    scroll-snap-align: center;
+    /* harmless with snap disabled on track */
+    cursor: pointer;
+    transition: box-shadow .22s ease, filter .18s ease;
+    z-index: 0;
+    touch-action: manipulation;
+    /* keep clicks snappy; JS handles pans */
+}
+
+.about-hobbies-mobile .hobbies-carousel .rail-card img {
+    position: absolute;
+    inset: 0;
+    filter: brightness(1.0) saturate(1.0) contrast(1.0);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.rail-card::after {
+    background: none;
+}
+
+.about-hobbies-mobile .hobbies-carousel .rail-card h4 {
+    position: relative;
+    z-index: 2;
+    margin: .2rem;
+    padding: .2rem .25rem;
+    border-radius: 6px;
+    background: rgba(0, 0, 0, .55);
+    font: 800 .55rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+}
+
+.about-hobbies-mobile .hobbies-carousel .rail-card p {
+    display: none;
+}
+
+.about-hobbies-mobile .hobbies-carousel .rail-card:where(:hover, :focus-visible):not(.active) {
+    transform: none;
+}
+
+@supports (mask-image: linear-gradient(rgb(0, 0, 0), black)) {
+    .about-hobbies-mobile .hobbies-carousel {
+        -webkit-mask-image: linear-gradient(to right, transparent 0, black 28px, rgb(0, 0, 0) calc(83% - 25px), transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.54) 28px, rgb(0, 0, 0) calc(85% - 25px), transparent 100%);
     }
+}
 
-    .about-hobbies-mobile .hobbies-carousel .track::-webkit-scrollbar {
-        height: 0;
-    }
+/* Overlay styles stay as you had them… (unchanged) */
 
-    /* When everything fits, just center (same idea as desktop) */
-    .about-hobbies-mobile .hobbies-carousel .track.no-scroll {
-        justify-content: center;
-    }
+.hobby-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .65);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+    z-index: 1001;
+}
 
-    .about-hobbies-mobile .hobbies-carousel .rail-card {
-        flex: 0 0 min(var(--thumb-frac), var(--thumb-w));
-        width: var(--thumb-w);
-        height: var(--thumb-h);
-        min-height: var(--thumb-h);
-        max-height: var(--thumb-h);
-        position: relative;
-        border-radius: 8px;
-        overflow: hidden;
-        isolation: isolate;
-        background: #0a0f14;
-        scroll-snap-align: center;
-        /* harmless with snap disabled on track */
-        cursor: pointer;
-        transition: box-shadow .22s ease, filter .18s ease;
-        z-index: 0;
-        touch-action: manipulation;
-        /* keep clicks snappy; JS handles pans */
-    }
+.hobby-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-    .about-hobbies-mobile .hobbies-carousel .rail-card img {
-        position: absolute;
-        inset: 0;
-        filter: brightness(1.0) saturate(1.0) contrast(1.0);
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.hobby-overlay {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(92vw, 560px);
+    height: min(70vh, 560px);
+    border-radius: 18px;
+    overflow: hidden;
+    background: #0a0f14;
+    box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+    z-index: 1002;
+}
 
-    .rail-card::after {
-        background: none;
-    }
+.hobby-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
 
-    .about-hobbies-mobile .hobbies-carousel .rail-card h4 {
-        position: relative;
-        z-index: 2;
-        margin: .2rem;
-        padding: .2rem .25rem;
-        border-radius: 6px;
-        background: rgba(0, 0, 0, .55);
-        font: 800 .55rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
-    }
+.hobby-content {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    display: grid;
+    place-items: center;
+    will-change: opacity;
+}
 
-    .about-hobbies-mobile .hobbies-carousel .rail-card p {
-        display: none;
-    }
+.hobby-content::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 15, 20, .58);
+    z-index: 1;
+}
 
-    .about-hobbies-mobile .hobbies-carousel .rail-card:where(:hover, :focus-visible):not(.active) {
-        transform: none;
-    }
+.hobby-content>img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
 
-    @supports (mask-image: linear-gradient(rgb(0, 0, 0), black)) {
-        .about-hobbies-mobile .hobbies-carousel {
-            -webkit-mask-image: linear-gradient(to right, transparent 0, black 28px, rgb(0, 0, 0) calc(83% - 25px), transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0, rgba(0, 0, 0, 0.54) 28px, rgb(0, 0, 0) calc(85% - 25px), transparent 100%);
-        }
-    }
+.hobby-content>h4 {
+    position: absolute;
+    top: .4rem;
+    left: .4rem;
+    padding: .5rem .6rem;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .55);
+    font: 800 .85rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+    z-index: 2;
+    margin: 0;
+}
 
-    /* Overlay styles stay as you had them… (unchanged) */
+.hobby-content>p {
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    padding: 1.1rem;
+    color: #e9f7fb;
+    font-size: .96rem;
+    text-align: center;
+}
 
-    .hobby-backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, .65);
+.hobby-content.appear {
+    animation: hobbyContentFade 1s ease forwards;
+}
+
+@keyframes hobbyContentFade {
+    from {
         opacity: 0;
-        pointer-events: none;
-        transition: opacity 1s ease;
-        z-index: 1001;
     }
 
-    .hobby-backdrop.show {
+    to {
         opacity: 1;
-        pointer-events: auto;
     }
-
-    .hobby-overlay {
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: min(92vw, 560px);
-        height: min(70vh, 560px);
-        border-radius: 18px;
-        overflow: hidden;
-        background: #0a0f14;
-        box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 1s ease;
-        z-index: 1002;
-    }
-
-    .hobby-overlay.show {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .hobby-content {
-        position: absolute;
-        inset: 0;
-        opacity: 0;
-        display: grid;
-        place-items: center;
-        will-change: opacity;
-    }
-
-    .hobby-content::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 15, 20, .58);
-        z-index: 1;
-    }
-
-    .hobby-content>img {
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        z-index: 0;
-    }
-
-    .hobby-content>h4 {
-        position: absolute;
-        top: .4rem;
-        left: .4rem;
-        padding: .5rem .6rem;
-        border-radius: 10px;
-        background: rgba(0, 0, 0, .55);
-        font: 800 .85rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
-        z-index: 2;
-        margin: 0;
-    }
-
-    .hobby-content>p {
-        position: relative;
-        z-index: 2;
-        margin: 0;
-        padding: 1.1rem;
-        color: #e9f7fb;
-        font-size: .96rem;
-        text-align: center;
-    }
-
-    .hobby-content.appear {
-        animation: hobbyContentFade 1s ease forwards;
-    }
-
-    @keyframes hobbyContentFade {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-
-    @keyframes hobbyContentFade {
-        from {
-            opacity: 0;
-        }
-
-        to {
-            opacity: 1;
-        }
-    }
-
-    /* IMPORTANT: do NOT fade content on close. Remove any
-   .hobby-overlay:not(.show) .hobby-content { opacity: 0; ... } rules */
-
 }
 
 
-@media (hover: hover) and (pointer: fine) {
-    .resume-button:hover {
-        color: #99ff00;
+@keyframes hobbyContentFade {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
     }
 }
 

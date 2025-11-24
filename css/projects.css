@@ -143,6 +143,27 @@
     white-space: nowrap;
 }
 
+.tech-item-railway {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 1.5px solid #678383;
+    border-radius: 7px;
+    background: #0e0e0e5f;
+    padding: 2px 8px;
+    gap: 7px;
+    box-shadow: 0 2px 8px rgba(0, 162, 198, 0.07);
+    min-width: 0;
+    margin-bottom: 4px;
+}
+
+.tech-item-railway svg {
+    border-radius: 4px;
+    background: #efefefe9;
+    box-shadow: 0 2px 8px rgba(0, 162, 198, 0.07);
+    height: 17px;
+}
+
 .light-mode .project-card {
     background: linear-gradient(170deg, rgba(129, 172, 181, 0.95), rgba(153, 128, 159, 0.95), rgb(148, 182, 195));
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.527);
