@@ -628,7 +628,7 @@
     padding: .2rem .25rem;
     border-radius: 6px;
     background: rgba(0, 0, 0, .55);
-    font: 800 .55rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+    font: 800 .85rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
 }
 
 .about-hobbies-mobile .hobbies-carousel .rail-card p {
