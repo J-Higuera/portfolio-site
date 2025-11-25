@@ -153,7 +153,7 @@ html ::-webkit-scrollbar-thumb {
     flex-wrap: wrap;
     gap: 8px 12px;
     justify-content: center;
-    width: 100%;
+
 }
 
 .tech-item {
@@ -189,6 +189,7 @@ html ::-webkit-scrollbar-thumb {
     background: #efefefe9;
     box-shadow: 0 2px 8px rgba(0, 162, 198, 0.07);
     height: 17px;
+    width: 16px;
 }
 
 

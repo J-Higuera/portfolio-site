@@ -266,7 +266,6 @@
     border-radius: var(--radius);
     color: var(--text-bright);
     font-family: var(--font-main);
-    /* thumb sizing + spacing */
     --thumb-w: 240px;
     --thumb-h: 220px;
     --thumb-frac: 60%;
@@ -289,7 +288,7 @@
     color: #acc6c9;
     text-align: center;
     padding-bottom: 25px;
-    font-size: 1.4rem;
+    font-size: 1.7rem;
 }
 
 .light-mode .about-hobbies-desktop h3 {
@@ -347,7 +346,6 @@
     overflow: hidden;
     background: #0a0f14;
     scroll-snap-align: center;
-    /* the “button” for zoom */
     cursor: pointer;
 }
 
@@ -385,7 +383,7 @@
     padding: .2rem .25rem;
     border-radius: 6px;
     background: rgba(0, 0, 0, .55);
-    font: 800 .55rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
+    font: 800 .88rem/1 var(--font-mono, ui-monospace, Menlo, Consolas, monospace);
 }
 
 .about-hobbies-desktop .hobbies-carousel .rail-card p {
