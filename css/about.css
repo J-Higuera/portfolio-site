@@ -213,8 +213,10 @@
     border-radius: 6px;
     padding: 2px;
     cursor: pointer;
-    border-right: 2px solid #161616;
-    border-bottom: 2px solid #161616;
+    border-top: 2px solid #363636;
+    border-left: 2px solid #363636;
+    border-right: 2px solid #000000;
+    border-bottom: 2px solid #000000;
     box-shadow: 1px 0px 14px rgba(34, 155, 0, 0.4);
     transition: transform .20s ease-in-out;
 }
@@ -526,6 +528,8 @@
         font-weight: bold;
         text-decoration: none;
         text-align: center;
+        border-top: 2px solid #363636;
+        border-left: 2px solid #363636;
         border-right: 2px solid #000000;
         border-bottom: 2px solid #000000;
         border-radius: 6px;
