@@ -218,7 +218,10 @@
     border-right: 2px solid #000000;
     border-bottom: 2px solid #000000;
     box-shadow: 1px 0px 14px rgba(34, 155, 0, 0.4);
-    transition: transform .20s ease-in-out;
+    transition:
+        transform .2s ease-in-out,
+        color .2s ease,
+        background-color .2s ease;
 }
 
 .resume-button-desktop span {
@@ -229,12 +232,11 @@
     .resume-button-desktop button:hover {
         color: #99ff00;
         background-color: #000000;
-        transform: scale(1.2);
+        transform: scale(1.15);
     }
 
     .resume-button-desktop button:active {
         transform: scale(0.4);
-        transition: transform .10s ease-in-out;
     }
 }
 
@@ -517,7 +519,7 @@
         font-weight: bold;
         text-decoration: none;
         text-align: center;
-        transition: color 0.3s;
+        padding-top: 10px;
     }
 
     .resume-button button {
@@ -531,7 +533,7 @@
         border-right: 2px solid #000000;
         border-bottom: 2px solid #000000;
         border-radius: 6px;
-        padding: 2px;
+        padding: 3px;
         cursor: pointer;
         box-shadow: 1px 0px 14px rgba(34, 155, 0, 0.4);
         transition: transform .20s ease-in-out;
