@@ -255,13 +255,13 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(content);
         document.body.append(backdrop, modal);
 
-        backdrop.style.transition = "none";
-        modal.style.transition = "none";
-        backdrop.classList.add("show");
-        modal.classList.add("show");
-        content.classList.add("appear");
-        lockScroll(true);
-        requestAnimationFrame(() => { backdrop.style.transition = ""; modal.style.transition = ""; });
+        // ✨ KEY CHANGE: no transition overrides, just add .show on next frame
+        requestAnimationFrame(() => {
+            backdrop.classList.add("show");
+            modal.classList.add("show");
+            content.classList.add("appear");
+            lockScroll(true);
+        });
 
         const close = () => {
             if (!document.body.contains(modal)) return;
@@ -461,14 +461,13 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(content);
         document.body.append(backdrop, modal);
 
-        // show
-        backdrop.style.transition = "none";
-        modal.style.transition = "none";
-        backdrop.classList.add("show");
-        modal.classList.add("show");
-        content.classList.add("appear");
-        lockScroll(true);
-        requestAnimationFrame(() => { backdrop.style.transition = ""; modal.style.transition = ""; });
+        // ✨ KEY CHANGE: no transition overrides, just add .show on next frame
+        requestAnimationFrame(() => {
+            backdrop.classList.add("show");
+            modal.classList.add("show");
+            content.classList.add("appear");
+            lockScroll(true);
+        });
 
         const close = () => {
             if (!document.body.contains(modal)) return;
@@ -492,6 +491,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const onEsc = (e) => (e.key === "Escape") && close();
         document.addEventListener("keydown", onEsc, { once: true });
     };
+
 
     // ==============================
     // 2) Fit detection → “no-scroll” when all items fit (never disable overflow-x)
