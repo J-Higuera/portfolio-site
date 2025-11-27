@@ -10,17 +10,25 @@ import './react-entry.jsx';
 window.addEventListener('load', () => {
     const loader = document.getElementById('site-loader');
 
-    // allow page scroll again
-    document.documentElement.classList.remove('loading');
-    document.body.classList.remove('loading');
+    if (!loader) {
+        // no loader, just unlock immediately
+        document.documentElement.classList.remove('loading');
+        document.body.classList.remove('loading');
+        return;
+    }
 
-    if (!loader) return;
-
-    // fade out
+    // start fade-out
     loader.classList.add('done');
 
-    // remove from DOM after transition so it doesn’t eat clicks
-    loader.addEventListener('transitionend', () => {
+    const finish = () => {
         loader.remove();
-    }, { once: true });
+        // ✅ only now unlock scroll
+        document.documentElement.classList.remove('loading');
+        document.body.classList.remove('loading');
+    };
+
+    loader.addEventListener('transitionend', finish, { once: true });
+    // safety timeout in case transitionend doesn’t fire
+    setTimeout(finish, 1500);
 });
+
