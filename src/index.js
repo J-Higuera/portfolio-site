@@ -684,8 +684,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 img.removeEventListener("click", close);
                 backdrop.remove();
 
-                setTimeout(() => { isAnimating = false; }, 600);
-            }, 600);
+                setTimeout(() => { isAnimating = false; }, 800);
+            }, 800);
         };
 
         requestAnimationFrame(() => {
