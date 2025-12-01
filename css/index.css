@@ -5,7 +5,6 @@
     scroll-behavior: auto;
 }
 
-/* full-screen loader overlay */
 .site-loader {
     position: fixed;
     inset: 0;
@@ -20,13 +19,11 @@
     transition: opacity 0.7s ease-in-out;
 }
 
-/* when we’re done, fade it out */
 .site-loader.done {
     opacity: 0;
     pointer-events: none;
 }
 
-/* loader content */
 .site-loader .loader-inner {
     display: flex;
     flex-direction: column;
@@ -41,7 +38,6 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }
 
-/* simple ring animation, responsive */
 .site-loader .loader-ring {
     width: min(72px, 18vw);
     height: min(72px, 18vw);
@@ -58,7 +54,6 @@
     }
 }
 
-/* tiny text tweaks for mobile */
 @media (max-width: 600px) {
     .site-loader .loader-inner {
         padding: 0.9rem 1.4rem;
@@ -73,6 +68,26 @@ html {
     scroll-behavior: auto;
     scrollbar-gutter: stable;
     /* prevent layout shift when scrollbar appears */
+}
+
+:root {
+    --primary: #d4d4d4;
+    --primary-dark: #007c91;
+    --accent: #b6b6b6;
+    --card-gradient: linear-gradient(145deg, rgba(52, 52, 52, 0.85), rgba(0, 34, 62, 0.9));
+    --text-light: #fafdff;
+    --text-bright: #c7faffdd;
+    --radius: 1.5rem;
+    --border: 2px solid #ffffff61;
+    --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
+    --font-mono: 'Fira Mono', 'Consolas', monospace;
+    --background-dark: radial-gradient(at right, rgba(59, 59, 59, 0.178), transparent 50%), radial-gradient(at center, rgba(0, 25, 59, 0.723), transparent 80%), radial-gradient(at top, rgba(98, 145, 169, 0.788), transparent 80%), radial-gradient(at left, rgba(43, 43, 43, 0.243), transparent 50%),
+        radial-gradient(at bottom, rgba(6, 6, 6, 0.368), transparent 100%), #000000e9;
+    --background-light: radial-gradient(circle at top left, #ffdffb, transparent),
+        radial-gradient(circle at bottom right, #fffed3, transparent),
+        #101214;
+    --box-shadow-active: 0 0 6px #00ff11, 0 0 10px #0048ff, 0 0 10px #a600ff;
+    --box-shadow-light: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
 }
 
 body {
@@ -140,26 +155,6 @@ header {
 
 html ::-webkit-scrollbar-thumb {
     background-color: #73bbc892;
-}
-
-:root {
-    --primary: #d4d4d4;
-    --primary-dark: #007c91;
-    --accent: #b6b6b6;
-    --card-gradient: linear-gradient(145deg, rgba(52, 52, 52, 0.85), rgba(0, 34, 62, 0.9));
-    --text-light: #fafdff;
-    --text-bright: #c7faffdd;
-    --radius: 1.5rem;
-    --border: 2px solid #ffffff61;
-    --font-main: 'Inter', 'Segoe UI', Arial, sans-serif;
-    --font-mono: 'Fira Mono', 'Consolas', monospace;
-    --background-dark: radial-gradient(at right, rgba(59, 59, 59, 0.317), transparent 50%), radial-gradient(at center, rgba(70, 89, 114, 0.517), transparent 80%), radial-gradient(at top, rgba(37, 58, 77, 0.693), transparent 80%), radial-gradient(at left, rgba(43, 43, 43, 0.336), transparent 50%),
-        radial-gradient(at bottom, rgba(56, 80, 88, 0.368), transparent 100%), #000000e9;
-    --background-light: radial-gradient(circle at top left, #ffdffb, transparent),
-        radial-gradient(circle at bottom right, #fffed3, transparent),
-        #101214;
-    --box-shadow-active: 0 0 6px #00ff11, 0 0 10px #0048ff, 0 0 10px #a600ff;
-    --box-shadow-light: 0 0 4px #00ff11, 0 0 10px #0048ff, 0 0 12px #a600ff;
 }
 
 #hero-text {
