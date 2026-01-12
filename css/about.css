@@ -218,7 +218,10 @@
     border-right: 2px solid #000000;
     border-bottom: 2px solid #000000;
     box-shadow: 1px 0px 14px rgba(34, 155, 0, 0.4);
-    transition: transform .20s ease-in-out;
+    transition:
+        transform .2s ease-in-out,
+        color .2s ease,
+        background-color .2s ease;
 }
 
 .resume-button-desktop span {
@@ -229,12 +232,11 @@
     .resume-button-desktop button:hover {
         color: #99ff00;
         background-color: #000000;
-        transform: scale(1.2);
+        transform: scale(1.15);
     }
 
     .resume-button-desktop button:active {
         transform: scale(0.4);
-        transition: transform .10s ease-in-out;
     }
 }
 
@@ -301,7 +303,6 @@
     gap: var(--gap, .8rem);
     justify-content: flex-start;
     overflow-x: auto;
-    /* keep auto ALWAYS to avoid breaking scroll */
     overflow-y: hidden;
     scroll-snap-type: none;
     -webkit-overflow-scrolling: touch;
@@ -314,7 +315,6 @@
     height: 0;
 }
 
-/* When everything fits: center, but DO NOT clip overflow */
 .about-hobbies-desktop .hobbies-carousel .track.no-scroll {
     justify-content: center;
 }
@@ -328,7 +328,6 @@
 
     .about-hobbies-desktop .hobbies-carousel .track.no-scroll~*,
     .about-hobbies-desktop .hobbies-carousel .track.no-scroll {
-        /* turn off mask when not scrolling (selector hook via JS toggling .no-scroll on track) */
         -webkit-mask-image: none;
         mask-image: none;
     }
@@ -369,7 +368,7 @@
     align-items: center;
     flex-direction: column;
     flex: 1 1 0;
-    transition: flex .45s ease, transform .45s ease, box-shadow .45s ease;
+    transition: flex .45s ease-in-out, transform .45s ease-in-out, box-shadow .45s ease;
 }
 
 .rail-card::after {
@@ -401,7 +400,7 @@
     background: rgba(0, 0, 0, .65);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1s ease;
+    transition: opacity 1s ease-in-out;
     z-index: 1001;
 }
 
@@ -423,7 +422,7 @@
     box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1s ease;
+    transition: opacity 1s ease-in-out;
     z-index: 1002;
 }
 
@@ -517,7 +516,7 @@
         font-weight: bold;
         text-decoration: none;
         text-align: center;
-        transition: color 0.3s;
+        padding-top: 10px;
     }
 
     .resume-button button {
@@ -531,7 +530,7 @@
         border-right: 2px solid #000000;
         border-bottom: 2px solid #000000;
         border-radius: 6px;
-        padding: 2px;
+        padding: 3px;
         cursor: pointer;
         box-shadow: 1px 0px 14px rgba(34, 155, 0, 0.4);
         transition: transform .20s ease-in-out;
@@ -556,34 +555,24 @@
     padding: 0 .5rem;
 }
 
-/* KEY CHANGES:
-   - overflow-y: hidden (like desktop)
-   - scroll-snap-type: none (remove snap fights)
-   - allow scroll chaining by REMOVING overscroll-behavior-inline: contain
-   - set touch-action to allow both pans; JS decides when to preventDefault */
 .about-hobbies-mobile .hobbies-carousel .track {
     display: flex;
     gap: var(--gap);
     overflow-x: auto;
     overflow-y: hidden;
-    /* was visible */
     scroll-snap-type: none;
-    /* was x mandatory */
     -webkit-overflow-scrolling: touch;
     padding-bottom: .25rem;
     scroll-padding-inline: 12px;
     position: relative;
     scrollbar-width: none;
     touch-action: pan-x pan-y;
-    /* allow both; JS locks when needed */
-    /* overscroll-behavior-inline: contain;  <-- REMOVE this to allow page scroll at edges */
 }
 
 .about-hobbies-mobile .hobbies-carousel .track::-webkit-scrollbar {
     height: 0;
 }
 
-/* When everything fits, just center (same idea as desktop) */
 .about-hobbies-mobile .hobbies-carousel .track.no-scroll {
     justify-content: center;
 }
@@ -600,12 +589,10 @@
     isolation: isolate;
     background: #0a0f14;
     scroll-snap-align: center;
-    /* harmless with snap disabled on track */
     cursor: pointer;
     transition: box-shadow .22s ease, filter .18s ease;
     z-index: 0;
     touch-action: manipulation;
-    /* keep clicks snappy; JS handles pans */
 }
 
 .about-hobbies-mobile .hobbies-carousel .rail-card img {
@@ -646,15 +633,13 @@
     }
 }
 
-/* Overlay styles stay as you had them… (unchanged) */
-
 .hobby-backdrop {
     position: fixed;
     inset: 0;
     background: rgba(0, 0, 0, .65);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1s ease;
+    transition: opacity 0.7s ease;
     z-index: 1001;
 }
 
@@ -676,7 +661,7 @@
     box-shadow: 0 20px 48px rgba(0, 0, 0, .5);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 1s ease;
+    transition: opacity 0.8s ease;
     z-index: 1002;
 }
 

@@ -21,6 +21,10 @@ body {
     background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
 }
 
+main {
+    flex: 1 0 auto;
+}
+
 ::-webkit-scrollbar {
     width: 7px;
 }
@@ -49,7 +53,7 @@ html ::-webkit-scrollbar-thumb {
     padding-top: 0;
     min-height: auto;
     min-width: auto;
-    padding-bottom: 100px;
+    padding-bottom: 0;
     padding-top: 0;
 
 }
@@ -212,16 +216,16 @@ html ::-webkit-scrollbar-thumb {
 
 /* Footer section */
 footer {
-    margin-top: auto;
     width: 100%;
     min-width: 100%;
     background: linear-gradient(to top, #000000a7, #00000091, #00000081 100%);
-    padding: 10px 0 10px 0;
+    padding: 10px 20px;
     z-index: 100;
     flex-shrink: 0;
 }
 
 footer p {
+    margin-top: 10px;
     text-align: center;
     font-size: 14px;
     color: #aebcc588;
