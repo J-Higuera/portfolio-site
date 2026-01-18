@@ -551,7 +551,7 @@ html ::-webkit-scrollbar-thumb {
 }
 
 .skills {
-    background: radial-gradient(circle at top left, #000000 0%, #1d1d1d 30%, #202020 50%, #0d0d0d 75%, #000000 100%);
+    background: radial-gradient(circle at top left, #000000 0%, #141414d1 30%, #212121af 50%, #131313d6 75%, #000000e0 100%);
     max-width: 100%;
     width: 100%;
     text-align: center;
@@ -563,7 +563,7 @@ html ::-webkit-scrollbar-thumb {
 }
 
 .skills.active {
-    box-shadow: var(--box-shadow-active);
+    box-shadow: inset 0 1px 20px #b0e2ff9d, var(--box-shadow-active);
     transition: box-shadow 0.35s ease, border 0.35s ease;
 }
 
@@ -871,7 +871,7 @@ footer a {
         flex-direction: column;
         margin-bottom: 100px;
         padding: 5px 10px;
-        background: radial-gradient(circle at top left, #2f2f2f 0%, #272833 30%, #212121 50%, #1c1c1c 75%, #222526 100%);
+        background: radial-gradient(circle at top left, #000000 0%, #14141446 30%, #30303076 50%, #131313be 75%, #000000ec 100%);
         border-radius: 12px;
         width: auto;
         border: 2.5px solid rgba(201, 201, 201, 0.561);
@@ -885,7 +885,7 @@ footer a {
     }
 
     .skills1.animate {
-        box-shadow: 0 0 8px #00ff11, 0 0 8px #0048ff, 0 0 8px #a600ff;
+        box-shadow: 0 0 8px #00ff11, 0 0 8px #0048ff, 0 0 8px #a600ff, inset 0 1px 20px #b0e2ff9d;
         z-index: 1;
     }
 
@@ -1011,6 +1011,15 @@ footer a {
         padding-left: 15px;
         padding-top: 40px;
         padding-bottom: 40px;
+    }
+
+    .skills1 {
+        background: linear-gradient(to right,
+                #000000b5 0%,
+                #14141440 30%,
+                #2b2b2b36 50%,
+                #13131373 75%,
+                #000000c7 100%);
     }
 
     .light-mode .grid-wrapper {
