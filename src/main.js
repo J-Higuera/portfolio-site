@@ -21,14 +21,16 @@ window.addEventListener('load', () => {
     loader.classList.add('done');
 
     const finish = () => {
-        loader.remove();
-        // ✅ only now unlock scroll
+        // 1) unlock scrolling FIRST so scrollbar is ready
         document.documentElement.classList.remove('loading');
         document.body.classList.remove('loading');
+
+        // 2) then remove loader
+        loader.remove();
     };
 
     loader.addEventListener('transitionend', finish, { once: true });
     // safety timeout in case transitionend doesn’t fire
-    setTimeout(finish, 1500);
+    setTimeout(finish, 1200);
 });
 

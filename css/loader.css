@@ -9,6 +9,7 @@
     /* above everything */
     opacity: 1;
     pointer-events: auto;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .site-loader.done {
