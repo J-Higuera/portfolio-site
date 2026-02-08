@@ -18,7 +18,9 @@ body {
     display: flex;
     flex-direction: column;
     border: none;
-    background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
+    background: radial-gradient(at right, rgba(59, 59, 59, 0.178), transparent 50%), radial-gradient(at center, rgba(0, 25, 59, 0.723), transparent 80%), radial-gradient(at top, rgba(98, 145, 169, 0.788), transparent 80%), radial-gradient(at left, rgba(43, 43, 43, 0.243), transparent 50%),
+        radial-gradient(at bottom, rgba(6, 6, 6, 0.368), transparent 100%), #000000e9;
+    ;
 }
 
 main {
@@ -49,7 +51,6 @@ html ::-webkit-scrollbar-thumb {
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(135deg, #181c24 0%, #23272f 100%);
     padding-top: 0;
     min-height: auto;
     min-width: auto;
