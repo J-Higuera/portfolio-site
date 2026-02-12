@@ -100,12 +100,6 @@
     height: auto;
 }
 
-.about-highlights {
-    max-width: 32%;
-    width: auto;
-    height: auto;
-}
-
 .photo-card {
     display: flex;
     flex-direction: column;
@@ -140,13 +134,92 @@
     border-radius: 12px;
 }
 
-.about-highlights .timeline {
-    border-top: 1px solid #00a2c6;
-    padding-top: 1rem;
-    font-size: 1rem;
-    color: #d0f0ff;
-    line-height: 1.5;
+.assistant-card {
+    max-width: 27%;
+    min-width: 30%;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(10, 16, 24, 0.55);
+    backdrop-filter: blur(8px);
+    overflow: hidden;
 }
+
+/* Header */
+.assistant-header {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+/* Messages */
+.assistant-messages {
+    flex: 1;
+    padding: 16px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+/* Message bubbles */
+.assistant-message {
+    padding: 10px 14px;
+    border-radius: 14px;
+    max-width: 85%;
+}
+
+.assistant-message--bot {
+    background: rgba(120, 220, 255, 0.08);
+    border: 1px solid rgba(120, 220, 255, 0.25);
+    align-self: flex-start;
+}
+
+.assistant-message--user {
+    background: rgba(255, 255, 255, 0.08);
+    align-self: flex-end;
+}
+
+/* Input Area */
+.assistant-input-area {
+    display: flex;
+    padding: 12px;
+    gap: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.assistant-input-area input {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    outline: none;
+}
+
+.assistant-input-area button {
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #00a2c6;
+    color: white;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.assistant-input-area button:hover {
+    background: #00c2f3;
+}
+
 
 .light-mode .about-highlights .timeline {
     border-top: 1px solid #8eeaff;
