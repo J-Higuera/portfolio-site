@@ -5,7 +5,6 @@ import './projects.js';
 import './scroll.js';
 import './theme.js';
 import './react-entry.jsx';
-import './optimization.js';
 
 // === Loading screen control ===
 window.addEventListener('load', () => {
