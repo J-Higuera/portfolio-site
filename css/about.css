@@ -159,11 +159,16 @@
 /* Messages */
 .assistant-messages {
     flex: 1;
+    height: 40vh;
+    max-height: 40vh;
     padding: 16px;
+    padding-right: 8px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     font-size: 0.95rem;
     line-height: 1.4;
 }
@@ -562,10 +567,168 @@
     }
 }
 
+@media (max-width: 1720px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-bottom: 45px;
+    }
+
+    .profile-photo-desktop {
+        max-width: 38%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-width: 27%;
+        width: auto;
+        height: auto;
+    }
+
+    .assistant-card {
+        max-width: 100%;
+        min-width: 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 1220px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-bottom: 30px;
+    }
+
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 35%;
+        width: auto;
+        height: auto;
+    }
+
+    .photo-meta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        font-size: 0.8rem;
+    }
+
+    .about-highlights {
+        max-height: 100%;
+        max-width: 30%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 30%;
+        width: fit-content;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 1020px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-bottom: 10px;
+    }
+
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 50%;
+        width: auto;
+        height: auto;
+    }
+
+    .photo-meta {
+        font-size: 1rem;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 50%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-highlights {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .about-section {
+        grid-template-columns: repeat(1, 1fr);
+        padding-bottom: 10px;
+    }
+
+    .profile-photo-desktop {
+        max-height: 100%;
+        max-width: 50%;
+        width: auto;
+        height: auto;
+    }
+
+    .photo-meta {
+        font-size: 1rem;
+    }
+
+    .about-certificates1 {
+        max-height: 100%;
+        max-width: 50%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-highlights {
+        max-height: 100%;
+        max-width: 100%;
+        width: auto;
+        height: auto;
+    }
+
+    .about-hobbies {
+        max-height: 100%;
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: auto;
+        height: auto;
+    }
+}
+
 /* ===== MOBILE 720px: swipe carousel + overlay ===== */
 @media (max-width: 720px) {
 
     /* MOBILE — match desktop behavior */
+
+    .assistant-card {
+        display: none;
+    }
 
     .about-hobbies-desktop {
         display: none;
@@ -813,159 +976,6 @@
 
     to {
         opacity: 1;
-    }
-}
-
-@media (max-width: 1720px) {
-
-    .about-section {
-        grid-template-columns: repeat(1, 1fr);
-        padding-bottom: 45px;
-    }
-
-    .profile-photo-desktop {
-        max-width: 38%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-certificates1 {
-        max-width: 27%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-highlights {
-        max-width: 32%;
-        width: auto;
-        height: auto;
-    }
-}
-
-@media (max-width: 1220px) {
-
-    .about-section {
-        grid-template-columns: repeat(1, 1fr);
-        padding-bottom: 30px;
-    }
-
-    .profile-photo-desktop {
-        max-height: 100%;
-        max-width: 35%;
-        width: auto;
-        height: auto;
-    }
-
-    .photo-meta {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        font-size: 0.8rem;
-    }
-
-    .about-highlights {
-        max-height: 100%;
-        max-width: 30%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-certificates1 {
-        max-height: 100%;
-        max-width: 30%;
-        width: fit-content;
-        height: auto;
-    }
-
-    .about-hobbies {
-        max-height: 100%;
-        max-width: 100%;
-        flex: 1 1 100%;
-        width: auto;
-        height: auto;
-    }
-}
-
-@media (max-width: 1020px) {
-
-    .about-section {
-        grid-template-columns: repeat(1, 1fr);
-        padding-bottom: 10px;
-    }
-
-    .profile-photo-desktop {
-        max-height: 100%;
-        max-width: 50%;
-        width: auto;
-        height: auto;
-    }
-
-    .photo-meta {
-        font-size: 1rem;
-    }
-
-    .about-certificates1 {
-        max-height: 100%;
-        max-width: 50%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-highlights {
-        max-height: 100%;
-        max-width: 100%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-hobbies {
-        max-height: 100%;
-        max-width: 100%;
-        flex: 1 1 100%;
-        width: auto;
-        height: auto;
-    }
-}
-
-@media (max-width: 900px) {
-
-    .about-section {
-        grid-template-columns: repeat(1, 1fr);
-        padding-bottom: 10px;
-    }
-
-    .profile-photo-desktop {
-        max-height: 100%;
-        max-width: 50%;
-        width: auto;
-        height: auto;
-    }
-
-    .photo-meta {
-        font-size: 1rem;
-    }
-
-    .about-certificates1 {
-        max-height: 100%;
-        max-width: 50%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-highlights {
-        max-height: 100%;
-        max-width: 100%;
-        width: auto;
-        height: auto;
-    }
-
-    .about-hobbies {
-        max-height: 100%;
-        max-width: 100%;
-        flex: 1 1 100%;
-        width: auto;
-        height: auto;
     }
 }
 
