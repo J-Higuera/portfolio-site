@@ -1,11 +1,11 @@
 // Import other site scripts
 import './index.js';
 import './nav.js';
+import './theme.js';
+import './assistant.js';
 import './projects.js';
 import './scroll.js';
-import './theme.js';
 import './react-entry.jsx';
-import './assistant.js';
 
 // === Loading screen control ===
 window.addEventListener('load', () => {
