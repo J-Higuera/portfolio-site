@@ -172,39 +172,20 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 //============================================
-//         HOBBIES OVERLAY (Desktop) 
-//=============================================
+//         HOBBIES OVERLAY (Desktop)
+//============================================
 document.addEventListener("DOMContentLoaded", () => {
     const track = document.querySelector(".about-hobbies-desktop .hobbies-carousel .track");
     if (!track) return;
 
     // Tunables
-    const desktop = matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const EPS = 1;     // epsilon for overflow checks
-    const SPEED = 1.25;  // lower = slower wheel movement
-    const EASE = 0.15;  // easing factor (0.12–0.25 good)
-    const JITTERPX = 6;     // click-vs-scroll pointer jitter tolerance
-
-
-    // Helpers / state
-    let target = track.scrollLeft;
-    let raf = null;
-
-    const hasOverflow = () => (track.scrollWidth - track.clientWidth) > EPS;
-
-    const step = () => {
-        const diff = target - track.scrollLeft;
-        if (Math.abs(diff) < 0.4) { track.scrollLeft = target; raf = null; return; }
-        track.scrollLeft += diff * EASE;
-        raf = requestAnimationFrame(step);
-    };
-    const schedule = () => { if (!raf) raf = requestAnimationFrame(step); };
+    const JITTERPX = 6; // click-vs-drag tolerance (px)
 
     // Make images non-draggable + idle preload
-    track.querySelectorAll(".rail-card img").forEach(img => img.setAttribute("draggable", "false"));
+    track.querySelectorAll(".rail-card img").forEach((img) => img.setAttribute("draggable", "false"));
 
     const preload = () => {
-        track.querySelectorAll(".rail-card img").forEach(el => {
+        track.querySelectorAll(".rail-card img").forEach((el) => {
             const url = el.currentSrc || el.src;
             if (!url) return;
             const pre = new Image();
@@ -255,7 +236,6 @@ document.addEventListener("DOMContentLoaded", () => {
         modal.appendChild(content);
         document.body.append(backdrop, modal);
 
-        // ✨ KEY CHANGE: no transition overrides, just add .show on next frame
         requestAnimationFrame(() => {
             backdrop.classList.add("show");
             modal.classList.add("show");
@@ -267,6 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (!document.body.contains(modal)) return;
             backdrop.classList.remove("show");
             modal.classList.remove("show");
+
             let done = false;
             const finish = () => {
                 if (done) return;
@@ -275,6 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 modal.remove();
                 lockScroll(false);
             };
+
             modal.addEventListener("transitionend", finish, { once: true });
             setTimeout(finish, 1600);
         };
@@ -282,109 +264,61 @@ document.addEventListener("DOMContentLoaded", () => {
         backdrop.addEventListener("click", close);
         modal.addEventListener("request-close", close);
         modal.addEventListener("click", close);
-        const onEsc = (e) => (e.key === "Escape") && close();
-        document.addEventListener("keydown", onEsc, { once: true });
+        document.addEventListener("keydown", (e) => e.key === "Escape" && close(), { once: true });
     };
 
-    // focusable cards
-    track.querySelectorAll(".rail-card").forEach(c => { c.tabIndex ||= 0; });
+    // Focusable cards for keyboard users
+    track.querySelectorAll(".rail-card").forEach((c) => {
+        if (!c.hasAttribute("tabindex")) c.tabIndex = 0;
+    });
 
-    // Fit detection → center when no overflow
-    // (we NEVER change overflow-x: auto; CSS just centers via .no-scroll)
-    const updateMode = () => {
-        const overflow = hasOverflow();
-        track.classList.toggle("no-scroll", !overflow);
-        target = Math.min(Math.max(0, target), Math.max(0, track.scrollWidth - track.clientWidth));
+    // Click/drag guard (still useful if your track can be scrolled by trackpad or dragging)
+    let pointerDown = false;
+    let moved = false;
+    let downX = 0;
+
+    track.addEventListener(
+        "pointerdown",
+        (e) => {
+            pointerDown = true;
+            moved = false;
+            downX = e.clientX;
+        },
+        { passive: true }
+    );
+
+    track.addEventListener(
+        "pointermove",
+        (e) => {
+            if (!pointerDown) return;
+            if (Math.abs(e.clientX - downX) > JITTERPX) moved = true;
+        },
+        { passive: true }
+    );
+
+    const clearPointer = () => {
+        pointerDown = false;
     };
-
-    const ro = new ResizeObserver(() => {
-        cancelAnimationFrame(updateMode._raf || 0);
-        updateMode._raf = requestAnimationFrame(updateMode);
-    });
-    ro.observe(track);
-
-    track.querySelectorAll("img").forEach(img => {
-        const bump = () => requestAnimationFrame(updateMode);
-        if (!img.complete) {
-            img.addEventListener("load", bump, { once: true });
-            img.addEventListener("error", bump, { once: true });
-        }
-    });
-
-    if (document.fonts?.ready) document.fonts.ready.then(() => requestAnimationFrame(updateMode));
-    window.addEventListener("resize", () => requestAnimationFrame(updateMode), { passive: true });
-    window.addEventListener("load", updateMode);
-    updateMode();
-
-    // Smart wheel: ALWAYS drive the rail when overflow exists.
-    // Only let page scroll at edges in the intended direction.
-    if (desktop) {
-        track.addEventListener("wheel", (e) => {
-            const overflow = track.scrollWidth - track.clientWidth;
-            if (overflow <= EPS) return; // everything fits → page scroll
-
-            // Pick dominant axis (this makes classic mouse Y scroll drive X)
-            const absX = Math.abs(e.deltaX), absY = Math.abs(e.deltaY);
-            const raw = absX >= absY ? e.deltaX : e.deltaY;
-            if (raw === 0) return;
-
-            const max = overflow;
-            const atStart = track.scrollLeft <= 0;
-            const atEnd = track.scrollLeft >= max - 1;
-
-            // At edges in the wheel direction? let page scroll
-            if ((raw < 0 && atStart) || (raw > 0 && atEnd)) return;
-
-            // We handle horizontal scrolling
-            e.preventDefault();
-            target = Math.min(max, Math.max(0, track.scrollLeft + raw * SPEED));
-            schedule();
-        }, { passive: false });
-
-        // Keep target in sync with native horizontal scroll (e.g., trackpad)
-        track.addEventListener("scroll", () => { if (!raf) target = track.scrollLeft; }, { passive: true });
-    }
-
-    // Click vs scroll guard + click-to-zoom
-    let pointerDown = false, moved = false, downX = 0, downLeft = 0, justScrolled = false, scrollTimer;
-
-    track.addEventListener("pointerdown", (e) => {
-        pointerDown = true;
-        moved = false;
-        downX = e.clientX;
-        downLeft = track.scrollLeft;
-    }, { passive: true });
-
-    track.addEventListener("pointermove", (e) => {
-        if (!pointerDown) return;
-        if (Math.abs(e.clientX - downX) > JITTERPX) moved = true;
-    }, { passive: true });
-
-    const clearPointer = () => { pointerDown = false; };
     track.addEventListener("pointerup", clearPointer, { passive: true });
     track.addEventListener("pointercancel", clearPointer, { passive: true });
 
-    track.addEventListener("scroll", () => {
-        justScrolled = true;
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => { justScrolled = false; }, 140);
-    }, { passive: true });
-
+    // Click to expand
     track.addEventListener("click", (e) => {
-        if (e.target.closest(".rail-card .hit")) { e.preventDefault(); e.stopPropagation(); return; }
+        if (moved) return; // treat as a drag, not a click
+
         const card = e.target.closest(".rail-card");
         if (!card) return;
-
-        const scrolledDuringClick = Math.abs(track.scrollLeft - downLeft) > 1;
-        if (moved || scrolledDuringClick || justScrolled) return;
 
         buildOverlay(card);
     });
 
+    // Keyboard open (Enter/Space)
     track.addEventListener("keydown", (e) => {
         if (e.code !== "Enter" && e.code !== "Space") return;
+
         const card = e.target.closest(".rail-card");
         if (!card) return;
+
         e.preventDefault();
         buildOverlay(card);
     });
@@ -603,7 +537,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: false });
 });
 
-// ==========================================
+// ================================================
 // 5) CERTIFICATE / DEGREE IMAGE ZOOM                                         
 // =================================================
 document.addEventListener("DOMContentLoaded", () => {
@@ -612,7 +546,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let isAnimating = false;
 
-    // open via delegation so ALL images work
     row.addEventListener("click", (ev) => {
         const img = ev.target.closest("img");
         if (!img || !row.contains(img)) return;
@@ -627,7 +560,6 @@ document.addEventListener("DOMContentLoaded", () => {
         backdrop.className = "zoom-backdrop";
         document.body.appendChild(backdrop);
 
-        // Placeholder to prevent layout jump
         const placeholder = document.createElement("div");
         ["display", "verticalAlign", "marginTop", "marginRight", "marginBottom", "marginLeft"]
             .forEach(prop => { placeholder.style[prop] = computed[prop]; });
@@ -636,11 +568,9 @@ document.addEventListener("DOMContentLoaded", () => {
         placeholder.style.flex = `0 0 ${rect.width}px`;
         placeholder.style.flexShrink = "0";
 
-        // Insert placeholder, move image to <body>
         img.parentNode.insertBefore(placeholder, img);
         document.body.appendChild(img);
 
-        // Zoom styles
         img.classList.add("zoomed-real");
         Object.assign(img.style, {
             position: "fixed",
@@ -652,12 +582,10 @@ document.addEventListener("DOMContentLoaded", () => {
             width: "auto",
             height: "auto",
             zIndex: "1001",
-            transition: "opacity 0.8s ease",
+            transition: "opacity 1.3s ease",
             opacity: "0"
-            // no cursor change
         });
 
-        // unified close routine, bound to both targets
         const close = () => {
             if (isAnimating) return;
             isAnimating = true;
@@ -667,7 +595,6 @@ document.addEventListener("DOMContentLoaded", () => {
             backdrop.classList.remove("show");
 
             setTimeout(() => {
-                // clean up inline styles and classes
                 img.removeAttribute("style");
                 img.classList.remove("zoomed-real");
                 placeholder.replaceWith(img);
