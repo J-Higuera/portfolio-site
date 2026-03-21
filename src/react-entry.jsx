@@ -1,7 +1,6 @@
 import { createRoot } from 'react-dom/client';
 import { useState } from 'react';
 import DockWidget from './react/DockWidget.jsx';
-import ChameleonIntro from './react/ChameleonIntro.jsx';
 
 // ─── Intro Wrapper ────────────────────────────────────────────────────────────
 // Mounts the chameleon intro overlay over the page.
