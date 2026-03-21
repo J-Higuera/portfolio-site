@@ -5,7 +5,7 @@
     <title>My Portfolio</title>
     <meta charset="utf-8">
     <meta name="description" content="Juan Higuera's Portfolio showcasing projects, skills, and work history.">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"
@@ -15,15 +15,19 @@
     </noscript>
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon">
-  <script type="module" crossorigin src="/assets/main-u7kwwJVG.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/main-B3nOb9y1.css">
-  <link rel="stylesheet" crossorigin href="/assets/main-BVLJ6LD6.css">
-  <link rel="stylesheet" crossorigin href="/assets/index-BLkUshlP.css">
-  <link rel="stylesheet" crossorigin href="/assets/about-DrR9ZOCU.css">
-  <link rel="stylesheet" crossorigin href="/assets/contact-DMItncK2.css">
+  <script type="module" crossorigin src="/assets/main-COXyGmVc.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-B_1gM-qn.css">
+  <link rel="stylesheet" crossorigin href="/assets/main-ohPVEr4W.css">
 </head>
 
-<body id="home">
+<body id="home" class="loading">
+    <!-- Site Loader -->
+    <div id="site-loader" class="site-loader">
+        <div class="loader-inner">
+            <div class="loader-ring"></div>
+            <p>Loading portfolio…</p>
+        </div>
+    </div>
     <!-- Sticky Desktop Nav -->
     <nav class="sticky-nav">
         <ul>
@@ -77,157 +81,123 @@
         <section id="about" class="about-section">
             <div class="about-flex">
                 <div class="about-card about-certificates1">
-                    <h3>Certificates</h3>
+                    <h3>Education</h3>
                     <ul>
-                        <li>Associate's Degree in CIS</li>
-                        <li>Web Developer certification</li>
-                        <li>Back/Front-end development</li>
+                        <li>Associate’s Degree in Computer Information Systems
+                            Web Developer Certification</li>
+                        <li>Web development certifications</li>
                     </ul>
-                    <h3>Personal Details</h3>
+                    <h3>Core Strengths</h3>
                     <ul>
-                        <li>Location: Ontario, California, USA</li>
-                        <li>Languages: English, Spanish</li>
-                        <li>Gender: Male</li>
-                        <li>Age: 26</li>
+                        <li>REST API design & implementation</li>
+                        <li>Full-stack app development</li>
+                        <li>Git-based workflow & version control</li>
+                        <li>Debugging & performance optimization</li>
+                        <li>Focus on performance & usability</li>
                     </ul>
                 </div>
                 <div class="profile-photo-desktop">
                     <div class="photo-card">
                         <div class="photo-info-wrapper">
-                            <img src="/images/body/profile.webp" alt="pro-image">
-                            <div class="photo-meta">
-                                <span class="username">@J-Higuera</span>
-                                <a href="/documents/Juan_Higuera_Resume.pdf" download class="resume-button">
-                                    <span class="resume-content">
-                                        <img src="/images/icons/do.svg" class="download-icon" alt="Download Icon">
-                                        <span>Résumé</span>
-                                    </span>
-                                </a>
-                            </div>
-
+                            <img src="/images/body/profile.webp" alt="pro-image" fetchpriority="high">
+                        </div>
+                        <div class="photo-meta-desktop">
+                            <span class="username">@J-Higuera</span>
+                            <a href="/documents/Juan_Higuera_Resume.pdf" download class="resume-button-desktop">
+                                <button class="resume-content">
+                                    <img src="/images/icons/do.svg" class="download-icon" alt="Download Icon">
+                                    <span>Résumé</span>
+                                </button>
+                            </a>
                         </div>
                         <p>
-                            Hi, I'm Juan Higuera, a passionate developer with a strong background in web development and
-                            programming. I enjoy building creative solutions and learning new technologies. My journey
-                            in tech started with curiosity and has grown into a career path focused on delivering
-                            impactful projects.
+                            I enjoy building creative solutions and learning new technologies. My journey
+                            in tech started with curiosity and has grown into a career.
                         </p>
                     </div>
                     <div class="social-links2">
                         <div id="dock-root"></div>
                     </div>
-                    <div class="social-links3">
-                        <ul>
-                            <li><a href="https://www.linkedin.com/in/juan-higuera-104318337/" target="_blank">
-                                    <img src="/images/social/linkedin.svg" alt="LinkedIN Logo"
-                                        style="width: 45px; height: 45px;">
-                                </a></li>
-                            <li><a href="https://github.com/J-Higuera" target="_blank">
-                                    <img src="/images/social/github.svg" alt="Github Logo"
-                                        style="width: 45px; height: 45px;">
-                                </a></li>
-                            <li><a href="https://www.instagram.com/the_homie_og/" target="_blank">
-                                    <img src="/images/social/instagram.svg" alt="Instagram Logo"
-                                        style="width: 45px; height: 45px;">
-                                </a></li>
-                            <li><a href="https://www.youtube.com/@theaverage10" target="_blank">
-                                    <img src="/images/social/youtube.svg" alt="YouTube Logo"
-                                        style="width: 50px; height: 50px;">
-                                </a></li>
-                        </ul>
+                </div>
+                <div class="assistant-card" id="assistantSection">
+                    <div class="assistant-header">
+                        <h3>Ask About My Work</h3>
+                    </div>
+
+                    <div class="assistant-messages" id="assistantMessages">
+                        <div class="assistant-message assistant-message--bot">
+                            Hi, I’m Juan’s virtual assistant.
+                            I’m here to answer any questions you may have about his work, projects, or technical
+                            background.
+                        </div>
+                    </div>
+
+                    <div class="assistant-input-area">
+                        <input type="text" id="assistantInput"
+                            placeholder="Ask a question about Juan’s experience..." />
+                        <button id="assistantSend">Send</button>
                     </div>
                 </div>
-                <div class="about-card about-highlights">
-                    <h3>Key Highlights</h3>
-                    <ul>
-                        <li>💼 2+ years of hands-on dev experience</li>
-                        <li>🧠 Focused on clean UI & responsive design</li>
-                        <li>📚 CIS & Computer Science background</li>
-                        <li>🚀 Projects in Python, Flask, PostgreSQL, Javascript, HTML, and CSS3</li>
-                    </ul>
-                    <div class="timeline">
-                        <p>• 2022 – Started CIS Degree</p>
-                        <p>• 2023 – Built first fullstack app</p>
-                        <p>• 2024 – Released AI Movie Assistant</p>
-                        <p>• 2025 – Finalizing Portfolio & Graduating</p>
-                    </div>
-                </div>
-                <div class="about-hobbies">
+                <div class="about-hobbies-desktop">
                     <h3>Hobbies</h3>
-                    <section class="hobbies-rail" aria-label="Hobbies">
-                        <article class="rail-card" style="--accent: 178 100% 46%">
-                            <img src="/images/body/reading-dark.webp" alt="Reading at home" loading="lazy">
-                            <h4>📚 Reading</h4>
-                            <p>“Exploring the future, one page at a time.”
-                                I enjoy diving into books and articles about new technologies, inventions,
-                                cybersecurity,
-                                and programming languages. Reading fuels both my technical growth and imagination,
-                                letting
-                                me see how innovations come together and where they might lead next.</p>
-                            <a class="hit" href="#reading" aria-label="More about Reading"></a>
-                        </article>
-                        <article class="rail-card" style="--accent: 268 100% 60%">
-                            <img src="/images/body/movie-night.webp" alt="Gaming and movies" loading="lazy">
-                            <h4>🎮 Gaming & Movies</h4>
-                            <p>“Stories that teach, worlds that inspire.”
-                                I love historical films because they give me a deeper appreciation of how people lived
-                                and
-                                evolved across different eras. I’m also drawn to fantasy for its creative freedom, and
-                                to
-                                sci-fi for the way it often feels like a preview of possible futures. Together, these
-                                genres
-                                spark my imagination and broaden my understanding of human experience and possibility.
-                            </p>
-                            <a class="hit" href="#gaming" aria-label="More about Gaming & Movies"></a>
-                        </article>
-                        <article class="rail-card" style="--accent: 28 100% 55%">
-                            <img src="/images/body/hiking-noon.webp" alt="Photography and digital art" loading="lazy">
-                            <h4>🎨 Photography & Digital Art</h4>
-                            <p>“Creativity across time and mediums.”
-                                From modern art to old historic masterpieces, I’m inspired by the ways humans express
-                                themselves visually. Digital art lets me experiment with color, lighting, and design
-                                techniques, while studying traditional art teaches me new ways to approach creativity
-                                and
-                                appreciate beauty across cultures and time.</p>
-                            <a class="hit" href="#photo" aria-label="More about Photography & Digital Art"></a>
-                        </article>
-                        <article class="rail-card" style="--accent: 140 70% 55%">
-                            <img src="/images/body/hiking-day.webp" alt="Hiking and outdoor adventures" loading="lazy">
-                            <h4>🥾 Hiking & Outdoor Adventures</h4>
-                            <p>“Movement, mystery, and discovery.”
-                                For me, being outdoors means freedom to explore and push beyond familiar boundaries.
-                                Hiking,
-                                skateboarding, working out, and walking all give me a sense of progress and vitality.
-                                There’s always a thrill in wondering what lies beyond the next ridge or turn, and that
-                                curiosity makes every adventure feel fresh.</p>
-                            <a class="hit" href="#hiking" aria-label="More about Hiking & Outdoor Adventures"></a>
-                        </article>
-                    </section>
+                    <div class="hobbies-carousel">
+                        <div class="track" aria-label="Hobbies">
+                            <article class="rail-card" tabindex="0" style="--accent: 178 100% 46%">
+                                <img src="/images/body/reading-dark.webp" alt="Reading at home" draggable="false">
+                                <h4>📚 Reading</h4>
+                                <p>“Exploring the future, one page at a time.” I enjoy diving into books and
+                                    articles
+                                    about new technologies, inventions, cybersecurity, and programming languages.
+                                </p>
+                            </article>
+
+                            <article class="rail-card" tabindex="0" style="--accent: 268 100% 60%">
+                                <img src="/images/body/movie-night.webp" alt="Gaming and movies" draggable="false">
+                                <h4>🎮 Gaming & Movies</h4>
+                                <p>“Stories that teach, worlds that inspire.” History, fantasy, and sci-fi sharpen
+                                    empathy and widen my sense of possibility and creativity.</p>
+                            </article>
+
+                            <article class="rail-card" tabindex="0" style="--accent: 28 100% 55%">
+                                <img src="/images/body/hiking-noon.webp" alt="Photography and digital art"
+                                    draggable="false">
+                                <h4>🎨 Digital Art</h4>
+                                <p>“Creativity across time and mediums.” Digital/Physical art is a way for me to express
+                                    my creativity and
+                                    design</p>
+                            </article>
+
+                            <article class="rail-card" tabindex="0" style="--accent: 140 70% 55%">
+                                <img src="/images/body/hiking-day.webp" alt="Hiking and outdoor adventures"
+                                    draggable="false">
+                                <h4>🥾 Outdoors</h4>
+                                <p>I enjoy Hiking, skating, workouts and exploring new places with my family and
+                                    friends.
+                                    make every trip feel new.</p>
+                            </article>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="profile-photo-mobile">
                 <div class="photo-card">
                     <div class="photo-info-wrapper">
                         <img src="/images/body/profile.webp" alt="pro-image">
-                        <div class="photo-meta">
+                        <div class="photo-meta-mobile">
                             <span class="username">@J-Higuera</span>
                             <a href="/documents/Juan_Higuera_Resume.pdf" download class="resume-button">
-                                <span class="resume-content">
+                                <button class="resume-content">
                                     <img src="/images/icons/do.svg" class="download-icon" alt="Download Icon">
                                     <span>Résumé</span>
-                                </span>
+                                </button>
                             </a>
                         </div>
                     </div>
                 </div>
                 <p>
-                    I'm a passionate developer with a strong background in web development
-                    and
-                    programming. I enjoy building creative solutions and learning new technologies. My
+                    I enjoy building creative solutions and learning new technologies. My
                     journey
-                    in tech started with curiosity and has grown into a career path focused on delivering
-                    impactful
-                    projects.
+                    in tech started with curiosity and has grown into a career.
                 </p>
                 <!-- Social Links -->
                 <div class="social-links1">
@@ -263,7 +233,7 @@
                         <div class="hobbies-carousel">
                             <div class="track" aria-label="Hobbies">
                                 <article class="rail-card" tabindex="0" style="--accent: 178 100% 46%">
-                                    <img src="/images/body/reading-dark.png" alt="Reading at home">
+                                    <img src="/images/body/reading-dark.webp" alt="Reading at home">
                                     <h4>📚 Reading</h4>
                                     <p>“Exploring the future, one page at a time.” I enjoy diving into books and
                                         articles
@@ -272,21 +242,21 @@
                                 </article>
 
                                 <article class="rail-card" tabindex="0" style="--accent: 268 100% 60%">
-                                    <img src="/images/body/movie-night.png" alt="Gaming and movies">
+                                    <img src="/images/body/movie-night.webp" alt="Gaming and movies">
                                     <h4>🎮 Gaming & Movies</h4>
                                     <p>“Stories that teach, worlds that inspire.” History, fantasy, and sci-fi sharpen
                                         empathy and widen my sense of possibility.</p>
                                 </article>
 
                                 <article class="rail-card" tabindex="0" style="--accent: 28 100% 55%">
-                                    <img src="/images/body/hiking-noon.png" alt="Photography and digital art">
+                                    <img src="/images/body/hiking-noon.webp" alt="Photography and digital art">
                                     <h4>🎨 Digital Art</h4>
                                     <p>“Creativity across time and mediums.” Digital art is my lab for color, light, and
                                         design—while studying traditional art expands how I see beauty.</p>
                                 </article>
 
                                 <article class="rail-card" tabindex="0" style="--accent: 140 70% 55%">
-                                    <img src="/images/body/hiking-day.png" alt="Hiking and outdoor adventures">
+                                    <img src="/images/body/hiking-day.webp" alt="Hiking and outdoor adventures">
                                     <h4>🥾 Outdoors</h4>
                                     <p>“Movement, mystery, and discovery.” Hiking, skating, workouts—progress and
                                         curiosity
@@ -375,6 +345,17 @@
                         <div class="tech-item-prev"><img src="/images/icons/postgresql.svg"
                                 alt="Postgresql"><span>Postgresql</span></div>
                         <div class="tech-item-prev"><img src="/images/icons/Vite.js.svg" alt="Vite"><span>Vite</span>
+                        </div>
+                        <div class="tech-item-railway"><svg xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 1024 1024" class="logo w-6 h-6 md:w-8 md:h-8 rounded-full"
+                                aria-label="Railway Logo">
+                                <path fill="#000"
+                                    d="M4.756 438.175A521 521 0 0 0 0 489.735h777.799c-2.716-5.306-6.365-10.09-10.045-14.772-132.97-171.791-204.498-156.896-306.819-161.26-34.114-1.403-57.249-1.967-193.037-1.967-72.677 0-151.688.185-228.628.39-9.96 26.884-19.566 52.942-24.243 74.14h398.571v51.909zM783.93 541.696H.399c.82 13.851 2.112 27.517 3.978 40.999h723.39c32.248 0 50.299-18.297 56.162-40.999ZM45.017 724.306S164.941 1018.77 511.46 1024c207.112 0 385.071-123.006 465.907-299.694z">
+                                </path>
+                                <path fill="#000"
+                                    d="M511.454 0C319.953 0 153.311 105.16 65.31 260.612c68.771-.144 202.704-.226 202.704-.226h.031v-.051c158.309 0 164.193.707 195.118 1.998l19.149.706c66.7 2.224 148.683 9.384 213.19 58.19 35.015 26.471 85.571 84.896 115.708 126.52 27.861 38.499 35.876 82.756 16.933 125.158-17.436 38.97-54.952 62.215-100.383 62.215H16.69s4.233 17.944 10.58 37.751h970.632A510.4 510.4 0 0 0 1024 512.218C1024.01 229.355 794.532 0 511.454 0">
+                                </path>
+                            </svg><span>Railway</span>
                         </div>
                     </div>
                 </div>
@@ -529,7 +510,7 @@
                 <div class="achievement-stats">
                     <p>Courses Completed: <strong>6</strong></p>
                     <p>Degrees Earned: <strong>2</strong></p>
-                    <p>Certifications Earned: <strong>1</strong></p>
+                    <p>Certifications Earned: <strong>3</strong></p>
                 </div>
                 <div class="achievement-timeline">
                     <div class="timeline-item">
@@ -542,7 +523,11 @@
                     </div>
                     <div class="timeline-item">
                         <span class="dot"></span>
-                        <p>2026: Obtained Bachelor's Degree in CS</p>
+                        <p>2025: Created projects using various technologies</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="dot"></span>
+                        <p>2025 - 2026: Working as Robotics instructor at USEL</p>
                     </div>
                 </div>
                 <div id="github-root" class="github-contrib-placeholder"></div>
