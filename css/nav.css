@@ -153,7 +153,7 @@ nav.sticky-nav.visible-toggle {
         padding: 12px 60px;
         background: linear-gradient(to bottom, #000000d2, #000000b3, #00000000 100%);
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
         transition: opacity 0.8s ease, transform 0.8s ease;
         z-index: 1000;
     }
