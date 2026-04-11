@@ -12,6 +12,7 @@ export default defineConfig({
                 projects: resolve(__dirname, 'pages/movie_project.html'),
                 project2: resolve(__dirname, 'pages/2nd_project.html'),
                 project3: resolve(__dirname, 'pages/3rd_project.html'),
+                project4: resolve(__dirname, 'public/AI agent/Distributed_Agent_System.html'),
             }
         }
     }
