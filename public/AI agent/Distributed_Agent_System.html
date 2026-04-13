@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="description" content="Juan Higuera's Portfolio showcasing projects, skills, and work history.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'"> -->
     <link
         href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
@@ -45,11 +44,10 @@
                     </div>
                 </div>
                 <p class="header-sub">Distributed AI system — personal intelligent agent with persistent memory,
-                    multi-device
-                    orchestration, and GPU compute nodes.</p>
+                    multi-device orchestration, GPU compute nodes, and online interactive cross file manager.</p>
                 <div class="header-meta">
-                    <span>owner: juan</span>
-                    <span>built: april 2026</span>
+                    <span>owner: Juan</span>
+                    <span>built: March 2026</span>
                     <span>arch: gateway + node mesh</span>
                     <span>network: tailscale vpn</span>
                 </div>
@@ -81,8 +79,59 @@
                         </div>
                     </div>
                     <div class="arch-note">all traffic encrypted end-to-end via tailscale wireguard mesh · no public
-                        internet
-                        exposure · funnel disabled</div>
+                        internet exposure · funnel disabled</div>
+                </div>
+            </div>
+
+            <!-- Dashboard Preview -->
+            <div class="section fade-in">
+                <div class="section-label">Live dashboard preview</div>
+                <div class="preview-gallery">
+                    <div class="preview-card">
+                        <div class="preview-label">Control hub — real-time system monitoring</div>
+                        <div class="preview-img-wrap">
+                            <!-- REPLACE: screenshot of full dashboard with metrics + nodes + activity -->
+                            <img src="images/neuron-dashboard-main.png"
+                                alt="Neuron dashboard showing real-time CPU, memory, temperature stats, compute nodes with GPU live stats, and activity feed"
+                                class="preview-img" loading="lazy">
+                        </div>
+                        <div class="preview-caption">Live metrics, GPU stats from RTX 4090 via SSH, node power controls
+                            (Wake-on-LAN / remote shutdown), and real-time activity feed — all updating every 5 seconds
+                        </div>
+                    </div>
+                    <div class="preview-row">
+                        <div class="preview-card preview-card-half">
+                            <div class="preview-label">File vault | Network | Costs</div>
+                            <div class="preview-img-wrap">
+                                <!-- REPLACE: screenshot of the three-pane file vault -->
+                                <img src="images/neuron-file-vault.png"
+                                    alt="Three-pane file manager showing Pi vault, MSI Titan, and G14 with drag-and-drop transfer between machines"
+                                    class="preview-img" loading="lazy">
+                            </div>
+                            <div class="preview-img-wrap">
+                                <!-- REPLACE: screenshot of the three-pane file vault -->
+                                <img src="images/network.png"
+                                    alt="Three-pane file manager showing Pi vault, MSI Titan, and G14 with drag-and-drop transfer between machines"
+                                    class="preview-img" loading="lazy">
+                            </div>
+                            <div class="preview-img-wrap">
+                                <!-- REPLACE: screenshot of the three-pane file vault -->
+                                <img src="images/tokens.png"
+                                    alt="Three-pane file manager showing Pi vault, MSI Titan, and G14 with drag-and-drop transfer between machines"
+                                    class="preview-img" loading="lazy">
+                            </div>
+                        </div>
+                        <div class="preview-card preview-card-half">
+                            <div class="preview-label">Full Overview</div>
+                            <div class="preview-caption"></div>
+                            <div class="preview-img-wrap">
+                                <!-- REPLACE: screenshot of network or costs tab -->
+                                <img src="images/full-view.jpeg"
+                                    alt="Network monitor showing Tailscale peer latency, bandwidth, and API cost tracker"
+                                    class="preview-img" loading="lazy">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -103,68 +152,52 @@
                     <div class="detail-grid">
                         <div>
                             <div class="detail-row"><span class="detail-label">Hostname</span><span
-                                    class="detail-value">neuron</span>
-                            </div>
-                            <div class="detail-row"><span class="detail-label">Username</span><span
-                                    class="detail-value">john2037</span>
-                            </div>
+                                    class="detail-value">neuron</span></div>
                             <div class="detail-row"><span class="detail-label">OS</span><span
-                                    class="detail-value">Debian Trixie
-                                    (aarch64)</span></div>
-                            <div class="detail-row"><span class="detail-label">Kernel</span><span
-                                    class="detail-value">6.12.75+rpt-rpi-2712</span></div>
+                                    class="detail-value">Debian Trixie (aarch64)</span></div>
                             <div class="detail-row"><span class="detail-label">CPU</span><span
-                                    class="detail-value">BCM2712 · 4×
-                                    Cortex-A76</span></div>
+                                    class="detail-value">BCM2712 · 4× Cortex-A76</span></div>
                             <div class="detail-row"><span class="detail-label">RAM</span><span class="detail-value">8 GB
-                                    LPDDR4X</span>
-                            </div>
+                                    LPDDR4X</span></div>
+                            <div class="detail-row"><span class="detail-label">Storage</span><span
+                                    class="detail-value">Samsung 980 Pro 2TB NVMe</span></div>
+                            <div class="detail-row"><span class="detail-label">Case</span><span
+                                    class="detail-value">Pironman 5 MAX</span></div>
                         </div>
                         <div>
-                            <div class="detail-row"><span class="detail-label">Storage</span><span
-                                    class="detail-value">Samsung 980 Pro
-                                    2TB NVMe</span></div>
-                            <div class="detail-row"><span class="detail-label">Case</span><span
-                                    class="detail-value">Pironman 5
-                                    MAX</span></div>
-                            <div class="detail-row"><span class="detail-label">PSU</span><span
-                                    class="detail-value">Official 27W
-                                    USB-C</span></div>
-                            <div class="detail-row"><span class="detail-label">Local IP</span><span
-                                    class="detail-value blue">192.168.1.153</span></div>
-                            <div class="detail-row"><span class="detail-label">Tailscale IP</span><span
-                                    class="detail-value blue">100.98.147.86</span></div>
-                            <div class="detail-row"><span class="detail-label">Boot device</span><span
-                                    class="detail-value">NVMe
-                                    (nvme0n1p2 → /)</span></div>
+                            <div class="detail-row"><span class="detail-label">Gateway port</span><span
+                                    class="detail-value">18789 · bind: lan</span></div>
+                            <div class="detail-row"><span class="detail-label">AI model</span><span
+                                    class="detail-value">Claude Sonnet 4.6</span></div>
+                            <div class="detail-row"><span class="detail-label">Dashboard</span><span
+                                    class="detail-value blue">FastAPI + HTML on port 8080</span></div>
+                            <div class="detail-row"><span class="detail-label">File vault</span><span
+                                    class="detail-value blue">~/neuron-storage/ (2TB)</span></div>
+                            <div class="detail-row"><span class="detail-label">Auto-start</span><span
+                                    class="detail-value green">systemd + linger enabled</span></div>
+                            <div class="detail-row"><span class="detail-label">HTTPS access</span><span
+                                    class="detail-value green">Tailscale Serve (manual)</span></div>
                         </div>
                     </div>
 
                     <div class="divider"></div>
-                    <div class="sub-title">Services</div>
+                    <div class="sub-title">Services running</div>
                     <div class="detail-grid">
                         <div>
                             <div class="detail-row"><span class="detail-label">OpenClaw gateway</span><span
                                     class="detail-value green">active (systemd)</span></div>
-                            <div class="detail-row"><span class="detail-label">Gateway port</span><span
-                                    class="detail-value">18789 ·
-                                    bind: lan (0.0.0.0)</span></div>
-                            <div class="detail-row"><span class="detail-label">AI model</span><span
-                                    class="detail-value">Claude Sonnet
-                                    4.6</span></div>
-                            <div class="detail-row"><span class="detail-label">Auto-start on boot</span><span
-                                    class="detail-value green">enabled</span></div>
+                            <div class="detail-row"><span class="detail-label">Neuron dashboard</span><span
+                                    class="detail-value green">active (port 8080)</span></div>
+                            <div class="detail-row"><span class="detail-label">SSH daemon</span><span
+                                    class="detail-value green">active (port 22)</span></div>
                         </div>
                         <div>
                             <div class="detail-row"><span class="detail-label">Tailscale serve</span><span
                                     class="detail-value green">active (HTTPS proxy)</span></div>
-                            <div class="detail-row"><span class="detail-label">User linger</span><span
-                                    class="detail-value green">enabled</span></div>
                             <div class="detail-row"><span class="detail-label">Sleep / suspend</span><span
                                     class="detail-value green">masked (disabled)</span></div>
-                            <div class="detail-row"><span class="detail-label">SSH daemon</span><span
-                                    class="detail-value green">active
-                                    (port 22)</span></div>
+                            <div class="detail-row"><span class="detail-label">Heartbeat</span><span
+                                    class="detail-value">disabled (cost saving)</span></div>
                         </div>
                     </div>
 
@@ -184,146 +217,45 @@
                 </div>
             </div>
 
-            <!-- Nodes -->
+            <!-- Dashboard Features -->
             <div class="section fade-in">
-                <div class="section-label">Connected nodes</div>
-
-                <!-- Titan -->
-                <div class="card" style="margin-bottom: 14px;">
-                    <div class="device-header">
-                        <div class="device-icon device-icon-titan">MSI</div>
-                        <div>
-                            <div class="device-name">Titan-RTX4090</div>
-                            <div class="device-desc">MSI Titan · GPU compute node · Windows · primary GPU workstation
-                            </div>
-                        </div>
-                        <div class="status-online">connected</div>
+                <div class="section-label">Dashboard features</div>
+                <div class="grid-3">
+                    <div class="metric-card">
+                        <div class="metric-label">Real-time monitoring</div>
+                        <div class="metric-title green">Live stats</div>
+                        <div class="metric-desc">CPU, memory, temperature, storage, uptime — updating every 5 seconds
+                            with auto-refresh toggle.</div>
                     </div>
-                    <div class="detail-grid">
-                        <div>
-                            <div class="detail-row"><span class="detail-label">GPU</span><span
-                                    class="detail-value">NVIDIA RTX 4090 · 16
-                                    GB VRAM</span></div>
-                            <div class="detail-row"><span class="detail-label">Node ID</span><span
-                                    class="detail-value">titan-node</span></div>
-                            <div class="detail-row"><span class="detail-label">Tailscale IP</span><span
-                                    class="detail-value blue">100.90.132.110</span></div>
-                            <div class="detail-row"><span class="detail-label">Service type</span><span
-                                    class="detail-value">Windows
-                                    Scheduled Task</span></div>
-                        </div>
-                        <div>
-                            <div class="detail-row"><span class="detail-label">Connection</span><span
-                                    class="detail-value">ws://100.98.147.86:18789</span></div>
-                            <div class="detail-row"><span class="detail-label">Auto-reconnect</span><span
-                                    class="detail-value green">enabled (10s retry)</span></div>
-                            <div class="detail-row"><span class="detail-label">Script</span><span
-                                    class="detail-value">node-custom.cmd</span></div>
-                            <div class="detail-row"><span class="detail-label">Node capabilities</span><span
-                                    class="detail-value">browser, system</span></div>
-                        </div>
+                    <div class="metric-card">
+                        <div class="metric-label">GPU performance</div>
+                        <div class="metric-title green">SSH polling</div>
+                        <div class="metric-desc">Live GPU utilization, VRAM, temperature, and power draw from RTX 4090
+                            via SSH + nvidia-smi.</div>
                     </div>
-                </div>
-
-                <!-- G14 -->
-                <div class="card">
-                    <div class="device-header">
-                        <div class="device-icon device-icon-g14">G14</div>
-                        <div>
-                            <div class="device-name">G14-RTX5070Ti</div>
-                            <div class="device-desc">ASUS ROG Zephyrus G14 · mobile GPU node · Windows</div>
-                        </div>
-                        <div class="status-pending">not configured</div>
+                    <div class="metric-card">
+                        <div class="metric-label">Power management</div>
+                        <div class="metric-title green">WoL + SSH</div>
+                        <div class="metric-desc">Wake-on-LAN to power on, SSH shutdown to power off — all from the
+                            dashboard, no OpenClaw dependency.</div>
                     </div>
-                    <div class="detail-grid">
-                        <div>
-                            <div class="detail-row"><span class="detail-label">GPU</span><span
-                                    class="detail-value">NVIDIA RTX 5070 Ti ·
-                                    12 GB VRAM</span></div>
-                            <div class="detail-row"><span class="detail-label">Tailscale IP</span><span
-                                    class="detail-value blue">100.72.96.110</span></div>
-                        </div>
-                        <div>
-                            <div class="detail-row"><span class="detail-label">Tailscale name</span><span
-                                    class="detail-value">teen-1</span></div>
-                            <div class="detail-row"><span class="detail-label">Status</span><span class="detail-value"
-                                    style="color: var(--text-muted);">pending setup</span></div>
-                        </div>
+                    <div class="metric-card">
+                        <div class="metric-label">File vault</div>
+                        <div class="metric-title green">Interactive file manager</div>
+                        <div class="metric-desc">Three-pane drag-and-drop file manager spanning Pi, MSI, and G14.
+                            SCP-based transfers through Pi relay.</div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Network -->
-            <div class="section fade-in">
-                <div class="section-label">Network &amp; access</div>
-                <div class="card">
-                    <div class="detail-grid">
-                        <div>
-                            <div class="sub-title">Tailscale mesh VPN</div>
-                            <div class="detail-row"><span class="detail-label">Tailnet</span><span
-                                    class="detail-value">homie.og47@</span></div>
-                            <div class="detail-row"><span class="detail-label">Devices enrolled</span><span
-                                    class="detail-value">3
-                                    (neuron, titan, teen-1)</span></div>
-                            <div class="detail-row"><span class="detail-label">Encryption</span><span
-                                    class="detail-value">WireGuard
-                                    (end-to-end)</span></div>
-                            <div class="detail-row"><span class="detail-label">Tailscale funnel</span><span
-                                    class="detail-value green">disabled (secure)</span></div>
-                            <div class="detail-row"><span class="detail-label">Connection type</span><span
-                                    class="detail-value">direct
-                                    (peer-to-peer)</span></div>
-                        </div>
-                        <div>
-                            <div class="sub-title">Access endpoints</div>
-                            <div class="detail-row"><span class="detail-label">Dashboard</span><span
-                                    class="detail-value blue">https://neuron.tailb86baf.ts.net</span></div>
-                            <div class="detail-row"><span class="detail-label">SSH access</span><span
-                                    class="detail-value">ssh
-                                    john2037@neuron.local</span></div>
-                            <div class="detail-row"><span class="detail-label">Gateway WebSocket</span><span
-                                    class="detail-value">ws://100.98.147.86:18789</span></div>
-                            <div class="detail-row"><span class="detail-label">Authentication</span><span
-                                    class="detail-value">token +
-                                    device pairing</span></div>
-                            <div class="detail-row"><span class="detail-label">Accessible from</span><span
-                                    class="detail-value">any
-                                    tailscale device</span></div>
-                        </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Network monitor</div>
+                        <div class="metric-title green">Tailscale peers</div>
+                        <div class="metric-desc">Latency, bandwidth, direct/relay status, and packet counts for all
+                            Tailscale mesh peers.</div>
                     </div>
-                </div>
-            </div>
-
-            <!-- Config files -->
-            <div class="section fade-in">
-                <div class="section-label">Configuration files</div>
-                <div class="grid-2">
-                    <div class="card-sm">
-                        <div class="sub-title" style="color: var(--accent);">Pi gateway</div>
-                        <div class="detail-row"><span class="detail-label">Config</span><span
-                                class="detail-value">~/.openclaw/openclaw.json</span></div>
-                        <div class="detail-row"><span class="detail-label">Workspace</span><span
-                                class="detail-value">~/.openclaw/workspace</span></div>
-                        <div class="detail-row"><span class="detail-label">Sessions</span><span
-                                class="detail-value">~/.openclaw/agents/main/sessions</span></div>
-                        <div class="detail-row"><span class="detail-label">Logs</span><span
-                                class="detail-value">/tmp/openclaw/openclaw-*.log</span></div>
-                        <div class="detail-row"><span class="detail-label">Service unit</span><span
-                                class="detail-value">~/.config/systemd/user/openclaw-gateway.service</span></div>
-                    </div>
-                    <div class="card-sm">
-                        <div class="sub-title" style="color: var(--blue);">MSI node</div>
-                        <div class="detail-row"><span class="detail-label">Custom script</span><span
-                                class="detail-value">~\.openclaw\node-custom.cmd</span></div>
-                        <div class="detail-row"><span class="detail-label">Node config</span><span
-                                class="detail-value">~\.openclaw\node.json</span></div>
-                        <div class="detail-row"><span class="detail-label">Main config</span><span
-                                class="detail-value">~\.openclaw\openclaw.json</span></div>
-                        <div class="detail-row"><span class="detail-label">Task name</span><span
-                                class="detail-value">OpenClaw
-                                Node</span></div>
-                        <div class="detail-row"><span class="detail-label">Required env</span><span
-                                class="detail-value">OPENCLAW_ALLOW_INSECURE_PRIVATE_WS=1</span></div>
+                    <div class="metric-card">
+                        <div class="metric-label">Cost tracker</div>
+                        <div class="metric-title green">API estimates</div>
+                        <div class="metric-desc">Daily and weekly Anthropic API cost estimates based on log analysis and
+                            Sonnet 4.6 pricing.</div>
                     </div>
                 </div>
             </div>
@@ -335,86 +267,50 @@
                     <div class="metric-card">
                         <div class="metric-label">Pi reboot</div>
                         <div class="metric-title green">Auto-recovers</div>
-                        <div class="metric-desc">Gateway auto-starts via systemd with user linger enabled. Tailscale
-                            Serve persists.
-                            MSI node reconnects via 10-second retry loop.</div>
+                        <div class="metric-desc">Gateway + dashboard auto-start via systemd with user linger. Tailscale
+                            Serve persists. MSI node reconnects via 10-second retry loop.</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Internet outage</div>
                         <div class="metric-title green">Auto-recovers</div>
                         <div class="metric-desc">Gateway keeps running locally on the Pi. Tailscale reconnects
-                            automatically when
-                            internet returns. Node retries connection every 10 seconds.</div>
+                            automatically when internet returns. Node retries every 10 seconds.</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Gateway crash</div>
                         <div class="metric-title green">Auto-recovers</div>
-                        <div class="metric-desc">Systemd detects the crash and restarts the gateway service. Node
-                            detects the
-                            disconnect and retries until the gateway is back online.</div>
+                        <div class="metric-desc">Systemd detects the crash and restarts the gateway. Node detects
+                            disconnect and retries until gateway is back online.</div>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick commands -->
+            <!-- Network & Access -->
             <div class="section fade-in">
-                <div class="section-label">Quick reference commands</div>
-                <div class="grid-2">
-                    <div class="card-sm">
-                        <div class="sub-title" style="color: var(--accent);">Pi (SSH into neuron)</div>
-
-                        <div class="cmd-group">
-                            <div class="cmd-label">Check gateway status</div>
-                            <div class="cmd-block">systemctl --user status openclaw-gateway.service</div>
+                <div class="section-label">Network &amp; access</div>
+                <div class="card">
+                    <div class="detail-grid">
+                        <div>
+                            <div class="sub-title">Tailscale mesh VPN</div>
+                            <div class="detail-row"><span class="detail-label">Devices enrolled</span><span
+                                    class="detail-value">3 (Pi, titan, g14)</span></div>
+                            <div class="detail-row"><span class="detail-label">Encryption</span><span
+                                    class="detail-value">WireGuard (end-to-end)</span></div>
+                            <div class="detail-row"><span class="detail-label">Connection</span><span
+                                    class="detail-value">direct (peer-to-peer)</span></div>
+                            <div class="detail-row"><span class="detail-label">Funnel</span><span
+                                    class="detail-value green">disabled (secure)</span></div>
                         </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">View connected nodes</div>
-                            <div class="cmd-block">openclaw nodes status</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">View / approve devices</div>
-                            <div class="cmd-block">openclaw devices list</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">Restart gateway</div>
-                            <div class="cmd-block">systemctl --user restart openclaw-gateway.service</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">Check CPU temperature</div>
-                            <div class="cmd-block">vcgencmd measure_temp</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">Restart Tailscale Serve</div>
-                            <div class="cmd-block">sudo tailscale serve --bg http://127.0.0.1:18789</div>
-                        </div>
-                    </div>
-
-                    <div class="card-sm">
-                        <div class="sub-title" style="color: var(--blue);">MSI (PowerShell as admin)</div>
-
-                        <div class="cmd-group">
-                            <div class="cmd-label">Start node service</div>
-                            <div class="cmd-block neutral">Start-ScheduledTask -TaskName "OpenClaw Node"</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">Stop node service</div>
-                            <div class="cmd-block neutral">Stop-ScheduledTask -TaskName "OpenClaw Node"</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">Restart node service</div>
-                            <div class="cmd-block neutral">Stop-ScheduledTask ...; Start-ScheduledTask ...</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">Check Tailscale status</div>
-                            <div class="cmd-block neutral">tailscale status</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">SSH to Pi</div>
-                            <div class="cmd-block neutral">ssh john2037@neuron.local</div>
-                        </div>
-                        <div class="cmd-group">
-                            <div class="cmd-label">Test node manually</div>
-                            <div class="cmd-block neutral">C:\Users\homie\.openclaw\node-custom.cmd</div>
+                        <div>
+                            <div class="sub-title">Access points</div>
+                            <div class="detail-row"><span class="detail-label">Dashboard</span><span
+                                    class="detail-value blue">HTTPS via Tailscale Serve</span></div>
+                            <div class="detail-row"><span class="detail-label">SSH</span><span class="detail-value">ssh
+                                    user@neuron.local</span></div>
+                            <div class="detail-row"><span class="detail-label">Authentication</span><span
+                                    class="detail-value">token + device pairing</span></div>
+                            <div class="detail-row"><span class="detail-label">Accessible from</span><span
+                                    class="detail-value">any Tailscale device</span></div>
                         </div>
                     </div>
                 </div>
@@ -422,25 +318,22 @@
 
             <!-- Important notes -->
             <div class="section fade-in">
-                <div class="section-label">Important notes</div>
+                <div class="section-label">Key design decisions</div>
                 <div class="card-sm">
                     <div class="detail-grid">
                         <div>
-                            <div class="detail-row"><span class="detail-label">Gateway token</span><span
-                                    class="detail-value" style="color: var(--coral);">private</span></div>
-                            <div class="detail-row"><span class="detail-label">Tailscale Serve</span><span
-                                    class="detail-value">set up
-                                    manually (not via OpenClaw config)</span></div>
+                            <div class="detail-row"><span class="detail-label">Node connection</span><span
+                                    class="detail-value">Direct ws:// via Tailscale IP (not Serve)</span></div>
                             <div class="detail-row"><span class="detail-label">node.json caveat</span><span
-                                    class="detail-value">auto-regenerated on start — do not edit</span></div>
+                                    class="detail-value">Auto-regenerated — custom script bypasses</span></div>
+                            <div class="detail-row"><span class="detail-label">File transfers</span><span
+                                    class="detail-value">SCP with forward slashes for Windows</span></div>
                         </div>
                         <div>
-                            <div class="detail-row"><span class="detail-label">node-custom.cmd</span><span
-                                    class="detail-value">custom
-                                    script with retry loop — do not reinstall node</span></div>
+                            <div class="detail-row"><span class="detail-label">Power management</span><span
+                                    class="detail-value">WoL + SSH (bypasses OpenClaw)</span></div>
                             <div class="detail-row"><span class="detail-label">Power consumption</span><span
-                                    class="detail-value">~6-17W
-                                    (≈ $1.50/month)</span></div>
+                                    class="detail-value">~6-17W (≈ $1.50/month)</span></div>
                             <div class="detail-row"><span class="detail-label">Estimated SSD lifespan</span><span
                                     class="detail-value">5-10+ years at current usage</span></div>
                         </div>
@@ -449,16 +342,24 @@
             </div>
 
             <div class="footer fade-in">
-                NEURON distributed AI system · april 2026 · openclaw v2026.4.9 · claude sonnet 4.6
+                NEURON distributed AI system · built by juan · april 2026 · openclaw v2026.4.9 · claude sonnet 4.6
             </div>
-
         </div>
     </main>
-    <!-- ...existing code... -->
-    <footer>
-        <p>© Made by Juan Higuera. Portfolio 2025.</p>
-    </footer>
-    <script type="module" src="/src/main.js"></script>
+    <!-- Loader dismiss script -->
+    <script>
+        window.addEventListener('load', function () {
+            const loader = document.getElementById('site-loader');
+            if (loader) {
+                loader.style.opacity = '0';
+                loader.style.transition = 'opacity 0.4s ease';
+                setTimeout(function () {
+                    loader.style.display = 'none';
+                    document.body.classList.remove('loading');
+                }, 400);
+            }
+        });
+    </script>
 </body>
 
 </html>
