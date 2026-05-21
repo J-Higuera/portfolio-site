@@ -392,9 +392,9 @@ html ::-webkit-scrollbar-thumb {
     border: 2px solid #ffffff61;
     padding: 20px;
     border-radius: 15px;
+    margin: 0 90px 10px 90px;
     text-align: center;
     margin-top: 18px;
-    width: 80%;
     justify-self: center;
     max-width: 100%;
     min-height: 200px;
@@ -573,6 +573,13 @@ footer a {
 .light-mode .cursor {
     color: #0e0e0e;
 }
+
+@media (max-width: 1520px) {
+    .github-contributions-widget {
+        margin: 0 20px 10px 20px;
+    }
+}
+
 
 /* smallets large screen size */
 @media (min-width: 1201px) {
@@ -869,8 +876,8 @@ footer a {
         padding: 20px;
         border-radius: 15px;
         text-align: center;
-        margin-top: 18px;
         width: 100%;
+        margin: 0 0 0 0;
         justify-self: center;
         max-width: 100%;
         min-height: 200px;
