@@ -163,4 +163,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("setMoviesButton").addEventListener("click", setMovies);
     document.getElementById("getMoviesButton").addEventListener("click", getMovies);
+
+    window.addEventListener('load', function () {
+        const loader = document.getElementById('site-loader');
+        if (loader) {
+            loader.style.opacity = '0';
+            loader.style.transition = 'opacity 0.4s ease';
+            setTimeout(function () {
+                loader.style.display = 'none';
+                document.body.classList.remove('loading');
+            }, 400);
+        }
+    });
 });
