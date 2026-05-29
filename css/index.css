@@ -290,7 +290,7 @@ html ::-webkit-scrollbar-thumb {
     height: 100px;
     border-radius: 7px;
     cursor: pointer;
-    transition: transform .6s ease-in-out;
+    transition: transform 0.6s ease-in-out;
 }
 
 .zoom-backdrop {
@@ -298,7 +298,7 @@ html ::-webkit-scrollbar-thumb {
     inset: 0;
     background: rgba(0, 0, 0, .75);
     opacity: 0;
-    transition: opacity .5s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
     z-index: 1000;
 }
 

@@ -544,20 +544,42 @@ document.addEventListener("DOMContentLoaded", () => {
     const row = document.querySelector(".certificate-row");
     if (!row) return;
 
-    let isAnimating = false;
+    let currentClose = null;
+
+    const closeZoom = (img, placeholder, backdrop, onDone) => {
+        img.style.transition = "opacity 0.3s ease";
+        img.style.opacity = "0";
+        backdrop.style.transition = "opacity 0.3s ease";
+        backdrop.style.opacity = "0";
+        setTimeout(() => {
+            img.removeAttribute("style");
+            img.classList.remove("zoomed-real");
+            placeholder.replaceWith(img);
+            backdrop.remove();
+            currentClose = null;
+            if (onDone) onDone();
+        }, 300);
+    };
 
     row.addEventListener("click", (ev) => {
         const img = ev.target.closest("img");
         if (!img || !row.contains(img)) return;
-        if (document.querySelector(".zoom-backdrop") || isAnimating) return;
-        isAnimating = true;
 
+        // If something is already open, close it then open the new one
+        if (currentClose) {
+            currentClose(() => openZoom(img));
+            return;
+        }
+        openZoom(img);
+    });
+
+    const openZoom = (img) => {
         const rect = img.getBoundingClientRect();
         const computed = getComputedStyle(img);
 
-        // Backdrop
         const backdrop = document.createElement("div");
         backdrop.className = "zoom-backdrop";
+        backdrop.style.opacity = "0";
         document.body.appendChild(backdrop);
 
         const placeholder = document.createElement("div");
@@ -567,11 +589,10 @@ document.addEventListener("DOMContentLoaded", () => {
         placeholder.style.height = rect.height + "px";
         placeholder.style.flex = `0 0 ${rect.width}px`;
         placeholder.style.flexShrink = "0";
-
         img.parentNode.insertBefore(placeholder, img);
         document.body.appendChild(img);
-
         img.classList.add("zoomed-real");
+
         Object.assign(img.style, {
             position: "fixed",
             top: "50%",
@@ -582,53 +603,59 @@ document.addEventListener("DOMContentLoaded", () => {
             width: "auto",
             height: "auto",
             zIndex: "1001",
-            transition: "opacity 1.3s ease",
             opacity: "0"
         });
 
-        const close = () => {
-            if (isAnimating) return;
-            isAnimating = true;
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                img.style.transition = "opacity 0.7s ease";
+                img.style.opacity = "1";
+                backdrop.style.transition = "opacity 0.7s ease";
+                backdrop.style.opacity = "1";
+            });
+        });
 
-            img.style.transition = "opacity 0.6s ease";
+        const close = (onDone) => {
+            currentClose = null;
+            closeZoom(img, placeholder, backdrop, onDone);
+            backdrop.removeEventListener("click", closeHandler);
+            img.removeEventListener("click", closeHandler);
+        };
+
+        const closeHandler = () => close();
+        currentClose = close;
+
+        backdrop.addEventListener("click", closeHandler);
+        img.addEventListener("click", closeHandler);
+
+        const onKey = (e) => { if (e.key === "Escape") close(); };
+        document.addEventListener("keydown", onKey, { once: true });
+        const closeZoom = (img, placeholder, backdrop, onDone) => {
+            img.style.transition = "opacity 0.3s ease";
             img.style.opacity = "0";
-            backdrop.classList.remove("show");
-
+            backdrop.style.transition = "opacity 0.3s ease";
+            backdrop.style.opacity = "0";
             setTimeout(() => {
                 img.removeAttribute("style");
                 img.classList.remove("zoomed-real");
                 placeholder.replaceWith(img);
 
-                // fade back in at original spot
+                // Fade the small image back in
                 img.style.opacity = "0";
                 requestAnimationFrame(() => {
-                    img.style.transition = "opacity 0.6s ease";
-                    img.style.opacity = "1";
+                    requestAnimationFrame(() => {
+                        img.style.transition = "opacity 0.5s ease";
+                        img.style.opacity = "1";
+                    });
                 });
 
-                // remove listeners + backdrop
-                backdrop.removeEventListener("click", close);
-                img.removeEventListener("click", close);
                 backdrop.remove();
-
-                setTimeout(() => { isAnimating = false; }, 800);
-            }, 800);
+                currentClose = null;
+                if (onDone) onDone();
+            }, 300);
         };
+    };
 
-        requestAnimationFrame(() => {
-            backdrop.classList.add("show");
-            img.style.opacity = "1";
-            setTimeout(() => { isAnimating = false; }, 800);
-        });
-
-        // Close on backdrop **and** on the zoomed image itself
-        backdrop.addEventListener("click", close);
-        img.addEventListener("click", close);
-
-        // Optional: Escape to close
-        const onKey = (e) => { if (e.key === "Escape") close(); };
-        document.addEventListener("keydown", onKey, { once: true });
-    });
 });
 
 
