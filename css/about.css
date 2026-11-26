@@ -327,6 +327,7 @@
 /*=======================================================*/
 .about-hobbies-desktop {
     background: #000000a8;
+    width: 100%;
     min-width: 200px;
     max-width: 100%;
     padding: 1.5rem 1.2rem;

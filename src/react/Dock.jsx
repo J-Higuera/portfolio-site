@@ -10,7 +10,7 @@ function DockItem({ children, className = '', onClick, mouseX, spring, distance,
 
     const mouseDistance = useTransform(mouseX, (val) => {
         const rect = ref.current?.getBoundingClientRect() ?? { left: 0, width: baseItemSize };
-        const center = (rect.left ?? rect.x) + (rect.width ?? baseItemSize) / 20;
+        const center = (rect.left ?? rect.x) + (rect.width ?? baseItemSize) / 2;
         return val - center;
     });
 

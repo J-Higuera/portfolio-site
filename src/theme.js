@@ -16,12 +16,12 @@ document.addEventListener("DOMContentLoaded", () => {
         body.classList.add("light-mode");
 
         // Update both toggles' label to show "ON"
-        desktopToggle.querySelector(".switch-thumb").textContent = "ON";
-        mobileToggle.querySelector(".switch-thumb").textContent = "ON";
+        if (desktopToggle?.querySelector(".switch-thumb")) desktopToggle.querySelector(".switch-thumb").textContent = "ON";
+        if (mobileToggle?.querySelector(".switch-thumb")) mobileToggle.querySelector(".switch-thumb").textContent = "ON";
     } else {
         // Default or dark mode: set toggle text to "OFF"
-        desktopToggle.querySelector(".switch-thumb").textContent = "OFF";
-        mobileToggle.querySelector(".switch-thumb").textContent = "OFF";
+        if (desktopToggle?.querySelector(".switch-thumb")) desktopToggle.querySelector(".switch-thumb").textContent = "OFF";
+        if (mobileToggle?.querySelector(".switch-thumb")) mobileToggle.querySelector(".switch-thumb").textContent = "OFF";
     }
 
     // === Theme toggle function ===
@@ -33,11 +33,11 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem("theme", isLight ? "light" : "dark");
 
         // Update switch label text for both toggles
-        desktopToggle.querySelector(".switch-thumb").textContent = isLight ? "ON" : "OFF";
-        mobileToggle.querySelector(".switch-thumb").textContent = isLight ? "ON" : "OFF";
+        if (desktopToggle?.querySelector(".switch-thumb")) desktopToggle.querySelector(".switch-thumb").textContent = isLight ? "ON" : "OFF";
+        if (mobileToggle?.querySelector(".switch-thumb")) mobileToggle.querySelector(".switch-thumb").textContent = isLight ? "ON" : "OFF";
     }
 
     // === Event listeners to trigger toggle on click ===
-    desktopToggle.addEventListener("click", toggleTheme);
-    mobileToggle.addEventListener("click", toggleTheme);
+    desktopToggle?.addEventListener("click", toggleTheme);
+    mobileToggle?.addEventListener("click", toggleTheme);
 });

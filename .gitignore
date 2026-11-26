@@ -9,6 +9,8 @@ lerna-debug.log*
 
 node_modules
 # dist
+# Private editable resume; publish the PDF only.
+public/documents/*.docx
 dist-ssr
 *.local
 
