@@ -1,0 +1,33 @@
+{
+  "portfolio": "https://github.com/J-Higuera/portfolio-site",
+  "portfolio_revision": "a7d1795ac253adaeb72b3eab3640cd6fe7c3e59a",
+  "react_bits_revision": "37f53df7efb61238b0fea9ea8be74e3cce62b959",
+  "license": "MIT + Commons Clause; see react-bits-LICENSE.md",
+  "components": [
+    {
+      "file": "src/backgrounds/LetterGlitch/LetterGlitch.css",
+      "sha256": "0767ab47da781aff920efee2a7b77af560b8b25a6ba9558bf232d16acf08fd71",
+      "source": "https://github.com/DavidHDev/react-bits/blob/37f53df7efb61238b0fea9ea8be74e3cce62b959/src/content/Backgrounds/LetterGlitch/LetterGlitch.css",
+      "upstream_sha256": "0767ab47da781aff920efee2a7b77af560b8b25a6ba9558bf232d16acf08fd71"
+    },
+    {
+      "file": "src/backgrounds/LetterGlitch/LetterGlitch.jsx",
+      "sha256": "6daae2d7d1068356ea181918c59fbd883b917f3fc48235f5a039f8bba4578da6",
+      "source": "https://github.com/DavidHDev/react-bits/blob/37f53df7efb61238b0fea9ea8be74e3cce62b959/src/content/Backgrounds/LetterGlitch/LetterGlitch.jsx",
+      "upstream_sha256": "f9743c1eedbb56e103dd79b705ce19e071bf11540fd03414db9a073c598f9a83"
+    },
+    {
+      "file": "src/backgrounds/LightRays/LightRays.css",
+      "sha256": "745fa51da4964776a2a0166857f94bcaa2b131bd6bf92fa46796226cc5ce58e3",
+      "source": "https://github.com/DavidHDev/react-bits/blob/37f53df7efb61238b0fea9ea8be74e3cce62b959/src/content/Backgrounds/LightRays/LightRays.css",
+      "upstream_sha256": "745fa51da4964776a2a0166857f94bcaa2b131bd6bf92fa46796226cc5ce58e3"
+    },
+    {
+      "file": "src/backgrounds/LightRays/LightRays.jsx",
+      "sha256": "a2dd9d3483e8d265ef5bf86007c5bf5ef392477fd5f92a917c2b62a1f3cf97da",
+      "source": "https://github.com/DavidHDev/react-bits/blob/37f53df7efb61238b0fea9ea8be74e3cce62b959/src/content/Backgrounds/LightRays/LightRays.jsx",
+      "upstream_sha256": "a2dd9d3483e8d265ef5bf86007c5bf5ef392477fd5f92a917c2b62a1f3cf97da"
+    }
+  ],
+  "adaptation": "Letter Glitch ambient streaks adapted to vertical downward grid rows. Homepage combines binary 01 at speed 0.5 and opacity 0.656 with noninteractive Light Rays (length 12, fade 3, intensity 0.85), original theme palettes, black base and screen overlay. Reduced motion, hidden document and unavailable WebGL2 use the original static theme. Components copied from the current approved donor files, not an older preview commit."
+}
