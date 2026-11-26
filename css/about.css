@@ -481,6 +481,11 @@
     pointer-events: auto;
 }
 
+/* A newly inserted backdrop may already have .show on its first paint. */
+@starting-style {
+    .hobby-backdrop.show { opacity: 0; }
+}
+
 .hobby-overlay {
     position: fixed;
     top: 50%;
