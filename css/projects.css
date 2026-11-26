@@ -45,11 +45,13 @@
     flex-wrap: wrap;
 }
 
-.project-card img {
+.project-card > img {
     width: 100%;
     height: auto;
-    min-height: 210px;
-    object-fit: cover;
+    aspect-ratio: 3 / 2;
+    flex-shrink: 0;
+    object-fit: contain;
+    background: #000;
     padding: 3px;
     border-radius: 18px;
     margin-bottom: 10px;
