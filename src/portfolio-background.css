@@ -1,14 +1,16 @@
+/* Homepage base is present before either effect initializes. */
+html:has(> body#home),body#home{background:#000}
 #portfolio-background{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden;background:#000}
 #portfolio-background[data-active="false"]{display:none}
-body[data-portfolio-background="animated"]{isolation:isolate;background:transparent}
+body#home[data-portfolio-background="animated"]{isolation:isolate}
 #portfolio-background>div{width:100%;height:100%}
 #portfolio-background:after{content:'';position:absolute;inset:0;background:rgba(0,0,0,.24);pointer-events:none}
 #portfolio-background>.binary-rays-overlay{position:absolute;inset:0;mix-blend-mode:screen;pointer-events:none}
 /* The approved black base needs bright exposed text in the light theme. */
-body.light-mode[data-portfolio-background="animated"] .hero h1,
-body.light-mode[data-portfolio-background="animated"] .hero h2,
-body.light-mode[data-portfolio-background="animated"] .cursor,
-body.light-mode[data-portfolio-background="animated"] .photo-card,
-body.light-mode[data-portfolio-background="animated"] .username,
-body.light-mode[data-portfolio-background="animated"] .sticky-nav a{color:#e7eff5}
+body#home.light-mode .hero h1,
+body#home.light-mode .hero h2,
+body#home.light-mode .cursor,
+body#home.light-mode .photo-card,
+body#home.light-mode .username,
+body#home.light-mode .sticky-nav a{color:#e7eff5}
 @media(prefers-reduced-motion:reduce){#portfolio-background{display:none}}
