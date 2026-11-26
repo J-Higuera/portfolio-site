@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!cs.animationName || cs.animationName === "none") {
             track.style.animation = "conveyor 45s linear infinite";
         }
-        track.style.animationPlayState = "paused";
+        track.style.animationPlayState = "paused"; // will be paused by IntersectionObserver if not in view
     } else {
         track.style.animation = "none";
     }
