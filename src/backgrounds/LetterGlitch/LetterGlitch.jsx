@@ -1,5 +1,6 @@
 'use client';
 
+import { uniformCache } from '../uniformCache';
 import { useEffect, useRef } from 'react';
 import './LetterGlitch.css';
 
@@ -121,9 +122,9 @@ const compile = (gl, type, source) => {
   if (!shader) return null;
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
-  if (gl.getShaderParameter(shader, gl.COMPILE_STATUS)) return shader;
-  gl.deleteShader(shader);
-  return null;
+  // Link status validates both shaders. Avoid serial compile-status fences
+  // so the driver can process both compilations before the single link check.
+  return shader;
 };
 
 const link = gl => {
@@ -222,6 +223,10 @@ const LetterGlitch = ({
     if (!program) return undefined;
     const u = program.uniforms;
     const vao = gl.createVertexArray();
+    gl.disable(gl.BLEND);
+    const uniforms = uniformCache(gl);
+    gl.useProgram(program.program);
+    gl.bindVertexArray(vao);
     const makeTexture = () => {
       const texture = gl.createTexture();
       gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -769,41 +774,38 @@ const LetterGlitch = ({
       settle(dt);
 
       gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.disable(gl.BLEND);
-      gl.useProgram(program.program);
-      gl.bindVertexArray(vao);
       gl.activeTexture(gl.TEXTURE1);
       gl.bindTexture(gl.TEXTURE_2D, stateTexture);
       if (dirty) {
         gl.texSubImage2D(gl.TEXTURE_2D, 0, 0, 0, grid.cols, grid.rows, gl.RGBA, gl.UNSIGNED_BYTE, data);
         dirty = false;
       }
-      gl.uniform1i(u.uState, 1);
+      uniforms.uniform1i(u.uState, 1);
       gl.activeTexture(gl.TEXTURE0);
       gl.bindTexture(gl.TEXTURE_2D, atlasTexture);
-      gl.uniform1i(u.uAtlas, 0);
-      gl.uniform2i(u.uCell, grid.cellW, grid.cellH);
-      gl.uniform2i(u.uGrid, grid.cols, grid.rows);
-      gl.uniform1i(u.uAtlasColumns, grid.atlasColumns);
-      gl.uniform2f(u.uResolution, canvas.width, canvas.height);
-      gl.uniform2f(u.uOrigin, grid.originX, grid.originY);
-      gl.uniform3fv(u.uBase, parse(s.baseColor));
-      gl.uniform1f(u.uBaseOpacity, s.baseOpacity);
-      gl.uniform3fv(u.uColors, palette);
-      gl.uniform1f(u.uEdge, s.edgeFade * Math.min(canvas.width, canvas.height));
-      gl.uniform1f(u.uCenter, s.centerFade);
-      gl.uniform2f(u.uPointer, pointer.sx, pointer.sy);
-      gl.uniform1f(u.uRadius, Math.max(1, s.cursorRadius * view.ratio));
-      gl.uniform1f(u.uPresence, pointer.presence);
-      gl.uniform1f(u.uReveal, Math.min(1, s.baseOpacity * 3.5));
-      gl.uniform1f(u.uTime, time);
-      gl.uniform1f(u.uFlow, s.flow);
-      gl.uniform1f(u.uFlowScale, Math.max(canvas.width, canvas.height) * 0.32);
+      uniforms.uniform1i(u.uAtlas, 0);
+      uniforms.uniform2i(u.uCell, grid.cellW, grid.cellH);
+      uniforms.uniform2i(u.uGrid, grid.cols, grid.rows);
+      uniforms.uniform1i(u.uAtlasColumns, grid.atlasColumns);
+      uniforms.uniform2f(u.uResolution, canvas.width, canvas.height);
+      uniforms.uniform2f(u.uOrigin, grid.originX, grid.originY);
+      uniforms.uniform3fv(u.uBase, parse(s.baseColor));
+      uniforms.uniform1f(u.uBaseOpacity, s.baseOpacity);
+      uniforms.uniform3fv(u.uColors, palette);
+      uniforms.uniform1f(u.uEdge, s.edgeFade * Math.min(canvas.width, canvas.height));
+      uniforms.uniform1f(u.uCenter, s.centerFade);
+      uniforms.uniform2f(u.uPointer, pointer.sx, pointer.sy);
+      uniforms.uniform1f(u.uRadius, Math.max(1, s.cursorRadius * view.ratio));
+      uniforms.uniform1f(u.uPresence, pointer.presence);
+      uniforms.uniform1f(u.uReveal, Math.min(1, s.baseOpacity * 3.5));
+      uniforms.uniform1f(u.uTime, time);
+      uniforms.uniform1f(u.uFlow, s.flow);
+      uniforms.uniform1f(u.uFlowScale, Math.max(canvas.width, canvas.height) * 0.32);
       if (s.backgroundColor) {
         const [r, g, b] = parse(s.backgroundColor);
-        gl.uniform4f(u.uBackground, r, g, b, 1);
+        uniforms.uniform4f(u.uBackground, r, g, b, 1);
       } else {
-        gl.uniform4f(u.uBackground, 0, 0, 0, 0);
+        uniforms.uniform4f(u.uBackground, 0, 0, 0, 0);
       }
       gl.drawArrays(gl.TRIANGLES, 0, 3);
 

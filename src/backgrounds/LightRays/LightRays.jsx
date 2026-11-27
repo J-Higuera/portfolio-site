@@ -1,5 +1,6 @@
 'use client';
 
+import { uniformCache } from '../uniformCache';
 import { useEffect, useRef, useState } from 'react';
 import './LightRays.css';
 
@@ -179,11 +180,8 @@ const compile = (gl, type, source) => {
   if (!shader) return null;
   gl.shaderSource(shader, source);
   gl.compileShader(shader);
-  if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
-    console.error(gl.getShaderInfoLog(shader));
-    gl.deleteShader(shader);
-    return null;
-  }
+  // Link status validates both shaders. Avoid serial compile-status fences
+  // so the driver can process both compilations before the single link check.
   return shader;
 };
 
@@ -306,6 +304,9 @@ const LightRays = ({
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const vao = gl.createVertexArray();
+    const uniforms = uniformCache(gl);
+    gl.useProgram(shader.program);
+    gl.bindVertexArray(vao);
     const size = { width: 1, height: 1, ratio: 1 };
     const pointer = { x: 0.5, y: 0.5, inside: false, seen: false };
     const aim = { x: 0.5, y: 0.5 };
@@ -407,36 +408,32 @@ const LightRays = ({
       const eased = 1 - Math.pow(1 - opening, 3);
 
       gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.clearColor(0, 0, 0, 0);
-      gl.clear(gl.COLOR_BUFFER_BIT);
-      gl.useProgram(shader.program);
-      gl.bindVertexArray(vao);
       const u = shader.uniforms;
-      gl.uniform2f(u.uResolution, canvas.width, canvas.height);
-      gl.uniform1f(u.uScale, size.ratio);
-      gl.uniform1f(u.uTime, time);
-      gl.uniform2f(u.uSource, sourceX, sourceY);
-      gl.uniform2f(u.uAim, dirX, dirY);
-      gl.uniform1f(u.uReach, Math.max(width, height));
-      gl.uniform3f(u.uColor, s.color[0], s.color[1], s.color[2]);
-      gl.uniform1f(u.uSpread, s.spread);
-      gl.uniform1f(u.uLength, s.length);
-      gl.uniform1f(u.uFade, s.fade);
-      gl.uniform1f(u.uSaturation, s.saturation);
-      gl.uniform1f(u.uPulsating, s.pulsating ? 1 : 0);
-      gl.uniform1f(u.uNoise, s.noise);
-      gl.uniform1f(u.uDistortion, s.distortion);
-      gl.uniform1f(u.uDensity, s.density);
-      gl.uniform1f(u.uSharpness, s.sharpness);
-      gl.uniform1f(u.uGlow, s.glow);
-      gl.uniform1f(u.uHaze, s.haze);
-      gl.uniform1f(u.uAtmosphere, s.atmosphere);
-      gl.uniform1f(u.uIntensity, s.intensity);
-      gl.uniform4f(u.uShadow, shade.x * width, shade.y * height, shade.presence, 16);
-      gl.uniform4fv(u.uPulses, pulseData);
-      gl.uniform2f(u.uIntro, eased * 2.6, smoother(opening / 0.5));
-      gl.uniform1f(u.uLight, s.light ? 1 : 0);
-      gl.uniform1f(u.uOpacity, s.opacity);
+      uniforms.uniform2f(u.uResolution, canvas.width, canvas.height);
+      uniforms.uniform1f(u.uScale, size.ratio);
+      uniforms.uniform1f(u.uTime, time);
+      uniforms.uniform2f(u.uSource, sourceX, sourceY);
+      uniforms.uniform2f(u.uAim, dirX, dirY);
+      uniforms.uniform1f(u.uReach, Math.max(width, height));
+      uniforms.uniform3f(u.uColor, s.color[0], s.color[1], s.color[2]);
+      uniforms.uniform1f(u.uSpread, s.spread);
+      uniforms.uniform1f(u.uLength, s.length);
+      uniforms.uniform1f(u.uFade, s.fade);
+      uniforms.uniform1f(u.uSaturation, s.saturation);
+      uniforms.uniform1f(u.uPulsating, s.pulsating ? 1 : 0);
+      uniforms.uniform1f(u.uNoise, s.noise);
+      uniforms.uniform1f(u.uDistortion, s.distortion);
+      uniforms.uniform1f(u.uDensity, s.density);
+      uniforms.uniform1f(u.uSharpness, s.sharpness);
+      uniforms.uniform1f(u.uGlow, s.glow);
+      uniforms.uniform1f(u.uHaze, s.haze);
+      uniforms.uniform1f(u.uAtmosphere, s.atmosphere);
+      uniforms.uniform1f(u.uIntensity, s.intensity);
+      uniforms.uniform4f(u.uShadow, shade.x * width, shade.y * height, shade.presence, 16);
+      uniforms.uniform4fv(u.uPulses, pulseData);
+      uniforms.uniform2f(u.uIntro, eased * 2.6, smoother(opening / 0.5));
+      uniforms.uniform1f(u.uLight, s.light ? 1 : 0);
+      uniforms.uniform1f(u.uOpacity, s.opacity);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
 
       const settling =
